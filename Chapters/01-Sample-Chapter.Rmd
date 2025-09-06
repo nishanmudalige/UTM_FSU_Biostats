@@ -1,0 +1,320 @@
+# Introduction
+
+## Foundations {#sec:foundations}
+
+Intuitively, statistics can be considered the science of uncertainty.
+Formally,
+
+::: {.definition name="Statistics"}
+Statistics is the science of collecting, classifying, summarizing, analyzing and interpreting
+data.
+:::
+
+In statistics, researchers are often interested in characteristics of a large group of interest. They often observe behaviours, patterns, trends etc. to give a conclusion for  the group. To make the conclusions, researchers require data to support them.
+
+::: {.definition name="Population" #Pop}
+In statistics, a population is the entire group of individuals, items, or measurements that share a characteristic of interest and about which conclusions are to be drawn.
+:::
+
+A population can be a set of existing objects such as all people in Canada, or hypothetical group of existing objects such as the set of all possible hands in a game of poker.
+Populations are often large.
+Additional examples are given below.
+
+::: {.example}
+- All students at the University of Toronto
+- All residents of Mississauga
+:::
+
+Data collection from every object in a population is often not feasible to perform. 
+Researchers often select a finite number of observations to study.
+
+::: {.definition name="Sample" #Sample}
+A sample is a subset from population.
+:::
+
+Samples are smaller than a population and are therefore easier to manage.
+Researchers are often able to take measurements on all units in a sample.
+
+::: {.example}
+- A random sample of 50 students at the University of Toronto.
+- A random sample of 100 residents of Mississauga.
+:::
+
+
+::: {.definition name="Unit" #Unit}
+A unit (or observational unit, element) is the smallest entity in a study from which data are collected or measured. It is the fundamental building block of the data set.
+:::
+
+::: {.example}
+- In a sample of 10 students, a unit would be one of the students in this sample.
+:::
+
+Each unit has certain characteristics we can measure. When we record the values of all characteristics for a particular unit, we obtain an **observation**.
+
+::: {.definition name="Observation" #Observation}
+An observation is the collection of measured values for all variables from a single unit. In a data table, one row typically represents one observation.
+:::
+
+::: {.example}
+- If a student’s age, height, and weight are recorded, the set of these three values for that student is one observation.
+:::
+
+The characteristics themselves are called **variables**. Variables can be numerical (e.g., height) or categorical (e.g., eye colour) and describe different aspects of the units we are studying.
+
+::: {.definition name="Variable" #Variable}
+A variable is a characteristic or attribute that can be measured or recorded for each unit, and can vary from unit to unit. In a data table, one column typically represents one variable.
+:::
+
+::: {.example}
+- If we record the age of each student in a study, “age” is the variable.
+:::
+
+In any statistical investigation, we first define the **population**—the full set of units we want to study. A **population unit** is simply one member of that full set.
+
+::: {.definition name="Population Unit" #PopulationUnit}
+A population unit is a unit that belongs to the entire population — the complete set of units that share the characteristic(s) of interest in a study.
+:::
+
+::: {.example}
+- If the population is all students at a university, then one student at that university is a population unit.
+:::
+
+Because studying an entire population is often impractical, we select a smaller group—a **sample**—to represent it. A **sample unit** is one member of that smaller group.
+
+::: {.definition name="Sample Unit" #SampleUnit}
+A sample unit is a unit that is part of the sample — the subset of the population selected for measurement or observation in the study.
+:::
+
+::: {.example}
+- If we select 50 students from a university for a survey, one of these selected students is a sample unit.
+:::
+
+By clearly distinguishing these terms, we can describe our data precisely, communicate our methods effectively, and avoid confusion when interpreting results.
+
+There are characteristics of a population and sample which are of interest to us.
+
+::: {.definition name="Parameter" #Parameter}
+A parameter is a numerical quantity of a population which summarizes a
+characteristic of the population.
+:::
+
+Some examples of parameters are introduced in this section.
+These terms will be discussed in more detail in later chapters.
+
+::: {.example #ExParam}
+- Population mean $\mu$
+- Population standard deviation $\sigma$
+- Population proportion $p$
+:::
+
+The true value of a parameter is usually unknown since it is extremely difficult to take
+measurements on every unit in a population.
+Therefore we often use measurements from a sample to estimate the value of a parameter.
+
+::: {.definition name="Statistic" #Statistic}
+A statistic is a numerical quantity of a sample which summarizes a
+characteristic of the sample.
+:::
+
+Since we have control over a sample, the numerical values of statistics
+are often calculated and known.
+
+Some examples of statistics are given below and similar to the parameters 
+in \@ref(exm:ExParam), these terms will also be discussed in more detail in later chapters.
+
+::: {.example}
+- Sample mean $\bar{x}$
+- Sample standard deviation $s$
+- Sample proportion $\hat{p}$
+:::
+
+Statistics can be broken down into two broad categories: descriptive statistics and inferential statistics which are given in definitions \@ref(def:DescStats) and \@ref(def:InfStats) below.
+
+::: {.definition name="Descriptive Statistics" #DescStats}
+Descriptive statistics are numerical and graphical methods used to analyze, interpret, and
+represent data.
+:::
+
+::: {.definition name="Inferential Statistics" #InfStats}
+Inferential statistics use information from a sample to make generalizations about a larger
+population.
+:::
+
+## Types of data
+
+Data can be classified into two main categories: quantitative and qualitative data.
+
+::: {.definition name="Quantitative data"}
+Data which can be measured numerically.
+:::
+
+::: {.example}
+- Height
+- weight 
+- Age
+- Temperature
+:::
+
+::: {.definition name="Qualitative data"}
+Data which can not be measured numerically. Qualitative data falls into categories instead.
+:::
+
+::: {.example}
+- Favourite colour out of red, green, blue
+- Favourite flavour of ice-cream out of chocolate, vanilla, strawberry
+:::
+
+
+
+
+## Introduction to Inferential statistics
+
+As discussed in Section \@ref(sec:foundations), 
+we mentioned that the numerical values of parameters are usually unknown,
+however the numerical values of statistics are calculated and known.
+
+The picture below shows the relationship between parameters from a population and statistics from a sample.
+
+<!--  include engine='tikz' in block header for tikz images -->
+<!-- ```{r fig.align='center', echo=FALSE, out.width='100%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='Illustration of parameters in a population and statistics in a sample'} -->
+```{r fig.cap="Illustration of parameters in a population and statistics in a sample", out.width='90%', echo=FALSE, fig.align='center', warning=FALSE}
+library(plotly)
+
+# ---------- helpers (as you defined) ----------
+ellipse_df <- function(cx, cy, a, b, angle = 0, n = 400) {
+  t <- seq(0, 2*pi, length.out = n)
+  x <- cx + a*cos(t)*cos(angle) - b*sin(t)*sin(angle)
+  y <- cy + a*cos(t)*sin(angle) + b*sin(t)*cos(angle)
+  data.frame(x, y)
+}
+
+ellipse_points_excluding_rects <- function(cx, cy, a, b, n, rects) {
+  out <- data.frame(x = numeric(0), y = numeric(0))
+  while (nrow(out) < n) {
+    m     <- max(50, ceiling((n - nrow(out)) * 1.5))
+    theta <- runif(m, 0, 2*pi)
+    r     <- sqrt(runif(m))
+    x     <- cx + a * r * cos(theta)
+    y     <- cy + b * r * sin(theta)
+    keep  <- rep(TRUE, m)
+    for (i in seq_len(nrow(rects))) {
+      rx <- rects$cx[i]; ry <- rects$cy[i]
+      w  <- rects$w[i];  h  <- rects$h[i]
+      inside_i <- (x >= rx - w/2) & (x <= rx + w/2) &
+        (y >= ry - h/2) & (y <= ry + h/2)
+      keep <- keep & !inside_i
+    }
+    out <- rbind(out, data.frame(x = x[keep], y = y[keep]))
+  }
+  head(out, n)
+}
+
+# ---------- parameters & data ----------
+set.seed(2)
+pop_ctr_y  <-  2.00;  samp_ctr_y <- -2.75
+a_pop <- 4.25; b_pop <- 1.80
+a_smp <- 2.6; b_smp <- 1.25
+
+pop_title_y <- pop_ctr_y + 0.25
+pop_stats_y <- pop_ctr_y - 0.25
+pop_rects <- data.frame(
+  cx = c(0, 0.1), cy = c(pop_title_y, pop_stats_y),
+  w  = c(1.30, 3.50), h  = c(0.60, 0.75)
+)
+
+smp_title_y <- samp_ctr_y + 0.21
+smp_stats_y <- samp_ctr_y - 0.21
+smp_rects <- data.frame(
+  cx = c(0,0), cy = c(smp_title_y, smp_stats_y),
+  w  = c(0.90, 2.25), h  = c(0.525, 0.575)
+)
+
+epsilon <- abs(0.06)
+pts_pop <- ellipse_points_excluding_rects(0, pop_ctr_y,  a_pop - epsilon, b_pop - epsilon, 2500, pop_rects)
+pts_smp <- ellipse_points_excluding_rects(0, samp_ctr_y, a_smp - epsilon, b_smp - epsilon,  250, smp_rects)
+
+pop_ell <- ellipse_df(0, pop_ctr_y, a_pop, b_pop)
+smp_ell <- ellipse_df(0, samp_ctr_y, a_smp, b_smp)
+
+# ---------- build plotly figure ----------
+p <- plot_ly() %>%
+  # Population ellipse
+  add_trace(
+    data = pop_ell, x = ~x, y = ~y,
+    type = 'scatter', mode = 'lines',
+    fill = 'toself', fillcolor = '#00ABFD',
+    line = list(color = '#004970', width = 0.6),
+    hoverinfo = 'none', showlegend = FALSE
+  ) %>%
+  # Sample ellipse
+  add_trace(
+    data = smp_ell, x = ~x, y = ~y,
+    type = 'scatter', mode = 'lines',
+    fill = 'toself', fillcolor = '#00C1AA',
+    line = list(color = '#017858', width = 0.6),
+    hoverinfo = 'none', showlegend = FALSE
+  ) %>%
+  # Population points with hover label
+  add_markers(
+    data      = pts_pop, x = ~x, y = ~y,
+    marker    = list(size = 5.2, color = '#004970'),
+    text      = "population unit",
+    hoverinfo = "text",
+    showlegend = FALSE
+  ) %>%
+  # Sample points with hover label
+  add_markers(
+    data      = pts_smp, x = ~x, y = ~y,
+    marker    = list(size = 5.2, color = '#017858'),
+    text      = "sample unit",
+    hoverinfo = "text",
+    showlegend = FALSE
+  ) %>%
+  # Layout with annotations
+  layout(
+    xaxis = list(range = c(-5, 5), showgrid = FALSE, zeroline = FALSE, visible = FALSE),
+    yaxis = list(range = c(-4.5, 4.5), showgrid = FALSE, zeroline = FALSE, visible = FALSE),
+    margin = list(l = 0, r = 0, t = 0, b = 0),
+    annotations = list(
+      # straight arrow
+      list(
+        x   =  0.00, y   = samp_ctr_y + 1.25,
+        ax  =  0.00, ay  = pop_ctr_y - 1.78,
+        xref= 'x',     yref= 'y',
+        axref= 'x',    ayref= 'y',
+        showarrow = TRUE,
+        arrowhead = 2,
+        arrowwidth = 2.5,
+        arrowcolor = 'black',
+        text = ''
+      ),
+      # "draw"
+      list(x = 0.50, y = -0.60, text = "draw", showarrow = FALSE,
+           font = list(size = 16, color = "black")),
+      # Population title & stats (LaTeX)
+      list(x = 0, y = pop_title_y, text = "Population", showarrow = FALSE,
+           font = list(size = 20, color = "white", family="Arial")),
+      list(x = -0.2, y = pop_stats_y, text = "$$Parameters \\ such \\ as \\ μ,\\ \\sigma,\\ p$$", showarrow = FALSE,
+           font = list(size = 18, color = "white")),
+      # Sample title & stats (LaTeX)
+      list(x = 0, y = smp_title_y, text = "Sample", showarrow = FALSE,
+           font = list(size = 18, color = "white", family="Arial")),
+      list(x = 0, y = smp_stats_y, text = "$$Statistics \\ such \\ as \\ \\bar{x},\\ s,\\ \\hat{p}$$", showarrow = FALSE,
+           font = list(size = 14, color = "white"))
+    )
+  ) %>%
+  # Enable MathJax so that $...$ renders correctly
+  config(mathjax = "cdn")
+
+p
+```
+
+
+The aim of statistical inference is to produce estimators of the population parameters and examine how accurate these estimators are in terms of a probability statement.
+We also quantify our confidence that the statistic is representative of the parameter and use statistics to test hypotheses about the population parameters.
+Inference is discussed in more detail in the section on inference. 
+<!-- \@ref(sec:inference). -->
+
+
+
+

@@ -4,3 +4,4 @@ language:
 output_dir: "docs"
 rmd_files:
   - "index.Rmd"
+  - "Chapters/01-Sample-Chapter.Rmd"
