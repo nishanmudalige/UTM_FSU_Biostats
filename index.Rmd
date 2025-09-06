@@ -1,0 +1,14 @@
+---
+title: "Biostats Ebook"
+author: "Valerie Pan, Nishi Bhanderi, Nishan Mudalige, Bryce Morsky"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+knit: bookdown::renderbook
+documentclass: book
+description: "E-book created with bookdown for teaching biostats"
+---
+
+# Introduction
+
+Sample Text
