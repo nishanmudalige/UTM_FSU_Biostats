@@ -1,5 +1,11 @@
 # Introduction
 
+Welcome to the introduction!
+
+```{r}
+print("Welcome!")
+```
+
 ## Foundations {#sec:foundations}
 
 Intuitively, statistics can be considered the science of uncertainty.
