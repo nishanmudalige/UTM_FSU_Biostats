@@ -23,7 +23,7 @@ def:unlabeled-div-10
 exm:unlabeled-div-11
 def:unlabeled-div-12
 exm:unlabeled-div-13
-fig:unnamed-chunk-2
+fig:unnamed-chunk-3
 introduction
 sec:foundations
 types-of-data

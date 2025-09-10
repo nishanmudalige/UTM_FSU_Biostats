@@ -1,12 +1,8 @@
 # Introduction
 
-Welcome to the introduction!
-
-```{r}
-print("Welcome!")
-```
-
 ## Foundations {#sec:foundations}
+
+Valerie - Testing
 
 Intuitively, statistics can be considered the science of uncertainty.
 Formally,
