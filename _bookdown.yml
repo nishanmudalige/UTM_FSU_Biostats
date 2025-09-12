@@ -2,6 +2,9 @@ language:
   ui:
     chapter_name: "Chapter "
 output_dir: "docs"
+header-includes:
+  - \usepackage{tikz}
+  - \usetikzlibrary{arrows.meta,positioning}
 rmd_files:
   - "index.Rmd"
-  - "Chapters/01-Sample-Chapter.Rmd"
+  - "Chapters/01-Introduction-to-Mathematical-Modelling.Rmd"

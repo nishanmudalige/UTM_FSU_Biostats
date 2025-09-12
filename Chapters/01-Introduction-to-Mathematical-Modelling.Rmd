@@ -1,0 +1,115 @@
+# Introduction to Mathematical Modelling
+
+## Foundations {#sec:foundations}
+
+::: {.definition name="Model"}
+A mathematical model is a mathematical framework describing a simplified version of reality.
+:::
+
+Some examples of mathematical models include
+
+- Population Growth Model: A model that describes how the size of a population changes over time depending on birth rates and death rates.
+
+- Supply and Demand Model: A model in economics that relates the price of a good to its availability (supply) and how much people want it (demand). It predicts that the price will adjust until the amount supplied equals the amount demanded (market equilibrium).
+
+- Projectile Motion Model: A physics model for the path of an object thrown into the air.
+
+- Linear Regression Model: A statistical model that expresses the relationship between a response variable (like exam score) and one or more explanatory variables (like study hours).
+
+
+
+## Exponential Growth and Decay
+
+Exponential models describe processes that grow or decline at rates proportional to their current size. In the case of exponential growth, the model is
+
+$$
+\frac{dN}{dt} = rN, \quad r > 0,
+$$
+
+which has the solution
+
+$$
+N(t) = N_0 e^{rt}.
+$$
+
+When the rate $r$ is negative, we obtain exponential decay, where the quantity decreases over time:
+
+$$
+N(t) = N_0 e^{rt}, \quad r < 0.
+$$
+
+These models are widely used in contexts such as population growth, radioactive decay, and compound interest.
+
+
+```{r ExpGrowthDecay, echo=FALSE, fig.align='center', fig.cap="Exponential growth (left) and exponential decay (right) with initial value $N_0=10$; rates $r=0.3$ and $r=-0.3$.", fig.show='hold', out.width=c("50%","50%")}
+# Exponential model
+exp_model <- function(t, r, N0) N0 * exp(r * t)
+
+# Parameters and grid
+N0 <- 10
+t  <- seq(0, 10, length.out = 200)
+
+# Plot: growth
+plot(t, exp_model(t, r = 0.3,  N0 = N0), type = "l", lwd = 2, col = "blue",
+     xlab = "Time (t)", ylab = "N(t)", main = "Exponential Growth")
+abline(h = N0, lty = 2, col = "gray")
+
+# Plot: decay
+plot(t, exp_model(t, r = -0.3, N0 = N0), type = "l", lwd = 2, col = "red",
+     xlab = "Time (t)", ylab = "N(t)", main = "Exponential Decay")
+abline(h = 0, lty = 2, col = "gray")
+```
+
+
+## Logistic Model
+
+The logistic growth model describes how a population grows over time with limited resources.
+
+The differential equation form is
+
+$$
+\frac{dN}{dt} = rN \left(1 - \frac{N}{K}\right),
+$$
+
+where  
+- $N(t)$ = population size at time $t$  
+- $r$ = intrinsic growth rate  
+- $K$ = carrying capacity.  
+
+The solution to this differential equation is
+
+$$
+N(t) = \frac{K}{1 + \left(\frac{K - N_0}{N_0}\right)e^{-rt}},
+$$
+
+where $N_0$ is the initial population size at $t=0$.  
+
+As $t \to \infty$, $N(t) \to K$, meaning the population stabilizes at the carrying capacity.
+
+
+```{r LogisticExample, fig.cap="An illustration of the logisitc model for a growth rate of 0.5, a carrying capacity of 100 and an initial population size of 5.", echo=FALSE, fig.align='center', warning=FALSE}
+# Logistic growth function
+logistic <- function(t, r, K, N0) {
+  K / (1 + ((K - N0) / N0) * exp(-r * t))
+}
+
+# Parameters
+r  <- 0.5      # intrinsic growth rate
+K  <- 100      # carrying capacity
+N0 <- 5        # initial population size
+
+# Time grid
+t <- seq(0, 20, length.out = 200)
+
+# Population values
+N <- logistic(t, r, K, N0)
+
+# Plot
+plot(t, N, type="l", lwd=2, col="steelblue2",
+     xlab="Time (t)", ylab="Population size N(t)",
+     main="Logistic Growth Model")
+abline(h=K, lty=2, col="lightcoral")
+legend("bottomright", legend=c("Population", "Carrying capacity (K)"),
+       col=c("steelblue2", "lightcoral"), lty=c(1,2), lwd=2, bty="n")
+```
+

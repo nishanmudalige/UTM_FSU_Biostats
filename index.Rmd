@@ -1,14 +1,24 @@
 ---
-title: "Biostats Ebook"
+title: "Biostats E-book"
 author: "Valerie Pan, Nishi Bhanderi, Nishan Mudalige, Bryce Morsky"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
-knit: bookdown::renderbook
+knit: bookdown::render_book
 documentclass: book
-description: "E-book created with bookdown for teaching biostats"
+github-repo: nishanmudalige/STA258
+biblio-style: apalike
+link-citations: yes
+nocite: '@*'
+description: "Bookdown hosted on github using bookdown::gitbook."
 ---
 
-# Introduction
+# Welcome {.unnumbered}
 
-Sample Text
+This e-book on bio-mathematics was created through a collaborative effort by academics and students at the [University of Toronto Mississauga](https://www.utm.utoronto.ca/), [Florida State University](https://www.fsu.edu/) and a gifted scholar at the [Maclay School](https://www.maclay.org/).
+
+```{r homepage-img, echo=FALSE, fig.align='center', out.width='20%'}
+knitr::include_graphics("Images/Welcome Page/utm-logo.svg")
+knitr::include_graphics("Images/Welcome Page/fsu-logo.png")
+knitr::include_graphics("Images/Welcome Page/maclay-logo.jpg")
+```
