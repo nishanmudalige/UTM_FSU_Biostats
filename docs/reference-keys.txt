@@ -1,6 +1,11 @@
 def:unlabeled-div-1
 fig:ExpGrowthDecay
 fig:LogisticExample
+introduction
+sec:goal
+history-of-mathematical-epidemiology
+role-of-models-in-public-health
+introduction-to-compartmental-modelling-thinking
 introduction-to-mathematical-modelling
 sec:foundations
 exponential-growth-and-decay

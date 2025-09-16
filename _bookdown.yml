@@ -7,4 +7,5 @@ header-includes:
   - \usetikzlibrary{arrows.meta,positioning}
 rmd_files:
   - "index.Rmd"
+  - "Chapters/01-Introduction.Rmd"
   - "Chapters/01-Introduction-to-Mathematical-Modelling.Rmd"

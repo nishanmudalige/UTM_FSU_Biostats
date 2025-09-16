@@ -1,0 +1,44 @@
+# Introduction 
+
+## Goal of this E-book {#sec:goal}
+
+This e-book provides an introduction to mathematical modeling in epidemiology, focusing on how to develop and analyze models, and how they inform public health decisions. We will learn about compartmental and agent-based models and their extensions that incorporate heterogeneities (age, space, behaviour). We will also explore disease control strategies. Simulation-based demonstrations and coding exercises will help connect theory to real-world insights.
+
+Readers should have an understanding of Calculus 1 and 2, ODEs, Intro Stats/Probability, Programming experience, and (maybe) Linear Algebra.
+
+
+
+## History of Mathematical Epidemiology
+For all of human history, diseases have spread through groups of people. An epidemic is a widespread occurrence of an infectious disease at a particular time. An endemic disease on the other hand is one that is always present in certain populations. One of the earliest and deadliest epidemics known is the Black Death, most likely bubonic plague, which started in Asia in 1346 and spread throughout Europe. A later and widely known epidemic is the Spanish Flu epidemic of 1918-19 which caused more than 50 million deaths. Malaria and typhus are examples of endemic diseases. The purpose of epidemiology is to understand the causes of a disease, predict its course, and develop ways of controlling its spread. 
+
+The first model in mathematical epidemiology was the work of Daniel Bernoulli on the inoculation of smallpox. Bernoulli calculated the increase in life expectancy if smallpox is removed as a cause of death. The beginnings of compartmental modelling actually started through the work of public health physicians. In 1906, W.H. Hamer proposed that the spread of infection should be observed looking at individuals in compartments: susceptible and infective. Dr. Ross, who worked on malaria, was the first to introduce the concept of the basic reproductive number (R~0~), which quantifies the number of secondary infections caused by one case in a susceptible population.The framework was then expanded and formalized by Kermack and McKendrick in the late 1920s and early 1930s, laying the foundation for modern epidemic modeling.
+
+
+**References:**
+
+- <https://pmc.ncbi.nlm.nih.gov/articles/PMC6001967/>
+
+
+## Role of Models in Public Health
+
+Due to ethical concerns, it is difficult to design controlled experiments in epidemiology. In addition, epidemiologists may encounter incomplete and inaccurate data from measurement error, which can hinder parameter estimation and model fitting. (Smeden et al.; Brauer)
+
+This is why mathematical modelling in epidemiology plays a major role in our understanding of mechanisms of disease spread. This understanding can suggest strategies for public health and health care responses regarding diseases and epidemics (Brauer; Silal et al.; Tolles & Luong). Models can also identify variables that data may not show. For instance, some models can identify threshold behaviors of epidemics—an indicator of when a disease will become an epidemic, or dies out. This could then be used to determine vaccination plans (Brauer).
+
+Compartmental models used today (originating from the Kermack-McKendrick model), can show disease transmission while observing time and infection number in relation to an epidemic (Tolles & Luong). Compartmental models differ with diseases, and their development often relies on various policies. These models must undergo rigorous sensitivity testing to determine ideal parameters that impact model outcomes (Silal et al.).
+
+In Chapter 1 of this book, we will be exploring the models that are used in modern epidemiology such as the SIR model. 
+
+
+**References:**
+
+- Tolles, J., & Luong, T.B. (2020). Modeling Epidemics With Compartmental Models. JAMA. <https://jamanetwork.com/journals/jama/fullarticle/2766672>.
+
+- Silal, S.P., Little, F., Barnes, K.I. & White, L.J. (2017). Sensitivity to model structure: a comparison of compartmental models in epidemiology. Health Systems. <https://www.tandfonline.com/doi/full/10.1057/hs.2015.2#d1e281>.
+
+- Brauer, F. Chapter 2: Compartmental Models in Epidemiology. 
+
+- Smeden, M., Lash, T.L. & Groenwold, R.H.H. (2020). Reflection on modern methods: five myths about measurement error in epidemiological research. International Journal of Epidemiology, 49(1), 338–347, <https://doi.org/10.1093/ije/dyz251>. 
+
+
+## Introduction to Compartmental Modelling Thinking
