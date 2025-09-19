@@ -8,13 +8,13 @@ A mathematical model is a mathematical framework describing a simplified version
 
 Some examples of mathematical models include
 
-- Population Growth Model: A model that describes how the size of a population changes over time depending on birth rates and death rates.
+- **Population Growth Model**: A model that describes how the size of a population changes over time depending on birth rates and death rates.
 
-- Supply and Demand Model: A model in economics that relates the price of a good to its availability (supply) and how much people want it (demand). It predicts that the price will adjust until the amount supplied equals the amount demanded (market equilibrium).
+- **Supply and Demand Model**: A model in economics that relates the price of a good to its availability (supply) and how much people want it (demand). It predicts that the price will adjust until the amount supplied equals the amount demanded (market equilibrium).
 
-- Projectile Motion Model: A physics model for the path of an object thrown into the air.
+- **Projectile Motion Model**: A physics model for the path of an object thrown into the air.
 
-- Linear Regression Model: A statistical model that expresses the relationship between a response variable (like exam score) and one or more explanatory variables (like study hours).
+- **Linear Regression Model**: A statistical model that expresses the relationship between a response variable (like exam score) and one or more explanatory variables (like study hours).
 
 
 

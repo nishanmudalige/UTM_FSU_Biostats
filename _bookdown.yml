@@ -8,4 +8,4 @@ header-includes:
 rmd_files:
   - "index.Rmd"
   - "Chapters/01-Introduction.Rmd"
-  - "Chapters/01-Introduction-to-Mathematical-Modelling.Rmd"
+  - "Chapters/02-Introduction-to-Mathematical-Modelling.Rmd"
