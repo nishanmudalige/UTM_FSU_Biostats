@@ -10,3 +10,4 @@ introduction-to-mathematical-modelling
 sec:foundations
 exponential-growth-and-decay
 logistic-model
+my-test-environment
