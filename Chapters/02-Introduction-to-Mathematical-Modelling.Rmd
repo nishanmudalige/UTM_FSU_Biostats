@@ -50,7 +50,7 @@ N0 <- 10
 t  <- seq(0, 10, length.out = 200)
 
 # Plot: growth
-plot(t, exp_model(t, r = 0.3,  N0 = N0), type = "l", lwd = 2, col = "blue",
+plot(t, exp_model(t, r = 0.3,  N0 = N0), type = "l", lwd = 2, col = "green",
      xlab = "Time (t)", ylab = "N(t)", main = "Exponential Growth")
 abline(h = N0, lty = 2, col = "gray")
 
