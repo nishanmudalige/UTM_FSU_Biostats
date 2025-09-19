@@ -1,6 +1,6 @@
 ---
 title: "Biostats E-book"
-author: "Valerie Pan, Nishi Bhanderi, Nishan Mudalige, Bryce Morsky"
+author: "Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Nishan Mudalige, Bryce Morsky"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
