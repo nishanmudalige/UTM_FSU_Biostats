@@ -14,4 +14,5 @@ sec:foundations
 exponential-growth-and-decay
 logistic-model
 modelling-disease-dynamics-with-odes
-si-model-secsi-model
+sec:SI_model
+solving-the-sir-model

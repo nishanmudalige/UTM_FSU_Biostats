@@ -1,10 +1,7 @@
----
----
----
-
 # Modelling disease dynamics with ODEs
 
-## SI Model {#sec:SI model}
+
+## Solving the SI Model {#sec:SI_model}
 
 ```{r SIdiagram, echo=FALSE, fig.align='center', out.width='20%'}
 knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
@@ -17,7 +14,9 @@ $$
 
 $$
 S+I=1
-$$ $$
+$$ 
+
+$$
 I=1-S
 $$
 
@@ -37,9 +36,12 @@ $$
 \int \frac {1}{(\gamma - \beta S)(1-S)} dS = \int dt
 $$
 
-Partial Fractions $$
+Partial Fractions 
+$$
 \frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
-$$ So then: $$
+$$ 
+So then: 
+$$
 A + \beta \gamma = 1
 $$
 
@@ -80,3 +82,74 @@ $$
 $$
 C = \frac{S_0 \beta - \gamma}{S_0 -1}
 $$
+
+
+## Solving the SIR Model
+
+```{r SIRdiagram, echo=FALSE, fig.align='center', out.width='40%'}
+knitr::include_graphics("Images/Compartmental Diagrams/SIR.png")
+```
+
+Rough notes on Dynamical Systems (Qualitative Analysis). SIR model as example. 
+
+**System of Equations:**
+
+1. $\frac{dS}{dt} = - \beta SI + \alpha R$
+
+2. $\frac{dI}{dt} = \beta SI - \gamma I$
+
+3. $\frac{dR}{dt} = \gamma I - \alpha R$
+
+Note that $S,I,R \in [0,1]$ and $S + I + R = 1$. So $R = 1 - S - I$. 
+
+Plugging into the system of equations we get 
+$$
+\frac{dS}{dt} = - \beta SI + 2(1 - S - I)
+$$
+
+**Equilibria: (new system of equations at equilibria)**
+
+1. $0 = -\beta SI + \alpha R$
+
+2. $0 = \beta SI - \gamma I \Rightarrow 0 = (\beta S - \gamma) I$
+
+3. $0 = -\gamma I + \alpha R$
+
+From equation 2 we get: $I = 0$, or $S=\frac{\gamma}{\beta}$
+
+Then plugging in $I = 0$ into the system of equations: 
+
+1. $0 = \alpha R$
+
+3. $0 = -\alpha R$
+
+Solving for $R$ from these 2 equations, we get $R^* = 0$
+
+Since $R = 1 - S - I$, $R^* = 0$, and $I = 0$, then $S^* = 1$ (note: another way to write $S^*$ is $\overline S$). We use the asterisk or bar to indicate equilibrium notation. 
+
+Therefore, at Equilibrium: 
+$$
+(S^*, I^*) = (1, 0)
+$$
+
+Also, plugging in $S = \frac{\gamma}{\beta}$ into the system of equations: 
+
+3. $0 = -\gamma I + \alpha (1 - \frac{\gamma}{\beta} - I)$
+
+$0 = \gamma I - \alpha (1 - \frac{\gamma}{\beta} - I)$
+
+$\alpha (1 - \frac{\gamma}{\beta}) = I (\gamma + \alpha)$
+
+Solving for I we get: 
+$$ 
+I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} 
+$$
+
+Endemic equilibrium (EE) is: 
+$$
+(S^*, I^*) = ( \frac{\gamma}{\beta}, \frac{ \alpha (1- \frac{\gamma}{\beta}) } {\gamma + \alpha})
+$$
+
+where $\gamma < \beta$ or $R_0 = \frac{\beta}{\gamma} > 1$
+
+The disease spreads, otherwise it doesn’t. (?)
