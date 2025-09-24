@@ -4,14 +4,15 @@
 
 This e-book provides an introduction to mathematical modeling in epidemiology, focusing on how to develop and analyze models, and how they inform public health decisions. We will learn about compartmental and agent-based models and their extensions that incorporate heterogeneities (age, space, behaviour). We will also explore disease control strategies. Simulation-based demonstrations and coding exercises will help connect theory to real-world insights.
 
-Readers should have an understanding of Calculus 1 and 2, ODEs, Intro Stats/Probability, Programming experience, and (maybe) Linear Algebra.
+Readers should have an understanding of Calculus 1 and 2, ODEs, Intro Stats/Probability, and Programming experience. A background in Linear Algebra is also recommended.
 
 
 
 ## History of Mathematical Epidemiology
-For all of human history, diseases have spread through groups of people. An epidemic is a widespread occurrence of an infectious disease at a particular time. An endemic disease on the other hand is one that is always present in certain populations. One of the earliest and deadliest epidemics known is the Black Death, most likely bubonic plague, which started in Asia in 1346 and spread throughout Europe. A later and widely known epidemic is the Spanish Flu epidemic of 1918-19 which caused more than 50 million deaths. Malaria and typhus are examples of endemic diseases. The purpose of epidemiology is to understand the causes of a disease, predict its course, and develop ways of controlling its spread. 
 
-The first model in mathematical epidemiology was the work of Daniel Bernoulli on the inoculation of smallpox. Bernoulli calculated the increase in life expectancy if smallpox is removed as a cause of death. The beginnings of compartmental modelling actually started through the work of public health physicians. In 1906, W.H. Hamer proposed that the spread of infection should be observed looking at individuals in compartments: susceptible and infective. Dr. Ross, who worked on malaria, was the first to introduce the concept of the basic reproductive number (R~0~), which quantifies the number of secondary infections caused by one case in a susceptible population.The framework was then expanded and formalized by Kermack and McKendrick in the late 1920s and early 1930s, laying the foundation for modern epidemic modeling.
+For all of human history, diseases have spread through groups of people. An epidemic is a widespread occurrence of an infectious disease at a particular time. An endemic disease, on the other hand, is one that is always present in certain populations. One of the earliest and deadliest epidemics known is the Black Death, also known as the bubonic plague, which started in Asia in 1346 and spread throughout Europe. Another widely known epidemic is the Spanish Flu epidemic of 1918-19 which caused more than 50 million deaths. Malaria and typhus are examples of endemic diseases. The purpose of epidemiology is to understand the causes of a disease, predict its course, and develop ways of controlling its spread. 
+
+The first model in mathematical epidemiology was the work of Daniel Bernoulli on the inoculation of smallpox. Bernoulli calculated the increase in life expectancy if smallpox were removed as a cause of death. The beginnings of compartmental modelling started through the work of public health physicians. In 1906, W.H. Hamer proposed that the spread of infection should be observed by looking at individuals in compartments: susceptible and infective. Dr. Ronald Ross, who worked on malaria, was the first to introduce the concept of the basic reproductive number (R~0~), which quantifies the number of secondary infections caused by one case in a susceptible population.The framework was then expanded and formalized by Kermack and McKendrick in the late 1920s and early 1930s, laying the foundation for modern epidemic modeling.
 
 
 **References:**
@@ -27,7 +28,7 @@ This is why mathematical modelling in epidemiology plays a major role in our und
 
 Compartmental models used today (originating from the Kermack-McKendrick model), can show disease transmission while observing time and infection number in relation to an epidemic (Tolles & Luong). Compartmental models differ with diseases, and their development often relies on various policies. These models must undergo rigorous sensitivity testing to determine ideal parameters that impact model outcomes (Silal et al.).
 
-In Chapter 1 of this book, we will be exploring the models that are used in modern epidemiology such as the SIR model. 
+In Chapter 1.4 of this book, we will be exploring the models that are used in modern epidemiology, such as the SIR model. 
 
 
 **References:**
@@ -42,3 +43,45 @@ In Chapter 1 of this book, we will be exploring the models that are used in mode
 
 
 ## Introduction to Compartmental Modelling Thinking
+
+As varying global health concerns persist, it is imperative to understand the complexities within the spread of infectious diseases. The most prevalent of which is compartmental modelling. This is a model that follows the change in proportions of populations in different compartments over time. The most common form of this type of model is the SIR model, organized in three separate compartments: Susceptible, Infected, and Recovered. Additional forms of this model may incorporate more compartments to attempt to enhance predictability. As computational power and modelling in the field of epidemiology have evolved, the growing use of parsimonious models, such as the SIR model, has become more relevant. These models utilize simpler processes by using accessible key data across broader conditions to produce a sufficiently predictive and generalizable model.
+
+### **Approach to Compartmental Modelling**
+
+Referring back, compartmental modelling is the framework for prediction in epidemiology. The fundamental thinking behind the most common compartmental model, the SIR model, is that at any given point, a person will fall into either the Susceptible, Infected, or Recovered compartments, under the model's assumptions.
+
+- **Susceptible**: Those at risk of the disease, but not yet infected
+
+- **Infected**: Those currently infected, and can actively spread the disease to those who are Susceptible
+
+- **Recovered**: Individuals who have recovered and developed immunity, or died from the disease
+
+Diving deeper, the relationship between each of these compartments is defined by differential equations, specifically ODEs and dynamical systems. These differential equations depict the movement between S and I, as well as I and R. These will be discussed further in Chapter 2. X. 
+
+Other forms of the SIR model exist, in which compartments are added to depict realistic features of disease transmission. Each of these models utilizes an additional compartment that accounts for specific epidemiological situations, described below:
+
+- **SEIR**:
+  - _Exposed_ - Represents individuals who are infected but not yet infectious
+  - Accounts for the latency period, in which individuals may be infected, yet are not able to transmit the disease
+
+- **SAIR**:
+  - _Asymptomatic_ - Represents individuals who are infected but do not express symptoms
+  - Accounts for hidden transmission by individuals without symptoms
+  
+- **SIRS**:
+  - _Susceptible_ - An additional "S" compartment at the end represents those who have recovered but lose immunity and become susceptible again
+  - Accounts for the misassumption that those who recover retain lifelong immunity
+
+- **SVIR**:
+  - _Vaccinated_ - Represents individuals who have received immunity to a varying extent from vaccinations
+  - Accounts for how vaccinations reduce the population of susceptible individuals
+
+These variations of the SIR model will be discussed at legnth in Chapter 5 and 6.1.
+  
+### **Benefits of Parsimonious Models**
+
+As seen, SIR models and other forms can provide great predictive power. Recently, parsimonious models have become of interest in epidemiological modelling. These models are based on the premise that the simplest answer is the best. Allude to earlier in this section where parsimonious models are defined. These are able to use significantly less data and parameters in order to produce a generalized and understandable model. In a real-world setting, these models have been effectively utilized to predict disease outbreaks. Not only are these models more accurate than those with more complexity, but they can also be applied to a multitude of situations; additionally, with the presence of noisy data, these models can also avoid overfitting.
+
+### **Limitations of Compartmental and Parsimonious Models**
+
+While these models are effective at predicting and understanding the spread of disease, there are issues with both their simplicity and complexity. These models must use a vast amount of assumptions in order to be feasibly produced, which comes at the cost of precision and realism. Some of these assumptions include the interactions between humans, fixed parameters, and assumed immunity. In the real world, these assumptions are not constant or realistic, resulting in a model that may not accurately depict the spread of disease. As a result, additional compartments have been added, such as in SEIR, SAIR, SIRS, and SVIR models discussed earlier. However, the addition of more compartments creates further intricacies. The foundational models discussed involve three to four compartments; other examples of models may contain a greater number of compartments. While this may improve the precision of the model, as discussed prior, real-world data is noisy. This may lead to overfitting the data, resulting in a lack of generalizability and potentially reduced predictive ability.

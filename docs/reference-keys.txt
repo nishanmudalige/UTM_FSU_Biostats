@@ -1,4 +1,4 @@
-def:unlabeled-div-1
+def:Model
 fig:ExpGrowthDecay
 fig:LogisticExample
 introduction
@@ -6,6 +6,9 @@ sec:goal
 history-of-mathematical-epidemiology
 role-of-models-in-public-health
 introduction-to-compartmental-modelling-thinking
+approach-to-compartmental-modelling
+benefits-of-parsimonious-models
+limitations-of-compartmental-and-parsimonious-models
 introduction-to-mathematical-modelling
 sec:foundations
 exponential-growth-and-decay

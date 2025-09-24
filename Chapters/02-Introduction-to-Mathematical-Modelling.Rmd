@@ -2,11 +2,11 @@
 
 ## Foundations {#sec:foundations}
 
-::: {.definition name="Model"}
+::: {.definition name="Model" #Model}
 A mathematical model is a mathematical framework describing a simplified version of reality.
 :::
 
-Some examples of mathematical models include
+Some examples of mathematical models from Definition \@ref(def:Model) include
 
 - **Population Growth Model**: A model that describes how the size of a population changes over time depending on birth rates and death rates.
 
@@ -50,7 +50,7 @@ N0 <- 10
 t  <- seq(0, 10, length.out = 200)
 
 # Plot: growth
-plot(t, exp_model(t, r = 0.3,  N0 = N0), type = "l", lwd = 2, col = "green",
+plot(t, exp_model(t, r = 0.3,  N0 = N0), type = "l", lwd = 2, col = "blue",
      xlab = "Time (t)", ylab = "N(t)", main = "Exponential Growth")
 abline(h = N0, lty = 2, col = "gray")
 
