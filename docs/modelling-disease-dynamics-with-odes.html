@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Biostats E-book</title>
+  <title>Chapter 3 Modelling disease dynamics with ODEs | Biostats E-book</title>
   <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Biostats E-book" />
+  <meta property="og:title" content="Chapter 3 Modelling disease dynamics with ODEs | Biostats E-book" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Bookdown hosted on github using bookdown::gitbook." />
   <meta name="github-repo" content="nishanmudalige/STA258" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Biostats E-book" />
+  <meta name="twitter:title" content="Chapter 3 Modelling disease dynamics with ODEs | Biostats E-book" />
   
   <meta name="twitter:description" content="Bookdown hosted on github using bookdown::gitbook." />
   
@@ -23,18 +23,14 @@
 <meta name="author" content="Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Nishan Mudalige, Bryce Morsky" />
 
 
-<<<<<<< HEAD
-<meta name="date" content="2025-09-24" />
-=======
 <meta name="date" content="2025-09-23" />
->>>>>>> 0c094b43dd906eedb17f40cc2077e575b67db231
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="introduction-to-mathematical-modelling.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -82,12 +78,7 @@
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#sec:goal"><i class="fa fa-check"></i><b>1.1</b> Goal of this E-book</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#history-of-mathematical-epidemiology"><i class="fa fa-check"></i><b>1.2</b> History of Mathematical Epidemiology</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#role-of-models-in-public-health"><i class="fa fa-check"></i><b>1.3</b> Role of Models in Public Health</a></li>
-<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#introduction-to-compartmental-modelling-thinking"><i class="fa fa-check"></i><b>1.4</b> Introduction to Compartmental Modelling Thinking</a>
-<ul>
-<li class="chapter" data-level="1.4.1" data-path="introduction.html"><a href="introduction.html#approach-to-compartmental-modelling"><i class="fa fa-check"></i><b>1.4.1</b> <strong>Approach to Compartmental Modelling</strong></a></li>
-<li class="chapter" data-level="1.4.2" data-path="introduction.html"><a href="introduction.html#benefits-of-parsimonious-models"><i class="fa fa-check"></i><b>1.4.2</b> <strong>Benefits of Parsimonious Models</strong></a></li>
-<li class="chapter" data-level="1.4.3" data-path="introduction.html"><a href="introduction.html#limitations-of-compartmental-and-parsimonious-models"><i class="fa fa-check"></i><b>1.4.3</b> <strong>Limitations of Compartmental and Parsimonious Models</strong></a></li>
-</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#introduction-to-compartmental-modelling-thinking"><i class="fa fa-check"></i><b>1.4</b> Introduction to Compartmental Modelling Thinking</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="introduction-to-mathematical-modelling.html"><a href="introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>2</b> Introduction to Mathematical Modelling</a>
 <ul>
@@ -116,18 +107,73 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="modelling-disease-dynamics-with-odes" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Modelling disease dynamics with ODEs<a href="modelling-disease-dynamics-with-odes.html#modelling-disease-dynamics-with-odes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="si-model-secsi-model" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> SI Model {#sec:SI model}<a href="modelling-disease-dynamics-with-odes.html#si-model-secsi-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="Images/Compartmental%20Diagrams/SI.png" width="20%" style="display: block; margin: auto;" /></p>
+<p><span class="math display">\[
+S+I=N
+\]</span></p>
+<p><span class="math display">\[
+S+I=1
+\]</span> <span class="math display">\[
+I=1-S
+\]</span></p>
+<p><span class="math display">\[
+\frac {dS}{dt} = -\beta SI + \gamma I
+\]</span></p>
+<p><span class="math display">\[
+\frac {dI}{dt} = \beta SI - \gamma I
+\]</span></p>
+<p><span class="math display">\[
+\frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
+\]</span></p>
+<p><span class="math display">\[
+\int \frac {1}{(\gamma - \beta S)(1-S)} dS = \int dt
+\]</span></p>
+<p>Partial Fractions <span class="math display">\[
+\frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
+\]</span> So then: <span class="math display">\[
+A + \beta \gamma = 1
+\]</span></p>
+<p><span class="math display">\[
+A + B \beta =0
+\]</span></p>
+<p><span class="math display">\[
+A = \frac {1}{\beta - \gamma }
+\]</span></p>
+<p><span class="math display">\[
+B = \frac {1}{\gamma - \beta}
+\]</span></p>
+<p><span class="math display">\[
+\frac {1}{\gamma - \beta} ln| \frac{\gamma - \beta S}{1-S} | = t+C
+\]</span></p>
+<p>Solve for S(t)</p>
+<p><span class="math display">\[
+S(t)= \frac {\gamma - Ce^{(\gamma - \beta )t}}{\beta - Ce^{(\gamma - \beta)t}}
+\]</span></p>
+<p><span class="math display">\[
+S(0) = \frac {\gamma - C}{\beta -C}
+\]</span></p>
+<p><span class="math display">\[
+S_0(\beta - C) = \gamma -C
+\]</span></p>
+<p><span class="math display">\[
+S_0 \beta - \gamma = C(S_0 -1)
+\]</span></p>
+<p><span class="math display">\[
+C = \frac{S_0 \beta - \gamma}{S_0 -1}
+\]</span></p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
+<a href="introduction-to-mathematical-modelling.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

@@ -1,0 +1,82 @@
+---
+---
+---
+
+# Modelling disease dynamics with ODEs
+
+## SI Model {#sec:SI model}
+
+```{r SIdiagram, echo=FALSE, fig.align='center', out.width='20%'}
+knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
+
+```
+
+$$
+S+I=N
+$$
+
+$$
+S+I=1
+$$ $$
+I=1-S
+$$
+
+$$
+\frac {dS}{dt} = -\beta SI + \gamma I
+$$
+
+$$
+\frac {dI}{dt} = \beta SI - \gamma I
+$$
+
+$$
+\frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
+$$
+
+$$
+\int \frac {1}{(\gamma - \beta S)(1-S)} dS = \int dt
+$$
+
+Partial Fractions $$
+\frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
+$$ So then: $$
+A + \beta \gamma = 1
+$$
+
+$$
+A + B \beta =0
+$$
+
+$$
+A = \frac {1}{\beta - \gamma }
+$$
+
+$$
+B = \frac {1}{\gamma - \beta}
+$$
+
+$$
+\frac {1}{\gamma - \beta} ln| \frac{\gamma - \beta S}{1-S} | = t+C
+$$
+
+Solve for S(t)
+
+$$
+S(t)= \frac {\gamma - Ce^{(\gamma - \beta )t}}{\beta - Ce^{(\gamma - \beta)t}}
+$$
+
+$$
+S(0) = \frac {\gamma - C}{\beta -C}
+$$
+
+$$
+S_0(\beta - C) = \gamma -C
+$$
+
+$$
+S_0 \beta - \gamma = C(S_0 -1)
+$$
+
+$$
+C = \frac{S_0 \beta - \gamma}{S_0 -1}
+$$
