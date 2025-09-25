@@ -15,11 +15,10 @@
 ## High level topics
 
 - **Introduction**: history of (mathematical) epidemiology, role of models in public health, introduction to compartmental modelling thinking (benefits of parsimonious models).
-- **Modelling disease dynamics with ODEs**: compartmental diagrams, ODE setup, solving basic models, numerical simulation basics.
-- **Epidiological metrics and outcomes**: R_0, effective reproduction number, herd immunity, endemic equilibria
-- **Analytical tools**: stability analysis, Lyapunov functions, next generation matrix
-- **Futher compartments**: latent periods (SEIR), asymptomatic (SAIR), waning immunity (SIRS)
-- **Interventions and control**: vaccination (SVIR), quarantine, treatment strategies
-- **Demography**: birth/death rates, age-structured models
-- **Spatial epidemiology**: metapopulations, difussion and travel, networks, contact heterogeneity, ring vaccination
-
+- **Epidiological metrics and outcomes**: basic reproduction number (R_0), effective reproduction number (R_e), herd immunity, disease-free equilibria, endemic equilibria.
+- **Modelling disease dynamics with ODEs**: compartmental diagrams, ODE setup, solving the SIS model, analyzing the SIR model, numerical simulation basics, plotting time series and phase diagrams.
+- **Analytical tools**: a deeper dive on the analytical tools required (a crash course on dynamical systems), stability analysis, Lyapunov functions, next generation matrix.
+- **Futher compartments**: latent periods (SEIR), asymptomatic (SAIR), waning immunity (SIRS).
+- **Interventions and control**: vaccination (SVIR), quarantine, treatment strategies.
+- **Demography**: birth/death rates, age-structured models.
+- **Spatial epidemiology**: metapopulations, difussion and travel, networks, contact heterogeneity, ring vaccination, agent-based models.
