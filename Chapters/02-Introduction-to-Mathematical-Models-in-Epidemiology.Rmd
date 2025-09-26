@@ -1,0 +1,61 @@
+# Introduction to Mathematical Models in Epidemiology
+
+## Definining Mathematical Models {#sec:mathematical_models}
+
+The two major types of mathematical models used in epidemiology are deterministic models and stochastic models. 
+
+**Deterministic models** do not consider stochasticity (randomness), and predict results from known data (e.g. epidemic history; rules of models). These models are useful in large populations to observe epidemics in terms of the population and can help determine the fraction of individuals infected in an epidemic, as well as advise on disease control methods (Dadlani et al). Deterministic models can be written in terms of differential equations in continuous time, or differential equations in discrete time. A common approach for deterministic models uses Ordinary Differential Equations (ODEs). These deterministic compartmental models will be introduced in Chapter 2, while Chapter 3 will discuss solving simple models and their behaviour. 
+
+**Stochastic models** account for stochasticity (randomness) and are able to capture variability in demographics and environment. These models are useful with small populations and can be used in determining how long a disease lasts, the probability of an epidemic, and distribution of behaviours (Dadlani et al.). Some types of stochastic models include Discrete-time Markov chain (DTMC), continuous-time Markov chain (CTMC), and stochastic differential equation (SDE) models. Although stochastic models may better reflect reality, they are more labour-intensive to set-up than deterministic models and can also be more difficult to analyze. 
+
+
+**References:** 
+
+- Brauer, F. Chapter 2: Compartmental Models in Epidemiology.
+
+- Dadlani, A., Afolabi, R.O., Jung, H., Sohraby, K., Kim, K. (2020). Deterministic Models in Epidemiology: From Modeling to Implementation. <https://doi.org/10.48550/arXiv.2004.04675>
+
+
+## Introduction to Compartmental Modelling Thinking
+
+As varying global health concerns persist, it is imperative to understand the complexities within the spread of infectious diseases. The most prevalent of which is compartmental modelling. This is a model that follows the change in proportions of populations in different compartments over time. The most common form of this type of model is the SIR model, organized in three separate compartments: Susceptible, Infected, and Recovered. Additional forms of this model may incorporate more compartments to attempt to enhance predictability. As computational power and modelling in the field of epidemiology have evolved, the growing use of parsimonious models, such as the SIR model, has become more relevant. These models utilize simpler processes by using accessible key data across broader conditions to produce a sufficiently predictive and generalizable model.
+
+### **Approach to Compartmental Modelling**
+
+Referring back, compartmental modelling is the framework for prediction in epidemiology. The fundamental thinking behind the most common compartmental model, the SIR model, is that at any given point, a person will fall into either the Susceptible, Infected, or Recovered compartments, under the model's assumptions.
+
+- **Susceptible**: Those at risk of the disease, but not yet infected
+
+- **Infected**: Those currently infected, and can actively spread the disease to those who are Susceptible
+
+- **Recovered**: Individuals who have recovered and developed immunity, or died from the disease
+
+Diving deeper, the relationship between each of these compartments is defined by differential equations, specifically ODEs and dynamical systems. These differential equations depict the movement between S and I, as well as I and R. These will be discussed further in Chapter 2. X. 
+
+Other forms of the SIR model exist, in which compartments are added to depict realistic features of disease transmission. Each of these models utilizes an additional compartment that accounts for specific epidemiological situations, described below:
+
+- **SEIR**:
+  - _Exposed_ - Represents individuals who are infected but not yet infectious
+  - Accounts for the latency period, in which individuals may be infected, yet are not able to transmit the disease
+
+- **SAIR**:
+  - _Asymptomatic_ - Represents individuals who are infected but do not express symptoms
+  - Accounts for hidden transmission by individuals without symptoms
+  
+- **SIRS**:
+  - _Susceptible_ - An additional "S" compartment at the end represents those who have recovered but lose immunity and become susceptible again
+  - Accounts for the misassumption that those who recover retain lifelong immunity
+
+- **SVIR**:
+  - _Vaccinated_ - Represents individuals who have received immunity to a varying extent from vaccinations
+  - Accounts for how vaccinations reduce the population of susceptible individuals
+
+These variations of the SIR model will be discussed at legnth in Chapter 5 and 6.1.
+  
+### **Benefits of Parsimonious Models**
+
+As seen, SIR models and other forms can provide great predictive power. Recently, parsimonious models have become of interest in epidemiological modelling. These models are based on the premise that the simplest answer is the best. Allude to earlier in this section where parsimonious models are defined. These are able to use significantly less data and parameters in order to produce a generalized and understandable model. In a real-world setting, these models have been effectively utilized to predict disease outbreaks. Not only are these models more accurate than those with more complexity, but they can also be applied to a multitude of situations; additionally, with the presence of noisy data, these models can also avoid overfitting.
+
+### **Limitations of Compartmental and Parsimonious Models**
+
+While these models are effective at predicting and understanding the spread of disease, there are issues with both their simplicity and complexity. These models must use a vast amount of assumptions in order to be feasibly produced, which comes at the cost of precision and realism. Some of these assumptions include the interactions between humans, fixed parameters, and assumed immunity. In the real world, these assumptions are not constant or realistic, resulting in a model that may not accurately depict the spread of disease. As a result, additional compartments have been added, such as in SEIR, SAIR, SIRS, and SVIR models discussed earlier. However, the addition of more compartments creates further intricacies. The foundational models discussed involve three to four compartments; other examples of models may contain a greater number of compartments. While this may improve the precision of the model, as discussed prior, real-world data is noisy. This may lead to overfitting the data, resulting in a lack of generalizability and potentially reduced predictive ability.
