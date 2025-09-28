@@ -9,11 +9,11 @@ knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
 
 **Parameters:**
 
-S:Proportion of population that is susceptible. 
+**S** : Proportion of population that is susceptible.
 
-I:Proportion of population that is infected.
+**I**: Proportion of population that is infected.
 
-N: Total Population
+**N**: Total Population
 
 $\beta$ : Transmission rate- the rate at which an infection is transmitted from an infected individual to a susceptible individual.
 
