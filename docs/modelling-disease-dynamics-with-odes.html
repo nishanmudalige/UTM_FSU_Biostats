@@ -23,7 +23,7 @@
 <meta name="author" content="Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Nishan Mudalige, Bryce Morsky" />
 
 
-<meta name="date" content="2025-09-26" />
+<meta name="date" content="2025-09-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -122,6 +122,8 @@
 <div id="sec:SI_model" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Solving the SI Model<a href="modelling-disease-dynamics-with-odes.html#sec:SI_model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="Images/Compartmental%20Diagrams/SI.png" width="20%" style="display: block; margin: auto;" /></p>
+<p><strong>Parameters:</strong> S:Proportion of population that is susceptible. I:Proportion of population that is infected. N: Total Population <span class="math inline">\(\beta\)</span> : Transmission rate- the rate at which an infection is transmitted from an infected individual to a susceptible individual. <span class="math inline">\(\gamma\)</span> : Recovery rate- the rate at which an individual recovers from an infection and returns to the susceptible class.</p>
+<p>In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through it is assumed that the population stays roughly constant.</p>
 <p><span class="math display">\[
 S+I=N
 \]</span></p>
@@ -131,43 +133,45 @@ S+I=1
 <p><span class="math display">\[
 I=1-S
 \]</span></p>
-<p><span class="math display">\[
+<p>Building a system of equations: <span class="math display">\[
 \frac {dS}{dt} = -\beta SI + \gamma I
 \]</span></p>
 <p><span class="math display">\[
 \frac {dI}{dt} = \beta SI - \gamma I
 \]</span></p>
-<p><span class="math display">\[
+<p>Reduce the system of 2 equations to just 1: <span class="math display">\[
 \frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
 \]</span></p>
-<p><span class="math display">\[
+<p>By taking an integral of both sides, <span class="math inline">\(S(t)\)</span> can be determined: <span class="math display">\[
 \int \frac {1}{(\gamma - \beta S)(1-S)} dS = \int dt
 \]</span></p>
-<p>Partial Fractions
-<span class="math display">\[
+<p>Partial Fractions can be used to solve this integral: <span class="math display">\[
 \frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
-\]</span>
-So then:
-<span class="math display">\[
+\]</span></p>
+<p>So then</p>
+<p><span class="math display">\[
+A(1-S)+B( \gamma - \beta S) = 1
+\]</span> And one can assume: <span class="math display">\[
 A + \beta \gamma = 1
 \]</span></p>
 <p><span class="math display">\[
 A + B \beta =0
 \]</span></p>
-<p><span class="math display">\[
+<p>Through partial fractions it will be found that: <span class="math display">\[
 A = \frac {1}{\beta - \gamma }
 \]</span></p>
 <p><span class="math display">\[
 B = \frac {1}{\gamma - \beta}
-\]</span></p>
-<p><span class="math display">\[
+\]</span> Plugging in the new A and B: <span class="math display">\[
+\int \frac{1}{(\gamma - \beta S)(1-S)}= \int \frac {\beta}{\beta - \gamma}(\frac {1}{\gamma - \beta S}) + \frac {1}{\gamma - \beta}(\frac {1}{1-S})
+\]</span> Solving the integral on both sides results in: <span class="math display">\[
 \frac {1}{\gamma - \beta} ln| \frac{\gamma - \beta S}{1-S} | = t+C
 \]</span></p>
-<p>Solve for S(t)</p>
+<p>Solving for S(t) finds:</p>
 <p><span class="math display">\[
 S(t)= \frac {\gamma - Ce^{(\gamma - \beta )t}}{\beta - Ce^{(\gamma - \beta)t}}
 \]</span></p>
-<p><span class="math display">\[
+<p>Then solving for the constant: <span class="math display">\[
 S(0) = \frac {\gamma - C}{\beta -C}
 \]</span></p>
 <p><span class="math display">\[
@@ -191,8 +195,7 @@ C = \frac{S_0 \beta - \gamma}{S_0 -1}
 <li><p><span class="math inline">\(\frac{dR}{dt} = \gamma I - \alpha R\)</span></p></li>
 </ol>
 <p>Note that <span class="math inline">\(S,I,R \in [0,1]\)</span> and <span class="math inline">\(S + I + R = 1\)</span>. So <span class="math inline">\(R = 1 - S - I\)</span>.</p>
-<p>Plugging into the system of equations we get
-<span class="math display">\[
+<p>Plugging into the system of equations we get <span class="math display">\[
 \frac{dS}{dt} = - \beta SI + 2(1 - S - I)
 \]</span></p>
 <p><strong>Equilibria: (new system of equations at equilibria)</strong></p>
@@ -209,8 +212,7 @@ C = \frac{S_0 \beta - \gamma}{S_0 -1}
 </ol>
 <p>Solving for <span class="math inline">\(R\)</span> from these 2 equations, we get <span class="math inline">\(R^* = 0\)</span></p>
 <p>Since <span class="math inline">\(R = 1 - S - I\)</span>, <span class="math inline">\(R^* = 0\)</span>, and <span class="math inline">\(I = 0\)</span>, then <span class="math inline">\(S^* = 1\)</span> (note: another way to write <span class="math inline">\(S^*\)</span> is <span class="math inline">\(\overline S\)</span>). We use the asterisk or bar to indicate equilibrium notation.</p>
-<p>Therefore, at Equilibrium:
-<span class="math display">\[
+<p>Therefore, at Equilibrium: <span class="math display">\[
 (S^*, I^*) = (1, 0)
 \]</span></p>
 <p>Also, plugging in <span class="math inline">\(S = \frac{\gamma}{\beta}\)</span> into the system of equations:</p>
@@ -219,12 +221,10 @@ C = \frac{S_0 \beta - \gamma}{S_0 -1}
 </ol>
 <p><span class="math inline">\(0 = \gamma I - \alpha (1 - \frac{\gamma}{\beta} - I)\)</span></p>
 <p><span class="math inline">\(\alpha (1 - \frac{\gamma}{\beta}) = I (\gamma + \alpha)\)</span></p>
-<p>Solving for I we get:
-<span class="math display">\[
+<p>Solving for I we get: <span class="math display">\[
 I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha}
 \]</span></p>
-<p>Endemic equilibrium (EE) is:
-<span class="math display">\[
+<p>Endemic equilibrium (EE) is: <span class="math display">\[
 (S^*, I^*) = ( \frac{\gamma}{\beta}, \frac{ \alpha (1- \frac{\gamma}{\beta}) } {\gamma + \alpha})
 \]</span></p>
 <p>where <span class="math inline">\(\gamma &lt; \beta\)</span> or <span class="math inline">\(R_0 = \frac{\beta}{\gamma} &gt; 1\)</span></p>
