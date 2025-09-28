@@ -11,13 +11,13 @@ knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
 
 **S** : Proportion of population that is susceptible.
 
-**I**: Proportion of population that is infected.
+**I** : Proportion of population that is infected.
 
-**N**: Total Population
+**N** : Total Population
 
-$\beta$ : Transmission rate- the rate at which an infection is transmitted from an infected individual to a susceptible individual.
+**$\beta$** : Transmission rate- the rate at which an infection is transmitted from an infected individual to a susceptible individual.
 
-$\gamma$ : Recovery rate- the rate at which an individual recovers from an infection and returns to the susceptible class.
+**$\gamma$** : Recovery rate- the rate at which an individual recovers from an infection and returns to the susceptible class.
 
 In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through it is assumed that the population stays roughly constant.
 
