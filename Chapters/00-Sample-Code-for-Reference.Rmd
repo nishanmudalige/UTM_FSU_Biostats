@@ -1,4 +1,4 @@
-# Introduction to Mathematical Modelling
+# Sample Chapter: Introduction to Mathematical Modelling
 
 ## Foundations {#sec:foundations}
 

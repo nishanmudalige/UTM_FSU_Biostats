@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Introduction to Mathematical Models in Epidemiology | Biostats E-book</title>
+  <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Introduction to Mathematical Models in Epidemiology | Biostats E-book" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Bookdown hosted on github using bookdown::gitbook." />
+  <meta name="github-repo" content="nishanmudalige/STA258" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Introduction to Mathematical Models in Epidemiology | Biostats E-book" />
+  
+  <meta name="twitter:description" content="Bookdown hosted on github using bookdown::gitbook." />
+  
+
+<meta name="author" content="Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Nishan Mudalige, Bryce Morsky" />
+
+
+<meta name="date" content="2025-09-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="modelling-disease-dynamics-with-odes.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#sec:goal"><i class="fa fa-check"></i><b>1.1</b> Goal of this E-book</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#history-of-mathematical-epidemiology"><i class="fa fa-check"></i><b>1.2</b> History of Mathematical Epidemiology</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#role-of-models-in-public-health"><i class="fa fa-check"></i><b>1.3</b> Role of Models in Public Health</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html"><i class="fa fa-check"></i><b>2</b> Introduction to Mathematical Models in Epidemiology</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#sec:mathematical_models"><i class="fa fa-check"></i><b>2.1</b> Definining Mathematical Models</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#introduction-to-compartmental-modelling-thinking"><i class="fa fa-check"></i><b>2.2</b> Introduction to Compartmental Modelling Thinking</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#approach-to-compartmental-modelling"><i class="fa fa-check"></i><b>2.2.1</b> <strong>Approach to Compartmental Modelling</strong></a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#benefits-of-parsimonious-models"><i class="fa fa-check"></i><b>2.2.2</b> <strong>Benefits of Parsimonious Models</strong></a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#limitations-of-compartmental-and-parsimonious-models"><i class="fa fa-check"></i><b>2.2.3</b> <strong>Limitations of Compartmental and Parsimonious Models</strong></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html"><i class="fa fa-check"></i><b>3</b> Modelling disease dynamics with ODEs</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#sec:SI_model"><i class="fa fa-check"></i><b>3.1</b> Solving the SI Model</a></li>
+<li class="chapter" data-level="3.2" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>3.2</b> Solving the SIR Model</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>4</b> Sample Chapter: Introduction to Mathematical Modelling</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#sec:foundations"><i class="fa fa-check"></i><b>4.1</b> Foundations</a></li>
+<li class="chapter" data-level="4.2" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#exponential-growth-and-decay"><i class="fa fa-check"></i><b>4.2</b> Exponential Growth and Decay</a></li>
+<li class="chapter" data-level="4.3" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#logistic-model"><i class="fa fa-check"></i><b>4.3</b> Logistic Model</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Biostats E-book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-mathematical-models-in-epidemiology" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Introduction to Mathematical Models in Epidemiology<a href="introduction-to-mathematical-models-in-epidemiology.html#introduction-to-mathematical-models-in-epidemiology" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="sec:mathematical_models" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Definining Mathematical Models<a href="introduction-to-mathematical-models-in-epidemiology.html#sec:mathematical_models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The two major types of mathematical models used in epidemiology are deterministic models and stochastic models.</p>
+<p><strong>Deterministic models</strong> do not consider stochasticity (randomness), and predict results from known data (e.g. epidemic history; rules of models). These models are useful in large populations to observe epidemics in terms of the population and can help determine the fraction of individuals infected in an epidemic, as well as advise on disease control methods (Dadlani et al). Deterministic models can be written in terms of differential equations in continuous time, or differential equations in discrete time. A common approach for deterministic models uses Ordinary Differential Equations (ODEs). These deterministic compartmental models will be introduced in Chapter 2, while Chapter 3 will discuss solving simple models and their behaviour.</p>
+<p><strong>Stochastic models</strong> account for stochasticity (randomness) and are able to capture variability in demographics and environment. These models are useful with small populations and can be used in determining how long a disease lasts, the probability of an epidemic, and distribution of behaviours (Dadlani et al.). Some types of stochastic models include Discrete-time Markov chain (DTMC), continuous-time Markov chain (CTMC), and stochastic differential equation (SDE) models. Although stochastic models may better reflect reality, they are more labour-intensive to set-up than deterministic models and can also be more difficult to analyze.</p>
+<p><strong>References:</strong></p>
+<ul>
+<li><p>Brauer, F. Chapter 2: Compartmental Models in Epidemiology.</p></li>
+<li><p>Dadlani, A., Afolabi, R.O., Jung, H., Sohraby, K., Kim, K. (2020). Deterministic Models in Epidemiology: From Modeling to Implementation. <a href="https://doi.org/10.48550/arXiv.2004.04675" class="uri">https://doi.org/10.48550/arXiv.2004.04675</a></p></li>
+</ul>
+</div>
+<div id="introduction-to-compartmental-modelling-thinking" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Introduction to Compartmental Modelling Thinking<a href="introduction-to-mathematical-models-in-epidemiology.html#introduction-to-compartmental-modelling-thinking" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As varying global health concerns persist, it is imperative to understand the complexities within the spread of infectious diseases. The most prevalent of which is compartmental modelling. This is a model that follows the change in proportions of populations in different compartments over time. The most common form of this type of model is the SIR model, organized in three separate compartments: Susceptible, Infected, and Recovered. Additional forms of this model may incorporate more compartments to attempt to enhance predictability. As computational power and modelling in the field of epidemiology have evolved, the growing use of parsimonious models, such as the SIR model, has become more relevant. These models utilize simpler processes by using accessible key data across broader conditions to produce a sufficiently predictive and generalizable model.</p>
+<div id="approach-to-compartmental-modelling" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> <strong>Approach to Compartmental Modelling</strong><a href="introduction-to-mathematical-models-in-epidemiology.html#approach-to-compartmental-modelling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Referring back, compartmental modelling is the framework for prediction in epidemiology. The fundamental thinking behind the most common compartmental model, the SIR model, is that at any given point, a person will fall into either the Susceptible, Infected, or Recovered compartments, under the model’s assumptions.</p>
+<ul>
+<li><p><strong>Susceptible</strong>: Those at risk of the disease, but not yet infected</p></li>
+<li><p><strong>Infected</strong>: Those currently infected, and can actively spread the disease to those who are Susceptible</p></li>
+<li><p><strong>Recovered</strong>: Individuals who have recovered and developed immunity, or died from the disease</p></li>
+</ul>
+<p>Diving deeper, the relationship between each of these compartments is defined by differential equations, specifically ODEs and dynamical systems. These differential equations depict the movement between S and I, as well as I and R. These will be discussed further in Chapter 2. X.</p>
+<p>Other forms of the SIR model exist, in which compartments are added to depict realistic features of disease transmission. Each of these models utilizes an additional compartment that accounts for specific epidemiological situations, described below:</p>
+<ul>
+<li><strong>SEIR</strong>:
+<ul>
+<li><em>Exposed</em> - Represents individuals who are infected but not yet infectious</li>
+<li>Accounts for the latency period, in which individuals may be infected, yet are not able to transmit the disease</li>
+</ul></li>
+<li><strong>SAIR</strong>:
+<ul>
+<li><em>Asymptomatic</em> - Represents individuals who are infected but do not express symptoms</li>
+<li>Accounts for hidden transmission by individuals without symptoms</li>
+</ul></li>
+<li><strong>SIRS</strong>:
+<ul>
+<li><em>Susceptible</em> - An additional “S” compartment at the end represents those who have recovered but lose immunity and become susceptible again</li>
+<li>Accounts for the misassumption that those who recover retain lifelong immunity</li>
+</ul></li>
+<li><strong>SVIR</strong>:
+<ul>
+<li><em>Vaccinated</em> - Represents individuals who have received immunity to a varying extent from vaccinations</li>
+<li>Accounts for how vaccinations reduce the population of susceptible individuals</li>
+</ul></li>
+</ul>
+<p>These variations of the SIR model will be discussed at legnth in Chapter 5 and 6.1.</p>
+</div>
+<div id="benefits-of-parsimonious-models" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> <strong>Benefits of Parsimonious Models</strong><a href="introduction-to-mathematical-models-in-epidemiology.html#benefits-of-parsimonious-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As seen, SIR models and other forms can provide great predictive power. Recently, parsimonious models have become of interest in epidemiological modelling. These models are based on the premise that the simplest answer is the best. Allude to earlier in this section where parsimonious models are defined. These are able to use significantly less data and parameters in order to produce a generalized and understandable model. In a real-world setting, these models have been effectively utilized to predict disease outbreaks. Not only are these models more accurate than those with more complexity, but they can also be applied to a multitude of situations; additionally, with the presence of noisy data, these models can also avoid overfitting.</p>
+</div>
+<div id="limitations-of-compartmental-and-parsimonious-models" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> <strong>Limitations of Compartmental and Parsimonious Models</strong><a href="introduction-to-mathematical-models-in-epidemiology.html#limitations-of-compartmental-and-parsimonious-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While these models are effective at predicting and understanding the spread of disease, there are issues with both their simplicity and complexity. These models must use a vast amount of assumptions in order to be feasibly produced, which comes at the cost of precision and realism. Some of these assumptions include the interactions between humans, fixed parameters, and assumed immunity. In the real world, these assumptions are not constant or realistic, resulting in a model that may not accurately depict the spread of disease. As a result, additional compartments have been added, such as in SEIR, SAIR, SIRS, and SVIR models discussed earlier. However, the addition of more compartments creates further intricacies. The foundational models discussed involve three to four compartments; other examples of models may contain a greater number of compartments. While this may improve the precision of the model, as discussed prior, real-world data is noisy. This may lead to overfitting the data, resulting in a lack of generalizability and potentially reduced predictive ability.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelling-disease-dynamics-with-odes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
