@@ -164,3 +164,15 @@ $$
 where $\gamma < \beta$ or $R_0 = \frac{\beta}{\gamma} > 1$
 
 The disease spreads, otherwise it doesn’t. (?)
+
+
+
+
+
+## Interactive Dashboard
+
+<center>
+```{r CorrShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
+knitr::include_app("https://nishan-mudalige.shinyapps.io/SIR_Dashboard/", height = "1200")
+```
+</center>
