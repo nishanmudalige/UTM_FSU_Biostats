@@ -5,9 +5,6 @@ introduction
 sec:goal
 history-of-mathematical-epidemiology
 role-of-models-in-public-health
-<<<<<<< HEAD
-introduction-to-mathematical-modelling
-=======
 introduction-to-mathematical-models-in-epidemiology
 sec:mathematical_models
 introduction-to-compartmental-modelling-thinking
@@ -18,12 +15,11 @@ modelling-disease-dynamics-with-odes
 sec:SI_model
 solving-the-sir-model
 sample-chapter-introduction-to-mathematical-modelling
->>>>>>> 0052c5dadc32af4b2f4e86d98cd58a47974270a3
 sec:foundations
-introduction-to-compartmental-modelling-thinking
-approach-to-compartmental-modelling
+introduction-to-compartmental-modelling-thinking-1
+approach-to-compartmental-modelling-1
 interactions-between-compartments
-benefits-of-parsimonious-models
-limitations-of-compartmental-and-parsimonious-models
+benefits-of-parsimonious-models-1
+limitations-of-compartmental-and-parsimonious-models-1
 exponential-growth-and-decay
 logistic-model
