@@ -195,10 +195,6 @@ where $\gamma < \beta$ or $R_0 = \frac{\beta}{\gamma} > 1$
 
 The disease spreads, otherwise it doesn’t. (?)
 
-
-
-
-
 ## Interactive Dashboard
 
 <center>
