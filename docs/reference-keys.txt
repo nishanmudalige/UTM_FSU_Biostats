@@ -12,14 +12,10 @@ approach-to-compartmental-modelling
 benefits-of-parsimonious-models
 limitations-of-compartmental-and-parsimonious-models
 modelling-disease-dynamics-with-odes
+interactions-between-compartments
 sec:SI_model
 solving-the-sir-model
 sample-chapter-introduction-to-mathematical-modelling
 sec:foundations
-introduction-to-compartmental-modelling-thinking-1
-approach-to-compartmental-modelling-1
-interactions-between-compartments
-benefits-of-parsimonious-models-1
-limitations-of-compartmental-and-parsimonious-models-1
 exponential-growth-and-decay
 logistic-model

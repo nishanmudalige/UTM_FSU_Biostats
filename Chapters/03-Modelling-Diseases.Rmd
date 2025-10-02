@@ -1,5 +1,35 @@
 # Modelling disease dynamics with ODEs
 
+## **Interactions Between Compartments**
+
+Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of  Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. These equations will be looked at in-depth later in Chapter 3.
+$$
+\frac {dS}{dt} = -\beta SI + \gamma I
+$$
+$$
+\frac {dI}{dt} = +\beta SI - \gamma I
+$$
+**Defining Parameters**:
+
+- Differentials ($\frac {dS}{dt} and \frac {dI}{dt}$): Net Flow of individuals in and out of specific compartments
+
+- $\beta SI$: Total Rate of New Infections in a Population
+
+  - $\beta$: Transmission Rate
+  
+- $\gamma I$: Recovery Rate of Infectious Individuals
+
+  - $\gamma$: Recovery Rate
+
+Now that each term of the equation is defined, we can start to understand the interactions occurring. First we will dive into the meaning of the signage of each term:
+
+- Positive (+): Represents Inflow; Adding individuals to a compartment
+
+- Negative (-): Represents Outlfow; Removing individuals from a compartment
+
+In each equation, either $\beta SI$ and $\gamma I$ contain inverse signs, positive and negative. This explicitly defines the relation between the parameters in each context. Looking at $\beta SI$, in the first equation, the sign is negative, indicating that the outflow from the Susceptible compartment as individuals are removed as they become infected and a part of the Infectious compartment; however, in the second equation, the sign is positive, representing the inflow into the Infectious department as individuals become infected and leave the susceptible department. The loss depicted in one equation is gained in the other equation. This relationship is the same for $\gamma I$. The signage is imperative to understand the context in which the flow is occurring. While both equations define the same flow, the interaction at play is defined by the sign of the parameters, illustrating the perspective of each compartment from which the equation is viewed.
+  
+
 ## Solving the SI Model {#sec:SI_model}
 
 ```{r SIdiagram, echo=FALSE, fig.align='center', out.width='20%'}
