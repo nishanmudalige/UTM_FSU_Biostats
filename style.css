@@ -1,0 +1,10 @@
+/* Make the reading column wider */
+.book .book-body .page-wrapper .page-inner {
+  max-width: 1100px;          /* try 1000–1200px or ~80ch for readability */
+}
+
+/* (optional) let wide tables/figures breathe a bit */
+.book .book-body .page-wrapper .page-inner section.normal {
+  overflow-x: visible;
+}
+pre, pre code { white-space: pre-wrap; }
