@@ -2,33 +2,29 @@
 
 ## Interactions Between Compartments
 
-Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of  Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. These equations will be looked at in-depth later in Chapter 3.
-$$
+Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. These equations will be looked at in-depth later in Chapter 3. $$
 \frac {dS}{dt} = -\beta SI + \gamma I
-$$
-$$
+$$ $$
 \frac {dI}{dt} = +\beta SI - \gamma I
-$$
-**Defining Parameters**:
+$$ **Defining Parameters**:
 
-- Differentials ($\frac {dS}{dt} and \frac {dI}{dt}$): Net Flow of individuals in and out of specific compartments
+-   Differentials ($\frac {dS}{dt}$ and $\frac {dI}{dt}$): Net Flow of individuals in and out of specific compartments
 
-- $\beta SI$: Total Rate of New Infections in a Population
+-   $\beta SI$: Total Rate of New Infections in a Population
 
-  - $\beta$: Transmission Rate
-  
-- $\gamma I$: Recovery Rate of Infectious Individuals
+    -   $\beta$: Transmission Rate
 
-  - $\gamma$: Recovery Rate
+-   $\gamma I$: Recovery Rate of Infectious Individuals
+
+    -   $\gamma$: Recovery Rate
 
 Now that each term of the equation is defined, we can start to understand the interactions occurring. First we will dive into the meaning of the signage of each term:
 
-- Positive (+): Represents Inflow; Adding individuals to a compartment
+-   Positive (+): Represents Inflow; Adding individuals to a compartment
 
-- Negative (-): Represents Outlfow; Removing individuals from a compartment
+-   Negative (-): Represents Outlfow; Removing individuals from a compartment
 
 In each equation, either $\beta SI$ and $\gamma I$ contain inverse signs, positive and negative. This explicitly defines the relation between the parameters in each context. Looking at $\beta SI$, in the first equation, the sign is negative, indicating that the outflow from the Susceptible compartment as individuals are removed as they become infected and a part of the Infectious compartment; however, in the second equation, the sign is positive, representing the inflow into the Infectious department as individuals become infected and leave the susceptible department. The loss depicted in one equation is gained in the other equation. This relationship is the same for $\gamma I$. The signage is imperative to understand the context in which the flow is occurring. While both equations define the same flow, the interaction at play is defined by the sign of the parameters, illustrating the perspective of each compartment from which the equation is viewed.
-  
 
 ## Solving the SI Model {#sec:SI_model}
 
@@ -45,9 +41,9 @@ knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
 
 **N** : Total Population
 
-**$\beta$** : Transmission rate- the rate at which an infection is transmitted from an infected individual to a susceptible individual.
+$\beta$ : Transmission rate- the rate at which an infection is transmitted from an infected individual to a susceptible individual.
 
-**$\gamma$** : Recovery rate- the rate at which an individual recovers from an infection and returns to the susceptible class.
+$\gamma$ : Recovery rate- the rate at which an individual recovers from an infection and returns to the susceptible class.
 
 In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through it is assumed that the population stays roughly constant.
 
@@ -102,9 +98,9 @@ $$
 $$
 B = \frac {1}{\gamma - \beta}
 $$ Plugging in the new A and B: $$
-\int \frac{1}{(\gamma - \beta S)(1-S)}= \int \frac {\beta}{\beta - \gamma}(\frac {1}{\gamma - \beta S}) + \frac {1}{\gamma - \beta}(\frac {1}{1-S})
+\int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
 $$ Solving the integral on both sides results in: $$
-\frac {1}{\gamma - \beta} ln| \frac{\gamma - \beta S}{1-S} | = t+C
+\frac {1}{\gamma - \beta} \ln \left| \frac{\gamma - \beta S}{1-S} \right| = t+C
 $$
 
 Solving for S(t) finds:
@@ -188,17 +184,19 @@ I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha}
 $$
 
 Endemic equilibrium (EE) is: $$
-(S^*, I^*) = ( \frac{\gamma}{\beta}, \frac{ \alpha (1- \frac{\gamma}{\beta}) } {\gamma + \alpha})
+(S^*, I^*) = \left( \frac{\gamma}{\beta}, \frac{\alpha (1- \gamma/\beta)}{\gamma + \alpha} \right)
 $$
 
 where $\gamma < \beta$ or $R_0 = \frac{\beta}{\gamma} > 1$
 
-The disease spreads, otherwise it doesn’t. (?)
+If $R_0>1$, then the EE exists and is stable while the DFE is unstable. If $R_0<1$, then the EE does not exist (since $S^* = 1/R_0 > 1$, which doesn't make sense) while the DFE is stable.
 
 ## Interactive Dashboard
 
 <center>
+
 ```{r CorrShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
 knitr::include_app("https://nishan-mudalige.shinyapps.io/SIR_Dashboard/", height = "1200")
 ```
+
 </center>
