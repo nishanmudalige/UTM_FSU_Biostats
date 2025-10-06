@@ -2,16 +2,6 @@
 
 ## Interactions Between Compartments
 
-Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. 
-
-$$
-\frac {dS}{dt} = -\beta SI + \gamma I
-$$ 
-
-$$
-\frac {dI}{dt} = +\beta SI - \gamma I
-$$ 
-
 **Defining Parameters**:
 
 
@@ -36,6 +26,17 @@ Now that each term of the equation is defined, we can start to understand the in
 -   Positive (+): Represents Inflow; Adding individuals to a compartment
 
 -   Negative (-): Represents Outlfow; Removing individuals from a compartment
+
+Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. 
+
+$$
+\frac {dS}{dt} = -\beta SI + \gamma I
+$$ 
+
+$$
+\frac {dI}{dt} = +\beta SI - \gamma I
+$$ 
+
 
 The signs in each equation indicate the direction of flow between compartments. For instance, $-\beta SI$ represents the loss of susceptible individuals as they become infected, while $+\beta SI$ represents the corresponding gain in the infectious group. The same relationship applies to $\gamma I$, which describes the recovery process in reverse.
 
