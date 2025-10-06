@@ -124,17 +124,6 @@
 <h1><span class="header-section-number">Chapter 3</span> Modelling disease dynamics with ODEs<a href="modelling-disease-dynamics-with-odes.html#modelling-disease-dynamics-with-odes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="interactions-between-compartments" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Interactions Between Compartments<a href="modelling-disease-dynamics-with-odes.html#interactions-between-compartments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations.</p>
-<p><span class="math display">\[
-\frac {dS}{dt} = -\beta SI + \gamma I
-\]</span></p>
-<p>Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. These equations will be looked at in-depth later in Chapter 3.
-<span class="math display">\[
-\frac {dS}{dt} = -\beta SI + \gamma I
-\]</span></p>
-<p><span class="math display">\[
-\frac {dI}{dt} = +\beta SI - \gamma I
-\]</span></p>
 <p><strong>Defining Parameters</strong>:</p>
 <p><strong>S</strong> : Proportion of population that is susceptible.</p>
 <p><strong>I</strong> : Proportion of population that is infected.</p>
@@ -155,6 +144,13 @@
 <li><p>Positive (+): Represents Inflow; Adding individuals to a compartment</p></li>
 <li><p>Negative (-): Represents Outlfow; Removing individuals from a compartment</p></li>
 </ul>
+<p>Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations.</p>
+<p><span class="math display">\[
+\frac {dS}{dt} = -\beta SI + \gamma I
+\]</span></p>
+<p><span class="math display">\[
+\frac {dI}{dt} = +\beta SI - \gamma I
+\]</span></p>
 <p>The signs in each equation indicate the direction of flow between compartments. For instance, <span class="math inline">\(-\beta SI\)</span> represents the loss of susceptible individuals as they become infected, while <span class="math inline">\(+\beta SI\)</span> represents the corresponding gain in the infectious group. The same relationship applies to <span class="math inline">\(\gamma I\)</span>, which describes the recovery process in reverse.</p>
 <p>Understanding the parameters and signage then, one can understand the equations above. <span class="math inline">\(\frac {dS}{dt}\)</span> calculates the net flow of the susceptible group by subtracting the total rate of new infections in a population (the proportion of the population entering the infected compartment) and by adding the recovery rate of infectious individuals (the proportion of the population entering the susceptible compartment). <span class="math inline">\(\frac {dI}{dt}\)</span> calculates the net flow of the infected group by adding the total rate of new infections in a population (the proportion of the population entering the infected compartment) and by subtracting the recovery rate of infectious individuals (the proportion of people entering the susceptible compartment). These simple SI equations form the foundation for more complex models, such as SIR or SEIR, which introduce additional compartments to capture recovery, immunity, or incubation dynamics.</p>
 </div>
