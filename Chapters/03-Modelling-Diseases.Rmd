@@ -6,11 +6,6 @@ Compartmental models are designed specifically such that the people within move 
 
 $$
 \frac {dS}{dt} = -\beta SI + \gamma I
-$$
-
-Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. These equations will be looked at in-depth later in Chapter 3. 
-$$
-\frac {dS}{dt} = -\beta SI + \gamma I
 $$ 
 
 $$
