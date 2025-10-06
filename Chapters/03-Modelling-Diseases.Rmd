@@ -2,11 +2,23 @@
 
 ## Interactions Between Compartments
 
-Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. These equations will be looked at in-depth later in Chapter 3. $$
+
+Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. 
+
+$$
 \frac {dS}{dt} = -\beta SI + \gamma I
-$$ $$
+$$
+$$
 \frac {dI}{dt} = +\beta SI - \gamma I
-$$ **Defining Parameters**:
+$$ 
+**Defining Parameters**:
+
+**S** : Proportion of population that is susceptible.
+
+**I** : Proportion of population that is infected.
+
+**N** : Total Population
+
 
 -   Differentials ($\frac {dS}{dt}$ and $\frac {dI}{dt}$): Net Flow of individuals in and out of specific compartments
 
@@ -24,7 +36,9 @@ Now that each term of the equation is defined, we can start to understand the in
 
 -   Negative (-): Represents Outlfow; Removing individuals from a compartment
 
-In each equation, either $\beta SI$ and $\gamma I$ contain inverse signs, positive and negative. This explicitly defines the relation between the parameters in each context. Looking at $\beta SI$, in the first equation, the sign is negative, indicating that the outflow from the Susceptible compartment as individuals are removed as they become infected and a part of the Infectious compartment; however, in the second equation, the sign is positive, representing the inflow into the Infectious department as individuals become infected and leave the susceptible department. The loss depicted in one equation is gained in the other equation. This relationship is the same for $\gamma I$. The signage is imperative to understand the context in which the flow is occurring. While both equations define the same flow, the interaction at play is defined by the sign of the parameters, illustrating the perspective of each compartment from which the equation is viewed.
+The signs in each equation indicate the direction of flow between compartments. For instance, $-\beta SI$ represents the loss of susceptible individuals as they become infected, while $+\beta SI$ represents the corresponding gain in the infectious group. The same relationship applies to $\gamma I$, which describes the recovery process in reverse.
+
+Understanding the parameters and signage then, one can understand the equations above. $\frac {dS}{dt}$ calculates the net flow of the susceptible group by subtracting the total rate of new infections in a population (the proportion of the population entering the infected compartment) and by adding the recovery rate of infectious individuals (the proportion of the population entering the susceptible compartment). $\frac {dI}{dt}$ calculates the net flow of the infected group by adding the total rate of new infections in a population (the proportion of the population entering the infected compartment) and by subtracting the recovery rate of infectious individuals (the proportion of people entering the susceptible compartment). These simple SI equations form the foundation for more complex models, such as SIR or SEIR, which introduce additional compartments to capture recovery, immunity, or incubation dynamics.
 
 ## Solving the SI Model {#sec:SI_model}
 
@@ -33,19 +47,7 @@ knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
 
 ```
 
-**Parameters:**
-
-**S** : Proportion of population that is susceptible.
-
-**I** : Proportion of population that is infected.
-
-**N** : Total Population
-
-$\beta$ : Transmission rate- the rate at which an infection is transmitted from an infected individual to a susceptible individual.
-
-$\gamma$ : Recovery rate- the rate at which an individual recovers from an infection and returns to the susceptible class.
-
-In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through it is assumed that the population stays roughly constant.
+In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through, it is assumed that the population stays roughly constant.
 
 $$
 S+I=N
@@ -59,7 +61,8 @@ $$
 I=1-S
 $$
 
-Building a system of equations: $$
+Building a system of equations:
+$$
 \frac {dS}{dt} = -\beta SI + \gamma I
 $$
 
@@ -67,15 +70,18 @@ $$
 \frac {dI}{dt} = \beta SI - \gamma I
 $$
 
-Reduce the system of 2 equations to just 1: $$
+Reduce the system of 2 equations to just 1: 
+$$
 \frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
 $$
 
-By taking an integral of both sides, $S(t)$ can be determined: $$
+By taking an integral of both sides, $S(t)$ can be determined:
+$$
 \int \frac {1}{(\gamma - \beta S)(1-S)} dS = \int dt
 $$
 
-Partial Fractions can be used to solve this integral: $$
+Partial Fractions can be used to solve this integral:
+$$
 \frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
 $$
 
@@ -83,7 +89,9 @@ So then
 
 $$
 A(1-S)+B( \gamma - \beta S) = 1
-$$ And one can assume: $$
+$$ And one can assume: 
+
+$$
 A + \beta \gamma = 1
 $$
 
@@ -91,15 +99,22 @@ $$
 A + B \beta =0
 $$
 
-Through partial fractions it will be found that: $$
+Through partial fractions it will be found that: 
+$$
 A = \frac {1}{\beta - \gamma }
 $$
 
 $$
 B = \frac {1}{\gamma - \beta}
-$$ Plugging in the new A and B: $$
+$$ 
+Plugging in the new A and B: 
+$$
 \int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
-$$ Solving the integral on both sides results in: $$
+$$ 
+
+Solving the integral on both sides results in: 
+
+$$
 \frac {1}{\gamma - \beta} \ln \left| \frac{\gamma - \beta S}{1-S} \right| = t+C
 $$
 
@@ -109,7 +124,8 @@ $$
 S(t)= \frac {\gamma - Ce^{(\gamma - \beta )t}}{\beta - Ce^{(\gamma - \beta)t}}
 $$
 
-Then solving for the constant: $$
+Then solving for the constant: 
+$$
 S(0) = \frac {\gamma - C}{\beta -C}
 $$
 
