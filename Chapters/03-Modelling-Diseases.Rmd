@@ -2,23 +2,29 @@
 
 ## Interactions Between Compartments
 
-
 Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. 
 
 $$
 \frac {dS}{dt} = -\beta SI + \gamma I
 $$
+
+Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. These equations will be looked at in-depth later in Chapter 3. 
+$$
+\frac {dS}{dt} = -\beta SI + \gamma I
+$$ 
+
 $$
 \frac {dI}{dt} = +\beta SI - \gamma I
 $$ 
+
 **Defining Parameters**:
+
 
 **S** : Proportion of population that is susceptible.
 
 **I** : Proportion of population that is infected.
 
 **N** : Total Population
-
 
 -   Differentials ($\frac {dS}{dt}$ and $\frac {dI}{dt}$): Net Flow of individuals in and out of specific compartments
 
@@ -62,6 +68,7 @@ I=1-S
 $$
 
 Building a system of equations:
+
 $$
 \frac {dS}{dt} = -\beta SI + \gamma I
 $$
@@ -70,26 +77,30 @@ $$
 \frac {dI}{dt} = \beta SI - \gamma I
 $$
 
-Reduce the system of 2 equations to just 1: 
+Reduce the system of 2 equations to just 1 by plugging in (1-S) for I: 
 $$
 \frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
 $$
 
 By taking an integral of both sides, $S(t)$ can be determined:
+
 $$
 \int \frac {1}{(\gamma - \beta S)(1-S)} dS = \int dt
 $$
 
-Partial Fractions can be used to solve this integral:
+
+Partial Fractions can be used to solve this integral: 
+
 $$
 \frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
 $$
 
-So then
-
+So then:
 $$
 A(1-S)+B( \gamma - \beta S) = 1
-$$ And one can assume: 
+
+$$
+And one can assume: 
 
 $$
 A + \beta \gamma = 1
@@ -107,12 +118,18 @@ $$
 $$
 B = \frac {1}{\gamma - \beta}
 $$ 
+
 Plugging in the new A and B: 
 $$
 \int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
 $$ 
 
 Solving the integral on both sides results in: 
+
+$$
+\int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
+$$ 
+
 
 $$
 \frac {1}{\gamma - \beta} \ln \left| \frac{\gamma - \beta S}{1-S} \right| = t+C
@@ -143,13 +160,17 @@ $$
 
 ## Solving the SIR Model
 
+Building what we have learnt previously from solving the SI model, we will now attempt to solve the SIR model. 
+
 ```{r SIRdiagram, echo=FALSE, fig.align='center', out.width='40%'}
 knitr::include_graphics("Images/Compartmental Diagrams/SIR.png")
 ```
 
-Rough notes on Dynamical Systems (Qualitative Analysis). SIR model as example.
+The SIR model includes a new compartment, **“R”**, which represents recovery from infection; or alternatively, those removed from infection status.
+This removal can occur as a result of immunization from infection, immunity from recovering from the disease, isolation from the population, or death. Note that the latter demographic effects (birth/death) are not observed in our example, and different models can exist for those cases. 
 
-**System of Equations:**
+
+We define a new **system of differential equations** for the SIR model as follows: 
 
 1.  $\frac{dS}{dt} = - \beta SI + \alpha R$
 
@@ -157,13 +178,25 @@ Rough notes on Dynamical Systems (Qualitative Analysis). SIR model as example.
 
 3.  $\frac{dR}{dt} = \gamma I - \alpha R$
 
-Note that $S,I,R \in [0,1]$ and $S + I + R = 1$. So $R = 1 - S - I$.
+**Defining the parameters: ** As before, the differentials represent the net flow of individuals in and out of compartments, and $\beta$ represents infection rate (S to I). $\gamma$ represents recovery rate of the infected, but now individuals moving out of compartment “I” (infected) move into compartment “R” (recovered/removed). $\alpha$ is a new term in the equations that represents the re-susceptible rate where recovered individuals lose immunity and become susceptible again (R to S). 
 
-Plugging into the system of equations we get $$
+
+Note that $S,I,R \in [0,1]$. If the population is represented by $N = S + I + R$, we can let $N = 1$ and get $S + I + R = 1$. So $R = 1 - S - I$. 
+
+Plugging into the system of equations we get:
+
+$$
 \frac{dS}{dt} = - \beta SI + 2(1 - S - I)
 $$
 
-**Equilibria: (new system of equations at equilibria)**
+However, unlike the SI model, the SIR model’s system of equations has no closed form solution. Instead, we can find the equilibrium for this system. This system is considered to be a **dynamical system**, and our analysis will be **qualitative**.  
+
+**Equilibrium:** the rate of individuals entering a compartment is equal to the rate of individuals leaving a compartment. 
+
+Thus, we can set each equation in our system of equations to 0. 
+
+
+**The new system of equations at equilibria:**
 
 1.  $0 = -\beta SI + \alpha R$
 
@@ -171,7 +204,15 @@ $$
 
 3.  $0 = -\gamma I + \alpha R$
 
-From equation 2 we get: $I = 0$, or $S=\frac{\gamma}{\beta}$
+
+There are two types of equilibrium in epidemiology: 
+
+1. **Disease-Free Equilibrium (DFE):** there are no infected in the population, so I* = 0 in our SIR model
+
+2. **Endemic Equilibrium (EE):** infected persist indefinitely, so I* > 0 in our SIR model
+(notation: asterix indicates equilibrium solution)
+
+**First we solve for DFE.** From equation 2 we get: $I = 0$, or $S=\frac{\gamma}{\beta}$
 
 Then plugging in $I = 0$ into the system of equations:
 
@@ -183,11 +224,16 @@ Solving for $R$ from these 2 equations, we get $R^* = 0$
 
 Since $R = 1 - S - I$, $R^* = 0$, and $I = 0$, then $S^* = 1$ (note: another way to write $S^*$ is $\overline S$). We use the asterisk or bar to indicate equilibrium notation.
 
-Therefore, at Equilibrium: $$
+Therefore, at Equilibrium: 
+
+$$
 (S^*, I^*) = (1, 0)
 $$
 
-Also, plugging in $S = \frac{\gamma}{\beta}$ into the system of equations:
+Thus, at DFE, the entire population is susceptible to infection and no EE exists because the infectious population returns to zero once the endemic is over. 
+
+
+**Now, we solve for EE**. Plugging $S = \frac{\gamma}{\beta}$ into the system of equations:
 
 3.  $0 = -\gamma I + \alpha (1 - \frac{\gamma}{\beta} - I)$
 
@@ -195,17 +241,39 @@ $0 = \gamma I - \alpha (1 - \frac{\gamma}{\beta} - I)$
 
 $\alpha (1 - \frac{\gamma}{\beta}) = I (\gamma + \alpha)$
 
-Solving for I we get: $$ 
+Solving for I we get: 
+
+$$ 
 I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} 
 $$
 
-Endemic equilibrium (EE) is: $$
+Endemic equilibrium (EE) is: 
+
+$$
 (S^*, I^*) = \left( \frac{\gamma}{\beta}, \frac{\alpha (1- \gamma/\beta)}{\gamma + \alpha} \right)
 $$
 
-where $\gamma < \beta$ or $R_0 = \frac{\beta}{\gamma} > 1$
+where $\gamma < \beta$. 
 
-If $R_0>1$, then the EE exists and is stable while the DFE is unstable. If $R_0<1$, then the EE does not exist (since $S^* = 1/R_0 > 1$, which doesn't make sense) while the DFE is stable.
+EE requires a continuous supply of susceptible ("susceptible replacement"), for instance, by birth, or reduced immunity to the disease. Otherwise, I will approach 0 after the endemic. 
+
+Also, since $\gamma < \beta$, we get $R_0 = \frac{\beta}{\gamma} > 1$. The **basic reproduction number ($R_0$)** is a threshold quantity that indicates the occurrence of an epidemic. $R_0$ can also be thought of as the number of secondary infections caused by a single infected individual in a population of susceptible individuals (e.g. at initial time $t = 0$). Note that individual variation is excluded in the definition. 
+
+Specific values of $R_0$ can be used to analyze the stability of equilibrium. This will be discussed in further detail in Chapter 4, but more generally for now: 
+
+- **If $R_0 < 1$**: DFE is stable, the infection dies out (i.e. when infected, an individual infects less than one person on average, then the disease dies out)
+
+- **If $R_0 > 1$**: EE is stable, there is an epidemic (i.e. when infected, an individual infects more than one person on average, then the disease spreads)
+
+
+**References: **
+
+- Blackwood, J.C. & Childs, L.M. (2018). An introduction to compartmental modeling for the budding infectious disease modeler. LETTERS IN BIOMATHEMATICS. 
+
+- Brauer, F. Chapter 2: Compartmental Models in Epidemiology. 
+
+- Long, A. (2020). Math Modeling: A Review of Mathematics. <https://www.nku.edu/~longa/classes/2020spring/mat375/mat375prep/SIR%20Model.html>
+
 
 ## Interactive Dashboard
 
