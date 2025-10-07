@@ -28,11 +28,6 @@ Now that each term of the equation is defined, we can start to understand the in
 
 Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations.
 
-```{r InSIdiagram, echo=FALSE, fig.align='center', out.width='20%'}
-knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
-
-```
-
 $$
 \frac {dS}{dt} = -\beta SI + \gamma I
 $$

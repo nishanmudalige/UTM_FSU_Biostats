@@ -23,7 +23,7 @@
 <meta name="author" content="Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Nishan Mudalige, Bryce Morsky" />
 
 
-<meta name="date" content="2025-10-06" />
+<meta name="date" content="2025-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -174,8 +174,7 @@ I=1-S
 <p><span class="math display">\[
 \frac {dI}{dt} = \beta SI - \gamma I
 \]</span></p>
-<p>Reduce the system of 2 equations to just 1 by plugging in (1-S) for I:
-<span class="math display">\[
+<p>Reduce the system of 2 equations to just 1 by plugging in (1-S) for I: <span class="math display">\[
 \frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
 \]</span></p>
 <p>By taking an integral of both sides, <span class="math inline">\(S(t)\)</span> can be determined:</p>
@@ -186,26 +185,21 @@ I=1-S
 <p><span class="math display">\[
 \frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
 \]</span></p>
-<p>So then:
-$$
-A(1-S)+B( - S) = 1</p>
-<p>$$
-And one can assume:</p>
+<p>So then: $$ A(1-S)+B( - S) = 1</p>
+<p>$$ And one can assume:</p>
 <p><span class="math display">\[
 A + \beta \gamma = 1
 \]</span></p>
 <p><span class="math display">\[
 A + B \beta =0
 \]</span></p>
-<p>Through partial fractions it will be found that:
-<span class="math display">\[
+<p>Through partial fractions it will be found that: <span class="math display">\[
 A = \frac {1}{\beta - \gamma }
 \]</span></p>
 <p><span class="math display">\[
 B = \frac {1}{\gamma - \beta}
 \]</span></p>
-<p>Plugging in the new A and B:
-<span class="math display">\[
+<p>Plugging in the new A and B: <span class="math display">\[
 \int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
 \]</span></p>
 <p>Solving the integral on both sides results in:</p>
@@ -219,8 +213,7 @@ B = \frac {1}{\gamma - \beta}
 <p><span class="math display">\[
 S(t)= \frac {\gamma - Ce^{(\gamma - \beta )t}}{\beta - Ce^{(\gamma - \beta)t}}
 \]</span></p>
-<p>Then solving for the constant:
-<span class="math display">\[
+<p>Then solving for the constant: <span class="math display">\[
 S(0) = \frac {\gamma - C}{\beta -C}
 \]</span></p>
 <p><span class="math display">\[
@@ -237,15 +230,14 @@ C = \frac{S_0 \beta - \gamma}{S_0 -1}
 <h2><span class="header-section-number">3.3</span> Solving the SIR Model<a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Building what we have learnt previously from solving the SI model, we will now attempt to solve the SIR model.</p>
 <p><img src="Images/Compartmental%20Diagrams/SIR.png" width="40%" style="display: block; margin: auto;" /></p>
-<p>The SIR model includes a new compartment, <strong>“R”</strong>, which represents recovery from infection; or alternatively, those removed from infection status.
-This removal can occur as a result of immunization from infection, immunity from recovering from the disease, isolation from the population, or death. Note that the latter demographic effects (birth/death) are not observed in our example, and different models can exist for those cases.</p>
+<p>The SIR model includes a new compartment, <strong>“R”</strong>, which represents recovery from infection; or alternatively, those removed from infection status. This removal can occur as a result of immunization from infection, immunity from recovering from the disease, isolation from the population, or death. Note that the latter demographic effects (birth/death) are not observed in our example, and different models can exist for those cases.</p>
 <p>We define a new <strong>system of differential equations</strong> for the SIR model as follows:</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(\frac{dS}{dt} = - \beta SI + \alpha R\)</span></p></li>
 <li><p><span class="math inline">\(\frac{dI}{dt} = \beta SI - \gamma I\)</span></p></li>
 <li><p><span class="math inline">\(\frac{dR}{dt} = \gamma I - \alpha R\)</span></p></li>
 </ol>
-<p><strong>Defining the parameters: </strong> As before, the differentials represent the net flow of individuals in and out of compartments, and <span class="math inline">\(\beta\)</span> represents infection rate (S to I). <span class="math inline">\(\gamma\)</span> represents recovery rate of the infected, but now individuals moving out of compartment “I” (infected) move into compartment “R” (recovered/removed). <span class="math inline">\(\alpha\)</span> is a new term in the equations that represents the re-susceptible rate where recovered individuals lose immunity and become susceptible again (R to S).</p>
+<p><strong>Defining the parameters:</strong> As before, the differentials represent the net flow of individuals in and out of compartments, and <span class="math inline">\(\beta\)</span> represents infection rate (S to I). <span class="math inline">\(\gamma\)</span> represents recovery rate of the infected, but now individuals moving out of compartment “I” (infected) move into compartment “R” (recovered/removed). <span class="math inline">\(\alpha\)</span> is a new term in the equations that represents the re-susceptible rate where recovered individuals lose immunity and become susceptible again (R to S).</p>
 <p>Note that <span class="math inline">\(S,I,R \in [0,1]\)</span>. If the population is represented by <span class="math inline">\(N = S + I + R\)</span>, we can let <span class="math inline">\(N = 1\)</span> and get <span class="math inline">\(S + I + R = 1\)</span>. So <span class="math inline">\(R = 1 - S - I\)</span>.</p>
 <p>Plugging into the system of equations we get:</p>
 <p><span class="math display">\[
@@ -263,8 +255,7 @@ This removal can occur as a result of immunization from infection, immunity from
 <p>There are two types of equilibrium in epidemiology:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Disease-Free Equilibrium (DFE):</strong> there are no infected in the population, so I* = 0 in our SIR model</p></li>
-<li><p><strong>Endemic Equilibrium (EE):</strong> infected persist indefinitely, so I* &gt; 0 in our SIR model
-(notation: asterix indicates equilibrium solution)</p></li>
+<li><p><strong>Endemic Equilibrium (EE):</strong> infected persist indefinitely, so I* &gt; 0 in our SIR model (notation: asterix indicates equilibrium solution)</p></li>
 </ol>
 <p><strong>First we solve for DFE.</strong> From equation 2 we get: <span class="math inline">\(I = 0\)</span>, or <span class="math inline">\(S=\frac{\gamma}{\beta}\)</span></p>
 <p>Then plugging in <span class="math inline">\(I = 0\)</span> into the system of equations:</p>
@@ -295,13 +286,13 @@ I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha}
 \]</span></p>
 <p>where <span class="math inline">\(\gamma &lt; \beta\)</span>.</p>
 <p>EE requires a continuous supply of susceptible (“susceptible replacement”), for instance, by birth, or reduced immunity to the disease. Otherwise, I will approach 0 after the endemic.</p>
-<p>Also, since <span class="math inline">\(\gamma &lt; \beta\)</span>, we get <span class="math inline">\(R_0 = \frac{\beta}{\gamma} &gt; 1\)</span>. The <strong>basic reproduction number (<span class="math inline">\(R_0\)</span>)</strong> is a threshold quantity that indicates the occurrence of an epidemic. <span class="math inline">\(R_0\)</span> can also be thought of as the number of secondary infections caused by a single infected individual in a population of susceptible individuals (e.g. at initial time <span class="math inline">\(t = 0\)</span>). Note that individual variation is excluded in the definition.</p>
+<p>Also, since <span class="math inline">\(\gamma &lt; \beta\)</span>, we get <span class="math inline">\(R_0 = \frac{\beta}{\gamma} &gt; 1\)</span>. The <strong>basic reproduction number (</strong><span class="math inline">\(R_0\)</span>) is a threshold quantity that indicates the occurrence of an epidemic. <span class="math inline">\(R_0\)</span> can also be thought of as the number of secondary infections caused by a single infected individual in a population of susceptible individuals (e.g. at initial time <span class="math inline">\(t = 0\)</span>). Note that individual variation is excluded in the definition.</p>
 <p>Specific values of <span class="math inline">\(R_0\)</span> can be used to analyze the stability of equilibrium. This will be discussed in further detail in Chapter 4, but more generally for now:</p>
 <ul>
-<li><p><strong>If <span class="math inline">\(R_0 &lt; 1\)</span></strong>: DFE is stable, the infection dies out (i.e. when infected, an individual infects less than one person on average, then the disease dies out)</p></li>
-<li><p><strong>If <span class="math inline">\(R_0 &gt; 1\)</span></strong>: EE is stable, there is an epidemic (i.e. when infected, an individual infects more than one person on average, then the disease spreads)</p></li>
+<li><p><strong>If</strong> <span class="math inline">\(R_0 &lt; 1\)</span>: DFE is stable, the infection dies out (i.e. when infected, an individual infects less than one person on average, then the disease dies out)</p></li>
+<li><p><strong>If</strong> <span class="math inline">\(R_0 &gt; 1\)</span>: EE is stable, there is an epidemic (i.e. when infected, an individual infects more than one person on average, then the disease spreads)</p></li>
 </ul>
-<p><strong>References: </strong></p>
+<p><strong>References:</strong></p>
 <ul>
 <li><p>Blackwood, J.C. &amp; Childs, L.M. (2018). An introduction to compartmental modeling for the budding infectious disease modeler. LETTERS IN BIOMATHEMATICS.</p></li>
 <li><p>Brauer, F. Chapter 2: Compartmental Models in Epidemiology.</p></li>

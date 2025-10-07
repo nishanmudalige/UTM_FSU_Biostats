@@ -28,7 +28,7 @@ Referring back, compartmental modelling is the framework for prediction in epide
 
 -   **Recovered**: Individuals who have recovered and developed immunity, or died from the disease
 
-Diving deeper, the relationship between each of these compartments is defined by differential equations, specifically ODEs and dynamical systems. These differential equations depict the movement between S and I, as well as I and R. These will be discussed further in Chapter 2. X.
+Diving deeper, the relationship between each of these compartments is defined by differential equations, specifically ODEs and dynamical systems. These differential equations depict the movement between S and I, as well as I and R. The differential equations will show the flow of susceptible individuals to the infected compartment as the disease is transmitted at the transmission rate ($\beta$) as well as the flow of infected individuals either back to the susceptible compartment or to the recovered compartment at the recovery rate($\gamma$).
 
 Other forms of the SIR model exist, in which compartments are added to depict realistic features of disease transmission. Each of these models utilizes an additional compartment that accounts for specific epidemiological situations, described below:
 
