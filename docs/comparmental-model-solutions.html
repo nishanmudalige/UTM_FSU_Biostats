@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Sample Chapter: Introduction to Mathematical Modelling | Biostats E-book</title>
+  <title>Chapter 4 Comparmental Model Solutions | Biostats E-book</title>
   <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Sample Chapter: Introduction to Mathematical Modelling | Biostats E-book" />
+  <meta property="og:title" content="Chapter 4 Comparmental Model Solutions | Biostats E-book" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Bookdown hosted on github using bookdown::gitbook." />
   <meta name="github-repo" content="nishanmudalige/STA258" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Sample Chapter: Introduction to Mathematical Modelling | Biostats E-book" />
+  <meta name="twitter:title" content="Chapter 4 Comparmental Model Solutions | Biostats E-book" />
   
   <meta name="twitter:description" content="Bookdown hosted on github using bookdown::gitbook." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="comparmental-model-solutions.html"/>
-
+<link rel="prev" href="modelling-disease-dynamics-with-odes.html"/>
+<link rel="next" href="sample-chapter-introduction-to-mathematical-modelling.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -121,76 +121,36 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sample-chapter-introduction-to-mathematical-modelling" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Sample Chapter: Introduction to Mathematical Modelling<a href="sample-chapter-introduction-to-mathematical-modelling.html#sample-chapter-introduction-to-mathematical-modelling" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="sec:foundations" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Foundations<a href="sample-chapter-introduction-to-mathematical-modelling.html#sec:foundations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="definition">
-<p><span id="def:Model" class="definition"><strong>Definition 5.1  (Model) </strong></span>A mathematical model is a mathematical framework describing a simplified version of reality.</p>
-</div>
-<p>Some examples of mathematical models from Definition <a href="sample-chapter-introduction-to-mathematical-modelling.html#def:Model">5.1</a> include</p>
-<ul>
-<li><p><strong>Population Growth Model</strong>: A model that describes how the size of a population changes over time depending on birth rates and death rates.</p></li>
-<li><p><strong>Supply and Demand Model</strong>: A model in economics that relates the price of a good to its availability (supply) and how much people want it (demand). It predicts that the price will adjust until the amount supplied equals the amount demanded (market equilibrium).</p></li>
-<li><p><strong>Projectile Motion Model</strong>: A physics model for the path of an object thrown into the air.</p></li>
-<li><p><strong>Linear Regression Model</strong>: A statistical model that expresses the relationship between a response variable (like exam score) and one or more explanatory variables (like study hours).</p></li>
-</ul>
-</div>
-<div id="exponential-growth-and-decay" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Exponential Growth and Decay<a href="sample-chapter-introduction-to-mathematical-modelling.html#exponential-growth-and-decay" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Exponential models describe processes that grow or decline at rates proportional to their current size. In the case of exponential growth, the model is</p>
+<div id="comparmental-model-solutions" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Comparmental Model Solutions<a href="comparmental-model-solutions.html#comparmental-model-solutions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><span class="math display">\[\begin{align*}
+\dot{S} &amp;= -\betaSI+\alphaR\
+\dot{I} &amp;= \betaSI-\gammaI
+\dot{R} &amp;= \gammaI-\alphaR
+\end{align*}\]</span>gammaI-
+\end{align*}</p>
+<p>Subsitute <span class="math inline">\(R=1-S-I\)</span>:</p>
+<p>\begin{align*}
+&amp;=-+(1-S-I)
+&amp;=-</p>
 <p><span class="math display">\[
-\frac{dN}{dt} = rN, \quad r &gt; 0,
+J=
+\begin{bmatrix}
+-\betaI-\alpha &amp; -\betaS-\alpha &amp; \betaI &amp; \betaS-\gamma]
+\end{bmatrix}
 \]</span></p>
-<p>which has the solution</p>
-<p><span class="math display">\[
-N(t) = N_0 e^{rt}.
-\]</span></p>
-<p>When the rate <span class="math inline">\(r\)</span> is negative, we obtain exponential decay, where the quantity decreases over time:</p>
-<p><span class="math display">\[
-N(t) = N_0 e^{rt}, \quad r &lt; 0.
-\]</span></p>
-<p>These models are widely used in contexts such as population growth, radioactive decay, and compound interest.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ExpGrowthDecay"></span>
-<img src="_main_files/figure-html/ExpGrowthDecay-1.png" alt="Exponential growth (left) and exponential decay (right) with initial value $N_0=10$; rates $r=0.3$ and $r=-0.3$." width="50%" /><img src="_main_files/figure-html/ExpGrowthDecay-2.png" alt="Exponential growth (left) and exponential decay (right) with initial value $N_0=10$; rates $r=0.3$ and $r=-0.3$." width="50%" />
-<p class="caption">
-Figure 5.1: Exponential growth (left) and exponential decay (right) with initial value <span class="math inline">\(N_0=10\)</span>; rates <span class="math inline">\(r=0.3\)</span> and <span class="math inline">\(r=-0.3\)</span>.
-</p>
-</div>
-</div>
-<div id="logistic-model" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Logistic Model<a href="sample-chapter-introduction-to-mathematical-modelling.html#logistic-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The logistic growth model describes how a population grows over time with limited resources.</p>
-<p>The differential equation form is</p>
-<p><span class="math display">\[
-\frac{dN}{dt} = rN \left(1 - \frac{N}{K}\right),
-\]</span></p>
-<p>where<br />
-- <span class="math inline">\(N(t)\)</span> = population size at time <span class="math inline">\(t\)</span><br />
-- <span class="math inline">\(r\)</span> = intrinsic growth rate<br />
-- <span class="math inline">\(K\)</span> = carrying capacity.</p>
-<p>The solution to this differential equation is</p>
-<p><span class="math display">\[
-N(t) = \frac{K}{1 + \left(\frac{K - N_0}{N_0}\right)e^{-rt}},
-\]</span></p>
-<p>where <span class="math inline">\(N_0\)</span> is the initial population size at <span class="math inline">\(t=0\)</span>.</p>
-<p>As <span class="math inline">\(t \to \infty\)</span>, <span class="math inline">\(N(t) \to K\)</span>, meaning the population stabilizes at the carrying capacity.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:LogisticExample"></span>
-<img src="_main_files/figure-html/LogisticExample-1.png" alt="An illustration of the logisitc model for a growth rate of 0.5, a carrying capacity of 100 and an initial population size of 5." width="672" />
-<p class="caption">
-Figure 5.2: An illustration of the logisitc model for a growth rate of 0.5, a carrying capacity of 100 and an initial population size of 5.
-</p>
-</div>
+<p>Disease Free Equilibria (DFE):
+<span class="math display">\[I^*=0, S^*=0\]</span></p>
+<p>Determininant:</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="comparmental-model-solutions.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="modelling-disease-dynamics-with-odes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sample-chapter-introduction-to-mathematical-modelling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

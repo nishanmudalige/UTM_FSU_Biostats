@@ -148,7 +148,7 @@ Rough notes on Dynamical Systems (Qualitative Analysis). SIR model as example.
 Note that $S,I,R \in [0,1]$ and $S + I + R = 1$. So $R = 1 - S - I$.
 
 Plugging into the system of equations we get $$
-\frac{dS}{dt} = - \beta SI + 2(1 - S - I)
+\frac{dS}{dt} = - \beta SI + \alpha(1 - S - I)
 $$
 
 **Equilibria: (new system of equations at equilibria)**

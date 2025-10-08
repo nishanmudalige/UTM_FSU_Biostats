@@ -1,6 +1,3 @@
-def:Model
-fig:ExpGrowthDecay
-fig:LogisticExample
 introduction
 sec:goal
 history-of-mathematical-epidemiology
@@ -16,7 +13,3 @@ interactions-between-compartments
 sec:SI_model
 solving-the-sir-model
 interactive-dashboard
-sample-chapter-introduction-to-mathematical-modelling
-sec:foundations
-exponential-growth-and-decay
-logistic-model
