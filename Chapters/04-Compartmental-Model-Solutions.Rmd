@@ -1,9 +1,13 @@
-# ---
-# header-includes: 
-#   - \usepackage{amsmath}
-# ---
-
 # Compartmental Model Solutions
+
+$$
+\begin{align*}
+\dot{S} &= -\beta SI + \alpha R \\
+\dot{I} &= \beta SI - \gamma I \\
+\dot{R} &= \gamma I - \alpha R
+\end{align*}
+$$
+
 
 $$\dot{S}=F(S,I)$$
 $$\dot{I}=G(S,I)$$

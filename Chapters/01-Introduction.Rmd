@@ -24,7 +24,7 @@ This is why mathematical modelling in epidemiology plays a major role in our und
 
 Compartmental models used today (originating from the Kermack-McKendrick model), can show disease transmission while observing time and infection number in relation to an epidemic (Tolles & Luong). Compartmental models differ with diseases, and their development often relies on various policies. These models must undergo rigorous sensitivity testing to determine ideal parameters that impact model outcomes (Silal et al.).
 
-In Chapter 3 of this book, we will be exploring the models that are used in modern epidemiology, such as the SIR model.
+In Chapter 3 of this book, we will be exploring the models that are used in modern epidemiology, such as the SIR model [@tolles2020].
 
 **References:**
 
