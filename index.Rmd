@@ -14,6 +14,8 @@ bibliography: references.bib      # 1. Location of bibliography (.bib) file
 csl: vancouver.csl                # 2. Use a CSL for bibliogpahy style (Optional) (e.g., vancouver for numbered, ieee)
 link-citations: yes
 nocite: '@*'                      # 3. CRITICAL: Include ALL references, even uncited ones
+header-includes: 
+   - \usepackage{amsmath}
 ---
 
 # Welcome {.unnumbered}
