@@ -111,3 +111,11 @@ legend("bottomright", legend=c("Population", "Carrying capacity (K)"),
        col=c("steelblue2", "lightcoral"), lty=c(1,2), lwd=2, bty="n")
 ```
 
+
+
+
+
+# References {-}
+
+<div id="refs"></div>
+

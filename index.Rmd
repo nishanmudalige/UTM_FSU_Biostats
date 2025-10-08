@@ -3,14 +3,17 @@ title: "Biostats E-book"
 author: "Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Nishan Mudalige, Bryce Morsky"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+# --- OUTPUT CONFIGURATION ---
 output: bookdown::gitbook
 knit: bookdown::render_book
 documentclass: book
 github-repo: nishanmudalige/STA258
-biblio-style: apalike
-link-citations: yes
-nocite: '@*'
 description: "Bookdown hosted on github using bookdown::gitbook."
+# --- CITATION CONFIGURATION ---
+bibliography: references.bib      # 1. Location of bibliography (.bib) file
+csl: vancouver.csl                # 2. Use a CSL for bibliogpahy style (Optional) (e.g., vancouver for numbered, ieee)
+link-citations: yes
+nocite: '@*'                      # 3. CRITICAL: Include ALL references, even uncited ones
 ---
 
 # Welcome {.unnumbered}

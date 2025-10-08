@@ -1,2 +1,3 @@
 bookdown::gitbook:
   css: style.css
+  split_bib: false
