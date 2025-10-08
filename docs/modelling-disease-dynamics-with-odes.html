@@ -23,7 +23,7 @@
 <meta name="author" content="Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Nishan Mudalige, Bryce Morsky" />
 
 
-<meta name="date" content="2025-10-08" />
+<meta name="date" content="2025-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="introduction-to-mathematical-models-in-epidemiology.html"/>
-
+<link rel="next" href="sample-chapter-introduction-to-mathematical-modelling.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -82,12 +82,12 @@
 </ul></li>
 <li class="chapter" data-level="2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html"><i class="fa fa-check"></i><b>2</b> Introduction to Mathematical Models in Epidemiology</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#sec:mathematical_models"><i class="fa fa-check"></i><b>2.1</b> Definining Mathematical Models</a></li>
+<li class="chapter" data-level="2.1" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#sec:mathematical_models"><i class="fa fa-check"></i><b>2.1</b> Defining Mathematical Models</a></li>
 <li class="chapter" data-level="2.2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#introduction-to-compartmental-modelling-thinking"><i class="fa fa-check"></i><b>2.2</b> Introduction to Compartmental Modelling Thinking</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#approach-to-compartmental-modelling"><i class="fa fa-check"></i><b>2.2.1</b> Approach to Compartmental Modelling</a></li>
 <li class="chapter" data-level="2.2.2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#benefits-of-parsimonious-models"><i class="fa fa-check"></i><b>2.2.2</b> Benefits of Parsimonious Models</a></li>
-<li class="chapter" data-level="2.2.3" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#limitations-of-compartmental-and-parsimonious-models"><i class="fa fa-check"></i><b>2.2.3</b> Limitations of Compartmental and Parsimonious Models</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#limitations-of-compartmental-models"><i class="fa fa-check"></i><b>2.2.3</b> Limitations of Compartmental Models</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html"><i class="fa fa-check"></i><b>3</b> Modelling disease dynamics with ODEs</a>
@@ -96,6 +96,12 @@
 <li class="chapter" data-level="3.2" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#sec:SI_model"><i class="fa fa-check"></i><b>3.2</b> Solving the SI Model</a></li>
 <li class="chapter" data-level="3.3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>3.3</b> Solving the SIR Model</a></li>
 <li class="chapter" data-level="3.4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.4</b> Interactive Dashboard</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>4</b> Sample Chapter: Introduction to Mathematical Modelling</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#sec:foundations"><i class="fa fa-check"></i><b>4.1</b> Foundations</a></li>
+<li class="chapter" data-level="4.2" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#exponential-growth-and-decay"><i class="fa fa-check"></i><b>4.2</b> Exponential Growth and Decay</a></li>
+<li class="chapter" data-level="4.3" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#logistic-model"><i class="fa fa-check"></i><b>4.3</b> Logistic Model</a></li>
 </ul></li>
 </ul>
 
@@ -118,16 +124,12 @@
 <h1><span class="header-section-number">Chapter 3</span> Modelling disease dynamics with ODEs<a href="modelling-disease-dynamics-with-odes.html#modelling-disease-dynamics-with-odes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="interactions-between-compartments" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Interactions Between Compartments<a href="modelling-disease-dynamics-with-odes.html#interactions-between-compartments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations. These equations will be looked at in-depth later in Chapter 3.
-<span class="math display">\[
-\frac {dS}{dt} = -\beta SI + \gamma I
-\]</span>
-<span class="math display">\[
-\frac {dI}{dt} = +\beta SI - \gamma I
-\]</span>
-<strong>Defining Parameters</strong>:</p>
+<p><strong>Defining Parameters</strong>:</p>
+<p><strong>S</strong> : Proportion of population that is susceptible.</p>
+<p><strong>I</strong> : Proportion of population that is infected.</p>
+<p><strong>N</strong> : Total Population</p>
 <ul>
-<li><p>Differentials (<span class="math inline">\(\frac {dS}{dt} and \frac {dI}{dt}\)</span>): Net Flow of individuals in and out of specific compartments</p></li>
+<li><p>Differentials (<span class="math inline">\(\frac {dS}{dt}\)</span> and <span class="math inline">\(\frac {dI}{dt}\)</span>): Net Flow of individuals in and out of specific compartments</p></li>
 <li><p><span class="math inline">\(\beta SI\)</span>: Total Rate of New Infections in a Population</p>
 <ul>
 <li><span class="math inline">\(\beta\)</span>: Transmission Rate</li>
@@ -142,18 +144,20 @@
 <li><p>Positive (+): Represents Inflow; Adding individuals to a compartment</p></li>
 <li><p>Negative (-): Represents Outlfow; Removing individuals from a compartment</p></li>
 </ul>
-<p>In each equation, either <span class="math inline">\(\beta SI\)</span> and <span class="math inline">\(\gamma I\)</span> contain inverse signs, positive and negative. This explicitly defines the relation between the parameters in each context. Looking at <span class="math inline">\(\beta SI\)</span>, in the first equation, the sign is negative, indicating that the outflow from the Susceptible compartment as individuals are removed as they become infected and a part of the Infectious compartment; however, in the second equation, the sign is positive, representing the inflow into the Infectious department as individuals become infected and leave the susceptible department. The loss depicted in one equation is gained in the other equation. This relationship is the same for <span class="math inline">\(\gamma I\)</span>. The signage is imperative to understand the context in which the flow is occurring. While both equations define the same flow, the interaction at play is defined by the sign of the parameters, illustrating the perspective of each compartment from which the equation is viewed.</p>
+<p>Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations.</p>
+<p><span class="math display">\[
+\frac {dS}{dt} = -\beta SI + \gamma I
+\]</span></p>
+<p><span class="math display">\[
+\frac {dI}{dt} = +\beta SI - \gamma I
+\]</span></p>
+<p>The signs in each equation indicate the direction of flow between compartments. For instance, <span class="math inline">\(-\beta SI\)</span> represents the loss of susceptible individuals as they become infected, while <span class="math inline">\(+\beta SI\)</span> represents the corresponding gain in the infectious group. The same relationship applies to <span class="math inline">\(\gamma I\)</span>, which describes the recovery process in reverse.</p>
+<p>Understanding the parameters and signage then, one can understand the equations above. <span class="math inline">\(\frac {dS}{dt}\)</span> calculates the net flow of the susceptible group by subtracting the total rate of new infections in a population (the proportion of the population entering the infected compartment) and by adding the recovery rate of infectious individuals (the proportion of the population entering the susceptible compartment). <span class="math inline">\(\frac {dI}{dt}\)</span> calculates the net flow of the infected group by adding the total rate of new infections in a population (the proportion of the population entering the infected compartment) and by subtracting the recovery rate of infectious individuals (the proportion of people entering the susceptible compartment). These simple SI equations form the foundation for more complex models, such as SIR or SEIR, which introduce additional compartments to capture recovery, immunity, or incubation dynamics.</p>
 </div>
 <div id="sec:SI_model" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Solving the SI Model<a href="modelling-disease-dynamics-with-odes.html#sec:SI_model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="Images/Compartmental%20Diagrams/SI.png" width="20%" style="display: block; margin: auto;" /></p>
-<p><strong>Parameters:</strong></p>
-<p><strong>S</strong> : Proportion of population that is susceptible.</p>
-<p><strong>I</strong> : Proportion of population that is infected.</p>
-<p><strong>N</strong> : Total Population</p>
-<p><strong><span class="math inline">\(\beta\)</span></strong> : Transmission rate- the rate at which an infection is transmitted from an infected individual to a susceptible individual.</p>
-<p><strong><span class="math inline">\(\gamma\)</span></strong> : Recovery rate- the rate at which an individual recovers from an infection and returns to the susceptible class.</p>
-<p>In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through it is assumed that the population stays roughly constant.</p>
+<p>In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through, it is assumed that the population stays roughly constant.</p>
 <p><span class="math display">\[
 S+I=N
 \]</span></p>
@@ -163,25 +167,27 @@ S+I=1
 <p><span class="math display">\[
 I=1-S
 \]</span></p>
-<p>Building a system of equations: <span class="math display">\[
+<p>Building a system of equations:</p>
+<p><span class="math display">\[
 \frac {dS}{dt} = -\beta SI + \gamma I
 \]</span></p>
 <p><span class="math display">\[
 \frac {dI}{dt} = \beta SI - \gamma I
 \]</span></p>
-<p>Reduce the system of 2 equations to just 1: <span class="math display">\[
+<p>Reduce the system of 2 equations to just 1 by plugging in (1-S) for I: <span class="math display">\[
 \frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
 \]</span></p>
-<p>By taking an integral of both sides, <span class="math inline">\(S(t)\)</span> can be determined: <span class="math display">\[
+<p>By taking an integral of both sides, <span class="math inline">\(S(t)\)</span> can be determined:</p>
+<p><span class="math display">\[
 \int \frac {1}{(\gamma - \beta S)(1-S)} dS = \int dt
 \]</span></p>
-<p>Partial Fractions can be used to solve this integral: <span class="math display">\[
+<p>Partial Fractions can be used to solve this integral:</p>
+<p><span class="math display">\[
 \frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
 \]</span></p>
-<p>So then</p>
+<p>So then: $$ A(1-S)+B( - S) = 1</p>
+<p>$$ And one can assume:</p>
 <p><span class="math display">\[
-A(1-S)+B( \gamma - \beta S) = 1
-\]</span> And one can assume: <span class="math display">\[
 A + \beta \gamma = 1
 \]</span></p>
 <p><span class="math display">\[
@@ -192,10 +198,16 @@ A = \frac {1}{\beta - \gamma }
 \]</span></p>
 <p><span class="math display">\[
 B = \frac {1}{\gamma - \beta}
-\]</span> Plugging in the new A and B: <span class="math display">\[
-\int \frac{1}{(\gamma - \beta S)(1-S)}= \int \frac {\beta}{\beta - \gamma}(\frac {1}{\gamma - \beta S}) + \frac {1}{\gamma - \beta}(\frac {1}{1-S})
-\]</span> Solving the integral on both sides results in: <span class="math display">\[
-\frac {1}{\gamma - \beta} ln| \frac{\gamma - \beta S}{1-S} | = t+C
+\]</span></p>
+<p>Plugging in the new A and B: <span class="math display">\[
+\int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
+\]</span></p>
+<p>Solving the integral on both sides results in:</p>
+<p><span class="math display">\[
+\int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
+\]</span></p>
+<p><span class="math display">\[
+\frac {1}{\gamma - \beta} \ln \left| \frac{\gamma - \beta S}{1-S} \right| = t+C
 \]</span></p>
 <p>Solving for S(t) finds:</p>
 <p><span class="math display">\[
@@ -216,25 +228,36 @@ C = \frac{S_0 \beta - \gamma}{S_0 -1}
 </div>
 <div id="solving-the-sir-model" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Solving the SIR Model<a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Building what we have learnt previously from solving the SI model, we will now attempt to solve the SIR model.</p>
 <p><img src="Images/Compartmental%20Diagrams/SIR.png" width="40%" style="display: block; margin: auto;" /></p>
-<p>Rough notes on Dynamical Systems (Qualitative Analysis). SIR model as example.</p>
-<p><strong>System of Equations:</strong></p>
+<p>The SIR model includes a new compartment, <strong>“R”</strong>, which represents recovery from infection; or alternatively, those removed from infection status. This removal can occur as a result of immunization from infection, immunity from recovering from the disease, isolation from the population, or death. Note that the latter demographic effects (birth/death) are not observed in our example, and different models can exist for those cases.</p>
+<p>We define a new <strong>system of differential equations</strong> for the SIR model as follows:</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(\frac{dS}{dt} = - \beta SI + \alpha R\)</span></p></li>
 <li><p><span class="math inline">\(\frac{dI}{dt} = \beta SI - \gamma I\)</span></p></li>
 <li><p><span class="math inline">\(\frac{dR}{dt} = \gamma I - \alpha R\)</span></p></li>
 </ol>
-<p>Note that <span class="math inline">\(S,I,R \in [0,1]\)</span> and <span class="math inline">\(S + I + R = 1\)</span>. So <span class="math inline">\(R = 1 - S - I\)</span>.</p>
-<p>Plugging into the system of equations we get <span class="math display">\[
-\frac{dS}{dt} = - \beta SI + \alpha(1 - S - I)
+<p><strong>Defining the parameters:</strong> As before, the differentials represent the net flow of individuals in and out of compartments, and <span class="math inline">\(\beta\)</span> represents infection rate (S to I). <span class="math inline">\(\gamma\)</span> represents recovery rate of the infected, but now individuals moving out of compartment “I” (infected) move into compartment “R” (recovered/removed). <span class="math inline">\(\alpha\)</span> is a new term in the equations that represents the re-susceptible rate where recovered individuals lose immunity and become susceptible again (R to S).</p>
+<p>Note that <span class="math inline">\(S,I,R \in [0,1]\)</span>. If the population is represented by <span class="math inline">\(N = S + I + R\)</span>, we can let <span class="math inline">\(N = 1\)</span> and get <span class="math inline">\(S + I + R = 1\)</span>. So <span class="math inline">\(R = 1 - S - I\)</span>.</p>
+<p>Plugging into the system of equations we get:</p>
+<p><span class="math display">\[
+\frac{dS}{dt} = - \beta SI + 2(1 - S - I)
 \]</span></p>
-<p><strong>Equilibria: (new system of equations at equilibria)</strong></p>
+<p>However, unlike the SI model, the SIR model’s system of equations has no closed form solution. Instead, we can find the equilibrium for this system. This system is considered to be a <strong>dynamical system</strong>, and our analysis will be <strong>qualitative</strong>.</p>
+<p><strong>Equilibrium:</strong> the rate of individuals entering a compartment is equal to the rate of individuals leaving a compartment.</p>
+<p>Thus, we can set each equation in our system of equations to 0.</p>
+<p><strong>The new system of equations at equilibria:</strong></p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(0 = -\beta SI + \alpha R\)</span></p></li>
 <li><p><span class="math inline">\(0 = \beta SI - \gamma I \Rightarrow 0 = (\beta S - \gamma) I\)</span></p></li>
 <li><p><span class="math inline">\(0 = -\gamma I + \alpha R\)</span></p></li>
 </ol>
-<p>From equation 2 we get: <span class="math inline">\(I = 0\)</span>, or <span class="math inline">\(S=\frac{\gamma}{\beta}\)</span></p>
+<p>There are two types of equilibrium in epidemiology:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Disease-Free Equilibrium (DFE):</strong> there are no infected in the population, so I* = 0 in our SIR model</p></li>
+<li><p><strong>Endemic Equilibrium (EE):</strong> infected persist indefinitely, so I* &gt; 0 in our SIR model (notation: asterix indicates equilibrium solution)</p></li>
+</ol>
+<p><strong>First we solve for DFE.</strong> From equation 2 we get: <span class="math inline">\(I = 0\)</span>, or <span class="math inline">\(S=\frac{\gamma}{\beta}\)</span></p>
 <p>Then plugging in <span class="math inline">\(I = 0\)</span> into the system of equations:</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(0 = \alpha R\)</span></p></li>
@@ -242,23 +265,39 @@ C = \frac{S_0 \beta - \gamma}{S_0 -1}
 </ol>
 <p>Solving for <span class="math inline">\(R\)</span> from these 2 equations, we get <span class="math inline">\(R^* = 0\)</span></p>
 <p>Since <span class="math inline">\(R = 1 - S - I\)</span>, <span class="math inline">\(R^* = 0\)</span>, and <span class="math inline">\(I = 0\)</span>, then <span class="math inline">\(S^* = 1\)</span> (note: another way to write <span class="math inline">\(S^*\)</span> is <span class="math inline">\(\overline S\)</span>). We use the asterisk or bar to indicate equilibrium notation.</p>
-<p>Therefore, at Equilibrium: <span class="math display">\[
+<p>Therefore, at Equilibrium:</p>
+<p><span class="math display">\[
 (S^*, I^*) = (1, 0)
 \]</span></p>
-<p>Also, plugging in <span class="math inline">\(S = \frac{\gamma}{\beta}\)</span> into the system of equations:</p>
+<p>Thus, at DFE, the entire population is susceptible to infection and no EE exists because the infectious population returns to zero once the endemic is over.</p>
+<p><strong>Now, we solve for EE</strong>. Plugging <span class="math inline">\(S = \frac{\gamma}{\beta}\)</span> into the system of equations:</p>
 <ol start="3" style="list-style-type: decimal">
 <li><span class="math inline">\(0 = -\gamma I + \alpha (1 - \frac{\gamma}{\beta} - I)\)</span></li>
 </ol>
 <p><span class="math inline">\(0 = \gamma I - \alpha (1 - \frac{\gamma}{\beta} - I)\)</span></p>
 <p><span class="math inline">\(\alpha (1 - \frac{\gamma}{\beta}) = I (\gamma + \alpha)\)</span></p>
-<p>Solving for I we get: <span class="math display">\[
+<p>Solving for I we get:</p>
+<p><span class="math display">\[
 I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha}
 \]</span></p>
-<p>Endemic equilibrium (EE) is: <span class="math display">\[
-(S^*, I^*) = ( \frac{\gamma}{\beta}, \frac{ \alpha (1- \frac{\gamma}{\beta}) } {\gamma + \alpha})
+<p>Endemic equilibrium (EE) is:</p>
+<p><span class="math display">\[
+(S^*, I^*) = \left( \frac{\gamma}{\beta}, \frac{\alpha (1- \gamma/\beta)}{\gamma + \alpha} \right)
 \]</span></p>
-<p>where <span class="math inline">\(\gamma &lt; \beta\)</span> or <span class="math inline">\(R_0 = \frac{\beta}{\gamma} &gt; 1\)</span></p>
-<p>The disease spreads, otherwise it doesn’t. (?)</p>
+<p>where <span class="math inline">\(\gamma &lt; \beta\)</span>.</p>
+<p>EE requires a continuous supply of susceptible (“susceptible replacement”), for instance, by birth, or reduced immunity to the disease. Otherwise, I will approach 0 after the endemic.</p>
+<p>Also, since <span class="math inline">\(\gamma &lt; \beta\)</span>, we get <span class="math inline">\(R_0 = \frac{\beta}{\gamma} &gt; 1\)</span>. The <strong>basic reproduction number (</strong><span class="math inline">\(R_0\)</span>) is a threshold quantity that indicates the occurrence of an epidemic. <span class="math inline">\(R_0\)</span> can also be thought of as the number of secondary infections caused by a single infected individual in a population of susceptible individuals (e.g. at initial time <span class="math inline">\(t = 0\)</span>). Note that individual variation is excluded in the definition.</p>
+<p>Specific values of <span class="math inline">\(R_0\)</span> can be used to analyze the stability of equilibrium. This will be discussed in further detail in Chapter 4, but more generally for now:</p>
+<ul>
+<li><p><strong>If</strong> <span class="math inline">\(R_0 &lt; 1\)</span>: DFE is stable, the infection dies out (i.e. when infected, an individual infects less than one person on average, then the disease dies out)</p></li>
+<li><p><strong>If</strong> <span class="math inline">\(R_0 &gt; 1\)</span>: EE is stable, there is an epidemic (i.e. when infected, an individual infects more than one person on average, then the disease spreads)</p></li>
+</ul>
+<p><strong>References:</strong></p>
+<ul>
+<li><p>Blackwood, J.C. &amp; Childs, L.M. (2018). An introduction to compartmental modeling for the budding infectious disease modeler. LETTERS IN BIOMATHEMATICS.</p></li>
+<li><p>Brauer, F. Chapter 2: Compartmental Models in Epidemiology.</p></li>
+<li><p>Long, A. (2020). Math Modeling: A Review of Mathematics. <a href="https://www.nku.edu/~longa/classes/2020spring/mat375/mat375prep/SIR%20Model.html" class="uri">https://www.nku.edu/~longa/classes/2020spring/mat375/mat375prep/SIR%20Model.html</a></p></li>
+</ul>
 </div>
 <div id="interactive-dashboard" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Interactive Dashboard<a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -274,8 +313,8 @@ I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha}
           </div>
         </div>
       </div>
-<a href="introduction-to-mathematical-models-in-epidemiology.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="introduction-to-mathematical-models-in-epidemiology.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sample-chapter-introduction-to-mathematical-modelling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

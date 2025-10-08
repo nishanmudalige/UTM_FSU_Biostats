@@ -1,4 +1,4 @@
-# Introduction 
+# Introduction
 
 ## Goal of this E-book {#sec:goal}
 
@@ -6,37 +6,32 @@ This e-book provides an introduction to mathematical modeling in epidemiology, f
 
 Readers should have an understanding of Calculus 1 and 2, ODEs, Intro Stats/Probability, and Programming experience. A background in Linear Algebra is also recommended.
 
-
-
 ## History of Mathematical Epidemiology
 
-For all of human history, diseases have spread through groups of people. An epidemic is a widespread occurrence of an infectious disease at a particular time. An endemic disease, on the other hand, is one that is always present in certain populations. One of the earliest and deadliest epidemics known is the Black Death, also known as the bubonic plague, which started in Asia in 1346 and spread throughout Europe. Another widely known epidemic is the Spanish Flu epidemic of 1918-19 which caused more than 50 million deaths. Malaria and typhus are examples of endemic diseases. Most recently, COVID-19 caused a worldwide lockdown from 2020-2021, infecting 779 million and killing 7 million. The purpose of epidemiology is to understand the causes of a disease, predict its course, and develop ways of controlling its spread. 
+For all of human history, diseases have spread through groups of people. An epidemic is a widespread occurrence of an infectious disease at a particular time. An endemic disease, on the other hand, is one that is always present in certain populations. One of the earliest and deadliest epidemics known is the Black Death, also known as the bubonic plague, which started in Asia in 1346 and spread throughout Europe. Another widely known epidemic is the Spanish Flu epidemic of 1918-19 which caused more than 50 million deaths. Malaria and typhus are examples of endemic diseases. The purpose of epidemiology is to understand the causes of a disease, predict its course, and develop ways of controlling its spread.
 
-The first model in mathematical epidemiology was the work of Daniel Bernoulli on the inoculation of smallpox. Bernoulli calculated the increase in life expectancy if smallpox were removed as a cause of death. The beginnings of compartmental modelling started through the work of public health physicians. In 1906, W.H. Hamer proposed that the spread of infection should be observed by looking at individuals in compartments: susceptible and infective. Dr. Ronald Ross, who worked on malaria, was the first to introduce the concept of the basic reproductive number (R~0~), which quantifies the number of secondary infections caused by one case in a susceptible population.The framework was then expanded and formalized by Kermack and McKendrick in the late 1920s and early 1930s, laying the foundation for modern epidemic modeling.
-
+The first model in mathematical epidemiology was the work of Daniel Bernoulli on the inoculation of smallpox. Bernoulli calculated the increase in life expectancy if smallpox were removed as a cause of death. The beginnings of compartmental modelling started through the work of public health physicians. In 1906, W.H. Hamer proposed that the spread of infection should be observed by looking at individuals in compartments: susceptible and infectious. Dr. Ronald Ross, who worked on malaria, was the first to introduce the concept of the basic reproductive number (R~0~), which quantifies the number of secondary infections caused by one case in a susceptible population.The framework was then expanded and formalized by Kermack and McKendrick in the late 1920s and early 1930s, laying the foundation for modern epidemic modeling.
 
 **References:**
 
-- <https://pmc.ncbi.nlm.nih.gov/articles/PMC6001967/>
-
+-   <https://pmc.ncbi.nlm.nih.gov/articles/PMC6001967/>
 
 ## Role of Models in Public Health
 
 Due to ethical concerns, it is difficult to design controlled experiments in epidemiology. In addition, epidemiologists may encounter incomplete and inaccurate data from measurement error, which can hinder parameter estimation and model fitting. (Smeden et al.; Brauer)
 
-This is why mathematical modelling in epidemiology plays a major role in our understanding of mechanisms of disease spread. This understanding can suggest strategies for public health and health care responses regarding diseases and epidemics (Brauer; Silal et al.; Tolles & Luong). Models can also identify variables that data may not show. For instance, some models can identify threshold behaviors of epidemics—an indicator of when a disease will become an epidemic, or dies out (Brauer). These indicators are based on (R~0~) in which, if the variable is above, below, or equal to 1, an epedemic may occur, die out or become endemic, respectively. This information could then be used to determine vaccination plans within a population as well as individually (Brauer). Being able to understand the future spread of disease will give insurmountable advantages in developing a plan of action to combat new infections; additionally, the development of herd immunity can safeguard an entire population through communal protection.
+This is why mathematical modelling in epidemiology plays a major role in our understanding of mechanisms of disease spread. This understanding can suggest strategies for public health and health care responses regarding diseases and epidemics (Brauer; Silal et al.; Tolles & Luong). Models can also identify variables that data may not show. For instance, some models can identify threshold behaviors of epidemics—an indicator of when a disease will become an epidemic, or dies out. This could then be used to determine vaccination plans (Brauer).
 
-Compartmental models used today (originating from the Kermack-McKendrick model) can show disease transmission while observing time and infection number in relation to an epidemic (Tolles & Luong). These models help understand diseases by dividing a population into compartments, such as the SIR model. These models utilize diverse mathematical equations and relationships to understand the flow and movementts between these models, defining these connections help predict the spread of disease regarding an outbreak. Compartmental models differ with diseases, and their development often relies on various policies. These models must undergo rigorous sensitivity testing to determine ideal parameters that impact model outcomes (Silal et al.).
+Compartmental models used today (originating from the Kermack-McKendrick model), can show disease transmission while observing time and infection number in relation to an epidemic (Tolles & Luong). Compartmental models differ with diseases, and their development often relies on various policies. These models must undergo rigorous sensitivity testing to determine ideal parameters that impact model outcomes (Silal et al.).
 
-In Chapter 3 of this book, we will be exploring the models that are used in modern epidemiology, such as the SIR model. 
-
+In Chapter 3 of this book, we will be exploring the models that are used in modern epidemiology, such as the SIR model.
 
 **References:**
 
-- Tolles, J., & Luong, T.B. (2020). Modeling Epidemics With Compartmental Models. JAMA. <https://jamanetwork.com/journals/jama/fullarticle/2766672>.
+-   Tolles, J., & Luong, T.B. (2020). Modeling Epidemics With Compartmental Models. JAMA. <https://jamanetwork.com/journals/jama/fullarticle/2766672>.
 
-- Silal, S.P., Little, F., Barnes, K.I. & White, L.J. (2017). Sensitivity to model structure: a comparison of compartmental models in epidemiology. Health Systems. <https://www.tandfonline.com/doi/full/10.1057/hs.2015.2#d1e281>.
+-   Silal, S.P., Little, F., Barnes, K.I. & White, L.J. (2017). Sensitivity to model structure: a comparison of compartmental models in epidemiology. Health Systems. <https://www.tandfonline.com/doi/full/10.1057/hs.2015.2#d1e281>.
 
-- Brauer, F. Chapter 2: Compartmental Models in Epidemiology. 
+-   Brauer, F. Chapter 2: Compartmental Models in Epidemiology.
 
-- Smeden, M., Lash, T.L. & Groenwold, R.H.H. (2020). Reflection on modern methods: five myths about measurement error in epidemiological research. International Journal of Epidemiology, 49(1), 338–347, <https://doi.org/10.1093/ije/dyz251>. 
+-   Smeden, M., Lash, T.L. & Groenwold, R.H.H. (2020). Reflection on modern methods: five myths about measurement error in epidemiological research. International Journal of Epidemiology, 49(1), 338–347, <https://doi.org/10.1093/ije/dyz251>.

@@ -10,5 +10,6 @@ rmd_files:
   - "Chapters/01-Introduction.Rmd"
   - "Chapters/02-Introduction-to-Mathematical-Models-in-Epidemiology.Rmd"
   - "Chapters/03-Modelling-Diseases.Rmd"
-  - "Chapters/04-Compartmental-Model-Solutions.Rmd"
   - "Chapters/00-Sample-Code-for-Reference.Rmd"
+
+

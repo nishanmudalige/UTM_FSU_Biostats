@@ -1,3 +1,6 @@
+def:Model
+fig:ExpGrowthDecay
+fig:LogisticExample
 introduction
 sec:goal
 history-of-mathematical-epidemiology
@@ -7,9 +10,13 @@ sec:mathematical_models
 introduction-to-compartmental-modelling-thinking
 approach-to-compartmental-modelling
 benefits-of-parsimonious-models
-limitations-of-compartmental-and-parsimonious-models
+limitations-of-compartmental-models
 modelling-disease-dynamics-with-odes
 interactions-between-compartments
 sec:SI_model
 solving-the-sir-model
 interactive-dashboard
+sample-chapter-introduction-to-mathematical-modelling
+sec:foundations
+exponential-growth-and-decay
+logistic-model
