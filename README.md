@@ -1,7 +1,14 @@
 # UTM_FSU_Biostats
 
 ## Things to do
+- Chapter 3
+  - Add introduction
+- Add more detail to subsection on SI Model (3.2)
+- Format math statements in Chapter 3, 4
+- Add introduction to Chapter 4
+- Organize Chapter 4 into subsections
 
+---
 - Write definitions in the definition environment
 - Rewrite Chapter 2: Introduction to Mathematical modelling
   - Move Introduction to Compartmental Modelling Thinking to chapter 2 (place at appropriate point)
