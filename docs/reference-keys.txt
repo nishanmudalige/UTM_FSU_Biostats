@@ -16,6 +16,7 @@ interactions-between-compartments
 sec:SI_model
 solving-the-sir-model
 interactive-dashboard
+compartmental-model-solutions
 sample-chapter-introduction-to-mathematical-modelling
 sec:foundations
 exponential-growth-and-decay

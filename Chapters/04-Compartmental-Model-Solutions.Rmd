@@ -1,174 +1,170 @@
 # Compartmental Model Solutions
 
-\documentclass{article}
-\usepackage{amsmath}
+$$\dot{S}=F(S,I)$$
+$$\dot{I}=G(S,I)$$
 
-\begin{document}
+$$\dot{S} = -\beta SI + \alpha R$$
+$$\dot{I} = \beta SI - \gamma I$$
+$$\dot{R} = \gamma I - \alpha R$$
 
-System of Equations
+$$S+I+R=1 \Rightarrow R=1-S-I$$
 
-1.  $\dot{S} = -\beta SI + \alpha R$
+$$\dot{S} = -\beta SI + \alpha(1-S-I)$$
 
-2.  $\dot{I} = \beta SI - \gamma I$
+$$\dot{I} = \beta SI - \gamma I$$
 
-3.  $\dot{R} = \gamma I - \alpha R$
+$$J=\begin{bmatrix} \frac{dF}{dS} & \frac{dF}{dI} \\ \frac{dG}{dS} & \frac{dG}{dI}\end{bmatrix}$$
 
-Alternatively, substituting $R = 1 - S - I$:
+$$J = \begin{bmatrix}-\beta I^* - \alpha & -\beta S^*-\alpha \\ \beta I^* & \beta S^* - \gamma\end{bmatrix}$$
 
-1.  $\dot{S} = -\beta SI + \alpha(1 - S - I)$
+Disease Free Equilibria:
+DFE: $I^* = 0$, $S^* = 1$
 
-2.  $\dot{I} = \beta SI - \gamma I$
+$det(J_{DFE} - \lambda I) = 0$, Where I = Identity Matrix:
 
-3.  $\dot{R} = \gamma I - \alpha R$
+Example $\rightarrow \begin{bmatrix} 0 & 1 \\ 1 & 0\end{bmatrix}=I^2$
 
-Jacobian Matrix:
+$$J_{DFE} = \begin{bmatrix}-\alpha & -\beta-\alpha \\ 0 & \beta-\gamma\end{bmatrix}$$
 
-$$
-J =
-\begin{bmatrix}
--\beta I - \alpha & -\beta S - \alpha & \alpha \\
-\beta I & \beta S - \gamma & 0
-\end{bmatrix}
-$$
+$$det(\begin{bmatrix}-\alpha & -\beta-\alpha \\ 0 & \beta-\gamma\end{bmatrix}-\lambda\begin{bmatrix} 0 & 1 \\ 1 & 0\end{bmatrix})$$
 
-Disease-Free Equilibrium (DFE):
+Distribute Lambda:
+$$det(\begin{bmatrix}-\alpha & -\beta-\alpha \\ 0 & \beta-\gamma\end{bmatrix}+\begin{bmatrix}-\lambda & 0 \\ 0 & -\lambda\end{bmatrix}) =$$
 
-At the DFE: $I^* = 0$, $S^* = 0$
+$$det(\begin{bmatrix}-\alpha-\lambda & -\beta-\alpha \\ 0 & \beta-\gamma-\lambda\end{bmatrix})$$
 
-$$
-J_{DFE} =
-\begin{bmatrix}
--\alpha & -\beta - \alpha \\
-0 & \beta - \gamma
-\end{bmatrix}
-$$
+$$det(\begin{bmatrix} A & B \\ C & D\end{bmatrix}) = AD-BC$$
 
-Determinant and Characteristic Equation:
+So:
+$$det(\begin{bmatrix}-\alpha-\lambda & -\beta-\alpha \\ 0 & \beta-\gamma-\lambda\end{bmatrix}) = -(\alpha+\lambda)(\beta-\gamma-\lambda)-0=0$$
 
-$$
-\det(J_{DFE} - \lambda I) = 0
-$$
+Set Equal to 0:
+$$-(\alpha+\lambda)=0\\(\beta-\gamma-\lambda)=0$$
 
-$$
-\det
-\begin{bmatrix}
--\alpha - \lambda & -\beta - \alpha \\
-0 & \beta - \gamma - \lambda
-\end{bmatrix}
-= (-\alpha - \lambda)(\beta - \gamma - \lambda) - 0 = 0
-$$
+Eigenvalues are:
+$$\lambda = -\alpha\\ \lambda= \beta-\gamma$$
 
-$$
-(\alpha + \lambda)(\beta - \gamma - \lambda) = 0
-$$
+An equilibrium is stable if all the eigenvalues of the Jacobian matrix evaluated at the equilibrium have negative real parts. If any eigenvalue is positive, then the equilibrium is unstable. If some eigenvalues are zero and the rest are negative, then stability is inconclusive.
 
-$$
-\lambda_1 = -\alpha, \quad \lambda_2 = \beta - \gamma
-$$
+$$\lambda_1 = -\alpha < 0$$
 
-Eigenvalues and Stability of the Disease-Free Equilibrium (DFE):
+$$\lambda_2 = \beta - \gamma < 0 \Rightarrow \beta<\gamma \Rightarrow \frac{\beta}{\gamma} = R_0 < 1$$
 
-From the characteristic equation:
-$$
-(\alpha + \lambda)(\beta - \gamma - \lambda) = 0
-$$
+DFE is stable if $\frac{\beta}{\gamma} = R_0 < 1$
 
-We obtain the eigenvalues:
-$$
-\lambda_1 = -\alpha, \lambda_2 = \beta - \gamma
-$$
+Endemic Equilibrium
+$S^*=\frac{\gamma}{\beta}=1/R_0$ only makes sense if $R_0>1$. Thus if this equilibrium exists the DFE is unstable.
 
-Since
-$$
-\lambda_1 = -\alpha < 0, \lambda_2 = \beta - \gamma < 0 \iff \beta < \gamma
-$$
+$$I^*=\frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha}$$
 
-we define the basic reproduction number:
-$$
-R_0 = \frac{\beta}{\gamma}
-$$
+$$\dot{S} = -\beta SI + \alpha(1-S-I)$$
 
-Thus, the Disease-Free Equilibrium (DFE) is stable if
-$$
-R_0 < 1
-$$
-and unstable if $R_0 > 1$.
+$$\dot{I} = \beta SI - \gamma I$$
 
-Endemic Equilibrium ($I^* > 0$):
+$$J = \begin{bmatrix}-\beta I - \alpha & -\beta S-\alpha \\ \beta I & \beta S - \gamma\end{bmatrix}$$
 
-At endemic equilibrium, where infection persists:
+$$J = \begin{bmatrix}-\beta I^* - \alpha & -\gamma-\alpha \\ \beta I & 0\end{bmatrix}$$
 
-$$
-S^* = \frac{\gamma}{\beta} = \frac{1}{R_0}, 
-I^* = \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha}
-$$
+$$det(J-\lambda I) = 0 \\ det(\lambda I - J) = 0$$
 
-System equations:
+$$det(\begin{bmatrix}-\beta I* - \alpha -\lambda & -\gamma-\alpha \\ \beta I & -\lambda\end{bmatrix})$$
 
-1.  $\dot{S} = -\beta S I + \alpha (1 - S - I)$
-
-2.  $\dot{I} = \beta S I - \gamma I = (\beta S - \gamma)I$
-
-Jacobian Matrix at Endemic Equilibrium:
-
-$$
-J =
-\begin{bmatrix}
--\beta I^* - \alpha & -\beta S^* - \alpha \\
-\beta I^* & \beta S^* - \gamma
-\end{bmatrix}
-$$
-
-Substituting $S^* = \frac{\gamma}{\beta}$:
-
-$$
-J =
-\begin{bmatrix}
--\beta I^* - \alpha & -\gamma - \alpha \\
-\beta I^* & 0
-\end{bmatrix}
-$$
+$$(\beta I^* + \alpha + \lambda)\lambda + \beta I^*(\gamma+\alpha) = 0$$
 
 Characteristic Equation:
+$$\lambda^2 + (\beta I^* + \alpha)\lambda + \beta I^*(\gamma+\alpha) = 0$$
 
-$$
-\det(J - \lambda I) = 0
-$$
+Where $a=\lambda^2, b=(\beta I^* + \alpha), c=\beta I^*(\gamma+\alpha)$
 
-$$
-\det
-\begin{bmatrix}
--\beta I^* - \alpha - \lambda & -\gamma - \alpha \\
-\beta I^* & -\lambda
-\end{bmatrix}
-= 0
-$$
+$$\lambda^2 + \alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right] + \alpha\beta(1-\frac{1}{R_0})=0$$
 
-$$
-(-\beta I^* - \alpha - \lambda)(-\lambda) - (-\gamma - \alpha)(\beta I^*) = 0
-$$
+Subsitute a, b, c into quadratic equation:
 
-$$
-(\beta I^* + \alpha + \lambda)\lambda + \beta I^*(\gamma + \alpha) = 0
-$$
+$$\lambda = \frac{-\alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right] \pm \sqrt{(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha)}}{2}$$
 
-Therefore, the characteristic equation is:
-$$
-\lambda^2 + (\beta I^* + \alpha)\lambda + \beta I^*(\gamma + \alpha) = 0
-$$
+Where $-\alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right]$ is negative due to the signage
 
-Eigenvalues:
+$$(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha) = \beta^2 (I^*)^2 + \alpha^2 + 2\beta(I^*)^2 - 4\beta I \alpha - 4\beta I \gamma$$
 
-$$
-\lambda = 
-\frac{ -(\beta I^* + \alpha) \pm 
-\sqrt{(\beta I^* + \alpha)^2 - 4\beta I^*(\gamma + \alpha)} }{2}
-$$
+$$\lambda = \frac{-(\beta I^*+\alpha) \pm \sqrt{(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha)}}{2}$$
 
-Since all parameters $\alpha, \beta, \gamma, I^* > 0$, both roots have negative real parts.  
-Therefore, both eigenvalues are negative and the endemic equilibrium is stable.
+$\lambda = \frac{-b}{2}$ $\pm$ Complex Number, where $\frac{-b}{2}$ is a real part.
 
-DFE is stable if $R_0 < 1$;  
-Endemic equilibrium is stable if $R_0 > 1$.
+$$\lambda=a \pm bi$$
+$$\lambda_1 = a + bi$$
+$$\lambda_2=a-bi$$
 
-\end{document}
+$Z=a+bi$ where $i=\sqrt{-1}$ and $a$ and $b$ are real;
+$Re(Z)=$ $a$ real part of $Z$, and $Im(Z)=$ $b$, imaginary number.
+
+$$b^2>b^2-4c>0$$
+$$\lambda_1=\frac{{-b} + \sqrt{(b^2 - 4c)^2}}{2}<0$$
+
+$\lambda_2=\frac{{-b} - \sqrt{(b^2 - 4c)}}{2}$ where $b^2>b^2 - 4c$, so
+
+$<\frac{{-b} - \sqrt{b^2}}{2}=0$
+
+Notice $\pm$, only focus on $+$ and drop $- 4\beta I(\gamma+\alpha)$ due to complexity:
+
+$$<\frac{-(\beta I^*+\alpha) \pm \sqrt{(\beta I^* + \alpha)^2}}{2}=\frac{-(\beta I^*+\alpha)+{(\beta I^* + \alpha)}}{2}=0$$
+
+Both eigenvalues are negative and it is stable.
+
+Routh - Hurwitz Criteria
+$$\sum{i}c_ix^i=c_2\lambda^2 + c_1\lambda + c_0$$
+
+Where, $c_i>0$
+
+Quadratic Characteristic Equation:
+
+- Minimum of the characterisitic equation:
+
+$$2\lambda + \beta I + \alpha = 0$$
+
+$$\lambda = \frac{-\beta I + \alpha}{2}$$
+
+$$\frac{(\beta I + \alpha)^2}{4}-\frac{(\beta I + \alpha)^2}{2}+\beta I(\gamma+\alpha)=$$
+
+$$1/4[(\beta I+\alpha)^2-2(\beta I+\alpha)^2+4(\beta I(\gamma+\alpha))]=$$
+
+$$1/4[-(\beta I+\alpha)^2+4(\beta I(\gamma+\alpha))]=$$
+
+$$1/4[-\beta^2 I^2 - 2\beta I \alpha -\alpha^2 + 4\beta I \gamma + 4 \beta I \alpha]=$$
+
+$$1/4[-\beta^2 I^2 + 2\beta I \alpha -\alpha^2 + 4\beta I \gamma]>0$$
+
+Descartes' Rule of Signs:
+
+$$c_2\lambda^2 + c_1\lambda + c_0 = 0$$
+
+0 sign changes from term to term
+
+- All terms are positive
+
+So there are either 0 positive roots or 2 positive roots
+
+$$c_2(-\lambda)^2+c_1(-\lambda)+c_0=0$$
+
+$$c_2\lambda^2-c_1\lambda+c_0=0$$
+
+2 sign changes from term to term
+
+- First and last term are positive, while middle term is negative
+- From first to second term, $+$ to $-$, first sign change
+- From second to third term, $-$ to $+$, second sign change
+
+So there are either 2 negative roots or zero negaive roots
+
+Cases where there is one sign change:
+
+Example:
+
+$(-) \rightarrow (+) (+)$$\cdots$$\lambda \rightarrow$ 1 Positive Root
+
+$(-) (-) \rightarrow (+)$$\cdots$$-\lambda \rightarrow$ 1 Negative Root
+
+For $S(t)$, $S=\frac{\gamma}{\beta}$
+
+DFE: $I^*=0$, $S*=1$
+
+$$S(t) =\left[\begin{aligned}&\dot{S} = -\beta SI + \alpha I\\&\dot{S}=(-\beta S \gamma)(1-S)\\&\dot{I} = \beta SI - \gamma I\\&J = -\beta(1-S) - (-\beta S + \gamma) = -\beta + \beta S + \beta S - \gamma = 2\beta S - \beta - \gamma\\&J_{DFE} = -\beta(1-1) - (-\beta + \gamma) = \beta - \gamma < 0 \rightarrow \beta < \gamma = R_0 < 1 \\&J_{EE} = 2\beta \left(\frac{\gamma}{\beta}\right) - \beta - \gamma = 2\gamma - \beta - \gamma = \gamma - \beta < 0 \rightarrow 1 < R_0\end{aligned} \right]$$
