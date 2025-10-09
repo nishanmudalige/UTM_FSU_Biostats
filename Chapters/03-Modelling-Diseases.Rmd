@@ -2,6 +2,11 @@
 
 ## Interactions Between Compartments
 
+```{r SIdiagram, echo=FALSE, fig.align='center', out.width='20%'}
+knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
+
+```
+
 **Defining Parameters**:
 
 **S** : Proportion of population that is susceptible.
@@ -42,11 +47,6 @@ Understanding the parameters and signage then, one can understand the equations 
 
 ## Solving the SI Model {#sec:SI_model}
 
-```{r SIdiagram, echo=FALSE, fig.align='center', out.width='20%'}
-knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
-
-```
-
 In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through, it is assumed that the population stays roughly constant.
 
 $$
@@ -71,7 +71,8 @@ $$
 \frac {dI}{dt} = \beta SI - \gamma I
 $$
 
-Reduce the system of 2 equations to just 1 by plugging in (1-S) for I: $$
+Reduce the system of 2 equations to just 1 by plugging in (1-S) for I: 
+$$
 \frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
 $$
 
@@ -87,9 +88,12 @@ $$
 \frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
 $$
 
-So then: \$\$ A(1-S)+B( \gamma - \beta S) = 1
+So then: 
+$$ 
+A(1-S)+B( \gamma - \beta S) = 1 
+$$
 
-\$\$ And one can assume:
+And one can assume:
 
 $$
 A + \beta \gamma = 1
@@ -99,7 +103,8 @@ $$
 A + B \beta =0
 $$
 
-Through partial fractions it will be found that: $$
+Through partial fractions it will be found that: 
+$$
 A = \frac {1}{\beta - \gamma }
 $$
 
