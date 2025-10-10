@@ -115,10 +115,11 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html"><i class="fa fa-check"></i><b>3</b> Modelling disease dynamics with ODEs</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactions-between-compartments"><i class="fa fa-check"></i><b>3.1</b> Interactions Between Compartments</a></li>
-<li class="chapter" data-level="3.2" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#sec:SI_model"><i class="fa fa-check"></i><b>3.2</b> Solving the SI Model</a></li>
-<li class="chapter" data-level="3.3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>3.3</b> Solving the SIR Model</a></li>
-<li class="chapter" data-level="3.4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.4</b> Interactive Dashboard</a></li>
+<li class="chapter" data-level="3.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#introduction-to-the-chapter"><i class="fa fa-check"></i><b>3.1</b> Introduction to the Chapter</a></li>
+<li class="chapter" data-level="3.2" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactions-between-compartments"><i class="fa fa-check"></i><b>3.2</b> Interactions Between Compartments</a></li>
+<li class="chapter" data-level="3.3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#sec:SI_model"><i class="fa fa-check"></i><b>3.3</b> Solving the SI Model</a></li>
+<li class="chapter" data-level="3.4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>3.4</b> Solving the SIR Model</a></li>
+<li class="chapter" data-level="3.5" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.5</b> Interactive Dashboard</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html"><i class="fa fa-check"></i><b>4</b> Compartmental Model Solutions</a></li>
 <li class="chapter" data-level="5" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>5</b> Sample Chapter: Introduction to Mathematical Modelling</a>
@@ -147,8 +148,12 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="modelling-disease-dynamics-with-odes" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Modelling disease dynamics with ODEs<a href="modelling-disease-dynamics-with-odes.html#modelling-disease-dynamics-with-odes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="interactions-between-compartments" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Interactions Between Compartments<a href="modelling-disease-dynamics-with-odes.html#interactions-between-compartments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-the-chapter" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introduction to the Chapter<a href="modelling-disease-dynamics-with-odes.html#introduction-to-the-chapter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Chapter 3 examines various aspects of the basic compartmental models: the SI model and the SIR model. In this chapter we will define model parameters and the <em>flow</em> between compartments. We will also seek mathematical solutions to the models to gain a comprehensive understanding of model initialization, functionality, and interpretation. The concepts discussed in this chapter provide a foundation for further analysis of epidemiological models explored in later chapters of this book.</p>
+</div>
+<div id="interactions-between-compartments" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Interactions Between Compartments<a href="modelling-disease-dynamics-with-odes.html#interactions-between-compartments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><img src="Images/Compartmental%20Diagrams/SI.png" width="20%" style="display: block; margin: auto;" /></p>
 <p><strong>Defining Parameters</strong>:</p>
 <p><strong>S</strong> : Proportion of population that is susceptible.</p>
@@ -180,8 +185,8 @@ div.csl-indent {
 <p>The signs in each equation indicate the direction of flow between compartments. For instance, <span class="math inline">\(-\beta SI\)</span> represents the loss of susceptible individuals as they become infected, while <span class="math inline">\(+\beta SI\)</span> represents the corresponding gain in the infectious group. The same relationship applies to <span class="math inline">\(\gamma I\)</span>, which describes the recovery process in reverse.</p>
 <p>Understanding the parameters and signage then, one can understand the equations above. <span class="math inline">\(\frac {dS}{dt}\)</span> calculates the net flow of the susceptible group by subtracting the total rate of new infections in a population (the proportion of the population entering the infected compartment) and by adding the recovery rate of infectious individuals (the proportion of the population entering the susceptible compartment). <span class="math inline">\(\frac {dI}{dt}\)</span> calculates the net flow of the infected group by adding the total rate of new infections in a population (the proportion of the population entering the infected compartment) and by subtracting the recovery rate of infectious individuals (the proportion of people entering the susceptible compartment). These simple SI equations form the foundation for more complex models, such as SIR or SEIR, which introduce additional compartments to capture recovery, immunity, or incubation dynamics.</p>
 </div>
-<div id="sec:SI_model" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Solving the SI Model<a href="modelling-disease-dynamics-with-odes.html#sec:SI_model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sec:SI_model" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Solving the SI Model<a href="modelling-disease-dynamics-with-odes.html#sec:SI_model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through, it is assumed that the population stays roughly constant.</p>
 <p>The goal of solving the SIS model is to understand and predict the spread of an infectious disease within a population. Analyzing differential equations can help predict disease prevalence over time and determine whether a disease is endemic or not. In addition, the differential equations can also be used to identify the size of infected and susceptible populations at the stable endemic state. By solving the differential equations, <span class="math inline">\(S(t)\)</span> and <span class="math inline">\(I(t)\)</span> can be found and used to predict the size of the susceptible and infected compartments at different periods in time.</p>
 <p>These are the initial assumptions in equation format, showing that within the population, an individual can either be in the susceptible or infected compartment. Together both compartments make up the total population, <span class="math inline">\(N\)</span>.
@@ -273,8 +278,8 @@ S(t)= \frac {\gamma - (\frac{S_0 \beta - \gamma}{S_0 -1}) e^{(\gamma - \beta )t}
 <p>Thus through this work through of the SIS model, we have found a closed form solution for <span class="math inline">\(S(t)\)</span>, which shows the number or proportion of individuals in the susceptible compartment at a time t. Using the function found for <span class="math inline">\(S(t)\)</span>, one can plug it into the assumption equations, specifically <span class="math inline">\(I+S=1\)</span>, in order to find <span class="math inline">\(I(t)\)</span>. In addition, learning from this model, one can note that when <span class="math inline">\(\beta &gt; \gamma\)</span>, transmission is greater than recovery so there will be a spread of the infections and the disease will be endemic. However, when <span class="math inline">\(\beta &lt; \gamma\)</span>, recovery occurs faster than transmission and the disease will die out.</p>
 <p>Solving the SIS model not only provides a solution for <span class="math inline">\(S(t)\)</span> and <span class="math inline">\(I(t)\)</span>, but also will provide a groundwork for more complex models, such as the SIR model .</p>
 </div>
-<div id="solving-the-sir-model" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Solving the SIR Model<a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="solving-the-sir-model" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Solving the SIR Model<a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Building what we have learnt previously from solving the SI model, we will now attempt to solve the SIR model.</p>
 <p><img src="Images/Compartmental%20Diagrams/SIR.png" width="40%" style="display: block; margin: auto;" /></p>
 <p>The SIR model includes a new compartment, <strong>“R”</strong>, which represents recovery from infection; or alternatively, those removed from infection status. This removal can occur as a result of immunization from infection, immunity from recovering from the disease, isolation from the population, or death. Note that the latter demographic effects (birth/death) are not observed in our example, and different models can exist for those cases.</p>
@@ -317,12 +322,14 @@ S(t)= \frac {\gamma - (\frac{S_0 \beta - \gamma}{S_0 -1}) e^{(\gamma - \beta )t}
 (S^*, I^*) = (1, 0)
 \]</span></p>
 <p>Thus, at DFE, the entire population is susceptible to infection and no EE exists because the infectious population returns to zero once the endemic is over.</p>
-<p><strong>Now, we solve for EE</strong>. Plugging <span class="math inline">\(S = \frac{\gamma}{\beta}\)</span> into the system of equations:</p>
-<ol start="3" style="list-style-type: decimal">
-<li><span class="math inline">\(0 = -\gamma I + \alpha (1 - \frac{\gamma}{\beta} - I)\)</span></li>
-</ol>
-<p><span class="math inline">\(0 = \gamma I - \alpha (1 - \frac{\gamma}{\beta} - I)\)</span></p>
-<p><span class="math inline">\(\alpha (1 - \frac{\gamma}{\beta}) = I (\gamma + \alpha)\)</span></p>
+<p><strong>Now, we solve for EE</strong>. Plugging <span class="math inline">\(S = \frac{\gamma}{\beta}\)</span> into the system of equations (equation 3):</p>
+<p><span class="math display">\[
+\begin{align*}
+\ 0 &amp;= -\gamma I + \alpha \left(1 - \frac{\gamma}{\beta} - I \right) \\
+\ 0 &amp;= \gamma I - \alpha \left(1 - \frac{\gamma}{\beta} - I \right) \\
+\ \alpha \left(1 - \frac{\gamma}{\beta} \right) &amp;= I (\gamma + \alpha)
+\end{align*}
+\]</span></p>
 <p>Solving for I we get:</p>
 <p><span class="math display">\[
 I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha}
@@ -346,8 +353,8 @@ I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha}
 <li><p>Long, A. (2020). Math Modeling: A Review of Mathematics. <a href="https://www.nku.edu/~longa/classes/2020spring/mat375/mat375prep/SIR%20Model.html" class="uri">https://www.nku.edu/~longa/classes/2020spring/mat375/mat375prep/SIR%20Model.html</a></p></li>
 </ul>
 </div>
-<div id="interactive-dashboard" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Interactive Dashboard<a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="interactive-dashboard" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Interactive Dashboard<a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <center>
 <iframe src="https://nishan-mudalige.shinyapps.io/SIR_Dashboard/?showcase=0" width="100%" height="1200" data-external="1">
 </iframe>

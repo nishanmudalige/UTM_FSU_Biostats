@@ -12,6 +12,7 @@ approach-to-compartmental-modelling
 benefits-of-parsimonious-models
 limitations-of-compartmental-models
 modelling-disease-dynamics-with-odes
+introduction-to-the-chapter
 interactions-between-compartments
 sec:SI_model
 solving-the-sir-model

@@ -1,5 +1,9 @@
 # Modelling disease dynamics with ODEs
 
+## Introduction to the Chapter
+
+Chapter 3 examines various aspects of the basic compartmental models: the SI model and the SIR model. In this chapter we will define model parameters and the *flow* between compartments. We will also seek mathematical solutions to the models to gain a comprehensive understanding of model initialization, functionality, and interpretation. The concepts discussed in this chapter provide a foundation for further analysis of epidemiological models explored in later chapters of this book. 
+
 ## Interactions Between Compartments
 
 ```{r SIdiagram, echo=FALSE, fig.align='center', out.width='20%'}
@@ -234,13 +238,15 @@ $$
 
 Thus, at DFE, the entire population is susceptible to infection and no EE exists because the infectious population returns to zero once the endemic is over.
 
-**Now, we solve for EE**. Plugging $S = \frac{\gamma}{\beta}$ into the system of equations:
+**Now, we solve for EE**. Plugging $S = \frac{\gamma}{\beta}$ into the system of equations (equation 3):
 
-3.  $0 = -\gamma I + \alpha (1 - \frac{\gamma}{\beta} - I)$
-
-$0 = \gamma I - \alpha (1 - \frac{\gamma}{\beta} - I)$
-
-$\alpha (1 - \frac{\gamma}{\beta}) = I (\gamma + \alpha)$
+$$
+\begin{align*}
+\ 0 &= -\gamma I + \alpha \left(1 - \frac{\gamma}{\beta} - I \right) \\
+\ 0 &= \gamma I - \alpha \left(1 - \frac{\gamma}{\beta} - I \right) \\
+\ \alpha \left(1 - \frac{\gamma}{\beta} \right) &= I (\gamma + \alpha)
+\end{align*}
+$$
 
 Solving for I we get:
 
