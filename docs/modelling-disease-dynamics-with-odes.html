@@ -149,6 +149,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 3</span> Modelling disease dynamics with ODEs<a href="modelling-disease-dynamics-with-odes.html#modelling-disease-dynamics-with-odes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="interactions-between-compartments" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Interactions Between Compartments<a href="modelling-disease-dynamics-with-odes.html#interactions-between-compartments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="Images/Compartmental%20Diagrams/SI.png" width="20%" style="display: block; margin: auto;" /></p>
 <p><strong>Defining Parameters</strong>:</p>
 <p><strong>S</strong> : Proportion of population that is susceptible.</p>
 <p><strong>I</strong> : Proportion of population that is infected.</p>
@@ -181,7 +182,6 @@ div.csl-indent {
 </div>
 <div id="sec:SI_model" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Solving the SI Model<a href="modelling-disease-dynamics-with-odes.html#sec:SI_model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="Images/Compartmental%20Diagrams/SI.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through, it is assumed that the population stays roughly constant.</p>
 <p><span class="math display">\[
 S+I=N
@@ -199,7 +199,8 @@ I=1-S
 <p><span class="math display">\[
 \frac {dI}{dt} = \beta SI - \gamma I
 \]</span></p>
-<p>Reduce the system of 2 equations to just 1 by plugging in (1-S) for I: <span class="math display">\[
+<p>Reduce the system of 2 equations to just 1 by plugging in (1-S) for I:
+<span class="math display">\[
 \frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
 \]</span></p>
 <p>By taking an integral of both sides, <span class="math inline">\(S(t)\)</span> can be determined:</p>
@@ -210,15 +211,19 @@ I=1-S
 <p><span class="math display">\[
 \frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
 \]</span></p>
-<p>So then: $$ A(1-S)+B( - S) = 1</p>
-<p>$$ And one can assume:</p>
+<p>So then:
+<span class="math display">\[
+A(1-S)+B( \gamma - \beta S) = 1
+\]</span></p>
+<p>And one can assume:</p>
 <p><span class="math display">\[
 A + \beta \gamma = 1
 \]</span></p>
 <p><span class="math display">\[
 A + B \beta =0
 \]</span></p>
-<p>Through partial fractions it will be found that: <span class="math display">\[
+<p>Through partial fractions it will be found that:
+<span class="math display">\[
 A = \frac {1}{\beta - \gamma }
 \]</span></p>
 <p><span class="math display">\[
