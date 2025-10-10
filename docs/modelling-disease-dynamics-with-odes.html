@@ -127,7 +127,6 @@ div.csl-indent {
 <li class="chapter" data-level="5.2" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#exponential-growth-and-decay"><i class="fa fa-check"></i><b>5.2</b> Exponential Growth and Decay</a></li>
 <li class="chapter" data-level="5.3" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#logistic-model"><i class="fa fa-check"></i><b>5.3</b> Logistic Model</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
       </nav>
@@ -183,16 +182,20 @@ div.csl-indent {
 <div id="sec:SI_model" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Solving the SI Model<a href="modelling-disease-dynamics-with-odes.html#sec:SI_model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through, it is assumed that the population stays roughly constant.</p>
-<p><span class="math display">\[
+<p>The goal of solving the SIS model is to understand and predict the spread of an infectious disease within a population. Analyzing differential equations can help predict disease prevalence over time and determine whether a disease is endemic or not. In addition, the differential equations can also be used to identify the size of infected and susceptible populations at the stable endemic state. By solving the differential equations, S(t) and I(t) can be found and used to predict the size of the susceptible and infected compartments at different periods in time.</p>
+<p>This are the initial assumptions in equation format, showing that within the population, an individual can either be in the susceptible or infected compartment. Together both compartments make up the total population, N.
+<span class="math display">\[
 S+I=N
-\]</span></p>
-<p><span class="math display">\[
+\]</span>
+It can be assumed that N is equal to 1 and S and I are both proportions of the population.
+<span class="math display">\[
 S+I=1
-\]</span></p>
-<p><span class="math display">\[
+\]</span>
+Rearranging this equation finds:
+<span class="math display">\[
 I=1-S
 \]</span></p>
-<p>Building a system of equations:</p>
+<p>Deriving both of the previous equations creates a system of differential equations:</p>
 <p><span class="math display">\[
 \frac {dS}{dt} = -\beta SI + \gamma I
 \]</span></p>
@@ -203,7 +206,7 @@ I=1-S
 <span class="math display">\[
 \frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
 \]</span></p>
-<p>By taking an integral of both sides, <span class="math inline">\(S(t)\)</span> can be determined:</p>
+<p>After separating the variables, we can take an integral of both sides to determine <span class="math inline">\(S(t)\)</span>.</p>
 <p><span class="math display">\[
 \int \frac {1}{(\gamma - \beta S)(1-S)} dS = \int dt
 \]</span></p>
@@ -215,7 +218,7 @@ I=1-S
 <span class="math display">\[
 A(1-S)+B( \gamma - \beta S) = 1
 \]</span></p>
-<p>And one can assume:</p>
+<p>In order to solve this equation, one can assume:</p>
 <p><span class="math display">\[
 A + \beta \gamma = 1
 \]</span></p>
@@ -229,21 +232,28 @@ A = \frac {1}{\beta - \gamma }
 <p><span class="math display">\[
 B = \frac {1}{\gamma - \beta}
 \]</span></p>
-<p>Plugging in the new A and B: <span class="math display">\[
+<p>Plugging in the new A and B:
+<span class="math display">\[
 \int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
 \]</span></p>
-<p>Solving the integral on both sides results in:</p>
+<p>Solving the integral on the left side first results in:</p>
 <p><span class="math display">\[
-\int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
-\]</span></p>
-<p><span class="math display">\[
+\int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS = \frac {1}{\gamma - \beta} \ln \left| \frac{\gamma - \beta S}{1-S} \right|
+\]</span>
+Solving the integral on the right side results in:
+<span class="math display">\[
+\int dt = t +C
+\]</span>
+Therefore the new equation is:
+<span class="math display">\[
 \frac {1}{\gamma - \beta} \ln \left| \frac{\gamma - \beta S}{1-S} \right| = t+C
 \]</span></p>
 <p>Solving for S(t) finds:</p>
 <p><span class="math display">\[
 S(t)= \frac {\gamma - Ce^{(\gamma - \beta )t}}{\beta - Ce^{(\gamma - \beta)t}}
 \]</span></p>
-<p>Then solving for the constant: <span class="math display">\[
+<p>Then plugging in t=0 and using <span class="math inline">\(S_0\)</span> to solve for the constant :</p>
+<p><span class="math display">\[
 S(0) = \frac {\gamma - C}{\beta -C}
 \]</span></p>
 <p><span class="math display">\[
@@ -254,7 +264,13 @@ S_0 \beta - \gamma = C(S_0 -1)
 \]</span></p>
 <p><span class="math display">\[
 C = \frac{S_0 \beta - \gamma}{S_0 -1}
-\]</span></p>
+\]</span>
+Plugging C into S(t) results in the final equation for S(t):
+$$</p>
+<p>S(t)= </p>
+<p>$$
+Thus through this work through of the SIS model, we have found a closed form solution for <span class="math inline">\(S(t)\)</span>, which shows the number or proportion of individuals in the susceptible compartment at a time t. Using the function found for <span class="math inline">\(S(t)\)</span>, one can plug it into the assumption equations, specifically <span class="math inline">\(I+S=1\)</span>, in order to find I(t). In addition, learning from this model, one can note that when <span class="math inline">\(\beta &gt; \gamma\)</span>, transmission is greater than recovery so there will be a spread of the infections and the disease will be endemic. However, when <span class="math inline">\(\beta &lt; \gamma\)</span>, recovery occurs faster than transmission and the disease will die out.</p>
+<p>Solving the SIS model not only provides a solution for <span class="math inline">\(S(t)\)</span> and <span class="math inline">\(I(t)\)</span>, but also will provide a groundwork for more complex models, such as the SIR model .</p>
 </div>
 <div id="solving-the-sir-model" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Solving the SIR Model<a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>

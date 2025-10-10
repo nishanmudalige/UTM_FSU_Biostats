@@ -49,19 +49,22 @@ Understanding the parameters and signage then, one can understand the equations 
 
 In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through, it is assumed that the population stays roughly constant.
 
+The goal of solving the SIS model is to understand and predict the spread of an infectious disease within a population. Analyzing differential equations can help predict disease prevalence over time and determine whether a disease is endemic or not. In addition, the differential equations can also be used to identify the size of infected and susceptible populations at the stable endemic state. By solving the differential equations, S(t) and I(t) can be found and used to predict the size of the susceptible and infected compartments at different periods in time. 
+
+This are the initial assumptions in equation format, showing that within the population, an individual can either be in the susceptible or infected compartment. Together both compartments make up the total population, N. 
 $$
 S+I=N
 $$
-
+It can be assumed that N is equal to 1 and S and I are both proportions of the population. 
 $$
 S+I=1
 $$
-
+Rearranging this equation finds:
 $$
 I=1-S
 $$
 
-Building a system of equations:
+Deriving both of the previous equations creates a system of differential equations: 
 
 $$
 \frac {dS}{dt} = -\beta SI + \gamma I
@@ -76,7 +79,7 @@ $$
 \frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
 $$
 
-By taking an integral of both sides, $S(t)$ can be determined:
+After separating the variables, we can take an integral of both sides to determine $S(t)$.
 
 $$
 \int \frac {1}{(\gamma - \beta S)(1-S)} dS = \int dt
@@ -93,7 +96,7 @@ $$
 A(1-S)+B( \gamma - \beta S) = 1 
 $$
 
-And one can assume:
+In order to solve this equation, one can assume: 
 
 $$
 A + \beta \gamma = 1
@@ -112,16 +115,21 @@ $$
 B = \frac {1}{\gamma - \beta}
 $$
 
-Plugging in the new A and B: $$
-\int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
-$$
-
-Solving the integral on both sides results in:
-
+Plugging in the new A and B: 
 $$
 \int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
 $$
 
+Solving the integral on the left side first results in: 
+
+$$
+\int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS = \frac {1}{\gamma - \beta} \ln \left| \frac{\gamma - \beta S}{1-S} \right|
+$$
+Solving the integral on the right side results in: 
+$$
+\int dt = t +C
+$$
+Therefore the new equation is: 
 $$
 \frac {1}{\gamma - \beta} \ln \left| \frac{\gamma - \beta S}{1-S} \right| = t+C
 $$
@@ -132,7 +140,9 @@ $$
 S(t)= \frac {\gamma - Ce^{(\gamma - \beta )t}}{\beta - Ce^{(\gamma - \beta)t}}
 $$
 
-Then solving for the constant: $$
+Then plugging in t=0 and using $S_0$ to solve for the constant : 
+
+$$
 S(0) = \frac {\gamma - C}{\beta -C}
 $$
 
@@ -147,6 +157,15 @@ $$
 $$
 C = \frac{S_0 \beta - \gamma}{S_0 -1}
 $$
+Plugging C into S(t) results in the final equation for S(t):
+$$
+
+S(t)= \frac {\gamma - (\frac{S_0 \beta - \gamma}{S_0 -1}) e^{(\gamma - \beta )t}}{\beta - (\frac{S_0 \beta - \gamma}{S_0 -1})e^{(\gamma - \beta)t}}
+
+$$
+Thus through this work through of the SIS model, we have found a closed form solution for $S(t)$, which shows the number or proportion of individuals in the susceptible compartment at a time t. Using the function found for $S(t)$, one can plug it into the assumption equations, specifically $I+S=1$, in order to find I(t). In addition, learning from this model, one can note that when $\beta > \gamma$, transmission is greater than recovery so there will be a spread of the infections and the disease will be endemic. However, when $\beta < \gamma$, recovery occurs faster than transmission and the disease will die out. 
+
+Solving the SIS model not only provides a solution for $S(t)$ and $I(t)$, but also will provide a groundwork for more complex models, such as the SIR model .
 
 ## Solving the SIR Model
 
