@@ -4,15 +4,12 @@
 
 The two major types of mathematical models used in epidemiology are deterministic models and stochastic models.
 
-**Deterministic models** do not consider stochasticity (randomness), and predict results from known data (e.g. epidemic history; rules of models). These models are useful in large populations to observe epidemics in terms of the population and can help determine the fraction of individuals infected in an epidemic, as well as advise on disease control methods (Dadlani et al). Deterministic models can be written in terms of differential equations in continuous time, or difference equations in discrete time. A common approach for continuous time deterministic models is Ordinary Differential Equations (ODEs). These deterministic compartmental models will be introduced in Chapter 2, while Chapter 3 will discuss solving simple models and their behaviour.
+**Deterministic models** do not consider stochasticity (randomness), and predict results from known data (e.g. epidemic history; rules of models). These models are useful in large populations to observe epidemics in terms of the population and can help determine the fraction of individuals infected in an epidemic, as well as advise on disease control methods [@dadlani2020]. Deterministic models can be written in terms of differential equations in continuous time, or difference equations in discrete time. A common approach for continuous time deterministic models is Ordinary Differential Equations (ODEs). These deterministic compartmental models will be introduced in Chapter 2, while Chapter 3 will discuss solving simple models and their behaviour.
 
-**Stochastic models** account for stochasticity (randomness) and are able to capture variability in demographics and environment. These models are useful with small populations and can be used in determining how long a disease lasts, the probability of an epidemic, and distribution of behaviours (Dadlani et al.). Some types of stochastic models include Discrete-time Markov chain (DTMC), continuous-time Markov chain (CTMC), and stochastic differential equation (SDE) models. Although stochastic models may better reflect reality, they are more labour-intensive to set-up than deterministic models and can also be more difficult to analyze.
+**Stochastic models** account for stochasticity (randomness) and are able to capture variability in demographics and environment. These models are useful with small populations and can be used in determining how long a disease lasts, the probability of an epidemic, and distribution of behaviours [@dadlani2020]. Some types of stochastic models include Discrete-time Markov chain (DTMC), continuous-time Markov chain (CTMC), and stochastic differential equation (SDE) models. Although stochastic models may better reflect reality, they are more labour-intensive to set-up than deterministic models and can also be more difficult to analyze.
 
-**References:**
+**References:** [@brauer2019], [@dadlani2020]
 
--   Brauer, F. Chapter 2: Compartmental Models in Epidemiology.
-
--   Dadlani, A., Afolabi, R.O., Jung, H., Sohraby, K., Kim, K. (2020). Deterministic Models in Epidemiology: From Modeling to Implementation. <https://doi.org/10.48550/arXiv.2004.04675>
 
 ## Introduction to Compartmental Modelling Thinking
 
