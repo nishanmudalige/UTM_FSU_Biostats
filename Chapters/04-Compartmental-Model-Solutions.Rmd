@@ -120,7 +120,7 @@ $$<\frac{-(\beta I^*+\alpha) \pm \sqrt{(\beta I^* + \alpha)^2}}{2}=\frac{-(\beta
 Both eigenvalues are negative and it is stable.
 
 Routh - Hurwitz Criteria
-$$\sum{i}c_ix^i=c_2\lambda^2 + c_1\lambda + c_0$$
+$$\sum_{i}c_ix^i=c_2\lambda^2 + c_1\lambda + c_0$$
 
 Where, $c_i>0$
 
@@ -134,13 +134,13 @@ $$\lambda = \frac{-\beta I + \alpha}{2}$$
 
 $$\frac{(\beta I + \alpha)^2}{4}-\frac{(\beta I + \alpha)^2}{2}+\beta I(\gamma+\alpha)=$$
 
-$$1/4[(\beta I+\alpha)^2-2(\beta I+\alpha)^2+4(\beta I(\gamma+\alpha))]=$$
+$$\frac14[(\beta I+\alpha)^2-2(\beta I+\alpha)^2+4(\beta I(\gamma+\alpha))]=$$
 
-$$1/4[-(\beta I+\alpha)^2+4(\beta I(\gamma+\alpha))]=$$
+$$\frac14[-(\beta I+\alpha)^2+4(\beta I(\gamma+\alpha))]=$$
 
-$$1/4[-\beta^2 I^2 - 2\beta I \alpha -\alpha^2 + 4\beta I \gamma + 4 \beta I \alpha]=$$
+$$\frac14[-\beta^2 I^2 - 2\beta I \alpha -\alpha^2 + 4\beta I \gamma + 4 \beta I \alpha]=$$
 
-$$1/4[-\beta^2 I^2 + 2\beta I \alpha -\alpha^2 + 4\beta I \gamma]>0$$
+$$\frac14[-\beta^2 I^2 + 2\beta I \alpha -\alpha^2 + 4\beta I \gamma]>0$$
 
 Descartes' Rule of Signs:
 
