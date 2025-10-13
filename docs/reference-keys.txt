@@ -18,6 +18,11 @@ sec:SI_model
 solving-the-sir-model
 interactive-dashboard
 compartmental-model-solutions
+solving-with-jacobian-matrices-and-eigenvalues
+si-and-sir-model
+routh---hurwitz-criteria
+descartes-rule-of-signs
+chapter-4-notes-linear-algebra-notes
 sample-chapter-introduction-to-mathematical-modelling
 sec:foundations
 exponential-growth-and-decay
