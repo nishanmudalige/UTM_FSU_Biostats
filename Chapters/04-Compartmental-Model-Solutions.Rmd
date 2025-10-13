@@ -1,6 +1,7 @@
 # Compartmental Model Solutions
 
 ## Solving with Jacobian Matrices and Eigenvalues
+
 ### SI and SIR Model
 $$
 \begin{align*}
@@ -20,7 +21,7 @@ $$S+I+R=1 \Rightarrow R=1-S-I$$
 $$J = \begin{bmatrix} \frac{dF}{dS} & \frac{dF}{dI} \\ \frac{dG}{dS} & \frac{dG}{dI}\end{bmatrix}$$
 $$J = \begin{bmatrix}-\beta I^* - \alpha & -\beta S^*-\alpha \\ \beta I^* & \beta S^* - \gamma\end{bmatrix}$$
 
-### Disease Free Equilibria:
+### Disease Free Equilibria
 
 - DFE: $$I^* = 0, S^* = 1$$
 
@@ -67,6 +68,7 @@ $$\lambda_2 = \beta - \gamma < 0 \Rightarrow \beta<\gamma \Rightarrow \frac{\bet
 DFE is stable if $\frac{\beta}{\gamma} = R_0 < 1$
 
 ### Endemic Equilibrium
+
 $S^*=\frac{\gamma}{\beta}=1/R_0$ only makes sense if $R_0>1$. Thus if this equilibrium exists the DFE is unstable.
 
 

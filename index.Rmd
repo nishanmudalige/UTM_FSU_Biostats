@@ -25,6 +25,7 @@ header-includes:
   - \usepackage{pgfplots}
   - \usepackage{amsmath}
   - \usepackage{amssymb}
+  - \usepackage{pdftools}
   - \usepackage{graphicx}
   - \usepackage{booktabs}
   - \usepackage{hyperref}

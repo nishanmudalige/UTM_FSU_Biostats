@@ -22,6 +22,8 @@ interactive-dashboard
 compartmental-model-solutions
 solving-with-jacobian-matrices-and-eigenvalues
 si-and-sir-model
+disease-free-equilibria
+endemic-equilibrium
 routh---hurwitz-criteria
 descartes-rule-of-signs
 chapter-4-notes-linear-algebra-notes

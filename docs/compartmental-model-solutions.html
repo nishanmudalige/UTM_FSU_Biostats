@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Compartmental Model Solutions | Biostats E-book</title>
   <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Compartmental Model Solutions | Biostats E-book" />
   <meta property="og:type" content="book" />
@@ -23,10 +23,6 @@
 <meta name="author" content="Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Bryce Morsky, Nishan Mudalige" />
 
 
-<<<<<<< HEAD
-<meta name="date" content="2025-10-13" />
-=======
->>>>>>> 3dc77c737087779d2ecf341ed31e1764d9d3e40b
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -129,6 +125,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.1" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#solving-with-jacobian-matrices-and-eigenvalues"><i class="fa fa-check"></i><b>4.1</b> Solving with Jacobian Matrices and Eigenvalues</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#si-and-sir-model"><i class="fa fa-check"></i><b>4.1.1</b> SI and SIR Model</a></li>
+<li class="chapter" data-level="4.1.2" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#disease-free-equilibria"><i class="fa fa-check"></i><b>4.1.2</b> Disease Free Equilibria</a></li>
+<li class="chapter" data-level="4.1.3" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#endemic-equilibrium"><i class="fa fa-check"></i><b>4.1.3</b> Endemic Equilibrium</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#routh---hurwitz-criteria"><i class="fa fa-check"></i><b>4.2</b> Routh - Hurwitz Criteria</a></li>
 <li class="chapter" data-level="4.3" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#descartes-rule-of-signs"><i class="fa fa-check"></i><b>4.3</b> Descartes’ Rule of Signs</a></li>
@@ -180,7 +178,9 @@ div.csl-indent {
 \end{align}\]</span></p>
 <p><span class="math display">\[J = \begin{bmatrix} \frac{dF}{dS} &amp; \frac{dF}{dI} \\ \frac{dG}{dS} &amp; \frac{dG}{dI}\end{bmatrix}\]</span>
 <span class="math display">\[J = \begin{bmatrix}-\beta I^* - \alpha &amp; -\beta S^*-\alpha \\ \beta I^* &amp; \beta S^* - \gamma\end{bmatrix}\]</span></p>
-<p>Disease Free Equilibria:</p>
+</div>
+<div id="disease-free-equilibria" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Disease Free Equilibria<a href="compartmental-model-solutions.html#disease-free-equilibria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>DFE: <span class="math display">\[I^* = 0, S^* = 1\]</span></li>
 </ul>
@@ -214,8 +214,10 @@ det(\begin{bmatrix} A &amp; B \\ C &amp; D\end{bmatrix}) = AD-BC
 <p><span class="math display">\[\lambda_1 = -\alpha &lt; 0\]</span></p>
 <p><span class="math display">\[\lambda_2 = \beta - \gamma &lt; 0 \Rightarrow \beta&lt;\gamma \Rightarrow \frac{\beta}{\gamma} = R_0 &lt; 1\]</span></p>
 <p>DFE is stable if <span class="math inline">\(\frac{\beta}{\gamma} = R_0 &lt; 1\)</span></p>
-<p>Endemic Equilibrium
-<span class="math inline">\(S^*=\frac{\gamma}{\beta}=1/R_0\)</span> only makes sense if <span class="math inline">\(R_0&gt;1\)</span>. Thus if this equilibrium exists the DFE is unstable.</p>
+</div>
+<div id="endemic-equilibrium" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Endemic Equilibrium<a href="compartmental-model-solutions.html#endemic-equilibrium" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math inline">\(S^*=\frac{\gamma}{\beta}=1/R_0\)</span> only makes sense if <span class="math inline">\(R_0&gt;1\)</span>. Thus if this equilibrium exists the DFE is unstable.</p>
 <p><span class="math display">\[\begin{align*}
 I^* &amp;= \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \\
 
