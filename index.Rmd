@@ -1,11 +1,15 @@
 ---
 title: "Biostats E-book"
-author: "Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Nishan Mudalige, Bryce Morsky"
-date: "`r Sys.Date()`"
+author: "Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Bryce Morsky, Nishan Mudalige"
+date: ""
 site: bookdown::bookdown_site
-# --- OUTPUT CONFIGURATION ---
-output: bookdown::gitbook
-knit: bookdown::render_book
+output:
+  bookdown::gitbook:
+    css: style.css     # optional, for styling
+    # config:
+    #   toc:
+    #     collapse: section
+    #   download: ["pdf", "epub"]  # optional export linksknit: bookdown::render_book
 documentclass: book
 github-repo: nishanmudalige/STA258
 description: "Bookdown hosted on github using bookdown::gitbook."
@@ -15,7 +19,30 @@ csl: vancouver.csl                # 2. Use a CSL for bibliogpahy style (Optional
 link-citations: yes
 nocite: '@*'                      # 3. CRITICAL: Include ALL references, even uncited ones
 header-includes: 
-   - \usepackage{amsmath}
+  - \usepackage{amsmath}
+  - \usepackage{tikz}
+  - \usetikzlibrary{arrows.meta, positioning}
+  - \usepackage{pgfplots}
+  - \usepackage{amsmath}
+  - \usepackage{amssymb}
+  - \usepackage{graphicx}
+  - \usepackage{booktabs}
+  - \usepackage{hyperref}
+  - \usepackage{fancyvrb}
+  - \usepackage{listings}
+  - \usepackage{tikz}
+  - \usepackage{tikz-cd}
+  - \usepackage{tikzsymbols}
+  - \usepackage{tikz-3dplot}
+  - \usepackage{tikz-feynman}
+  - \usepackage{tikz-qtree}
+  - \usepackage{tikz-uml}
+  - \usepackage{tikz-dependency}
+  - \usepackage{tikz-graph}
+  - \usepackage{color}
+  - \usepackage{xcolor}
+  - \usepackage[T1]{fontenc}
+  - \usepackage[oldstyle,expert,lf]{ebgaramond}
 ---
 
 # Welcome {.unnumbered}
