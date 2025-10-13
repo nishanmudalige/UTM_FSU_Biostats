@@ -6,10 +6,43 @@ Chapter 3 examines various aspects of the basic compartmental models: the SI mod
 
 ## Interactions Between Compartments
 
+<!--
 ```{r SIdiagram, echo=FALSE, fig.align='center', out.width='20%'}
 knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
 
 ```
+-->
+
+
+
+
+```{r sidiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='30%', fig.ext='png', fig.cap='The SI compartmental model.'}
+\usetikzlibrary{arrows.meta, positioning}
+
+\begin{tikzpicture}[
+  block/.style={rectangle, draw, rounded corners=2pt,
+                minimum width=2.5cm, minimum height=1.8cm,
+                very thick, font=\Large, align=center},
+  arrow/.style={-Latex, very thick}
+]
+% Nodes
+\node (S) at (0,0)   [block] {S};
+\node (I) at (6,0)   [block] {I};
+
+% Curved S -> I (top)
+\draw[arrow]
+  (S.north) to[out=60, in=120]
+  node[midway, above=4pt] {$\beta SI$}
+  (I.north);
+
+% Curved I -> S (bottom)
+\draw[arrow]
+  (I.south) to[out=-120, in=-60]
+  node[midway, below=6pt] {$\gamma I$}
+  (S.south);
+\end{tikzpicture}
+```
+
 
 **Defining Parameters**:
 
@@ -174,19 +207,47 @@ Solving the SIS model not only provides a solution for $S(t)$ and $I(t)$, but al
 
 Building what we have learnt previously from solving the SI model, we will now attempt to solve the SIR model.
 
+<!--
 ```{r SIRdiagram, echo=FALSE, fig.align='center', out.width='40%'}
 knitr::include_graphics("Images/Compartmental Diagrams/SIR.png")
 ```
+-->
+
+
+```{r sirdiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='50%', fig.ext='png', fig.cap='The SIR compartmental model.'}
+\usetikzlibrary{arrows.meta, positioning}
+
+\begin{tikzpicture}[block/.style={rectangle, draw, minimum width=1.5cm, minimum height=1cm, text centered, font=\Large},
+    arrow/.style={-Latex, thick}]
+
+% Nodes
+\node (S) at (0,0) [block] {S};
+\node (I) [right=2cm of S, block] {I};
+\node (R) [right=2cm of I, block] {R};
+
+% Arrows
+% S to I
+\draw [arrow] (S) -- node [midway, above] {$\beta SI$} (I);
+
+% I to R
+\draw [arrow] (I) -- node [midway, above] {$\gamma I$} (R);
+
+% R to S (curved)
+\draw [arrow] (R.south) to [bend left=30] node [midway, below, yshift=-2pt] {$\alpha R$} (S.south);
+
+\end{tikzpicture}
+```
+
 
 The SIR model includes a new compartment, **“R”**, which represents recovery from infection; or alternatively, those removed from infection status. This removal can occur as a result of immunization from infection, immunity from recovering from the disease, isolation from the population, or death. Note that the latter demographic effects (birth/death) are not observed in our example, and different models can exist for those cases.
 
 We define a new **system of differential equations** for the SIR model as follows:
 
-1.  $\frac{dS}{dt} = - \beta SI + \alpha R$
+1.  $\displaystyle\frac{dS}{dt} = - \beta SI + \alpha R$
 
-2.  $\frac{dI}{dt} = \beta SI - \gamma I$
+2.  $\displaystyle\frac{dI}{dt} = \beta SI - \gamma I$
 
-3.  $\frac{dR}{dt} = \gamma I - \alpha R$
+3.  $\displaystyle\frac{dR}{dt} = \gamma I - \alpha R$
 
 **Defining the parameters:** As before, the differentials represent the net flow of individuals in and out of compartments, and $\beta$ represents infection rate (S to I). $\gamma$ represents recovery rate of the infected, but now individuals moving out of compartment “I” (infected) move into compartment “R” (recovered/removed). $\alpha$ is a new term in the equations that represents the re-susceptible rate where recovered individuals lose immunity and become susceptible again (R to S).
 
