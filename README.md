@@ -1,6 +1,18 @@
 # UTM_FSU_Biostats
 
 ## Things to do
+- Chapter 1
+  - New Chapter 1.2: Calculus and Linear Algebra review/pre-requisites
+  - Mention topics and link to resources
+  - Can use active calculus, understanstanding linear algebra, OpenIntro (Stats/Calc/Lin Alg), OpenStax (Calculus I, II, III)
+- Chapter 4
+  - Make more complete
+  - Add more details
+  - Fix references
+  - Phase diagrams
+  - Look into how to host Shiny apps on GitHub Pages
+
+---
 - Chapter 3
   - Add introduction
 - Add more detail to subsection on SI Model (3.2)
