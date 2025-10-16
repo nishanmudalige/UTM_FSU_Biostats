@@ -69,11 +69,10 @@ Now that each term of the equation is defined, we can start to understand the in
 Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations.
 
 $$
-\frac {dS}{dt} = -\beta SI + \gamma I
-$$
-
-$$
-\frac {dI}{dt} = +\beta SI - \gamma I
+\begin{aligned}
+\frac {dS}{dt} = -\beta SI + \gamma I\\
+\frac {dI}{dt} = +\beta SI - \gamma I\\
+\end{aligned}
 $$
 
 The signs in each equation indicate the direction of flow between compartments. For instance, $-\beta SI$ represents the loss of susceptible individuals as they become infected, while $+\beta SI$ represents the corresponding gain in the infectious group. The same relationship applies to $\gamma I$, which describes the recovery process in reverse.
@@ -88,9 +87,12 @@ The goal of solving the SIS model is to understand and predict the spread of an 
 
 These are the initial assumptions in equation format, showing that within the population, an individual can either be in the susceptible or infected compartment. Together both compartments make up the total population, $N$. $$
 S+I=N
-$$ It can be assumed that $N$ is equal to 1 and $S$ and $I$ are both proportions of the population. $$
+$$ It can be assumed that $N$ is equal to 1 and $S$ and $I$ are both proportions of the population. 
+$$
 S+I=1
-$$ Rearranging this equation finds: $$
+$$
+Rearranging this equation finds: 
+$$
 I=1-S
 $$
 
@@ -104,8 +106,9 @@ $$
 \frac {dI}{dt} = \beta SI - \gamma I
 $$
 
-Reduce the system of 2 equations to just 1 by plugging in $(1-S)$ for $I$: $$
-\frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
+Reduce the system of 2 equations to just 1 by plugging in $(1-S)$ for $I$: 
+$$
+\frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S)= (\gamma - \beta S)(1-S)
 $$
 
 After separating the variables, we can take an integral of both sides to determine $S(t)$.
@@ -122,9 +125,7 @@ $$
 
 So then: $$ 
 A(1-S)+B( \gamma - \beta S) = 1 
-$$
-
-In order to solve this equation, one can assume:
+$$ In order to solve this equation, one can assume:
 
 $$
 A + \beta \gamma = 1
@@ -174,11 +175,13 @@ $$
 
 $$
 S_0 \beta - \gamma = C(S_0 -1)
+$$ $$
+C = \frac{S_0 \beta - \gamma}{S_0 -1}
 $$
 
+Plugging $C$ into $S(t)$ results in the final equation for $S(t)$:
+
 $$
-C = \frac{S_0 \beta - \gamma}{S_0 -1}
-$$ Plugging $C$ into $S(t)$ results in the final equation for $S(t)$: $$
 S(t)= \frac {\gamma - (\frac{S_0 \beta - \gamma}{S_0 -1}) e^{(\gamma - \beta )t}}{\beta - (\frac{S_0 \beta - \gamma}{S_0 -1})e^{(\gamma - \beta)t}}
 $$
 
