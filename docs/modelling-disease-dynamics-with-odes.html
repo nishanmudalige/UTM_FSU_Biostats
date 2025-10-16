@@ -207,16 +207,11 @@ Figure 3.1: The SI compartmental model.
 <h2><span class="header-section-number">3.3</span> Solving the SI Model<a href="modelling-disease-dynamics-with-odes.html#sec:SI_model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through, it is assumed that the population stays roughly constant.</p>
 <p>The goal of solving the SIS model is to understand and predict the spread of an infectious disease within a population. Analyzing differential equations can help predict disease prevalence over time and determine whether a disease is endemic or not. In addition, the differential equations can also be used to identify the size of infected and susceptible populations at the stable endemic state. By solving the differential equations, <span class="math inline">\(S(t)\)</span> and <span class="math inline">\(I(t)\)</span> can be found and used to predict the size of the susceptible and infected compartments at different periods in time.</p>
-<p>These are the initial assumptions in equation format, showing that within the population, an individual can either be in the susceptible or infected compartment. Together both compartments make up the total population, <span class="math inline">\(N\)</span>.
-<span class="math display">\[
+<p>These are the initial assumptions in equation format, showing that within the population, an individual can either be in the susceptible or infected compartment. Together both compartments make up the total population, <span class="math inline">\(N\)</span>. <span class="math display">\[
 S+I=N
-\]</span>
-It can be assumed that <span class="math inline">\(N\)</span> is equal to 1 and <span class="math inline">\(S\)</span> and <span class="math inline">\(I\)</span> are both proportions of the population.
-<span class="math display">\[
+\]</span> It can be assumed that <span class="math inline">\(N\)</span> is equal to 1 and <span class="math inline">\(S\)</span> and <span class="math inline">\(I\)</span> are both proportions of the population. <span class="math display">\[
 S+I=1
-\]</span>
-Rearranging this equation finds:
-<span class="math display">\[
+\]</span> Rearranging this equation finds: <span class="math display">\[
 I=1-S
 \]</span></p>
 <p>Deriving both of the previous equations creates a system of differential equations:</p>
@@ -226,8 +221,7 @@ I=1-S
 <p><span class="math display">\[
 \frac {dI}{dt} = \beta SI - \gamma I
 \]</span></p>
-<p>Reduce the system of 2 equations to just 1 by plugging in <span class="math inline">\((1-S)\)</span> for <span class="math inline">\(I\)</span>:
-<span class="math display">\[
+<p>Reduce the system of 2 equations to just 1 by plugging in <span class="math inline">\((1-S)\)</span> for <span class="math inline">\(I\)</span>: <span class="math display">\[
 \frac {dS} {dt}= -\beta S(1-S) + \gamma (1-S) = (\gamma - \beta S)(1-S)
 \]</span></p>
 <p>After separating the variables, we can take an integral of both sides to determine <span class="math inline">\(S(t)\)</span>.</p>
@@ -238,8 +232,7 @@ I=1-S
 <p><span class="math display">\[
 \frac {A}{\gamma - \beta S} + \frac {B}{1-S}= \frac {A(1-S)+B( \gamma - \beta S)}{( \gamma - \beta S)(1-S)}
 \]</span></p>
-<p>So then:
-<span class="math display">\[
+<p>So then: <span class="math display">\[
 A(1-S)+B( \gamma - \beta S) = 1
 \]</span></p>
 <p>In order to solve this equation, one can assume:</p>
@@ -249,27 +242,21 @@ A + \beta \gamma = 1
 <p><span class="math display">\[
 A + B \beta =0
 \]</span></p>
-<p>Through partial fractions it will be found that:
-<span class="math display">\[
+<p>Through partial fractions it will be found that: <span class="math display">\[
 A = \frac {1}{\beta - \gamma }
 \]</span></p>
 <p><span class="math display">\[
 B = \frac {1}{\gamma - \beta}
 \]</span></p>
-<p>Plugging in the new <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>:
-<span class="math display">\[
+<p>Plugging in the new <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>: <span class="math display">\[
 \int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS
 \]</span></p>
 <p>Solving the integral on the left side first results in:</p>
 <p><span class="math display">\[
 \int \frac{1}{(\gamma - \beta S)(1-S)} dS = \int \frac{\beta}{\beta - \gamma}\left(\frac {1}{\gamma - \beta S}\right) + \frac{1}{\gamma - \beta}\left(\frac {1}{1-S}\right)dS = \frac {1}{\gamma - \beta} \ln \left| \frac{\gamma - \beta S}{1-S} \right|
-\]</span>
-Solving the integral on the right side results in:
-<span class="math display">\[
+\]</span> Solving the integral on the right side results in: <span class="math display">\[
 \int dt = t +C
-\]</span>
-Therefore the new equation is:
-<span class="math display">\[
+\]</span> Therefore the new equation is: <span class="math display">\[
 \frac {1}{\gamma - \beta} \ln \left| \frac{\gamma - \beta S}{1-S} \right| = t+C
 \]</span></p>
 <p>Solving for <span class="math inline">\(S(t)\)</span> finds:</p>
@@ -288,9 +275,7 @@ S_0 \beta - \gamma = C(S_0 -1)
 \]</span></p>
 <p><span class="math display">\[
 C = \frac{S_0 \beta - \gamma}{S_0 -1}
-\]</span>
-Plugging <span class="math inline">\(C\)</span> into <span class="math inline">\(S(t)\)</span> results in the final equation for <span class="math inline">\(S(t)\)</span>:
-<span class="math display">\[
+\]</span> Plugging <span class="math inline">\(C\)</span> into <span class="math inline">\(S(t)\)</span> results in the final equation for <span class="math inline">\(S(t)\)</span>: <span class="math display">\[
 S(t)= \frac {\gamma - (\frac{S_0 \beta - \gamma}{S_0 -1}) e^{(\gamma - \beta )t}}{\beta - (\frac{S_0 \beta - \gamma}{S_0 -1})e^{(\gamma - \beta)t}}
 \]</span></p>
 <p>Thus through this work through of the SIS model, we have found a closed form solution for <span class="math inline">\(S(t)\)</span>, which shows the number or proportion of individuals in the susceptible compartment at a time t. Using the function found for <span class="math inline">\(S(t)\)</span>, one can plug it into the assumption equations, specifically <span class="math inline">\(I+S=1\)</span>, in order to find <span class="math inline">\(I(t)\)</span>. In addition, learning from this model, one can note that when <span class="math inline">\(\beta &gt; \gamma\)</span>, transmission is greater than recovery so there will be a spread of the infections and the disease will be endemic. However, when <span class="math inline">\(\beta &lt; \gamma\)</span>, recovery occurs faster than transmission and the disease will die out.</p>
@@ -370,14 +355,9 @@ I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha}
 <p>Specific values of <span class="math inline">\(R_0\)</span> can be used to analyze the stability of equilibrium. This will be discussed in further detail in Chapter 4, but more generally for now:</p>
 <ul>
 <li><p><strong>If</strong> <span class="math inline">\(R_0 &lt; 1\)</span>: DFE is stable, the infection dies out (i.e. when infected, an individual infects less than one person on average, then the disease dies out)</p></li>
-<li><p><strong>If</strong> <span class="math inline">\(R_0 &gt; 1\)</span>: EE is stable, there is an epidemic (i.e. when infected, an individual infects more than one person on average, then the disease spreads) <span class="citation">[<a href="references.html#ref-blackwood2018">12</a>]</span></p></li>
+<li><p><strong>If</strong> <span class="math inline">\(R_0 &gt; 1\)</span>: EE is stable, there is an epidemic (i.e. when infected, an individual infects more than one person on average, then the disease spreads)</p></li>
 </ul>
-<p><strong>References:</strong></p>
-<ul>
-<li><p>Blackwood, J.C. &amp; Childs, L.M. (2018). An introduction to compartmental modeling for the budding infectious disease modeler. LETTERS IN BIOMATHEMATICS.</p></li>
-<li><p>Brauer, F. Chapter 2: Compartmental Models in Epidemiology.</p></li>
-<li><p>Long, A. (2020). Math Modeling: A Review of Mathematics. <a href="https://www.nku.edu/~longa/classes/2020spring/mat375/mat375prep/SIR%20Model.html" class="uri">https://www.nku.edu/~longa/classes/2020spring/mat375/mat375prep/SIR%20Model.html</a></p></li>
-</ul>
+<p><strong>References:</strong> <span class="citation">[<a href="references.html#ref-brauer2019">3</a>]</span> <span class="citation">[<a href="references.html#ref-blackwood2018">12</a>]</span> <span class="citation">[<a href="references.html#ref-long2020">13</a>]</span></p>
 </div>
 <div id="interactive-dashboard" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Interactive Dashboard<a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard" class="anchor-section" aria-label="Anchor link to header"></a></h2>
