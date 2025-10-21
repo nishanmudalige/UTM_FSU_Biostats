@@ -31,4 +31,3 @@ sample-chapter-introduction-to-mathematical-modelling
 sec:foundations
 exponential-growth-and-decay
 logistic-model
-citation-configuration
