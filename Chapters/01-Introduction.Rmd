@@ -4,7 +4,30 @@
 
 This e-book provides an introduction to mathematical modeling in epidemiology, focusing on how to develop and analyze models, and how they inform public health decisions. We will learn about compartmental and agent-based models and their extensions that incorporate heterogeneities (age, space, behaviour). We will also explore disease control strategies. Simulation-based demonstrations and coding exercises will help connect theory to real-world insights.
 
-The following are recommended pre-requisites: introductory calculus, ordinary differential equations, probability and statistics,  etc.
+## Recommended Background
+
+Recommended pre-requisites are: introductory calculus, ordinary differential equations, linear algebra, and probability and statistics. 
+
+For additional review, we suggest the following topics from open-access resources. 
+
+**Calculus:** 
+
+- Active Calculus: <https://activecalculus.org/>
+
+- OpenStax Calculus Volumes 1-3: <https://openstax.org/subjects/math>
+
+**Linear Algebra:** 
+
+- Understanding Linear Algebra: <https://understandinglinearalgebra.org/home.html>
+
+    - Ch 3 - Invertibility, bases, and coordinate systems: Ch 3.4 - Determinants
+
+    - Ch 4 - Eigenvalues and eigenvectors
+
+**Probability and Statistics:** 
+
+- OpenIntro Statistics: <https://www.openintro.org/book/os/>
+
 
 ## History of Mathematical Epidemiology
 

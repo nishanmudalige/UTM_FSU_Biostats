@@ -5,6 +5,7 @@ fig:ExpGrowthDecay
 fig:LogisticExample
 introduction
 sec:goal
+recommended-background
 history-of-mathematical-epidemiology
 role-of-models-in-public-health
 introduction-to-mathematical-models-in-epidemiology
