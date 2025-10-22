@@ -1,4 +1,14 @@
-# Compartmental Model Solutions
+# Equilibrium Stability Analysis 
+
+## Introduction to the Chapter
+In Chapter 3.4, we briefly introduced equilibrium and $R_0$ for examining stability in equilibrium. 
+
+Chapter 4 will expand on the topic of equilibrium through **linear stability analysis**. This method provides the local stability of each equilibrium, as we approximate the solutions near the equilibrium. See Chapter 1.2 for the recommended linear algebra background. 
+
+The approach to linear stability analysis involves determining the eigenvalues of the Jacobian matrix at the given equilibrium (e.g. DFE, EE). We can linearize the system of equations around the equilibria with the Jacobian matrix and find the characteristic polynomial whose roots are the eigenvalues. We will show that all the eigenvalues have negative real parts to maintain the local stability of the equilibrium. This chapter will explore both the direct calculation of eigenvalues, as well as some alternative / indirect methods of showing stability. 
+
+**References:** [@brauer2019] [@blackwood2018]
+
 
 ## Solving with Jacobian Matrices and Eigenvalues
 
