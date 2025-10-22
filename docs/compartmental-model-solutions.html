@@ -129,7 +129,12 @@ div.csl-indent {
 <li class="chapter" data-level="4.1.3" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#endemic-equilibrium"><i class="fa fa-check"></i><b>4.1.3</b> Endemic Equilibrium</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#routh---hurwitz-criteria"><i class="fa fa-check"></i><b>4.2</b> Routh - Hurwitz Criteria</a></li>
-<li class="chapter" data-level="4.3" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#descartes-rule-of-signs"><i class="fa fa-check"></i><b>4.3</b> Descartes’ Rule of Signs</a></li>
+<li class="chapter" data-level="4.3" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#descartes-rule-of-signs"><i class="fa fa-check"></i><b>4.3</b> Descartes’ Rule of Signs</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#case-1-positive-roots-with-no-sign-changes"><i class="fa fa-check"></i><b>4.3.1</b> Case 1: Positive Roots with No Sign Changes</a></li>
+<li class="chapter" data-level="4.3.2" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#case-2-negative-roots-with-multiple-sign-changes"><i class="fa fa-check"></i><b>4.3.2</b> Case 2: Negative Roots with Multiple Sign Changes</a></li>
+<li class="chapter" data-level="4.3.3" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#cases-with-one-sign-change"><i class="fa fa-check"></i><b>4.3.3</b> Cases with One Sign Change:</a></li>
+</ul></li>
 <li class="chapter" data-level="4.4" data-path="compartmental-model-solutions.html"><a href="compartmental-model-solutions.html#chapter-4-notes-linear-algebra-notes"><i class="fa fa-check"></i><b>4.4</b> Chapter 4 Notes + Linear Algebra Notes</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>5</b> Sample Chapter: Introduction to Mathematical Modelling</a>
@@ -160,64 +165,92 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 4</span> Compartmental Model Solutions<a href="compartmental-model-solutions.html#compartmental-model-solutions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="solving-with-jacobian-matrices-and-eigenvalues" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Solving with Jacobian Matrices and Eigenvalues<a href="compartmental-model-solutions.html#solving-with-jacobian-matrices-and-eigenvalues" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The stability of an equilibrium in a Compartmental Model is determined by the signage of the eigenvalues (<span class="math inline">\(\lambda\)</span>) of the Jacobian Matrix (J). In this Chapter, we will solve for the eigenvalues of the SI and SIR model.</p>
 <div id="si-and-sir-model" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> SI and SIR Model<a href="compartmental-model-solutions.html#si-and-sir-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[
+<p>Starting with the SIR Model, we have 3 compartments, thus, 3 differential equations. The equation below represents the balance of each compartment, totaling to 1. We can rearrange this to substitute R out, as shown below.</p>
+<p><span class="math display">\[S+I+R=1 \Rightarrow R=1-S-I\]</span>
+Now, we have our 3 system of equations, (<span class="math inline">\(\dot{S}, \dot{I}, \dot{R}\)</span>), in which <span class="math inline">\(\dot{S}, \dot{I}\)</span> represent Functions F and G respectively. By using the equation above we are able substitute R, and reduce our system from 3 to two equations, (<span class="math inline">\(\dot{S}, \dot{I}\)</span>)
+<span class="math display">\[
 \begin{align*}
 \dot{S} &amp;= F(S,I) \\
 \dot{I} &amp;= G(S,I) \\
 \dot{S} &amp;= -\beta SI + \alpha R \\
 \dot{I} &amp;= \beta SI - \gamma I \\
 \dot{R} &amp;= \gamma I - \alpha R \\
-\end{align*}\]</span>
-<span class="math display">\[S+I+R=1 \Rightarrow R=1-S-I\]</span>
-<span class="math display">\[\begin{align}
+\end{align*}\]</span></p>
+<p>Our substitution results in these 2 equations for <span class="math inline">\(\dot{S}, \dot{I}\)</span>:</p>
+<p><span class="math display">\[\begin{align}
 \dot{S} &amp;= -\beta SI + \alpha(1-S-I) \\
 
 \dot{I} &amp;= \beta SI - \gamma I
 \end{align}\]</span></p>
+<p>The Jacobian Matrix (J) represent a matrix of the partial derivatives of the system of Functions F and G. As stated before, this is represented by <span class="math inline">\(\dot{S}, \dot{I}\)</span></p>
 <p><span class="math display">\[J = \begin{bmatrix} \frac{dF}{dS} &amp; \frac{dF}{dI} \\ \frac{dG}{dS} &amp; \frac{dG}{dI}\end{bmatrix}\]</span>
-<span class="math display">\[J = \begin{bmatrix}-\beta I^* - \alpha &amp; -\beta S^*-\alpha \\ \beta I^* &amp; \beta S^* - \gamma\end{bmatrix}\]</span></p>
+By substituting our system of equations, where <span class="math inline">\(S^*\)</span> and <span class="math inline">\(I^*\)</span> are the values of S and I at our specific equilibrium point, the Jacobian Matrix is as follows:</p>
+<p><span class="math display">\[J = \begin{bmatrix}-\beta I^* - \alpha &amp; -\beta S^*-\alpha \\ \beta I^* &amp; \beta S^* - \gamma\end{bmatrix}\]</span></p>
 </div>
 <div id="disease-free-equilibria" class="section level3 hasAnchor" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Disease Free Equilibria<a href="compartmental-model-solutions.html#disease-free-equilibria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Disease-Free Equilibrium (DFE) is the state in which the disease has been eradicated, resulting in the values for <span class="math inline">\(I^*\)</span> and <span class="math inline">\(S^*\)</span> below. It is important to note that this equation must retain the balance from our earlier equation (<span class="math inline">\(S+I+R = 0\)</span>), so <span class="math inline">\(R^* = O\)</span>.</p>
 <ul>
 <li>DFE: <span class="math display">\[I^* = 0, S^* = 1\]</span></li>
 </ul>
-<p><span class="math inline">\(det(J_{DFE} - \lambda I) = 0\)</span>, Where I = Identity Matrix:</p>
+<p>We can substitute our values for <span class="math inline">\(I^*\)</span> and <span class="math inline">\(S^*\)</span> at the DFE into our Jacobian Matrix, shown before.</p>
+<p><span class="math display">\[J_{DFE} = \begin{bmatrix}-\alpha &amp; -\beta-\alpha \\ 0 &amp; \beta-\gamma\end{bmatrix}\]</span>
+Next, we take the determinant of the Jacobian Matrix. As shown below, to take the determinant of the Jacobian Matrix, we take our resulting Jacobian Matrix and subtract it by <span class="math inline">\(\lambda\)</span> multiplied by an Identity Matrix with the same dimensions as our Jacobian Matrix.</p>
+<ul>
+<li>Defining an Identity Matrix and the Procedure to Take the Determinant</li>
+</ul>
+<p><span class="math inline">\(det(J_{DFE} - \lambda I) = 0\)</span>, where I = Identity Matrix, and n represents the dimension of the matrix; in this case, n=2:</p>
 <p>Example:
-<span class="math display">\[\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0\end{bmatrix}=I^2\]</span></p>
-<p><span class="math display">\[J_{DFE} = \begin{bmatrix}-\alpha &amp; -\beta-\alpha \\ 0 &amp; \beta-\gamma\end{bmatrix}\]</span></p>
-<p><span class="math display">\[det(\begin{bmatrix}-\alpha &amp; -\beta-\alpha \\ 0 &amp; \beta-\gamma\end{bmatrix}-\lambda\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0\end{bmatrix})\]</span></p>
-<p>Distribute Lambda:
+<span class="math display">\[\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0\end{bmatrix}=I_2\]</span>
+The first step, shown below, follows our previously stated processes.</p>
+<p><span class="math display">\[det(\begin{bmatrix}-\alpha &amp; -\beta-\alpha \\ 0 &amp; \beta-\gamma\end{bmatrix}-\lambda\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0\end{bmatrix})\]</span>
+Now, we distribute <span class="math inline">\(\lambda\)</span> across the identity matrix and subtract our Jacobian Matrix by the distributed Identity Matrix:
 <span class="math display">\[
 det(\begin{bmatrix}-\alpha &amp; -\beta-\alpha \\ 0 &amp; \beta-\gamma\end{bmatrix}+\begin{bmatrix}-\lambda &amp; 0 \\ 0 &amp; -\lambda\end{bmatrix})=\]</span>
 <span class="math display">\[\begin{align*}
-det(\begin{bmatrix}-\alpha-\lambda &amp; -\beta-\alpha \\ 0 &amp; \beta-\gamma-\lambda\end{bmatrix}) \\
+det(\begin{bmatrix}-\alpha-\lambda &amp; -\beta-\alpha \\ 0 &amp; \beta-\gamma-\lambda\end{bmatrix})
+\end{align*}\]</span></p>
+<p>To take the determinant, we follow this general rule of matrices in which we distribute each value:
+<span class="math display">\[\begin{align*}
 det(\begin{bmatrix} A &amp; B \\ C &amp; D\end{bmatrix}) = AD-BC
 \end{align*}\]</span></p>
-<p>So:
+<p>So, applying this rule:
 <span class="math display">\[det(\begin{bmatrix}-\alpha-\lambda &amp; -\beta-\alpha \\ 0 &amp; \beta-\gamma-\lambda\end{bmatrix}) = -(\alpha+\lambda)(\beta-\gamma-\lambda)-0=0\]</span></p>
-<p>Set Equal to 0:
+<p>To solve for our eigenvalues, we set each factor to 0:
 <span class="math display">\[
 \begin{align*}
 -(\alpha+\lambda) &amp;= 0 \\
 (\beta-\gamma-\lambda) &amp;= 0
 \end{align*}\]</span></p>
-<p>Eigenvalues are:
+<p>After solving, our resulting eigenvalues are:
 <span class="math display">\[
 \begin{align*}
 \lambda &amp;= -\alpha\\
 \lambda &amp;= \beta-\gamma
 \end{align*}\]</span></p>
-<p>An equilibrium is stable if all the eigenvalues of the Jacobian matrix evaluated at the equilibrium have negative real parts. If any eigenvalue is positive, then the equilibrium is unstable. If some eigenvalues are zero and the rest are negative, then stability is inconclusive.</p>
-<p><span class="math display">\[\lambda_1 = -\alpha &lt; 0\]</span></p>
-<p><span class="math display">\[\lambda_2 = \beta - \gamma &lt; 0 \Rightarrow \beta&lt;\gamma \Rightarrow \frac{\beta}{\gamma} = R_0 &lt; 1\]</span></p>
-<p>DFE is stable if <span class="math inline">\(\frac{\beta}{\gamma} = R_0 &lt; 1\)</span></p>
+<ul>
+<li><p>Stability for the DFE
+An equilibrium is stable if all the eigenvalues of the Jacobian matrix evaluated at the equilibrium have negative real parts. If any eigenvalue is positive, then the equilibrium is unstable. If some eigenvalues are zero and the rest are negative, then stability is inconclusive. This is denoted in the equations below.</p></li>
+<li><p>For Stability from <span class="math inline">\(\lambda_1\)</span> for the DFE:
+<span class="math display">\[\lambda_1 = -\alpha &lt; 0\]</span></p></li>
+<li><p>For Stability from <span class="math inline">\(\lambda_2\)</span> for the DFE:</p>
+<ul>
+<li>In this equation, we also produce <span class="math inline">\(R_0\)</span>, in which we find the values for <span class="math inline">\(R_O\)</span> in which the DFE is stable
+<span class="math display">\[\lambda_2 = \beta - \gamma &lt; 0 \Rightarrow \beta&lt;\gamma \Rightarrow \frac{\beta}{\gamma} = R_0 &lt; 1\]</span></li>
+<li>The Disease Free Equilibrium is stable if <span class="math inline">\(\frac{\beta}{\gamma} = R_0 &lt; 1\)</span></li>
+</ul></li>
+</ul>
 </div>
 <div id="endemic-equilibrium" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Endemic Equilibrium<a href="compartmental-model-solutions.html#endemic-equilibrium" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math inline">\(S^*=\frac{\gamma}{\beta}=1/R_0\)</span> only makes sense if <span class="math inline">\(R_0&gt;1\)</span>. Thus if this equilibrium exists the DFE is unstable.</p>
+<p>The Endemic Equilibrium represents the state in which the Disease persists. Our equations for <span class="math inline">\(S^*\)</span> and <span class="math inline">\(I^*\)</span> are as follows. These will be integral to solving the Jacobian Matrix for the Endemic Equilibrium:</p>
+<p><span class="math inline">\(S^*=\frac{\gamma}{\beta}=\frac{1}{R_0}\)</span> only makes sense if <span class="math inline">\(R_0&gt;1\)</span>.</p>
+<ul>
+<li>Thus, if this equilibrium exists, the DFE is unstable.</li>
+</ul>
 <p><span class="math display">\[\begin{align*}
 I^* &amp;= \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \\
 
@@ -225,27 +258,32 @@ I^* &amp;= \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \\
 
 \dot{I} &amp;= \beta SI - \gamma I
 \end{align*}\]</span></p>
+<p>Like previously, the Jacobian Matrix (J) represents a matrix of the partial derivatives of the system of Functions F and G. As stated before, this is represented by <span class="math inline">\(\dot{S}, \dot{I}\)</span>. We are able to then subsitute our values for <span class="math inline">\(S^*\)</span> and <span class="math inline">\(I^*\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
 J &amp;= \begin{bmatrix}-\beta I - \alpha &amp; -\beta S-\alpha \\ \beta I &amp; \beta S - \gamma\end{bmatrix} \\
 J &amp;= \begin{bmatrix}-\beta I^* - \alpha &amp; -\gamma-\alpha \\ \beta I &amp; 0\end{bmatrix}
 \end{align*}\]</span></p>
-<p><span class="math display">\[
+<p>Next, we take the determinant, once again using the same process with the identity matrix:
+<span class="math display">\[
 \begin{align*}
 det(J-\lambda I) = 0 \\
 det(\lambda I - J) = 0
 \end{align*}\]</span></p>
-<p><span class="math display">\[det(\begin{bmatrix}-\beta I* - \alpha -\lambda &amp; -\gamma-\alpha \\ \beta I &amp; -\lambda\end{bmatrix})\]</span></p>
-<p><span class="math display">\[(\beta I^* + \alpha + \lambda)\lambda + \beta I^*(\gamma+\alpha) = 0\]</span></p>
-<p>Characteristic Equation:
-<span class="math display">\[\lambda^2 + (\beta I^* + \alpha)\lambda + \beta I^*(\gamma+\alpha) = 0\]</span></p>
+<p>After distributing <span class="math inline">\(\lambda\)</span> and combining the identity matrix with the Jacobian Matrix, we end up with:</p>
+<p><span class="math display">\[det(\begin{bmatrix}-\beta I* - \alpha -\lambda &amp; -\gamma-\alpha \\ \beta I &amp; -\lambda\end{bmatrix})\]</span>
+Using the same general rule of distribution of matricies, we produce this equation:</p>
+<p><span class="math display">\[(\beta I^* + \alpha + \lambda)\lambda + \beta I^*(\gamma+\alpha) = 0\]</span>
+After distributing, the equation as follows is our characteristic equation, or a polynomial equation produced from the Jacobian Matrix, used to find eigenvalues. In this case, the characterisitic equation contains similar properties as a quadratic equation and will be treated as such when solving for eigenvalues.</p>
+<p><span class="math display">\[\lambda^2 + (\beta I^* + \alpha)\lambda + \beta I^*(\gamma+\alpha) = 0\]</span></p>
 <p>Where <span class="math inline">\(a=\lambda^2, b=(\beta I^* + \alpha), c=\beta I^*(\gamma+\alpha)\)</span></p>
+<p>Substitute for <span class="math inline">\(I^*\)</span>:</p>
 <p><span class="math display">\[\lambda^2 + \alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right] + \alpha\beta(1-\frac{1}{R_0})=0\]</span></p>
 <p>Subsitute a, b, c into quadratic equation:</p>
 <p><span class="math display">\[\lambda = \frac{-\alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right] \pm \sqrt{(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha)}}{2}\]</span></p>
 <p>Where <span class="math inline">\(-\alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right]\)</span> is negative due to the signage</p>
-<p><span class="math display">\[(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha) = \beta^2 (I^*)^2 + \alpha^2 + 2\beta(I^*)^2 - 4\beta I \alpha - 4\beta I \gamma\]</span></p>
-<p><span class="math display">\[\lambda = \frac{-(\beta I^*+\alpha) \pm \sqrt{(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha)}}{2}\]</span></p>
-<p><span class="math inline">\(\lambda = \frac{-b}{2}\)</span> <span class="math inline">\(\pm\)</span> Complex Number, where <span class="math inline">\(\frac{-b}{2}\)</span> is a real part.</p>
+<p>Here, we can expand the discriminant to understand complexity:</p>
+<p><span class="math display">\[(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha) = \beta^2 (I^*)^2 + \alpha^2 + 2\beta(I^*)^2 - 4\beta I \alpha - 4\beta I \gamma\]</span>
+<span class="math inline">\(\lambda = \frac{-b}{2}\)</span> <span class="math inline">\(\pm\)</span> Complex Number, where <span class="math inline">\(\frac{-b}{2}\)</span> is a real part.</p>
 <p><span class="math display">\[
 \begin{align*}
 \lambda &amp;= a \pm bi \\
@@ -257,10 +295,15 @@ det(\lambda I - J) = 0
 <p><span class="math display">\[b^2&gt;b^2-4c&gt;0\]</span>
 <span class="math display">\[\lambda_1=\frac{{-b} + \sqrt{(b^2 - 4c)^2}}{2}&lt;0\]</span></p>
 <p><span class="math inline">\(\lambda_2=\frac{{-b} - \sqrt{(b^2 - 4c)}}{2}\)</span> where <span class="math inline">\(b^2&gt;b^2 - 4c\)</span>, so</p>
-<p><span class="math display">\[&lt;\frac{{-b} - \sqrt{b^2}}{2}=0\]</span></p>
-<p>Notice <span class="math inline">\(\pm\)</span>, only focus on <span class="math inline">\(+\)</span> and drop <span class="math inline">\(- 4\beta I(\gamma+\alpha)\)</span> due to complexity:</p>
+<p><span class="math display">\[&lt;\frac{{-b} - \sqrt{b^2}}{2}=0\]</span>
+With this knowledge, we can apply this to our equation:
+<span class="math display">\[\lambda = \frac{-(\beta I^*+\alpha) \pm \sqrt{(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha)}}{2}\]</span>
+Applying the rule, we are able to expand the discriminant:</p>
+<ul>
+<li>Notice the <span class="math inline">\(\pm\)</span> and only focus on <span class="math inline">\(+\)</span> and drop <span class="math inline">\(- 4\beta I(\gamma+\alpha)\)</span> due to complexity</li>
+</ul>
 <p><span class="math display">\[&lt;\frac{-(\beta I^*+\alpha) \pm \sqrt{(\beta I^* + \alpha)^2}}{2}=\frac{-(\beta I^*+\alpha)+{(\beta I^* + \alpha)}}{2}=0\]</span></p>
-<p>Both eigenvalues are negative and it is stable.</p>
+<p>As a result, since all coefficients of the characteristic equation are positive, as well as the resulting discriminant denoting negative real roots, both eigenvalues are real and negative. Thus, the Endemic Equilibrium is stable for <span class="math inline">\(R_0&gt;1\)</span>.</p>
 </div>
 </div>
 <div id="routh---hurwitz-criteria" class="section level2 hasAnchor" number="4.2">
@@ -291,32 +334,56 @@ As long as these conditions are met, it can be found that a quartic characterist
 </div>
 <div id="descartes-rule-of-signs" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Descartes’ Rule of Signs<a href="compartmental-model-solutions.html#descartes-rule-of-signs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Descartes’ Rule of Signs is used to determine the number of potential real positive and/or negative roots.</p>
 <p><span class="math display">\[c_2\lambda^2 + c_1\lambda + c_0 = 0\]</span></p>
-<p>0 sign changes from term to term</p>
+<p>Using this general characterisitic equation, as seen when finding the eigenvalues of the Jacobian Matrix, we can understand how stable the equilibrium is in the system of differential equations. For stability to occur, all real roots and the real part of complex roots must be negative.</p>
+<div id="case-1-positive-roots-with-no-sign-changes" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Case 1: Positive Roots with No Sign Changes<a href="compartmental-model-solutions.html#case-1-positive-roots-with-no-sign-changes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[(+)(+)(+)\]</span></p>
 <ul>
-<li>All terms are positive</li>
+<li><p>0 sign changes from term to term</p></li>
+<li><p>All terms are positive, denoted by each coefficient (<span class="math inline">\(c_0, c_1, c_2,\)</span>) being positive.</p>
+<ul>
+<li>Result: There are either 0 positive roots or 2 positive roots</li>
+</ul></li>
 </ul>
-<p>So there are either 0 positive roots or 2 positive roots</p>
+</div>
+<div id="case-2-negative-roots-with-multiple-sign-changes" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Case 2: Negative Roots with Multiple Sign Changes<a href="compartmental-model-solutions.html#case-2-negative-roots-with-multiple-sign-changes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[\begin{align*}
 c_2(-\lambda)^2+c_1(-\lambda)+c_0=0 \\
 c_2\lambda^2-c_1\lambda+c_0=0
 \end{align*}\]</span></p>
-<p>2 sign changes from term to term</p>
 <ul>
-<li>First and last term are positive, while middle term is negative</li>
+<li>2 sign changes from term to term</li>
+<li>First term (<span class="math inline">\(c_2\lambda^2\)</span>) and last term (<span class="math inline">\(c_0\)</span>) are positive, while middle term (<span class="math inline">\(c_1\lambda\)</span>) is negative
+<ul>
 <li>From first to second term, <span class="math inline">\(+\)</span> to <span class="math inline">\(-\)</span>, first sign change</li>
 <li>From second to third term, <span class="math inline">\(-\)</span> to <span class="math inline">\(+\)</span>, second sign change</li>
+</ul></li>
+<li>Number of real negative roots = Number of sign changes
+<ul>
+<li>Result: There are either 2 negative roots or 0 negative roots</li>
+</ul></li>
 </ul>
-<p>So there are either 2 negative roots or zero negaive roots</p>
-<p>Cases where there is one sign change:</p>
+</div>
+<div id="cases-with-one-sign-change" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Cases with One Sign Change:<a href="compartmental-model-solutions.html#cases-with-one-sign-change" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Example:</p>
 <p><span class="math inline">\((-) \rightarrow (+) (+)\)</span><span class="math inline">\(\cdots\)</span><span class="math inline">\(\lambda \rightarrow\)</span> 1 Positive Root</p>
+<ul>
+<li>1 Sign Change and Positive Coefficients = 1 Real Positive Root</li>
+</ul>
 <p><span class="math inline">\((-) (-) \rightarrow (+)\)</span><span class="math inline">\(\cdots\)</span><span class="math inline">\(-\lambda \rightarrow\)</span> 1 Negative Root</p>
-<p>For <span class="math inline">\(S(t)\)</span>, <span class="math inline">\(S=\frac{\gamma}{\beta}\)</span></p>
-<p>DFE: <span class="math inline">\(I^*=0\)</span>, <span class="math inline">\(S*=1\)</span></p>
+<ul>
+<li>1 Sign Change and Negative Coefficients = 1 Real Negative Root</li>
+</ul>
+</div>
 </div>
 <div id="chapter-4-notes-linear-algebra-notes" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Chapter 4 Notes + Linear Algebra Notes<a href="compartmental-model-solutions.html#chapter-4-notes-linear-algebra-notes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For <span class="math inline">\(S(t)\)</span>, <span class="math inline">\(S=\frac{\gamma}{\beta}\)</span></p>
+<p>DFE: <span class="math inline">\(I^*=0\)</span>, <span class="math inline">\(S*=1\)</span></p>
 <p><span class="math display">\[S(t) =\left[\begin{align*}&amp;\dot{S}= -\beta SI + \alpha I\\&amp;\dot{S}=(-\beta S \gamma)(1-S)\\&amp;\dot{I} = \beta SI - \gamma I\\&amp;J = -\beta(1-S) - (-\beta S + \gamma) = -\beta + \beta S + \beta S - \gamma = 2\beta S - \beta - \gamma\\&amp;J_{DFE} = -\beta(1-1) - (-\beta + \gamma) = \beta - \gamma &lt; 0 \rightarrow \beta &lt; \gamma = R_0 &lt; 1 \\&amp;J_{EE} = 2\beta \left(\frac{\gamma}{\beta}\right) - \beta - \gamma = 2\gamma - \beta - \gamma = \gamma - \beta &lt; 0 \rightarrow 1 &lt; R_0\end{align*} \right]\]</span></p>
 
 </div>

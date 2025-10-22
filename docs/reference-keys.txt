@@ -26,6 +26,9 @@ disease-free-equilibria
 endemic-equilibrium
 routh---hurwitz-criteria
 descartes-rule-of-signs
+case-1-positive-roots-with-no-sign-changes
+case-2-negative-roots-with-multiple-sign-changes
+cases-with-one-sign-change
 chapter-4-notes-linear-algebra-notes
 sample-chapter-introduction-to-mathematical-modelling
 sec:foundations
