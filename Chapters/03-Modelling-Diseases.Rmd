@@ -1,4 +1,4 @@
-# Modelling disease dynamics with ODEs
+# Modelling Disease Dynamics with ODEs
 
 ## Introduction to the Chapter
 
