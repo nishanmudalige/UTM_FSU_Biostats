@@ -97,17 +97,19 @@ $$\lambda_2 = \beta - \gamma < 0 \Rightarrow \beta<\gamma \Rightarrow \frac{\bet
 
 The Endemic Equilibrium represents the state in which the Disease persists. Our equations for $S^*$ and $I^*$ are as follows. These will be integral to solving the Jacobian Matrix for the Endemic Equilibrium:
 
-$S^*=\frac{\gamma}{\beta}=\frac{1}{R_0}$ only makes sense if $R_0>1$.
+We are able to find $I^*$ and $S^*$ by solving our system of equations ($\dot{S}, \dot{I}$) for each value:
+\begin{align*}
+\dot{S} &= -\beta SI + \alpha(1-S-I) \\
+\dot{I} &= \beta SI - \gamma I \\
+I^* &= \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \\
+S^* &=\frac{\gamma}{\beta} \\
+\end{align*}
+
+It is important to note that $S^*$ is equal to $R_0$ so $R_0$ only makes sense if $R_0>1$
+
+$$S^*=\frac{\gamma}{\beta}=\frac{1}{R_0}$$
 
   - Thus, if this equilibrium exists, the DFE is unstable.
-
-\begin{align*}
-I^* &= \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \\
-
-\dot{S} &= -\beta SI + \alpha(1-S-I) \\
-
-\dot{I} &= \beta SI - \gamma I
-\end{align*}
 
 Like previously, the Jacobian Matrix (J) represents a matrix of the partial derivatives of the system of Functions F and G. As stated before, this is represented by $\dot{S}, \dot{I}$. We are able to then subsitute our values for $S^*$ and $I^*$:
 

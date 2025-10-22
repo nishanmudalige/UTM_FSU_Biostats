@@ -247,17 +247,18 @@ An equilibrium is stable if all the eigenvalues of the Jacobian matrix evaluated
 <div id="endemic-equilibrium" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Endemic Equilibrium<a href="compartmental-model-solutions.html#endemic-equilibrium" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The Endemic Equilibrium represents the state in which the Disease persists. Our equations for <span class="math inline">\(S^*\)</span> and <span class="math inline">\(I^*\)</span> are as follows. These will be integral to solving the Jacobian Matrix for the Endemic Equilibrium:</p>
-<p><span class="math inline">\(S^*=\frac{\gamma}{\beta}=\frac{1}{R_0}\)</span> only makes sense if <span class="math inline">\(R_0&gt;1\)</span>.</p>
+<p>We are able to find <span class="math inline">\(I^*\)</span> and <span class="math inline">\(S^*\)</span> by solving our system of equations (<span class="math inline">\(\dot{S}, \dot{I}\)</span>) for each value:
+<span class="math display">\[\begin{align*}
+\dot{S} &amp;= -\beta SI + \alpha(1-S-I) \\
+\dot{I} &amp;= \beta SI - \gamma I \\
+I^* &amp;= \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \\
+S^* &amp;=\frac{\gamma}{\beta} \\
+\end{align*}\]</span></p>
+<p>It is important to note that <span class="math inline">\(S^*\)</span> is equal to <span class="math inline">\(R_0\)</span> so <span class="math inline">\(R_0\)</span> only makes sense if <span class="math inline">\(R_0&gt;1\)</span></p>
+<p><span class="math display">\[S^*=\frac{\gamma}{\beta}=\frac{1}{R_0}\]</span></p>
 <ul>
 <li>Thus, if this equilibrium exists, the DFE is unstable.</li>
 </ul>
-<p><span class="math display">\[\begin{align*}
-I^* &amp;= \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \\
-
-\dot{S} &amp;= -\beta SI + \alpha(1-S-I) \\
-
-\dot{I} &amp;= \beta SI - \gamma I
-\end{align*}\]</span></p>
 <p>Like previously, the Jacobian Matrix (J) represents a matrix of the partial derivatives of the system of Functions F and G. As stated before, this is represented by <span class="math inline">\(\dot{S}, \dot{I}\)</span>. We are able to then subsitute our values for <span class="math inline">\(S^*\)</span> and <span class="math inline">\(I^*\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
 J &amp;= \begin{bmatrix}-\beta I - \alpha &amp; -\beta S-\alpha \\ \beta I &amp; \beta S - \gamma\end{bmatrix} \\
