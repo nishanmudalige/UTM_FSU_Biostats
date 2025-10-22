@@ -139,25 +139,38 @@ Both eigenvalues are negative and it is stable.
 
 ## Routh - Hurwitz Criteria
 
-$$\sum_{i}c_ix^i=c_2\lambda^2 + c_1\lambda + c_0$$
+For stability, it must be shown that the real part of all the eigenvalues is negative. The Routh-Hourwitz Criteria provides a method to check if the eigenvalues are negative and the system is stable without needing to solve for the roots. Instead, the Routh-Herwitz criteria can determine if the eignenvalues are negative by looking at the coefficients. Depending on the degree of the polynomial, the criteria varies.
 
-Where, $c_i>0$
+For a quadratic characteristic equation $$c_2\lambda^2 + c_1\lambda + c_0=0$$
 
-Quadratic Characteristic Equation:
+the coefficients must all be positive. As long as $c_2$, $c_1$, and $c_0$ are positive the eigenvalues will be negative.
 
-- Minimum of the characterisitic equation:
+The quadratic characteristic equation can be used when there are 3 compartments. The SIR model, with the susceptible, infected, and recovered compartment, can be used with the quadratic characteristic equation.
 
-$$2\lambda + \beta I + \alpha = 0$$
+For a cubic characteristic equation $$c_3\lambda^3+c_2\lambda^2 + c_1\lambda + c_0=0$$ the criteria are slightly more complicated. Here the conditions that must be met are :
 
-$$\lambda = \frac{-\beta I + \alpha}{2}$$
+$$
+c_i>0 \\
+c_1c_2>c_0c_3 \\
+$$ 
+And since c_3 = 1, the conditions are therefore: 
+$$
+c_i>0 \\
+c_1c_2>c_0 \\
+$$ 
+As long as these conditions are met, it can be found that a cubic characteristic equation has only negative real parts and the system is therefore stable.
 
-$$\begin{align*}
-\frac{(\beta I + \alpha)^2}{4}-\frac{(\beta I + \alpha)^2}{2}+\beta I(\gamma+\alpha) &= \\
-\frac14[(\beta I+\alpha)^2-2(\beta I+\alpha)^2+4(\beta I(\gamma+\alpha))] &= \\
-\frac14[-(\beta I+\alpha)^2+4(\beta I(\gamma+\alpha))] &= \\
-\frac14[-\beta^2 I^2 - 2\beta I \alpha -\alpha^2 + 4\beta I \gamma + 4 \beta I \alpha] &= \\
-\frac14[-\beta^2 I^2 + 2\beta I \alpha -\alpha^2 + 4\beta I \gamma] &> 0
-\end{align*}$$
+A cubic characteristic equation can be used for models with 4 compartments such as the SEIR (Susceptible, Exposed, Infected, Recovered) model, SAIR (Susceptible, Asymptomatic, Infected, Recovered) model, and the SIVR(Susceptible, Infected, Vaccinated, Recovered) model.
+
+For a quartic characteristic equation $$c_4\lambda^4+ c_3\lambda^3+c_2\lambda^2 + c_1\lambda + c_0=0$$ the criteria are further complicated. Here the conditions that must be met are :
+
+$$
+c_i>0 \\
+c_2c_3>c_1c_4 \\
+c_1c_2c_3 - c_4c_1^2 > c_0c_3^2
+$$ 
+As long as these conditions are met, it can be found that a quartic characteristic equation has only negative real parts and the system is therefore stable.
+
 
 ## Descartes' Rule of Signs
 

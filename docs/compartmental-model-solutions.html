@@ -265,21 +265,29 @@ det(\lambda I - J) = 0
 </div>
 <div id="routh---hurwitz-criteria" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Routh - Hurwitz Criteria<a href="compartmental-model-solutions.html#routh---hurwitz-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math display">\[\sum_{i}c_ix^i=c_2\lambda^2 + c_1\lambda + c_0\]</span></p>
-<p>Where, <span class="math inline">\(c_i&gt;0\)</span></p>
-<p>Quadratic Characteristic Equation:</p>
-<ul>
-<li>Minimum of the characterisitic equation:</li>
-</ul>
-<p><span class="math display">\[2\lambda + \beta I + \alpha = 0\]</span></p>
-<p><span class="math display">\[\lambda = \frac{-\beta I + \alpha}{2}\]</span></p>
-<p><span class="math display">\[\begin{align*}
-\frac{(\beta I + \alpha)^2}{4}-\frac{(\beta I + \alpha)^2}{2}+\beta I(\gamma+\alpha) &amp;= \\
-\frac14[(\beta I+\alpha)^2-2(\beta I+\alpha)^2+4(\beta I(\gamma+\alpha))] &amp;= \\
-\frac14[-(\beta I+\alpha)^2+4(\beta I(\gamma+\alpha))] &amp;= \\
-\frac14[-\beta^2 I^2 - 2\beta I \alpha -\alpha^2 + 4\beta I \gamma + 4 \beta I \alpha] &amp;= \\
-\frac14[-\beta^2 I^2 + 2\beta I \alpha -\alpha^2 + 4\beta I \gamma] &amp;&gt; 0
-\end{align*}\]</span></p>
+<p>For stability, it must be shown that the real part of all the eigenvalues is negative. The Routh-Hourwitz Criteria provides a method to check if the eigenvalues are negative and the system is stable without needing to solve for the roots. Instead, the Routh-Herwitz criteria can determine if the eignenvalues are negative by looking at the coefficients. Depending on the degree of the polynomial, the criteria varies.</p>
+<p>For a quadratic characteristic equation <span class="math display">\[c_2\lambda^2 + c_1\lambda + c_0=0\]</span></p>
+<p>the coefficients must all be positive. As long as <span class="math inline">\(c_2\)</span>, <span class="math inline">\(c_1\)</span>, and <span class="math inline">\(c_0\)</span> are positive the eigenvalues will be negative.</p>
+<p>The quadratic characteristic equation can be used when there are 3 compartments. The SIR model, with the susceptible, infected, and recovered compartment, can be used with the quadratic characteristic equation.</p>
+<p>For a cubic characteristic equation <span class="math display">\[c_3\lambda^3+c_2\lambda^2 + c_1\lambda + c_0=0\]</span> the criteria are slightly more complicated. Here the conditions that must be met are :</p>
+<p><span class="math display">\[
+c_i&gt;0 \\
+c_1c_2&gt;c_0c_3 \\
+\]</span>
+And since c_3 = 1, the conditions are therefore:
+<span class="math display">\[
+c_i&gt;0 \\
+c_1c_2&gt;c_0 \\
+\]</span>
+As long as these conditions are met, it can be found that a cubic characteristic equation has only negative real parts and the system is therefore stable.</p>
+<p>A cubic characteristic equation can be used for models with 4 compartments such as the SEIR (Susceptible, Exposed, Infected, Recovered) model, SAIR (Susceptible, Asymptomatic, Infected, Recovered) model, and the SIVR(Susceptible, Infected, Vaccinated, Recovered) model.</p>
+<p>For a quartic characteristic equation <span class="math display">\[c_4\lambda^4+ c_3\lambda^3+c_2\lambda^2 + c_1\lambda + c_0=0\]</span> the criteria are further complicated. Here the conditions that must be met are :</p>
+<p><span class="math display">\[
+c_i&gt;0 \\
+c_2c_3&gt;c_1c_4 \\
+c_1c_2c_3 - c_4c_1^2 &gt; c_0c_3^2
+\]</span>
+As long as these conditions are met, it can be found that a quartic characteristic equation has only negative real parts and the system is therefore stable.</p>
 </div>
 <div id="descartes-rule-of-signs" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Descartes’ Rule of Signs<a href="compartmental-model-solutions.html#descartes-rule-of-signs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
