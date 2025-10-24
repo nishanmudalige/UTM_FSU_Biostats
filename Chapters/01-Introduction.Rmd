@@ -6,27 +6,32 @@ This e-book provides an introduction to mathematical modeling in epidemiology, f
 
 ## Recommended Background
 
-Recommended pre-requisites are: introductory calculus, ordinary differential equations, linear algebra, and probability and statistics. 
+Recommended pre-requisites are: introductory calculus, ordinary differential equations, linear algebra, and probability and statistics. For additional review, we suggest the following open-access resources. Topics to be familiar with have also been noted with the chapters they can be found in.  
 
-For additional review, we suggest the following topics from open-access resources. 
 
-**Calculus:** 
-
-- Active Calculus: <https://activecalculus.org/>
-
-- OpenStax Calculus Volumes 1-3: <https://openstax.org/subjects/math>
-
-**Linear Algebra:** 
-
-- Understanding Linear Algebra: <https://understandinglinearalgebra.org/home.html>
-
-    - Ch 3 - Invertibility, bases, and coordinate systems: Ch 3.4 - Determinants
-
-    - Ch 4 - Eigenvalues and eigenvectors
-
-**Probability and Statistics:** 
-
-- OpenIntro Statistics: <https://www.openintro.org/book/os/>
+- **Calculus:** [Active Calculus](https://activecalculus.org/ "Active Calculus Main Page")
+    1. Active Prelude to Calculus
+    2. Active Calculus
+    3. Active Calculus Multivariable: 
+        - 11.9 Change of Variables (*for understanding the Jacobian Matrix*)
+<br>
+- **Calculus (alternative):** [OpenStax Calculus](https://openstax.org/subjects/math "OpenStax Math Main Page")
+    1. Calculus Volume 1
+    2. Calculus Volume 2
+    3. Calculus Volume 3
+        - 5.7 Change of Variables in Multiple Integrals (*for understanding the Jacobian Matrix*)
+<br>
+- **Linear Algebra:** [Understanding Linear Algebra](https://understandinglinearalgebra.org/home.html "Understanding Linear Algebra Homepage")
+    - Ch 1 Systems of equations
+    - Ch 2 Vectors, matrices, and linear combinations
+        - Ch 2.1 Vectors and linear combinations
+        - Ch 2.2 Matrix multiplication and linear combinations
+    - Ch 3 Invertibility, bases, and coordinate systems
+        - Ch 3.4 Determinants
+    - Ch 4 - Eigenvalues and eigenvectors  
+- *Basic Understanding of Complex Numbers*
+<br>
+- **Probability and Statistics:** [OpenIntro Statistics](https://www.openintro.org/book/os/ "OpenIntro Statistics Homepage")
 
 
 ## History of Mathematical Epidemiology
