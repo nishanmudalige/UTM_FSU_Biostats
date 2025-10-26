@@ -45,6 +45,23 @@ Other forms of the SIR model exist, in which compartments are added to depict re
 
 These variations of the SIR model will be discussed at length in Chapter 5 and 6.1. [@tang2020] [@wilta2022]
 
+**Herd Immunity** 
+  Herd immunity is acheived when a sufficiently large fraction of the population is immune, either through vaccination or recovery, so that disease transmission cannot be sustained within the community. Mathematically, this is expressed in terms of the basic reproduction number, $R_0$. If a proportion p of the population is immunized, the effective reproduction number becomes $R_0(1-p)$. To prevent the disease from becoming endemic, this effective reproduction number must be below one, leading to the inequality:
+
+$R_0(1-p) <1$
+
+This inequality gives:
+
+$1-p<\frac{1}{R_0}$
+
+or 
+
+$p>1-\frac{1}{R_0}$
+
+A population is said to have herd immunity if a great enough fraction of the population has been immunized so that the disease cannot become endemic. 
+
+An example of a disease that has been eradicated is smallpox. Smallpox was eradicated because it requires a lower percentage of the population to be immunized and therefore herd immunity was attainable. Measles, conversely, requires greater percentages of vaccination and the vaccine is not always effective which is why herd immunity against measles has not been achieved yet. These examples underscore how diseases with higher transmissibility require larger immunized fractions for herd immunity, a principle directly relevant to SVIR models where vaccination rates determine the system's long-term equilibrium.
+
 ### Benefits of Parsimonious Models
 
 As seen, SIR models and other forms can provide great predictive power. Recently, parsimonious models have become of interest in epidemiological modelling. These models are based on the premise that the simplest answer is the best. Allude to earlier in this section where parsimonious models are defined. These are able to use significantly less data and parameters in order to produce a generalized and understandable model. In a real-world setting, these models have been effectively utilized to predict disease outbreaks. Not only are these models more accurate than those with more complexity, but they can also be applied to a multitude of situations; additionally, with the presence of noisy data, these models can also avoid over fitting. [@gupta2021]
