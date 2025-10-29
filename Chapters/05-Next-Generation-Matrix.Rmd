@@ -1,12 +1,7 @@
 # Next Generation Matrix 
 
 ## Introduction to the Chapter
-
-
-
-## Next Generation Matrix (NGM) Method
-
-Allows us to Calculate $R_0$ in compartmental models. Better with more compartments
+This chapter describes in depth the use of a Next Generation Matrix (NGM). This tool is used to calculate the $R_0$ value \@ref(def:R0). Using the NGM achieves this this for multi-compartmental models, such as SEIR (Refer back to Chapter 2), by linearizing the system of differential equations around the Disease-Free Equilibrium (DFE) \@ref(def:DFE) and and dividing the flow \@ref(def:Flow) of disease into what causes new cases and what accounts for everything else that happens to an infected person.
 
 ## Definining the Parameters
 

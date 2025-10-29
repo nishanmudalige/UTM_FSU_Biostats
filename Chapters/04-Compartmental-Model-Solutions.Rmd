@@ -1,18 +1,22 @@
 # Equilibrium Stability Analysis 
 
 ## Introduction to the Chapter
-In Chapter 3.4, we briefly introduced equilibrium and $R_0$ for examining stability in equilibrium. 
+In Chapter 3.4, we briefly introduced equilibrium and $R_0$ \@ref(def:R0) for examining stability in equilibrium \@ref(def:Equilibrium). 
 
-Chapter 4 will expand on the topic of equilibrium through **linear stability analysis**. This method provides the local stability of each equilibrium, as we approximate the solutions near the equilibrium. See Chapter 1.2 for the recommended linear algebra background. 
+Chapter 4 will expand on the topic of equilibrium \@ref(def:Equilibrium) through: 
 
-The approach to linear stability analysis involves determining the eigenvalues of the Jacobian matrix at the given equilibrium (e.g. DFE, EE). We can linearize the system of equations around the equilibria with the Jacobian matrix and find the characteristic polynomial whose roots are the eigenvalues. We will show that all the eigenvalues have negative real parts to maintain the local stability of the equilibrium. This chapter will explore both the direct calculation of eigenvalues, as well as some alternative / indirect methods of showing stability. 
+::: {.definition name="Linear Stability Analysis" #LSA}
+This method provides the local stability of each equilibrium, as we approximate the solutions near the equilibrium. See Chapter 1.2 for the recommended linear algebra background.
+:::
+
+The approach to linear stability analysis involves determining the eigenvalues of the Jacobian matrix at the given equilibrium (e.g. DFE, EE). We can linearize the system of equations around the equilibria with the Jacobian matrix and find the characteristic polynomial whose roots are the eigenvalues. We will show that all the eigenvalues have negative real parts to maintain the local stability of the equilibrium \@ref(def:Equilibrium). This chapter will explore both the direct calculation of eigenvalues, as well as some alternative / indirect methods of showing stability. 
 
 **References:** [@brauer2019] [@blackwood2018]
 
 
 ## Solving with Jacobian Matrices and Eigenvalues
 
-The stability of an equilibrium in a Compartmental Model is determined by the signage of the eigenvalues ($\lambda$) of the Jacobian Matrix (J). In this Chapter, we will solve for the eigenvalues of the SI and SIR model.
+The stability of an equilibrium in a Compartmental Model \@ref(def:Compartmental) is determined by the signage of the eigenvalues ($\lambda$) of the Jacobian Matrix (J). In this Chapter, we will solve for the eigenvalues of the SI and SIR model.
 
 ### SI and SIR Model
 
@@ -46,7 +50,7 @@ $$J = \begin{bmatrix}-\beta I^* - \alpha & -\beta S^*-\alpha \\ \beta I^* & \bet
 
 ### Disease Free Equilibria
 
-The Disease-Free Equilibrium (DFE) is the state in which the disease has been eradicated, resulting in the values for $I^*$ and $S^*$ below. It is important to note that this equation must retain the balance from our earlier equation ($S+I+R = 0$), so $R^* = O$.
+The Disease-Free Equilibrium (DFE) \@ref(def:DFE) is the state in which the disease has been eradicated, resulting in the values for $I^*$ and $S^*$ below. It is important to note that this equation must retain the balance from our earlier equation ($S+I+R = 0$), so $R^* = O$.
 
 - DFE: $$I^* = 0, S^* = 1$$
 
@@ -93,7 +97,7 @@ $$
 \lambda &= \beta-\gamma
 \end{align*}$$
 
-- Stability for the DFE
+- Stability for the DFE \@ref(def:DFE)
 An equilibrium is stable if all the eigenvalues of the Jacobian matrix evaluated at the equilibrium have negative real parts. If any eigenvalue is positive, then the equilibrium is unstable. If some eigenvalues are zero and the rest are negative, then stability is inconclusive. This is denoted in the equations below.
 
 - For Stability from $\lambda_1$ for the DFE:
@@ -105,7 +109,7 @@ $$\lambda_2 = \beta - \gamma < 0 \Rightarrow \beta<\gamma \Rightarrow \frac{\bet
 
 ### Endemic Equilibrium
 
-The Endemic Equilibrium represents the state in which the Disease persists. Our equations for $S^*$ and $I^*$ are as follows. These will be integral to solving the Jacobian Matrix for the Endemic Equilibrium:
+The Endemic Equilibrium \@ref(def:EE) represents the state in which the Disease persists. Our equations for $S^*$ and $I^*$ are as follows. These will be integral to solving the Jacobian Matrix for the Endemic Equilibrium:
 
 We are able to find $I^*$ and $S^*$ by solving our system of equations ($\dot{S}, \dot{I}$) for each value:
 \begin{align*}
@@ -229,7 +233,7 @@ Descartes' Rule of Signs is used to determine the number of potential real posit
 
 $$c_2\lambda^2 + c_1\lambda + c_0 = 0$$
 
-Using this general characterisitic equation, as seen when finding the eigenvalues of the Jacobian Matrix, we can understand how stable the equilibrium is in the system of differential equations. For stability to occur, all real roots and the real part of complex roots must be negative.
+Using this general characterisitic equation, as seen when finding the eigenvalues of the Jacobian Matrix, we can understand how stable the equilibrium \@ref(def:Equilibrium) is in the system of differential equations. For stability to occur, all real roots and the real part of complex roots must be negative.
 
 ### Case 1: Positive Roots with No Sign Changes
 

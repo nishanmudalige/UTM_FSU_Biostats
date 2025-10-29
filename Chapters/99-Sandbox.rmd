@@ -1,5 +1,0 @@
-# My Test Environment
-
-- I am going on a trip.
-- **Today is hot**
-- _Weather is good_

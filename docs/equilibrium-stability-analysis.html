@@ -142,10 +142,9 @@ div.csl-indent {
 <li class="chapter" data-level="5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html"><i class="fa fa-check"></i><b>5</b> Next Generation Matrix</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#introduction-to-the-chapter-2"><i class="fa fa-check"></i><b>5.1</b> Introduction to the Chapter</a></li>
-<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#next-generation-matrix-ngm-method"><i class="fa fa-check"></i><b>5.2</b> Next Generation Matrix (NGM) Method</a></li>
-<li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#definining-the-parameters"><i class="fa fa-check"></i><b>5.3</b> Definining the Parameters</a></li>
-<li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-seir-model-with-ngm"><i class="fa fa-check"></i><b>5.4</b> Solving SEIR Model with NGM</a></li>
-<li class="chapter" data-level="5.5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.5</b> Solving the SEIR Model with Birth and Death</a></li>
+<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#definining-the-parameters"><i class="fa fa-check"></i><b>5.2</b> Definining the Parameters</a></li>
+<li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-seir-model-with-ngm"><i class="fa fa-check"></i><b>5.3</b> Solving SEIR Model with NGM</a></li>
+<li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.4</b> Solving the SEIR Model with Birth and Death</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>6</b> Sample Chapter: Introduction to Mathematical Modelling</a>
 <ul>
@@ -175,14 +174,17 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 4</span> Equilibrium Stability Analysis<a href="equilibrium-stability-analysis.html#equilibrium-stability-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="introduction-to-the-chapter-1" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Introduction to the Chapter<a href="equilibrium-stability-analysis.html#introduction-to-the-chapter-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In Chapter 3.4, we briefly introduced equilibrium and <span class="math inline">\(R_0\)</span> for examining stability in equilibrium.</p>
-<p>Chapter 4 will expand on the topic of equilibrium through <strong>linear stability analysis</strong>. This method provides the local stability of each equilibrium, as we approximate the solutions near the equilibrium. See Chapter 1.2 for the recommended linear algebra background.</p>
-<p>The approach to linear stability analysis involves determining the eigenvalues of the Jacobian matrix at the given equilibrium (e.g. DFE, EE). We can linearize the system of equations around the equilibria with the Jacobian matrix and find the characteristic polynomial whose roots are the eigenvalues. We will show that all the eigenvalues have negative real parts to maintain the local stability of the equilibrium. This chapter will explore both the direct calculation of eigenvalues, as well as some alternative / indirect methods of showing stability.</p>
+<p>In Chapter 3.4, we briefly introduced equilibrium and <span class="math inline">\(R_0\)</span> <a href="introduction.html#def:R0">1.3</a> for examining stability in equilibrium <a href="modelling-disease-dynamics-with-odes.html#def:Equilibrium">3.2</a>.</p>
+<p>Chapter 4 will expand on the topic of equilibrium <a href="modelling-disease-dynamics-with-odes.html#def:Equilibrium">3.2</a> through:</p>
+<div class="definition">
+<p><span id="def:LSA" class="definition"><strong>Definition 4.1  (Linear Stability Analysis) </strong></span>This method provides the local stability of each equilibrium, as we approximate the solutions near the equilibrium. See Chapter 1.2 for the recommended linear algebra background.</p>
+</div>
+<p>The approach to linear stability analysis involves determining the eigenvalues of the Jacobian matrix at the given equilibrium (e.g. DFE, EE). We can linearize the system of equations around the equilibria with the Jacobian matrix and find the characteristic polynomial whose roots are the eigenvalues. We will show that all the eigenvalues have negative real parts to maintain the local stability of the equilibrium <a href="modelling-disease-dynamics-with-odes.html#def:Equilibrium">3.2</a>. This chapter will explore both the direct calculation of eigenvalues, as well as some alternative / indirect methods of showing stability.</p>
 <p><strong>References:</strong> <span class="citation">[<a href="references.html#ref-brauer2019">3</a>]</span> <span class="citation">[<a href="references.html#ref-blackwood2018">12</a>]</span></p>
 </div>
 <div id="solving-with-jacobian-matrices-and-eigenvalues" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Solving with Jacobian Matrices and Eigenvalues<a href="equilibrium-stability-analysis.html#solving-with-jacobian-matrices-and-eigenvalues" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The stability of an equilibrium in a Compartmental Model is determined by the signage of the eigenvalues (<span class="math inline">\(\lambda\)</span>) of the Jacobian Matrix (J). In this Chapter, we will solve for the eigenvalues of the SI and SIR model.</p>
+<p>The stability of an equilibrium in a Compartmental Model <a href="introduction-to-mathematical-models-in-epidemiology.html#def:Compartmental">2.3</a> is determined by the signage of the eigenvalues (<span class="math inline">\(\lambda\)</span>) of the Jacobian Matrix (J). In this Chapter, we will solve for the eigenvalues of the SI and SIR model.</p>
 <div id="si-and-sir-model" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> SI and SIR Model<a href="equilibrium-stability-analysis.html#si-and-sir-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Starting with the SIR Model, we have 3 compartments, thus, 3 differential equations. The equation below represents the balance of each compartment, totaling to 1. We can rearrange this to substitute R out, as shown below.</p>
@@ -209,7 +211,7 @@ By substituting our system of equations, where <span class="math inline">\(S^*\)
 </div>
 <div id="disease-free-equilibria" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Disease Free Equilibria<a href="equilibrium-stability-analysis.html#disease-free-equilibria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The Disease-Free Equilibrium (DFE) is the state in which the disease has been eradicated, resulting in the values for <span class="math inline">\(I^*\)</span> and <span class="math inline">\(S^*\)</span> below. It is important to note that this equation must retain the balance from our earlier equation (<span class="math inline">\(S+I+R = 0\)</span>), so <span class="math inline">\(R^* = O\)</span>.</p>
+<p>The Disease-Free Equilibrium (DFE) <a href="modelling-disease-dynamics-with-odes.html#def:DFE">3.3</a> is the state in which the disease has been eradicated, resulting in the values for <span class="math inline">\(I^*\)</span> and <span class="math inline">\(S^*\)</span> below. It is important to note that this equation must retain the balance from our earlier equation (<span class="math inline">\(S+I+R = 0\)</span>), so <span class="math inline">\(R^* = O\)</span>.</p>
 <ul>
 <li>DFE: <span class="math display">\[I^* = 0, S^* = 1\]</span></li>
 </ul>
@@ -249,7 +251,7 @@ det(\begin{bmatrix} A &amp; B \\ C &amp; D\end{bmatrix}) = AD-BC
 \lambda &amp;= \beta-\gamma
 \end{align*}\]</span></p>
 <ul>
-<li><p>Stability for the DFE
+<li><p>Stability for the DFE <a href="modelling-disease-dynamics-with-odes.html#def:DFE">3.3</a>
 An equilibrium is stable if all the eigenvalues of the Jacobian matrix evaluated at the equilibrium have negative real parts. If any eigenvalue is positive, then the equilibrium is unstable. If some eigenvalues are zero and the rest are negative, then stability is inconclusive. This is denoted in the equations below.</p></li>
 <li><p>For Stability from <span class="math inline">\(\lambda_1\)</span> for the DFE:
 <span class="math display">\[\lambda_1 = -\alpha &lt; 0\]</span></p></li>
@@ -263,7 +265,7 @@ An equilibrium is stable if all the eigenvalues of the Jacobian matrix evaluated
 </div>
 <div id="endemic-equilibrium" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Endemic Equilibrium<a href="equilibrium-stability-analysis.html#endemic-equilibrium" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The Endemic Equilibrium represents the state in which the Disease persists. Our equations for <span class="math inline">\(S^*\)</span> and <span class="math inline">\(I^*\)</span> are as follows. These will be integral to solving the Jacobian Matrix for the Endemic Equilibrium:</p>
+<p>The Endemic Equilibrium <a href="modelling-disease-dynamics-with-odes.html#def:EE">3.4</a> represents the state in which the Disease persists. Our equations for <span class="math inline">\(S^*\)</span> and <span class="math inline">\(I^*\)</span> are as follows. These will be integral to solving the Jacobian Matrix for the Endemic Equilibrium:</p>
 <p>We are able to find <span class="math inline">\(I^*\)</span> and <span class="math inline">\(S^*\)</span> by solving our system of equations (<span class="math inline">\(\dot{S}, \dot{I}\)</span>) for each value:
 <span class="math display">\[\begin{align*}
 \dot{S} &amp;= -\beta SI + \alpha(1-S-I) \\
@@ -354,7 +356,7 @@ As long as these conditions are met, it can be found that a quartic characterist
 <h2><span class="header-section-number">4.4</span> Descartes’ Rule of Signs<a href="equilibrium-stability-analysis.html#descartes-rule-of-signs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Descartes’ Rule of Signs is used to determine the number of potential real positive and/or negative roots.</p>
 <p><span class="math display">\[c_2\lambda^2 + c_1\lambda + c_0 = 0\]</span></p>
-<p>Using this general characterisitic equation, as seen when finding the eigenvalues of the Jacobian Matrix, we can understand how stable the equilibrium is in the system of differential equations. For stability to occur, all real roots and the real part of complex roots must be negative.</p>
+<p>Using this general characterisitic equation, as seen when finding the eigenvalues of the Jacobian Matrix, we can understand how stable the equilibrium <a href="modelling-disease-dynamics-with-odes.html#def:Equilibrium">3.2</a> is in the system of differential equations. For stability to occur, all real roots and the real part of complex roots must be negative.</p>
 <div id="case-1-positive-roots-with-no-sign-changes" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Case 1: Positive Roots with No Sign Changes<a href="equilibrium-stability-analysis.html#case-1-positive-roots-with-no-sign-changes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><span class="math display">\[(+)(+)(+)\]</span></p>

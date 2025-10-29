@@ -4,29 +4,48 @@
 
 The two major types of mathematical models used in epidemiology are deterministic models and stochastic models.
 
-**Deterministic models** do not consider stochasticity (randomness), and predict results from known data (e.g. epidemic history; rules of models). These models are useful in large populations to observe epidemics in terms of the population and can help determine the fraction of individuals infected in an epidemic, as well as advise on disease control methods [@dadlani2020]. Deterministic models can be written in terms of differential equations in continuous time, or difference equations in discrete time. A common approach for continuous time deterministic models is Ordinary Differential Equations (ODEs). These deterministic compartmental models will be introduced in Chapter 2, while Chapter 3 will discuss solving simple models and their behaviour.
+::: {.definition name="Deterministic Models" #Deterministic}
+These models do not consider stochasticity (randomness), and predict results from known data (e.g. epidemic history; rules of models). These models are useful in large populations to observe epidemics in terms of the population and can help determine the fraction of individuals infected in an epidemic, as well as advise on disease control methods [@dadlani2020]. Deterministic models can be written in terms of differential equations in continuous time, or difference equations in discrete time. A common approach for continuous time deterministic models is Ordinary Differential Equations (ODEs). These deterministic compartmental models will be introduced in Chapter 2, while Chapter 3 will discuss solving simple models and their behaviour.
+:::
 
-**Stochastic models** account for stochasticity (randomness) and are able to capture variability in demographics and environment. These models are useful with small populations and can be used in determining how long a disease lasts, the probability of an epidemic, and distribution of behaviours [@dadlani2020]. Some types of stochastic models include Discrete-time Markov chain (DTMC), continuous-time Markov chain (CTMC), and stochastic differential equation (SDE) models. Although stochastic models may better reflect reality, they are more labour-intensive to set-up than deterministic models and can also be more difficult to analyze.
+::: {.definition name="Stochatsitc Models" #Stochastic}
+These models account for stochasticity (randomness) and are able to capture variability in demographics and environment. These models are useful with small populations and can be used in determining how long a disease lasts, the probability of an epidemic, and distribution of behaviours [@dadlani2020]. Some types of stochastic models include Discrete-time Markov chain (DTMC), continuous-time Markov chain (CTMC), and stochastic differential equation (SDE) models. Although stochastic models may better reflect reality, they are more labour-intensive to set-up than deterministic models and can also be more difficult to analyze.
+:::
 
 **References:** [@brauer2019], [@dadlani2020]
 
-
 ## Introduction to Compartmental Modelling Thinking
 
-As varying global health concerns persist, it is imperative to understand the complexities within the spread of infectious diseases. The most prevalent of which is compartmental modelling. This is a model that follows the change in proportions of populations in different compartments over time. The most common form of this type of model is the SIR model, organized in three separate compartments: Susceptible, Infected, and Recovered. Additional forms of this model may incorporate more compartments to attempt to enhance predictability. As computational power and modelling in the field of epidemiology have evolved, the growing use of parsimonious models, such as the SIR model, has become more relevant. These models utilize simpler processes by using accessible key data across broader conditions to produce a sufficiently predictive and generalizable model. [@tang2020] [@wilta2022]
+As varying global health concerns persist, it is imperative to understand the complexities within the spread of infectious diseases. The most prevalent of which is compartmental modelling. 
+
+::: {.definition name="Compartmental Model" #Compartmental}
+This is a model that follows the change in proportions of populations in different compartments over time. 
+:::
+
+The most common form of this type of model is the SIR model, organized in three separate compartments: Susceptible, Infected, and Recovered. Additional forms of this model may incorporate more compartments to attempt to enhance predictability. As computational power and modelling in the field of epidemiology have evolved, the growing use of parsimonious models, such as the SIR model, has become more relevant. 
+
+::: {.definition name="Parsimonious Models" #Parsimonious}
+These models utilize simpler processes by using accessible key data across broader conditions to produce a sufficiently predictive and generalizable model. [@tang2020] [@wilta2022]
+:::
 
 ### Approach to Compartmental Modelling
 
-Referring back, compartmental modelling is the framework for prediction in epidemiology. The fundamental thinking behind the most common compartmental model, the SIR model, is that at any given point, a person will fall into either the Susceptible, Infected, or Recovered compartments, under the model's assumptions.
+Referring back, compartmental modelling \@ref(def:Compartmental) is the framework for prediction in epidemiology. The fundamental thinking behind the most common compartmental model, the SIR model, is that at any given point, a person will fall into either the Susceptible, Infected, or Recovered compartments, under the model's assumptions.
 
--   **Susceptible**: Those at risk of the disease, but not yet infected
+::: {.definition name="Susceptible" #Susceptible} 
+Those at risk of the disease, but not yet infected
+:::
 
--   **Infected**: Those currently infected, and can actively spread the disease to those who are Susceptible
+::: {.definition name="Infected" #Infected} 
+Those currently infected, and can actively spread the disease to those who are Susceptible
+::: 
 
--   **Recovered/Removed**: Individuals who have recovered and developed immunity, or died from the disease
-    - Can either be denoted as Recovered or Removed, to account for all outcomes when leaving the "R" compartment. Either individuals are recovered, gaining immunity, and leave or die and leave, counting instead as removed
+::: {.definition name="Recovered/Removed" #Recovered}
+Individuals who have recovered and developed immunity, or died from the disease
+:::
+- Can either be denoted as Recovered or Removed, to account for all outcomes when leaving the "R" compartment. Either individuals are recovered, gaining immunity, and leave or die and leave, counting instead as removed
 
-Diving deeper, the relationship between each of these compartments is defined by differential equations, specifically ODEs and dynamical systems. These differential equations depict the movement between S and I, as well as I and R. The differential equations will show the flow of susceptible individuals to the infected compartment as the disease is transmitted at the transmission rate ($\beta$) as well as the flow of infected individuals either back to the susceptible compartment or to the recovered compartment at the recovery rate($\gamma$).
+Diving deeper, the relationship between each of these compartments is defined by differential equations, specifically ODEs and dynamical systems. These differential equations depict the movement between S and I, as well as I and R. The differential equations will show the flow of susceptible individuals to the infected compartment as the disease is transmitted at the transmission rate ($\beta$) as well as the flow of infected individuals either back to the susceptible \@ref(def:Susceptible) compartment or to the recovered \@ref(def:Recovered) compartment at the recovery rate($\gamma$).
 
 Other forms of the SIR model exist, in which compartments are added to depict realistic features of disease transmission. Each of these models utilizes an additional compartment that accounts for specific epidemiological situations, described below:
 
@@ -45,8 +64,11 @@ Other forms of the SIR model exist, in which compartments are added to depict re
 
 These variations of the SIR model will be discussed at length in Chapter 5 and 6.1. [@tang2020] [@wilta2022]
 
-**Herd Immunity** 
-  Herd immunity is acheived when a sufficiently large fraction of the population is immune, either through vaccination or recovery, so that disease transmission cannot be sustained within the community. Mathematically, this is expressed in terms of the basic reproduction number, $R_0$. If a proportion p of the population is immunized, the effective reproduction number becomes $R_0(1-p)$. To prevent the disease from becoming endemic, this effective reproduction number must be below one, leading to the inequality:
+::: {.definition name="Herd Immunity" #Herd}
+  Herd immunity is acheived when a sufficiently large fraction of the population is immune, either through vaccination or recovery, so that disease transmission cannot be sustained within the community.
+:::
+
+Mathematically, this is expressed in terms of the basic reproduction number, $R_0$ \@ref(def:R0). If a proportion p of the population is immunized, the effective reproduction number becomes $R_0(1-p)$. We will define the Effective Reproduction Number in Chapter 3 \@ref(def:Effective). To prevent the disease from becoming endemic \@ref(def:Endemic), this effective reproduction number must be below one, leading to the inequality:
 
 $R_0(1-p) <1$
 
@@ -58,13 +80,14 @@ or
 
 $p>1-\frac{1}{R_0}$
 
-A population is said to have herd immunity if a great enough fraction of the population has been immunized so that the disease cannot become endemic. 
+A population is said to have herd immunity \@ref(def:Herd) if a great enough fraction of the population has been immunized so that the disease cannot become endemic \@ref(def:Endemic). 
 
-An example of a disease that has been eradicated is smallpox. Smallpox was eradicated because it requires a lower percentage of the population to be immunized and therefore herd immunity was attainable. Measles, conversely, requires greater percentages of vaccination and the vaccine is not always effective which is why herd immunity against measles has not been achieved yet. These examples underscore how diseases with higher transmissibility require larger immunized fractions for herd immunity, a principle directly relevant to SVIR models where vaccination rates determine the system's long-term equilibrium.
+An example of a disease that has been eradicated is smallpox. Smallpox was eradicated because it requires a lower percentage of the population to be immunized and therefore herd immunity was attainable. Measles, conversely, requires greater percentages of vaccination and the vaccine is not always effective which is why herd immunity \@ref(def:Herd) against measles has not been achieved yet. These examples underscore how diseases with higher transmissibility require larger immunized fractions for herd immunity, a principle directly relevant to SVIR models where vaccination rates determine the system's long-term equilibrium.
 
 ### Benefits of Parsimonious Models
 
-As seen, SIR models and other forms can provide great predictive power. Recently, parsimonious models have become of interest in epidemiological modelling. These models are based on the premise that the simplest answer is the best. Allude to earlier in this section where parsimonious models are defined. These are able to use significantly less data and parameters in order to produce a generalized and understandable model. In a real-world setting, these models have been effectively utilized to predict disease outbreaks. Not only are these models more accurate than those with more complexity, but they can also be applied to a multitude of situations; additionally, with the presence of noisy data, these models can also avoid over fitting. [@gupta2021]
+As seen, SIR models and other forms can provide great predictive power. Recently, parsimonious models have become of interest in epidemiological modelling. 
+These models are based on the premise that the simplest answer is the best. Allude to earlier in this section where parsimonious models are defined \@ref(def:Parsimonious). These are able to use significantly less data and parameters in order to produce a generalized and understandable model. In a real-world setting, these models have been effectively utilized to predict disease outbreaks. Not only are these models more accurate than those with more complexity, but they can also be applied to a multitude of situations; additionally, with the presence of noisy data, these models can also avoid over fitting. [@gupta2021]
 
 ### Limitations of Compartmental Models
 

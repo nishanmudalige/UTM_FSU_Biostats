@@ -142,10 +142,9 @@ div.csl-indent {
 <li class="chapter" data-level="5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html"><i class="fa fa-check"></i><b>5</b> Next Generation Matrix</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#introduction-to-the-chapter-2"><i class="fa fa-check"></i><b>5.1</b> Introduction to the Chapter</a></li>
-<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#next-generation-matrix-ngm-method"><i class="fa fa-check"></i><b>5.2</b> Next Generation Matrix (NGM) Method</a></li>
-<li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#definining-the-parameters"><i class="fa fa-check"></i><b>5.3</b> Definining the Parameters</a></li>
-<li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-seir-model-with-ngm"><i class="fa fa-check"></i><b>5.4</b> Solving SEIR Model with NGM</a></li>
-<li class="chapter" data-level="5.5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.5</b> Solving the SEIR Model with Birth and Death</a></li>
+<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#definining-the-parameters"><i class="fa fa-check"></i><b>5.2</b> Definining the Parameters</a></li>
+<li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-seir-model-with-ngm"><i class="fa fa-check"></i><b>5.3</b> Solving SEIR Model with NGM</a></li>
+<li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.4</b> Solving the SEIR Model with Birth and Death</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>6</b> Sample Chapter: Introduction to Mathematical Modelling</a>
 <ul>
@@ -175,20 +174,17 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 5</span> Next Generation Matrix<a href="next-generation-matrix.html#next-generation-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="introduction-to-the-chapter-2" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Introduction to the Chapter<a href="next-generation-matrix.html#introduction-to-the-chapter-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This chapter describes in depth the use of a Next Generation Matrix (NGM). This tool is used to calculate the <span class="math inline">\(R_0\)</span> value <a href="introduction.html#def:R0">1.3</a>. Using the NGM achieves this this for multi-compartmental models, such as SEIR (Refer back to Chapter 2), by linearizing the system of differential equations around the Disease-Free Equilibrium (DFE) <a href="modelling-disease-dynamics-with-odes.html#def:DFE">3.3</a> and and dividing the flow <a href="modelling-disease-dynamics-with-odes.html#def:Flow">3.1</a> of disease into what causes new cases and what accounts for everything else that happens to an infected person.</p>
 </div>
-<div id="next-generation-matrix-ngm-method" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Next Generation Matrix (NGM) Method<a href="next-generation-matrix.html#next-generation-matrix-ngm-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Allows us to Calculate <span class="math inline">\(R_0\)</span> in compartmental models. Better with more compartments</p>
-</div>
-<div id="definining-the-parameters" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Definining the Parameters<a href="next-generation-matrix.html#definining-the-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="definining-the-parameters" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Definining the Parameters<a href="next-generation-matrix.html#definining-the-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Beginning with X, the vector of disease compartments. For the SEIR model, <span class="math inline">\(X = \begin{bmatrix} E\\ I\\ \end{bmatrix}\)</span>. For the SIR model, <span class="math inline">\(X = \begin{bmatrix} I \end{bmatrix}\)</span></p>
 <p><span class="math display">\[\frac{dX}{dt} = F(x) - V(x)\]</span></p>
 <p><span class="math inline">\(F(x)\)</span> is a vector of the terms that lead to new infections</p>
 <p><span class="math inline">\(V(x) = V^- (x) -V^+ (x)\)</span> where <span class="math inline">\(V^- (x)\)</span> and <span class="math inline">\(-V^+ (x)\)</span> contain all other outputs and inputs, respectively, for each disease compartment</p>
 </div>
-<div id="solving-seir-model-with-ngm" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Solving SEIR Model with NGM<a href="next-generation-matrix.html#solving-seir-model-with-ngm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="solving-seir-model-with-ngm" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Solving SEIR Model with NGM<a href="next-generation-matrix.html#solving-seir-model-with-ngm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recall: that for the SEIR model the disease compartments are E and I</p>
 <p><span class="math inline">\(\dot{X} = \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix}\)</span></p>
 <p>Recall from Ch __:</p>
@@ -290,8 +286,8 @@ det \left( \begin{bmatrix}
 <p>Let <span class="math inline">\(- \lambda \left( \frac{\beta}{\gamma} - \lambda \right) = 0\)</span>.</p>
 <p>So <span class="math inline">\(\lambda = 0\)</span> and <span class="math inline">\(\lambda = \frac{\beta}{\gamma}\)</span>. The latter is the largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{\gamma}\)</span>.</p>
 </div>
-<div id="solving-the-seir-model-with-birth-and-death" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Solving the SEIR Model with Birth and Death<a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="solving-the-seir-model-with-birth-and-death" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Solving the SEIR Model with Birth and Death<a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>

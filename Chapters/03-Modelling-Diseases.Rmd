@@ -44,9 +44,9 @@ knitr::include_graphics("Images/Compartmental Diagrams/SI.png")
 
 **Defining Parameters**:
 
-**S** : Proportion of population that is susceptible.
+**S** : Proportion of population that is susceptible \@ref(def:Susceptible).
 
-**I** : Proportion of population that is infected.
+**I** : Proportion of population that is infected \@ref(def:Infected).
 
 **N** : Total Population
 
@@ -66,7 +66,11 @@ Now that each term of the equation is defined, we can start to understand the in
 
 -   Negative (-): Represents Outlfow; Removing individuals from a compartment
 
-Compartmental models are designed specifically such that the people within move from one compartment to another. This movement is called flow. Below are equations representing the net flow of individuals into and out of Susceptible and Infectious compartments, respectively. This flow is represented by the differential in both equations.
+::: {.definition name="Flow" #Flow}
+Flow is the movement of people move from one compartment to another.
+:::
+
+Compartmental models \@ref(def:Compartmental) are designed specifically to illustrate flow. Below are equations representing the net flow of individuals into and out of Susceptible \@ref(def:Susceptible) and Infectious \@ref(def:Infected) compartments, respectively. This flow is represented by the differential in both equations.
 
 $$
 \frac {dS}{dt} = -\beta SI + \gamma I
@@ -82,9 +86,9 @@ Understanding the parameters and signage then, one can understand the equations 
 
 ## Solving the SI Model {#sec:SI_model}
 
-In the SIS model, it is assumed that an individual is either susceptible or infected and this means once an individual has recovered from the infection they return to the susceptible group. In this work through, it is assumed that the population stays roughly constant.
+In the SIS model, it is assumed that an individual is either susceptible \@ref(def:Susceptible) or infected \@ref(def:Infected) and this means once an individual has recovered from the infection they return to the susceptible group. In this work through, it is assumed that the population stays roughly constant.
 
-The goal of solving the SIS model is to understand and predict the spread of an infectious disease within a population. Analyzing differential equations can help predict disease prevalence over time and determine whether a disease is endemic or not. In addition, the differential equations can also be used to identify the size of infected and susceptible populations at the stable endemic state. By solving the differential equations, $S(t)$ and $I(t)$ can be found and used to predict the size of the susceptible and infected compartments at different periods in time.
+The goal of solving the SIS model is to understand and predict the spread of an infectious disease within a population. Analyzing differential equations can help predict disease prevalence over time and determine whether a disease is endemic \@ref(def:Endemic) or not. In addition, the differential equations can also be used to identify the size of infected \@ref(def:Infected) and susceptible \@ref(def:Susceptible) populations at the stable endemic state. By solving the differential equations, $S(t)$ and $I(t)$ can be found and used to predict the size of the susceptible and infected compartments at different periods in time.
 
 These are the initial assumptions in equation format, showing that within the population, an individual can either be in the susceptible or infected compartment. Together both compartments make up the total population, $N$. 
 $$
@@ -260,7 +264,9 @@ $$
 
 However, unlike the SI model, the SIR model’s system of equations has no closed form solution. Instead, we can find the equilibrium for this system. This system is considered to be a **dynamical system**, and our analysis will be **qualitative**.
 
-**Equilibrium:** the rate of individuals entering a compartment is equal to the rate of individuals leaving a compartment.
+::: {.definition name="Equilibrium" #Equilibrium} 
+The rate of individuals entering a compartment is equal to the rate of individuals leaving a compartment.
+:::
 
 Thus, we can set each equation in our system of equations to 0.
 
@@ -274,9 +280,16 @@ Thus, we can set each equation in our system of equations to 0.
 
 There are two types of equilibrium in epidemiology:
 
-1.  **Disease-Free Equilibrium (DFE):** there are no infected in the population, so I\* = 0 in our SIR model
+1.  
 
-2.  **Endemic Equilibrium (EE):** infected persist indefinitely, so I\* \> 0 in our SIR model (notation: asterix indicates equilibrium solution)
+:::{.definition name="Disease Free Equilibria (DFE)" #DFE} 
+There are no infected in the population, so I\* = 0 in our SIR model
+:::
+
+2.  
+:::{.definition name="Endemic Equilibria (EE)" #EE} 
+Infected \@ref(def:Infected) persist indefinitely, so I\* \> 0 in our SIR model (notation: asterix indicates equilibrium \@ref(def:Equilibrium) solution)
+:::
 
 **First we solve for DFE.** From equation 2 we get: $I = 0$, or $S=\frac{\gamma}{\beta}$
 
@@ -290,15 +303,15 @@ Solving for $R$ from these 2 equations, we get $R^* = 0$
 
 Since $R = 1 - S - I$, $R^* = 0$, and $I = 0$, then $S^* = 1$ (note: another way to write $S^*$ is $\overline S$). We use the asterisk or bar to indicate equilibrium notation.
 
-Therefore, at Equilibrium:
+Therefore, at Equilibrium \@ref(def:Equilibrium):
 
 $$
 (S^*, I^*) = (1, 0)
 $$
 
-Thus, at DFE, the entire population is susceptible to infection and no EE exists because the infectious population returns to zero once the endemic is over.
+Thus, at DFE \@ref(def:DFE), the entire population is susceptible to infection and no EE \@ref(def:EE) exists because the infectious population returns to zero once the endemic is over.
 
-**Now, we solve for EE**. Plugging $S = \frac{\gamma}{\beta}$ into the system of equations (equation 3):
+**Now, we solve for EE \@ref(def:EE)**. Plugging $S = \frac{\gamma}{\beta}$ into the system of equations (equation 3):
 
 $$
 \begin{align*}
@@ -314,7 +327,7 @@ $$
 I^* =  \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} 
 $$
 
-Endemic equilibrium (EE) is:
+Endemic equilibrium (EE) \@ref(def:EE) is:
 
 $$
 (S^*, I^*) = \left( \frac{\gamma}{\beta}, \frac{\alpha (1- \gamma/\beta)}{\gamma + \alpha} \right)
@@ -322,11 +335,11 @@ $$
 
 where $\gamma < \beta$.
 
-EE requires a continuous supply of susceptible ("susceptible replacement"), for instance, by birth, or reduced immunity to the disease. Otherwise, I will approach 0 after the endemic.
+EE \@ref(def:EE) requires a continuous supply of susceptible \@ref(def:Susceptible) ("susceptible replacement"), for instance, by birth, or reduced immunity to the disease. Otherwise, I will approach 0 after the endemic.
 
-Also, since $\gamma < \beta$, we get $R_0 = \frac{\beta}{\gamma} > 1$. The **basic reproduction number (**$R_0$) is a threshold quantity that indicates the occurrence of an epidemic. $R_0$ can also be thought of as the number of secondary infections caused by a single infected individual in a population of susceptible individuals (e.g. at initial time $t = 0$). Note that individual variation is excluded in the definition.
+Also, since $\gamma < \beta$, we get $R_0 = \frac{\beta}{\gamma} > 1$. The **basic reproduction number (**$R_0$) \@ref(def:R0) is a threshold quantity that indicates the occurrence of an epidemic. $R_0$ can also be thought of as the number of secondary infections caused by a single infected \@ref(def:Infected) individual in a population of susceptible \@ref(def:Susceptible) individuals (e.g. at initial time $t = 0$). Note that individual variation is excluded in the definition.
 
-Specific values of $R_0$ can be used to analyze the stability of equilibrium. This will be discussed in further detail in Chapter 4, but more generally for now:
+Specific values of $R_0$ \@ref(def:R0) can be used to analyze the stability of equilibrium \@ref(def:Equilibrium). This will be discussed in further detail in Chapter 4, but more generally for now:
 
 -   **If** $R_0 < 1$: DFE is stable, the infection dies out (i.e. when infected, an individual infects less than one person on average, then the disease dies out)
 
@@ -338,15 +351,19 @@ Specific values of $R_0$ can be used to analyze the stability of equilibrium. Th
 
 While the basic reproduction number ($R_0$) represents the average number of secondary infections generated by a single infected individual in a completely susceptible population, this assumption rarely holds true in real-world outbreaks. Over time, as immunity builds and interventions are introduced, the actual transmission potential changes. To capture this dynamic, epidemiologists use the effective reproduction number, $R_e$ (or $R_t$ measured at a time t).
 
+::: {.definition name="Effective Reproduction Number" #Effective}
 $R_e$ quantifies the number of secondary cases expected per infection at time $t$, accounting for the current level of susceptibility and external factors such as vaccination, behavioral changes, or public health measures. 
+:::
+
+Going forward this will be our more detailed definition of $R_e$.
 It is related to $R_0$ through the proportion of the population that remains susceptible:
 
 $$
 R(t) = \frac{S(t)}{S(0)} R_0
 $$
-This equation shows the temporal decline in the epidemic due to depletion of susceptible individuals.
+This equation shows the temporal decline in the epidemic \@ref(def:Epidemic) due to depletion of susceptible \@ref(def:Susceptible) individuals.
 
-Monitoring $R_e$ over time provides a statistical framework for assessing how disease transmission responds to interventions or natural immunity accumulation. In this sense, $R_e$ serves as a bridge between theoretical epidemic models and real-time epidemiological data, allowing researchers to evaluate and predict time-dependent trends in disease spread. [@nishiura2009]
+Monitoring $R_e$ \@ref(def:Effective) over time provides a statistical framework for assessing how disease transmission responds to interventions or natural immunity accumulation. In this sense, $R_e$ serves as a bridge between theoretical epidemic models and real-time epidemiological data, allowing researchers to evaluate and predict time-dependent trends in disease spread. [@nishiura2009]
 
 ## Interactive Dashboard
 
