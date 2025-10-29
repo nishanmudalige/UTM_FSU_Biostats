@@ -11,4 +11,5 @@ rmd_files:
   - "Chapters/02-Introduction-to-Mathematical-Models-in-Epidemiology.Rmd"
   - "Chapters/03-Modelling-Diseases.Rmd"
   - "Chapters/04-Compartmental-Model-Solutions.Rmd"
+  - "Chapters/05-Next-Generation-Matrix.Rmd"
   - "Chapters/sample-code-for-reference.Rmd"
