@@ -26,10 +26,8 @@ $$S+I+R=1 \Rightarrow R=1-S-I$$
 Now, we have our 3 system of equations, ($\dot{S}, \dot{I}, \dot{R}$), in which $\dot{S}, \dot{I}$ represent Functions F and G respectively. By using the equation above we are able substitute R, and reduce our system from 3 to two equations, ($\dot{S}, \dot{I}$)
 $$
 \begin{align*}
-\dot{S} &= F(S,I) \\
-\dot{I} &= G(S,I) \\
-\dot{S} &= -\beta SI + \alpha R \\
-\dot{I} &= \beta SI - \gamma I \\
+\dot{S} &= F(S,I) = -\beta SI + \alpha R \\
+\dot{I} &= G(S,I) = \beta SI - \gamma I \\
 \dot{R} &= \gamma I - \alpha R \\
 \end{align*}$$
 
