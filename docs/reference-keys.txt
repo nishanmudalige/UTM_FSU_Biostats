@@ -32,6 +32,12 @@ case-1-positive-roots-with-no-sign-changes
 case-2-negative-roots-with-multiple-sign-changes
 cases-with-one-sign-change
 chapter-4-notes-linear-algebra-notes
+next-generation-matrix
+introduction-to-the-chapter-2
+next-generation-matrix-ngm-method
+definining-the-parameters
+solving-seir-model-with-ngm
+solving-the-seir-model-with-birth-and-death
 sample-chapter-introduction-to-mathematical-modelling
 sec:foundations
 exponential-growth-and-decay

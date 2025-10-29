@@ -1,0 +1,153 @@
+# Next Generation Matrix 
+
+## Introduction to the Chapter
+
+
+
+## Next Generation Matrix (NGM) Method
+
+Allows us to Calculate $R_0$ in compartmental models. Better with more compartments
+
+## Definining the Parameters
+
+Beginning with X, the vector of disease compartments. For the SEIR model, $X = \begin{bmatrix} E\\ I\\ \end{bmatrix}$. For the SIR model, $X = \begin{bmatrix} I \end{bmatrix}$
+
+$$\frac{dX}{dt} = F(x) - V(x)$$
+
+$F(x)$ is a vector of the terms that lead to new infections
+
+$V(x) = V^- (x) -V^+ (x)$ where $V^- (x)$ and $-V^+ (x)$ contain all other outputs and inputs, respectively, for each disease compartment
+
+## Solving SEIR Model with NGM
+
+Recall: that for the SEIR model the disease compartments are E and I 
+
+$\dot{X} = \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix}$ 
+
+Recall from Ch __: 
+
+$$
+\begin{align*}
+\ \dot{S} &= - \beta SI \\ 
+\ \dot{E} &= \beta SI - \delta E \\
+\ \dot{I} &= \delta E - \gamma I \\
+\ \dot{R} &= \gamma I \\ 
+\end{align*}
+$$
+
+Insert an tikz image of SEIR compartments here
+
+For the SIR model, $X = \begin{bmatrix} I \end{bmatrix}$
+
+
+$$
+\begin{align*}
+\ \dot{X} &= \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix} \\
+\ \dot{X} &= \begin{bmatrix} \beta SI - \delta E \\ \delta E - \gamma I \\ \end{bmatrix} \\
+\ \dot{X} &= \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix} - \left( \begin{bmatrix} \delta E \\ \gamma I \\ \end{bmatrix} - \begin{bmatrix} 0 \\ \delta E \\ \end{bmatrix} \right) \\
+\ \dot{X} &= F(x) - ( V^- (x) -V^+ (x) ) \\
+\end{align*}
+$$
+
+Note that the 0 in $F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix}$ exists because $F$ only considers brand new infected (the flow from $S \rightarrow E$ and not $S \rightarrow I$). I.e. infected, not necessarily infectious. 
+
+We separate the equation into components to assist us in our $R_0$ calculations
+
+For further simplicity, let:  
+$$
+F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix} 
+$$
+
+Also let:  
+$$
+V(x) = \begin{bmatrix} \delta E \\ \gamma I - \delta E \\ \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix} 
+$$
+
+Find the Jacobians of F(x) and V(x) at the disease free equilibrium (DFE): 
+
+Let the Jacobian of F(x) be **F**. 
+
+$$
+\boldsymbol{F} = J_F (x) = \begin{bmatrix} 
+\frac{\partial F_1}{\partial E} & \frac{\partial F_1}{\partial I} \\
+\frac{\partial F_2}{\partial E} & \frac{\partial F_2}{\partial I} \\
+\end{bmatrix}
+= \begin{bmatrix} 
+0 & \beta S \\
+0 & 0 \\
+\end{bmatrix}
+$$
+
+At DFE, $S = 1$ so:
+
+$$
+J_F (x) 
+= \begin{bmatrix} 
+0 & \beta \\
+0 & 0 \\
+\end{bmatrix}
+$$
+
+Let the Jacobian of V(x) be **V**. 
+
+$$
+\boldsymbol{V} = J_V (x) = \begin{bmatrix} 
+\frac{\partial V_1}{\partial E} & \frac{\partial V_1}{\partial I} \\
+\frac{\partial V_2}{\partial E} & \frac{\partial V_2}{\partial I} \\
+\end{bmatrix}
+= \begin{bmatrix} 
+\delta & 0 \\
+-\delta & \gamma \\
+\end{bmatrix}
+$$
+
+Another way to think about it: $\dot{X} = (f-v) \begin{bmatrix} E \\ I \end{bmatrix} = (f-v)X$
+
+Now find the NGM. 
+
+$NGM = \boldsymbol{F} \boldsymbol{V}^{-1}$
+
+The NGM for this is 
+$$
+\boldsymbol{F} = \begin{bmatrix} 
+0 & \beta \\
+0 & 0 \\
+\end{bmatrix}
+$$
+
+and by the rule: for matrix $M = \begin{bmatrix} a & b \\ c & d \\ \end{bmatrix}$ the inverse $M^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ c & a \\ \end{bmatrix}$ 
+
+Then for $\boldsymbol{V} ^{-1}$ we get 
+$$
+\boldsymbol{V} ^{-1} = \frac{1}{\delta \gamma} \begin{bmatrix} 
+\gamma & 0 \\
+\delta & \delta \\
+\end{bmatrix}
+$$
+
+$$
+\begin{align*}
+\ \boldsymbol{F} \boldsymbol{V} ^{-1} &= \begin{bmatrix} 0 & \beta \\ 0 & 0 \\ \end{bmatrix}
+\frac{1}{\delta \gamma} 
+\begin{bmatrix} \gamma & 0 \\ \delta & \delta \\ \end{bmatrix} \\
+\ &= \begin{bmatrix} 0 & \beta \\ 0 & 0 \\ \end{bmatrix}
+\begin{bmatrix} \frac{1}{\delta} & 0 \\ \frac{1}{\gamma} & \frac{1}{\gamma} \\ \end{bmatrix} \\
+\ &= \begin{bmatrix} \frac{\beta}{\gamma} & \frac{\beta}{\gamma} \\ 0 & 0 \\ \end{bmatrix} \\
+\end{align*}
+$$
+
+$R_0$ is the spectral radius of $\ \boldsymbol{F} \boldsymbol{V} ^{-1}$ (i.e. the largest eigenvalue)
+
+$$
+det \left( \begin{bmatrix} 
+\frac{\beta}{\gamma} - \lambda & \frac{\beta}{\gamma} \\
+0 & - \lambda \\
+\end{bmatrix} \right)
+= - \lambda \left( \frac{\beta}{\gamma} - \lambda \right)
+$$
+
+Let $- \lambda \left( \frac{\beta}{\gamma} - \lambda \right) = 0$. 
+
+So $\lambda = 0$ and $\lambda = \frac{\beta}{\gamma}$. The latter is the largest eigenvalue, so $R_0 = \lambda = \frac{\beta}{\gamma}$. 
+
+## Solving the SEIR Model with Birth and Death
