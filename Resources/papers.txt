@@ -1,0 +1,17 @@
+Brauer, Fred. 2017. “Mathematical Epidemiology: Past, Present, and Future.” Infectious Disease Modelling 2(2):113–27. doi:10.1016/j.idm.2017.02.001.
+ 
+Brinks, Ralph, and Annika Hoyer. 2024. “Approximation of the Infection-Age-Structured SIR Model by the Conventional SIR Model of Infectious Disease Epidemiology.” Frontiers in Epidemiology 4. doi:10.3389/fepid.2024.1429034.
+ 
+Daley, Daryl J., and Randall J. Swift. 2011. “The Size of a Major Epidemic of a Vector-Borne Disease.” Journal of Applied Probability 48(A):235–47. doi:10.1239/jap/1318940468.
+ 
+Kalachev, Leonid, Erin L. Landguth, and Jon Graham. 2023. “Revisiting Classical SIR Modelling in Light of the COVID-19 Pandemic.” Infectious Disease Modelling 8(1):72–83. doi:10.1016/j.idm.2022.12.002.
+ 
+Momani, Shaher, Iqbal M. Batiha, Issam Bendib, Abeer Al-Nana, Adel Ouannas, and Mohamed Dalah. 2025. “On Finite-Time Stability of Some COVID-19 Models Using Fractional Discrete Calculus.” Computer Methods and Programs in Biomedicine Update 7:100188. doi:10.1016/j.cmpbup.2025.100188.
+ 
+Osthus, Dave, Kyle S. Hickmann, Petruţa C. Caragea, Dave Higdon, and Sara Y. Del Valle. 2017. “Forecasting Seasonal Influenza with a State-Space Sir Model.” The Annals of Applied Statistics 11(1):202–24.
+ 
+Pesaran, M. Hashem, and Cynthia Fan Yang. 2022. “Matching Theory and Evidence on Covid-19 Using a Stochastic Network SIR Model.” Journal of Applied Econometrics 37(6):1204–29. doi:10.1002/jae.2904.
+ 
+Verma, Lalchand, Ramakanta Meher, Omid Nikan, and Akeel A. Al-Saedi. 2025. “Numerical Study on Fractional Order Nonlinear SIR-SI Model for Dengue Fever Epidemics.” Scientific Reports 15(1). doi:10.1038/s41598-025-16599-w.
+ 
+Wonham, Marjorie J., Tomás De-Camino-Beck, and Mark A. Lewis. 2004. “An Epidemiological Model for West Nile Virus: Invasion Analysis and Control Applications.” Proceedings of the Royal Society B: Biological Sciences 271(1538):501–7. doi:10.1098/rspb.2003.2608.
