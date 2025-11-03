@@ -174,14 +174,24 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 5</span> Next Generation Matrix<a href="next-generation-matrix.html#next-generation-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="introduction-to-the-chapter-2" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Introduction to the Chapter<a href="next-generation-matrix.html#introduction-to-the-chapter-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This chapter describes in depth the use of a Next Generation Matrix (NGM). This tool is used to calculate the <span class="math inline">\(R_0\)</span> value <a href="introduction.html#def:R0">1.3</a>. Using the NGM achieves this this for multi-compartmental models, such as SEIR (Refer back to Chapter 2), by linearizing the system of differential equations around the Disease-Free Equilibrium (DFE) <a href="modelling-disease-dynamics-with-odes.html#def:DFE">3.3</a> and and dividing the flow <a href="modelling-disease-dynamics-with-odes.html#def:Flow">3.1</a> of disease into what causes new cases and what accounts for everything else that happens to an infected person.</p>
+<p>This chapter describes in depth the use of a Next Generation Matrix
+(NGM). This tool is used to calculate the <span class="math inline">\(R_0\)</span> value <a href="introduction.html#def:R0">1.3</a>.
+Using the NGM achieves this this for multi-compartmental models, such as
+SEIR (Refer back to Chapter 2), by linearizing the system of
+differential equations around the Disease-Free Equilibrium (DFE)
+<a href="modelling-disease-dynamics-with-odes.html#def:DFE">3.3</a> and and dividing the flow <a href="modelling-disease-dynamics-with-odes.html#def:Flow">3.1</a> of disease into
+what causes new cases and what accounts for everything else that happens
+to an infected person.</p>
 </div>
 <div id="definining-the-parameters" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Definining the Parameters<a href="next-generation-matrix.html#definining-the-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Beginning with X, the vector of disease compartments. For the SEIR model, <span class="math inline">\(X = \begin{bmatrix} E\\ I\\ \end{bmatrix}\)</span>. For the SIR model, <span class="math inline">\(X = \begin{bmatrix} I \end{bmatrix}\)</span></p>
+<p>Beginning with X, the vector of disease compartments. For the SEIR
+model, <span class="math inline">\(X = \begin{bmatrix} E\\ I\\ \end{bmatrix}\)</span>. For the SIR model,
+<span class="math inline">\(X = \begin{bmatrix} I \end{bmatrix}\)</span></p>
 <p><span class="math display">\[\frac{dX}{dt} = F(x) - V(x)\]</span></p>
 <p><span class="math inline">\(F(x)\)</span> is a vector of the terms that lead to new infections</p>
-<p><span class="math inline">\(V(x) = V^- (x) -V^+ (x)\)</span> where <span class="math inline">\(V^- (x)\)</span> and <span class="math inline">\(-V^+ (x)\)</span> contain all other outputs and inputs, respectively, for each disease compartment</p>
+<p><span class="math inline">\(V(x) = V^- (x) -V^+ (x)\)</span> where <span class="math inline">\(V^- (x)\)</span> and <span class="math inline">\(-V^+ (x)\)</span> contain all
+other outputs and inputs, respectively, for each disease compartment</p>
 </div>
 <div id="solving-seir-model-with-ngm" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Solving SEIR Model with NGM<a href="next-generation-matrix.html#solving-seir-model-with-ngm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -206,8 +216,12 @@ div.csl-indent {
 \ \dot{X} &amp;= F(x) - ( V^- (x) -V^+ (x) ) \\
 \end{align*}
 \]</span></p>
-<p>Note that the 0 in <span class="math inline">\(F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix}\)</span> exists because <span class="math inline">\(F\)</span> only considers brand new infected (the flow from <span class="math inline">\(S \rightarrow E\)</span> and not <span class="math inline">\(S \rightarrow I\)</span>). I.e. infected, not necessarily infectious.</p>
-<p>We separate the equation into components to assist us in our <span class="math inline">\(R_0\)</span> calculations</p>
+<p>Note that the 0 in
+<span class="math inline">\(F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix}\)</span> exists because
+<span class="math inline">\(F\)</span> only considers brand new infected (the flow from <span class="math inline">\(S \rightarrow E\)</span>
+and not <span class="math inline">\(S \rightarrow I\)</span>). I.e. infected, not necessarily infectious.</p>
+<p>We separate the equation into components to assist us in our <span class="math inline">\(R_0\)</span>
+calculations</p>
 <p>For further simplicity, let:<br />
 <span class="math display">\[
 F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix}
@@ -216,7 +230,8 @@ F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix} = \begin{bmatrix} F_1 \\ F
 <span class="math display">\[
 V(x) = \begin{bmatrix} \delta E \\ \gamma I - \delta E \\ \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix}
 \]</span></p>
-<p>Find the Jacobians of F(x) and V(x) at the disease free equilibrium (DFE):</p>
+<p>Find the Jacobians of F(x) and V(x) at the disease free equilibrium
+(DFE):</p>
 <p>Let the Jacobian of F(x) be <strong>F</strong>.</p>
 <p><span class="math display">\[
 \boldsymbol{F} = J_F (x) = \begin{bmatrix}
@@ -247,19 +262,20 @@ J_F (x)
 -\delta &amp; \gamma \\
 \end{bmatrix}
 \]</span></p>
-<p>Another way to think about it: <span class="math inline">\(\dot{X} = (f-v) \begin{bmatrix} E \\ I \end{bmatrix} = (f-v)X\)</span></p>
+<p>Another way to think about it:
+<span class="math inline">\(\dot{X} = (f-v) \begin{bmatrix} E \\ I \end{bmatrix} = (f-v)X\)</span></p>
 <p>Now find the NGM.</p>
 <p><span class="math inline">\(NGM = \boldsymbol{F} \boldsymbol{V}^{-1}\)</span></p>
-<p>The NGM for this is
-<span class="math display">\[
+<p>The NGM for this is <span class="math display">\[
 \boldsymbol{F} = \begin{bmatrix}
 0 &amp; \beta \\
 0 &amp; 0 \\
 \end{bmatrix}
 \]</span></p>
-<p>and by the rule: for matrix <span class="math inline">\(M = \begin{bmatrix} a &amp; b \\ c &amp; d \\ \end{bmatrix}\)</span> the inverse <span class="math inline">\(M^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d &amp; -b \\ c &amp; a \\ \end{bmatrix}\)</span></p>
-<p>Then for <span class="math inline">\(\boldsymbol{V} ^{-1}\)</span> we get
-<span class="math display">\[
+<p>and by the rule: for matrix
+<span class="math inline">\(M = \begin{bmatrix} a &amp; b \\ c &amp; d \\ \end{bmatrix}\)</span> the inverse
+<span class="math inline">\(M^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d &amp; -b \\ c &amp; a \\ \end{bmatrix}\)</span></p>
+<p>Then for <span class="math inline">\(\boldsymbol{V} ^{-1}\)</span> we get <span class="math display">\[
 \boldsymbol{V} ^{-1} = \frac{1}{\delta \gamma} \begin{bmatrix}
 \gamma &amp; 0 \\
 \delta &amp; \delta \\
@@ -275,7 +291,8 @@ J_F (x)
 \ &amp;= \begin{bmatrix} \frac{\beta}{\gamma} &amp; \frac{\beta}{\gamma} \\ 0 &amp; 0 \\ \end{bmatrix} \\
 \end{align*}
 \]</span></p>
-<p><span class="math inline">\(R_0\)</span> is the spectral radius of <span class="math inline">\(\ \boldsymbol{F} \boldsymbol{V} ^{-1}\)</span> (i.e. the largest eigenvalue)</p>
+<p><span class="math inline">\(R_0\)</span> is the spectral radius of <span class="math inline">\(\ \boldsymbol{F} \boldsymbol{V} ^{-1}\)</span>
+(i.e. the largest eigenvalue)</p>
 <p><span class="math display">\[
 det \left( \begin{bmatrix}
 \frac{\beta}{\gamma} - \lambda &amp; \frac{\beta}{\gamma} \\
@@ -284,10 +301,75 @@ det \left( \begin{bmatrix}
 = - \lambda \left( \frac{\beta}{\gamma} - \lambda \right)
 \]</span></p>
 <p>Let <span class="math inline">\(- \lambda \left( \frac{\beta}{\gamma} - \lambda \right) = 0\)</span>.</p>
-<p>So <span class="math inline">\(\lambda = 0\)</span> and <span class="math inline">\(\lambda = \frac{\beta}{\gamma}\)</span>. The latter is the largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{\gamma}\)</span>.</p>
+<p>So <span class="math inline">\(\lambda = 0\)</span> and <span class="math inline">\(\lambda = \frac{\beta}{\gamma}\)</span>. The latter is the
+largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{\gamma}\)</span>.</p>
 </div>
 <div id="solving-the-seir-model-with-birth-and-death" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Solving the SEIR Model with Birth and Death<a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math display">\[S+E+I+R=N\]</span>
+<span class="math inline">\(\mu N\)</span> represents births in the system.</p>
+<p><span class="math inline">\(\mu\)</span> represents deaths.</p>
+<p>The four differential equations can then be constructed, however for the next generation model we only care about <span class="math inline">\(\dot{E}\)</span> and <span class="math inline">\(\dot{I}\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+\dot{S} &amp;= \mu N - \frac{\beta SI}{N} \\
+\dot{R} &amp;= \gamma I - \mu R \\
+
+\dot{E} &amp;= \frac{\beta SI}{N} - (\sigma + \mu)E \\
+\dot{I} &amp;= \sigma E - (\gamma + \mu)I
+\end{align*}\]</span></p>
+<p>Next Generation Model:
+<span class="math display">\[
+\begin{align*}
+\dot(x) &amp;= F(x) - V(x) \\
+&amp;= \begin{bmatrix}
+\frac{\beta SI}{N} \\
+0
+\end{bmatrix} -
+\begin{bmatrix}
+(\sigma + \mu)E \\
+(\gamma + \mu)I - \sigma E
+\end{bmatrix}
+\end{align*}
+\]</span></p>
+<p>The first matrix in the above equation shows F(x) and the second shows
+V(x). The Jacobian of <span class="math inline">\(F(x)\)</span> is
+<span class="math display">\[
+\begin{bmatrix}
+0 &amp; \frac{\beta S}{N} \\
+0 &amp; 0
+\end{bmatrix}
+\]</span>
+And since at the DFE S is equal to N,
+<span class="math display">\[
+\textbf{F} = \begin{bmatrix} 0 &amp;\beta \\0&amp;0 \end{bmatrix}
+\]</span>
+The Jacobian of <span class="math inline">\(V(x)\)</span> is
+<span class="math display">\[
+\textbf{V} = \begin{bmatrix} \sigma + \mu &amp; 0 \\ -\sigma &amp; \gamma + \mu \end{bmatrix}
+\]</span>
+Next gen matrix is
+<span class="math display">\[
+\begin{align*}
+FV^{-1} &amp;=
+\begin{bmatrix}
+0 &amp; \beta \\
+0 &amp; 0
+\end{bmatrix}
+\frac{1}{(\sigma + \mu)(\gamma + \mu)}
+\begin{bmatrix}
+\gamma + \mu &amp; 0 \\
+\sigma &amp; \sigma + \mu
+\end{bmatrix} \\
+&amp;=
+\begin{bmatrix}
+\frac{\beta \sigma}{(\sigma + \mu)(\gamma + \mu)} &amp; \frac{\beta}{\gamma + \mu} \\
+0 &amp; 0
+\end{bmatrix}
+\end{align*}
+\]</span></p>
+<p>The largest eigenvalue
+<span class="math inline">\(\frac{\beta \sigma}{(\sigma + \mu)(\gamma +\mu)} = R_0\)</span></p>
+<p>References: <span class="citation">[<a href="references.html#ref-blackwood2018">12</a>]</span></p>
 
 </div>
 </div>

@@ -1,25 +1,42 @@
-# Next Generation Matrix 
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Next Generation Matrix
 
 ## Introduction to the Chapter
-This chapter describes in depth the use of a Next Generation Matrix (NGM). This tool is used to calculate the $R_0$ value \@ref(def:R0). Using the NGM achieves this this for multi-compartmental models, such as SEIR (Refer back to Chapter 2), by linearizing the system of differential equations around the Disease-Free Equilibrium (DFE) \@ref(def:DFE) and and dividing the flow \@ref(def:Flow) of disease into what causes new cases and what accounts for everything else that happens to an infected person.
+
+This chapter describes in depth the use of a Next Generation Matrix
+(NGM). This tool is used to calculate the $R_0$ value \@ref(def:R0).
+Using the NGM achieves this this for multi-compartmental models, such as
+SEIR (Refer back to Chapter 2), by linearizing the system of
+differential equations around the Disease-Free Equilibrium (DFE)
+\@ref(def:DFE) and and dividing the flow \@ref(def:Flow) of disease into
+what causes new cases and what accounts for everything else that happens
+to an infected person.
 
 ## Definining the Parameters
 
-Beginning with X, the vector of disease compartments. For the SEIR model, $X = \begin{bmatrix} E\\ I\\ \end{bmatrix}$. For the SIR model, $X = \begin{bmatrix} I \end{bmatrix}$
+Beginning with X, the vector of disease compartments. For the SEIR
+model, $X = \begin{bmatrix} E\\ I\\ \end{bmatrix}$. For the SIR model,
+$X = \begin{bmatrix} I \end{bmatrix}$
 
 $$\frac{dX}{dt} = F(x) - V(x)$$
 
 $F(x)$ is a vector of the terms that lead to new infections
 
-$V(x) = V^- (x) -V^+ (x)$ where $V^- (x)$ and $-V^+ (x)$ contain all other outputs and inputs, respectively, for each disease compartment
+$V(x) = V^- (x) -V^+ (x)$ where $V^- (x)$ and $-V^+ (x)$ contain all
+other outputs and inputs, respectively, for each disease compartment
 
 ## Solving SEIR Model with NGM
 
-Recall: that for the SEIR model the disease compartments are E and I 
+Recall: that for the SEIR model the disease compartments are E and I
 
-$\dot{X} = \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix}$ 
+$\dot{X} = \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix}$
 
-Recall from Ch __: 
+Recall from Ch \_\_:
 
 $$
 \begin{align*}
@@ -34,7 +51,6 @@ Insert an tikz image of SEIR compartments here
 
 For the SIR model, $X = \begin{bmatrix} I \end{bmatrix}$
 
-
 $$
 \begin{align*}
 \ \dot{X} &= \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix} \\
@@ -44,23 +60,28 @@ $$
 \end{align*}
 $$
 
-Note that the 0 in $F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix}$ exists because $F$ only considers brand new infected (the flow from $S \rightarrow E$ and not $S \rightarrow I$). I.e. infected, not necessarily infectious. 
+Note that the 0 in
+$F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix}$ exists because
+$F$ only considers brand new infected (the flow from $S \rightarrow E$
+and not $S \rightarrow I$). I.e. infected, not necessarily infectious.
 
-We separate the equation into components to assist us in our $R_0$ calculations
+We separate the equation into components to assist us in our $R_0$
+calculations
 
-For further simplicity, let:  
+For further simplicity, let:\
 $$
 F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix} 
 $$
 
-Also let:  
+Also let:\
 $$
 V(x) = \begin{bmatrix} \delta E \\ \gamma I - \delta E \\ \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix} 
 $$
 
-Find the Jacobians of F(x) and V(x) at the disease free equilibrium (DFE): 
+Find the Jacobians of F(x) and V(x) at the disease free equilibrium
+(DFE):
 
-Let the Jacobian of F(x) be **F**. 
+Let the Jacobian of F(x) be **F**.
 
 $$
 \boldsymbol{F} = J_F (x) = \begin{bmatrix} 
@@ -83,7 +104,7 @@ J_F (x)
 \end{bmatrix}
 $$
 
-Let the Jacobian of V(x) be **V**. 
+Let the Jacobian of V(x) be **V**.
 
 $$
 \boldsymbol{V} = J_V (x) = \begin{bmatrix} 
@@ -96,24 +117,25 @@ $$
 \end{bmatrix}
 $$
 
-Another way to think about it: $\dot{X} = (f-v) \begin{bmatrix} E \\ I \end{bmatrix} = (f-v)X$
+Another way to think about it:
+$\dot{X} = (f-v) \begin{bmatrix} E \\ I \end{bmatrix} = (f-v)X$
 
-Now find the NGM. 
+Now find the NGM.
 
 $NGM = \boldsymbol{F} \boldsymbol{V}^{-1}$
 
-The NGM for this is 
-$$
+The NGM for this is $$
 \boldsymbol{F} = \begin{bmatrix} 
 0 & \beta \\
 0 & 0 \\
 \end{bmatrix}
 $$
 
-and by the rule: for matrix $M = \begin{bmatrix} a & b \\ c & d \\ \end{bmatrix}$ the inverse $M^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ c & a \\ \end{bmatrix}$ 
+and by the rule: for matrix
+$M = \begin{bmatrix} a & b \\ c & d \\ \end{bmatrix}$ the inverse
+$M^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ c & a \\ \end{bmatrix}$
 
-Then for $\boldsymbol{V} ^{-1}$ we get 
-$$
+Then for $\boldsymbol{V} ^{-1}$ we get $$
 \boldsymbol{V} ^{-1} = \frac{1}{\delta \gamma} \begin{bmatrix} 
 \gamma & 0 \\
 \delta & \delta \\
@@ -131,7 +153,8 @@ $$
 \end{align*}
 $$
 
-$R_0$ is the spectral radius of $\ \boldsymbol{F} \boldsymbol{V} ^{-1}$ (i.e. the largest eigenvalue)
+$R_0$ is the spectral radius of $\ \boldsymbol{F} \boldsymbol{V} ^{-1}$
+(i.e. the largest eigenvalue)
 
 $$
 det \left( \begin{bmatrix} 
@@ -141,8 +164,85 @@ det \left( \begin{bmatrix}
 = - \lambda \left( \frac{\beta}{\gamma} - \lambda \right)
 $$
 
-Let $- \lambda \left( \frac{\beta}{\gamma} - \lambda \right) = 0$. 
+Let $- \lambda \left( \frac{\beta}{\gamma} - \lambda \right) = 0$.
 
-So $\lambda = 0$ and $\lambda = \frac{\beta}{\gamma}$. The latter is the largest eigenvalue, so $R_0 = \lambda = \frac{\beta}{\gamma}$. 
+So $\lambda = 0$ and $\lambda = \frac{\beta}{\gamma}$. The latter is the
+largest eigenvalue, so $R_0 = \lambda = \frac{\beta}{\gamma}$.
 
 ## Solving the SEIR Model with Birth and Death
+
+$$S+E+I+R=N$$
+$\mu N$ represents births in the system. 
+
+$\mu$ represents deaths.  
+
+The four differential equations can then be constructed, however for the next generation model we only care about $\dot{E}$ and $\dot{I}$.
+
+
+
+\begin{align*}
+\dot{S} &= \mu N - \frac{\beta SI}{N} \\
+\dot{R} &= \gamma I - \mu R \\
+
+\dot{E} &= \frac{\beta SI}{N} - (\sigma + \mu)E \\
+\dot{I} &= \sigma E - (\gamma + \mu)I
+\end{align*} 
+
+
+
+Next Generation Model: 
+$$
+\begin{align*}
+\dot(x) &= F(x) - V(x) \\
+&= \begin{bmatrix} 
+\frac{\beta SI}{N} \\ 
+0 
+\end{bmatrix} - 
+\begin{bmatrix}
+(\sigma + \mu)E \\
+(\gamma + \mu)I - \sigma E
+\end{bmatrix}
+\end{align*}
+$$
+
+The first matrix in the above equation shows F(x) and the second shows
+V(x). The Jacobian of $F(x)$ is 
+$$
+\begin{bmatrix}
+0 & \frac{\beta S}{N} \\
+0 & 0
+\end{bmatrix}
+$$ 
+And since at the DFE S is equal to N, 
+$$
+\textbf{F} = \begin{bmatrix} 0 &\beta \\0&0 \end{bmatrix}
+$$
+The Jacobian of $V(x)$ is 
+$$
+\textbf{V} = \begin{bmatrix} \sigma + \mu & 0 \\ -\sigma & \gamma + \mu \end{bmatrix}
+$$ 
+Next gen matrix is 
+$$
+\begin{align*}
+FV^{-1} &= 
+\begin{bmatrix}
+0 & \beta \\
+0 & 0
+\end{bmatrix}
+\frac{1}{(\sigma + \mu)(\gamma + \mu)}
+\begin{bmatrix}
+\gamma + \mu & 0 \\
+\sigma & \sigma + \mu
+\end{bmatrix} \\
+&= 
+\begin{bmatrix}
+\frac{\beta \sigma}{(\sigma + \mu)(\gamma + \mu)} & \frac{\beta}{\gamma + \mu} \\
+0 & 0
+\end{bmatrix}
+\end{align*}
+$$
+
+The largest eigenvalue
+$\frac{\beta \sigma}{(\sigma + \mu)(\gamma +\mu)} = R_0$
+
+References: [@blackwood2018]
