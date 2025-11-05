@@ -15,7 +15,8 @@ SEIR (Refer back to Chapter 2), by linearizing the system of
 differential equations around the Disease-Free Equilibrium (DFE)
 \@ref(def:DFE) and and dividing the flow \@ref(def:Flow) of disease into
 what causes new cases and what accounts for everything else that happens
-to an infected person.
+to an infected person. It is also important to mention that these tools are
+not limited to specific models and can be used for a variety of models.
 
 ## Definining the Parameters
 
@@ -29,6 +30,31 @@ $F(x)$ is a vector of the terms that lead to new infections
 
 $V(x) = V^- (x) -V^+ (x)$ where $V^- (x)$ and $-V^+ (x)$ contain all
 other outputs and inputs, respectively, for each disease compartment
+
+### Defining the Disease Free Equilibrium (DFE)
+
+The Disease Free Equilibrium exists when all infected compartments (I and E), are set to 0. i.e. E=0 and I=0.
+
+$$
+\begin{align*}
+\ \dot{S} &= - \beta SI = 0\\ 
+\ \dot{E} &= \beta SI - \delta E = 0 \\
+\ \dot{I} &= \delta E - \gamma I = 0\\
+\ \dot{R} &= \gamma I = 0\\ 
+\end{align*}
+$$
+At the DFE:
+
+- $\dot{S}$ is true when I=0
+- $\dot{E}$ is true when I=0 and E=0
+- $\dot{I}$ is true when E=0 and I=0
+- $\dot{R}$ is true when I=0
+
+Since there are no infections: $E=I=R=0$
+This means that for $N=S+I+E+R$, $N=S$ due to our earlier statements
+So at the DFE for the (S,E,I,R) = (N,0,0,0)
+
+This is important for understanding later subsitutions in the Chapter.
 
 ## Solving SEIR Model with NGM
 
@@ -94,7 +120,12 @@ $$
 \end{bmatrix}
 $$
 
-At DFE, $S = 1$ so:
+At DFE, $S = 1$
+
+- This is found by our earlier definition of the DFE.
+  - At the DFE for (S,E,I,R) = (N,0,0,0)
+  - Since Population $"N"=1$ and $S=N$, then $S=1$
+- So after subsituting $S=1$:
 
 $$
 J_F (x) 
@@ -133,7 +164,7 @@ $$
 
 and by the rule: for matrix
 $M = \begin{bmatrix} a & b \\ c & d \\ \end{bmatrix}$ the inverse
-$M^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ c & a \\ \end{bmatrix}$
+$M^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ -c & a \\ \end{bmatrix}$
 
 Then for $\boldsymbol{V} ^{-1}$ we get $$
 \boldsymbol{V} ^{-1} = \frac{1}{\delta \gamma} \begin{bmatrix} 

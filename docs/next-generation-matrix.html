@@ -142,7 +142,10 @@ div.csl-indent {
 <li class="chapter" data-level="5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html"><i class="fa fa-check"></i><b>5</b> Next Generation Matrix</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#introduction-to-the-chapter-2"><i class="fa fa-check"></i><b>5.1</b> Introduction to the Chapter</a></li>
-<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#definining-the-parameters"><i class="fa fa-check"></i><b>5.2</b> Definining the Parameters</a></li>
+<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#definining-the-parameters"><i class="fa fa-check"></i><b>5.2</b> Definining the Parameters</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe"><i class="fa fa-check"></i><b>5.2.1</b> Defining the Disease Free Equilibrium (DFE)</a></li>
+</ul></li>
 <li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-seir-model-with-ngm"><i class="fa fa-check"></i><b>5.3</b> Solving SEIR Model with NGM</a></li>
 <li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.4</b> Solving the SEIR Model with Birth and Death</a></li>
 </ul></li>
@@ -181,7 +184,8 @@ SEIR (Refer back to Chapter 2), by linearizing the system of
 differential equations around the Disease-Free Equilibrium (DFE)
 <a href="modelling-disease-dynamics-with-odes.html#def:DFE">3.3</a> and and dividing the flow <a href="modelling-disease-dynamics-with-odes.html#def:Flow">3.1</a> of disease into
 what causes new cases and what accounts for everything else that happens
-to an infected person.</p>
+to an infected person. It is also important to mention that these tools are
+not limited to specific models and can be used for a variety of models.</p>
 </div>
 <div id="definining-the-parameters" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Definining the Parameters<a href="next-generation-matrix.html#definining-the-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -192,6 +196,29 @@ model, <span class="math inline">\(X = \begin{bmatrix} E\\ I\\ \end{bmatrix}\)</
 <p><span class="math inline">\(F(x)\)</span> is a vector of the terms that lead to new infections</p>
 <p><span class="math inline">\(V(x) = V^- (x) -V^+ (x)\)</span> where <span class="math inline">\(V^- (x)\)</span> and <span class="math inline">\(-V^+ (x)\)</span> contain all
 other outputs and inputs, respectively, for each disease compartment</p>
+<div id="defining-the-disease-free-equilibrium-dfe" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Defining the Disease Free Equilibrium (DFE)<a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Disease Free Equilibrium exists when all infected compartments (I and E), are set to 0. i.e. E=0 and I=0.</p>
+<p><span class="math display">\[
+\begin{align*}
+\ \dot{S} &amp;= - \beta SI = 0\\
+\ \dot{E} &amp;= \beta SI - \delta E = 0 \\
+\ \dot{I} &amp;= \delta E - \gamma I = 0\\
+\ \dot{R} &amp;= \gamma I = 0\\
+\end{align*}
+\]</span>
+At the DFE:</p>
+<ul>
+<li><span class="math inline">\(\dot{S}\)</span> is true when I=0</li>
+<li><span class="math inline">\(\dot{E}\)</span> is true when I=0 and E=0</li>
+<li><span class="math inline">\(\dot{I}\)</span> is true when E=0 and I=0</li>
+<li><span class="math inline">\(\dot{R}\)</span> is true when I=0</li>
+</ul>
+<p>Since there are no infections: <span class="math inline">\(E=I=R=0\)</span>
+This means that for <span class="math inline">\(N=S+I+E+R\)</span>, <span class="math inline">\(N=S\)</span> due to our earlier statements
+So at the DFE for the (S,E,I,R) = (N,0,0,0)</p>
+<p>This is important for understanding later subsitutions in the Chapter.</p>
+</div>
 </div>
 <div id="solving-seir-model-with-ngm" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Solving SEIR Model with NGM<a href="next-generation-matrix.html#solving-seir-model-with-ngm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -243,7 +270,15 @@ V(x) = \begin{bmatrix} \delta E \\ \gamma I - \delta E \\ \end{bmatrix} = \begin
 0 &amp; 0 \\
 \end{bmatrix}
 \]</span></p>
-<p>At DFE, <span class="math inline">\(S = 1\)</span> so:</p>
+<p>At DFE, <span class="math inline">\(S = 1\)</span></p>
+<ul>
+<li>This is found by our earlier definition of the DFE.
+<ul>
+<li>At the DFE for (S,E,I,R) = (N,0,0,0)</li>
+<li>Since Population <span class="math inline">\(&quot;N&quot;=1\)</span> and <span class="math inline">\(S=N\)</span>, then <span class="math inline">\(S=1\)</span></li>
+</ul></li>
+<li>So after subsituting <span class="math inline">\(S=1\)</span>:</li>
+</ul>
 <p><span class="math display">\[
 J_F (x)
 = \begin{bmatrix}
@@ -274,7 +309,7 @@ J_F (x)
 \]</span></p>
 <p>and by the rule: for matrix
 <span class="math inline">\(M = \begin{bmatrix} a &amp; b \\ c &amp; d \\ \end{bmatrix}\)</span> the inverse
-<span class="math inline">\(M^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d &amp; -b \\ c &amp; a \\ \end{bmatrix}\)</span></p>
+<span class="math inline">\(M^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d &amp; -b \\ -c &amp; a \\ \end{bmatrix}\)</span></p>
 <p>Then for <span class="math inline">\(\boldsymbol{V} ^{-1}\)</span> we get <span class="math display">\[
 \boldsymbol{V} ^{-1} = \frac{1}{\delta \gamma} \begin{bmatrix}
 \gamma &amp; 0 \\
