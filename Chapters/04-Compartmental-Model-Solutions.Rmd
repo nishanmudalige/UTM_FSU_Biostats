@@ -1,26 +1,24 @@
 # Equilibrium Stability Analysis 
 
 ## Introduction to the Chapter
-In Chapter 3.4, we briefly introduced equilibrium and $R_0$ \@ref(def:R0) for examining stability in equilibrium \@ref(def:Equilibrium). 
-
-Chapter 4 will expand on the topic of equilibrium \@ref(def:Equilibrium) through: 
+In Chapter 3.4, we briefly introduced equilibrium and $R_0$ (*Definition* \@ref(def:R0)) for examining stability in **equilibrium** (*Definition* \@ref(def:Equilibrium)). Chapter 4 will expand on the topic of equilibrium through **linear stability analysis**. 
 
 ::: {.definition name="Linear Stability Analysis" #LSA}
-This method provides the local stability of each equilibrium, as we approximate the solutions near the equilibrium. See Chapter 1.2 for the recommended linear algebra background.
+A method providing the local stability of each equilibrium, as we approximate the solutions near the equilibrium. The approach to linear stability analysis involves determining the eigenvalues of the Jacobian matrix at the given equilibrium. We can linearize the system of equations around the equilibria with the Jacobian matrix and find the characteristic polynomial whose roots are the eigenvalues. We will show that all the eigenvalues have negative real parts to maintain the local stability of the equilibrium. See Chapter 1.2 for the recommended linear algebra and calculus background. 
 :::
 
-The approach to linear stability analysis involves determining the eigenvalues of the Jacobian matrix at the given equilibrium (e.g. DFE, EE). We can linearize the system of equations around the equilibria with the Jacobian matrix and find the characteristic polynomial whose roots are the eigenvalues. We will show that all the eigenvalues have negative real parts to maintain the local stability of the equilibrium \@ref(def:Equilibrium). This chapter will explore both the direct calculation of eigenvalues, as well as some alternative / indirect methods of showing stability. 
+This chapter will explore both the direct calculation of eigenvalues, as well as some alternative / indirect methods of showing stability. 
 
 **References:** [@brauer2019] [@blackwood2018]
 
 
-## Solving with Jacobian Matrices and Eigenvalues
+## Linear Stability Analysis for the SIR Model 
 
-The stability of an equilibrium in a Compartmental Model \@ref(def:Compartmental) is determined by the signage of the eigenvalues ($\lambda$) of the Jacobian Matrix (J). In this Chapter, we will solve for the eigenvalues of the SI and SIR model.
+The stability of an equilibrium in a **compartmental model** (*Definition* \@ref(def:Compartmental)) is determined by the signage of the eigenvalues ($\lambda$) of the Jacobian Matrix (J). In this section, we will solve for the eigenvalues of the SIR model at the Disease Free Equilibrium (DFE) and the Endemic Equilibrium (EE).
 
-### SI and SIR Model
+### Direct Calculation 
 
-Starting with the SIR Model, we have 3 compartments, thus, 3 differential equations. The equation below represents the balance of each compartment, totaling to 1. We can rearrange this to substitute R out, as shown below.
+The SIR model has 3 compartments, and thus, 3 differential equations. The equation below represents the balance of each compartment, totaling to 1. We can rearrange this to substitute R out, as shown below.
 
 $$S+I+R=1 \Rightarrow R=1-S-I$$
 Now, we have our 3 system of equations, ($\dot{S}, \dot{I}, \dot{R}$), in which $\dot{S}, \dot{I}$ represent Functions F and G respectively. By using the equation above we are able substitute R, and reduce our system from 3 to two equations, ($\dot{S}, \dot{I}$)
@@ -39,73 +37,69 @@ Our substitution results in these 2 equations for $\dot{S}, \dot{I}$:
 \dot{I} &= \beta SI - \gamma I
 \end{align}
 
-The Jacobian Matrix (J) represent a matrix of the partial derivatives of the system of Functions F and G. As stated before, this is represented by $\dot{S}, \dot{I}$
+The Jacobian Matrix (J) represent a matrix of the partial derivatives of the system of Functions **F** and **G**. As stated before, this is represented by $\dot{S}, \dot{I}$
 
 $$J = \begin{bmatrix} \frac{dF}{dS} & \frac{dF}{dI} \\ \frac{dG}{dS} & \frac{dG}{dI}\end{bmatrix}$$
 By substituting our system of equations, where $S^*$ and $I^*$ are the values of S and I at our specific equilibrium point, the Jacobian Matrix is as follows:
 
 $$J = \begin{bmatrix}-\beta I^* - \alpha & -\beta S^*-\alpha \\ \beta I^* & \beta S^* - \gamma\end{bmatrix}$$
 
-### Disease Free Equilibria
+#### At Disease-Free Equilibrium
 
-The Disease-Free Equilibrium (DFE) \@ref(def:DFE) is the state in which the disease has been eradicated, resulting in the values for $I^*$ and $S^*$ below. It is important to note that this equation must retain the balance from our earlier equation ($S+I+R = 0$), so $R^* = O$.
+The **Disease-Free Equilibrium (DFE)** (*Definition* \@ref(def:DFE)) is the state in which the disease has been eradicated. Therefore, at DFE, $I^* = 0$ and $S^* = 1$. It is important to note that this equation must retain the balance from our earlier equation ($S+I+R = 0$), so $R^* = O$.
 
-- DFE: $$I^* = 0, S^* = 1$$
-
-We can substitute our values for $I^*$ and $S^*$ at the DFE into our Jacobian Matrix, shown before.
+We can substitute our values for $I^*$ and $S^*$ at the DFE into our Jacobian Matrix before, so we get:
 
 $$J_{DFE} = \begin{bmatrix}-\alpha & -\beta-\alpha \\ 0 & \beta-\gamma\end{bmatrix}$$
-Next, we take the determinant of the Jacobian Matrix. As shown below, to take the determinant of the Jacobian Matrix, we take our resulting Jacobian Matrix and subtract it by $\lambda$ multiplied by an Identity Matrix with the same dimensions as our Jacobian Matrix.
 
-- Defining an Identity Matrix and the Procedure to Take the Determinant
+Next, we **solve for the eigenvalues** of the Jacobian Matrix by the formula $det(J-\lambda I_n) = 0$, where $det$ is the determinant, $J$ is the Jacobian Matrix, $\lambda$ is the eigenvalue, and $I_n$ is the identity matrix with $n$ dimensions.
 
-$det(J_{DFE} - \lambda I) = 0$, where I = Identity Matrix, and n represents the dimension of the matrix; in this case, n=2:
+Adding in the $J$ we solved for above and the identity matrix $I_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix}$, we get: 
 
-Example:
-$$\begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix}=I_2$$
-The first step, shown below, follows our previously stated processes.
-
-$$det(\begin{bmatrix}-\alpha & -\beta-\alpha \\ 0 & \beta-\gamma\end{bmatrix}-\lambda\begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix})$$
-Now, we distribute $\lambda$ across the identity matrix and subtract our Jacobian Matrix by the distributed Identity Matrix:
 $$
-det(\begin{bmatrix}-\alpha & -\beta-\alpha \\ 0 & \beta-\gamma\end{bmatrix}+\begin{bmatrix}-\lambda & 0 \\ 0 & -\lambda\end{bmatrix})=$$
-$$\begin{align*}
-det(\begin{bmatrix}-\alpha-\lambda & -\beta-\alpha \\ 0 & \beta-\gamma-\lambda\end{bmatrix})
-\end{align*}$$
+0 = det(\begin{bmatrix}-\alpha & -\beta-\alpha \\ 0 & \beta-\gamma\end{bmatrix}-\lambda\begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix})
+$$
+We will now simplify the contents of the determinant using matrix operations. 
 
-To take the determinant, we follow this general rule of matrices in which we distribute each value:
-$$\begin{align*}
-det(\begin{bmatrix} A & B \\ C & D\end{bmatrix}) = AD-BC
-\end{align*}$$
-
-So, applying this rule:
-$$det(\begin{bmatrix}-\alpha-\lambda & -\beta-\alpha \\ 0 & \beta-\gamma-\lambda\end{bmatrix}) = -(\alpha+\lambda)(\beta-\gamma-\lambda)-0=0$$
-
-To solve for our eigenvalues, we set each factor to 0:
 $$
 \begin{align*}
--(\alpha+\lambda) &= 0 \\
-(\beta-\gamma-\lambda) &= 0
-\end{align*}$$
+\ 0 &= det(\begin{bmatrix}-\alpha & -\beta-\alpha \\ 0 & \beta-\gamma\end{bmatrix}+\begin{bmatrix}-\lambda & 0 \\ 0 & -\lambda\end{bmatrix}) \\ 
+\ 0 &= det(\begin{bmatrix}-\alpha-\lambda & -\beta-\alpha \\ 0 & \beta-\gamma-\lambda\end{bmatrix}) \\
+\end{align*}
+$$
+Evaluate the determinant of the matrix by the rule $det \left(\begin{bmatrix} A & B \\ C & D\end{bmatrix} \right) = AD-BC$. 
+Applying this rule, we get: 
 
-After solving, our resulting eigenvalues are:
+$$
+0 = -(\alpha+\lambda)(\beta-\gamma-\lambda)
+$$
+Then, solve for the two eigenvalues.
+
 $$
 \begin{align*}
-\lambda &= -\alpha\\ 
-\lambda &= \beta-\gamma
-\end{align*}$$
+\ 0 =-(\alpha+\lambda_1) &\longrightarrow \lambda_1 = -\alpha\\
+\ 0 =(\beta-\gamma-\lambda_2) &\longrightarrow \lambda_2 = \beta-\gamma \\
+\end{align*}
+$$
 
-- Stability for the DFE \@ref(def:DFE)
-An equilibrium is stable if all the eigenvalues of the Jacobian matrix evaluated at the equilibrium have negative real parts. If any eigenvalue is positive, then the equilibrium is unstable. If some eigenvalues are zero and the rest are negative, then stability is inconclusive. This is denoted in the equations below.
+Therefore, the eigenvalues are $\lambda_1 = -\alpha$ and $\lambda_2 = \beta-\gamma$. 
 
-- For Stability from $\lambda_1$ for the DFE:
+::: {.definition name="Equilibrium Stability by Eigenvalues" #ESE}
+- The equilibrium is **stable** if all the eigenvalues have negative real parts. 
+- The equilibrium is **unstable** is any eigenvalue is positive. 
+- The equilibrium stability is **inconclusive** if some eigenvalues are zero and the rest are negative.
+:::
+
+**Stability Analysis of eigenvalues at DFE** using *Definition* \@ref(def:ESE):  
+
+- Stability of $\lambda_1$: 
 $$\lambda_1 = -\alpha < 0$$
-- For Stability from $\lambda_2$ for the DFE:
+- Stability of $\lambda_2$: 
   - In this equation, we also produce $R_0$, in which we find the values for $R_O$ in which the DFE is stable
 $$\lambda_2 = \beta - \gamma < 0 \Rightarrow \beta<\gamma \Rightarrow \frac{\beta}{\gamma} = R_0 < 1$$
   - The Disease Free Equilibrium is stable if $\frac{\beta}{\gamma} = R_0 < 1$
 
-### Endemic Equilibrium
+#### At Endemic Equilibrium
 
 The Endemic Equilibrium \@ref(def:EE) represents the state in which the Disease persists. Our equations for $S^*$ and $I^*$ are as follows. These will be integral to solving the Jacobian Matrix for the Endemic Equilibrium:
 
@@ -190,7 +184,9 @@ $$<\frac{-(\beta I^*+\alpha) \pm \sqrt{(\beta I^* + \alpha)^2}}{2}=\frac{-(\beta
 
 As a result, since all coefficients of the characteristic equation are positive, as well as the resulting discriminant denoting negative real roots, both eigenvalues are real and negative. Thus, the Endemic Equilibrium is stable for $R_0>1$.
 
-## Routh - Hurwitz Criteria
+#### A Note on Phase Diagrams
+
+### Routh - Hurwitz Criteria
 
 For stability, it must be shown that the real part of all the eigenvalues is negative. The Routh-Hourwitz Criteria provides a method to check if the eigenvalues are negative and the system is stable without needing to solve for the roots. Instead, the Routh-Herwitz criteria can determine if the eignenvalues are negative by looking at the coefficients. Depending on the degree of the polynomial, the criteria varies.
 
@@ -225,7 +221,7 @@ $$
 As long as these conditions are met, it can be found that a quartic characteristic equation has only negative real parts and the system is therefore stable.
 
 
-## Descartes' Rule of Signs
+### Descartes' Rule of Signs
 
 Descartes' Rule of Signs is used to determine the number of potential real positive and/or negative roots.
 
@@ -233,7 +229,7 @@ $$c_2\lambda^2 + c_1\lambda + c_0 = 0$$
 
 Using this general characterisitic equation, as seen when finding the eigenvalues of the Jacobian Matrix, we can understand how stable the equilibrium \@ref(def:Equilibrium) is in the system of differential equations. For stability to occur, all real roots and the real part of complex roots must be negative.
 
-### Case 1: Positive Roots with No Sign Changes
+#### Case 1: Positive Roots with No Sign Changes
 
 $$(+)(+)(+)$$
 
@@ -243,7 +239,7 @@ $$(+)(+)(+)$$
 
    - Result: There are either 0 positive roots
 
-### Case 2: Negative Roots with Multiple Sign Changes
+#### Case 2: Negative Roots with Multiple Sign Changes
 
 $$\begin{align*}
 c_2(-\lambda)^2+c_1(-\lambda)+c_0=0 \\
@@ -257,7 +253,7 @@ c_2\lambda^2-c_1\lambda+c_0=0
  - Number of real negative roots = Number of sign changes
     - Result: There are either 2 negative roots or 0 negative roots
 
-### Cases with One Sign Change:
+#### Cases with One Sign Change:
 
 Example:
 
@@ -269,7 +265,7 @@ $(-) (-) \rightarrow (+)$$\cdots$$-\lambda \rightarrow$ 1 Negative Root
 
   - 1 Sign Change and Negative Coefficients = 1 Real Negative Root
 
-## Chapter 4 Notes + Linear Algebra Notes
+## Linear Stability Analysis for the SI Model 
 
 For $S(t)$, $S=\frac{\gamma}{\beta}$
 
