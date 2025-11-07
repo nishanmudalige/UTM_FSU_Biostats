@@ -172,7 +172,7 @@ $$
 \lambda_2 &=\frac{{-b} + \sqrt{b^2 - 4c}}{2} < \left( \frac{{-b} + \sqrt{b^2}}{2}=0 \right) \\
 \end{align*}
 $$
-|    Therefore we have shown that the eigenvalues are negative when the complex part is present or absent, so the Endemic Equilibrium is stable when **c>0**.
+- Therefore we have shown that the eigenvalues are negative when the complex part is present or absent, so the Endemic Equilibrium is stable when **c>0**.
 
 #### A Note on Phase Diagrams
 
