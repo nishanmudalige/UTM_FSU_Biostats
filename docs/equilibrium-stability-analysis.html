@@ -239,91 +239,102 @@ Then, solve for the two eigenvalues.</p>
 <li>The equilibrium stability is <strong>inconclusive</strong> if some eigenvalues are zero and the rest are negative.</li>
 </ul>
 </div>
-<p><strong>Stability Analysis of eigenvalues at DFE</strong> using <em>Definition</em> <a href="equilibrium-stability-analysis.html#def:ESE">4.2</a>:</p>
+<p><strong>Stability Analysis of eigenvalues at DFE</strong> using <em>Definition</em> <a href="equilibrium-stability-analysis.html#def:ESE">4.2</a>: For DFE to be stable, we will show both the eigenvalues <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> have negative real parts.</p>
 <ul>
-<li>Stability of <span class="math inline">\(\lambda_1\)</span>:
-<span class="math display">\[\lambda_1 = -\alpha &lt; 0\]</span></li>
-<li>Stability of <span class="math inline">\(\lambda_2\)</span>:
-<ul>
-<li>In this equation, we also produce <span class="math inline">\(R_0\)</span>, in which we find the values for <span class="math inline">\(R_O\)</span> in which the DFE is stable
-<span class="math display">\[\lambda_2 = \beta - \gamma &lt; 0 \Rightarrow \beta&lt;\gamma \Rightarrow \frac{\beta}{\gamma} = R_0 &lt; 1\]</span></li>
-<li>The Disease Free Equilibrium is stable if <span class="math inline">\(\frac{\beta}{\gamma} = R_0 &lt; 1\)</span></li>
-</ul></li>
+<li>Showing <span class="math inline">\(\lambda_1\)</span> has negative real parts:
+<span class="math display">\[(\lambda_1 = -\alpha) &lt; 0\]</span></li>
+<li>Showing <span class="math inline">\(\lambda_2\)</span> has negative real parts:
+<span class="math display">\[
+\begin{align*}
+\ (\lambda_2 = \beta - \gamma) &amp;&lt; 0 \\
+\ \beta &amp;&lt; \gamma \\
+\ \frac{\beta}{\gamma} &amp;&lt; 1 \\
+\ R_0 &amp;&lt; 1 \\
+\end{align*}
+\]</span></li>
 </ul>
+<p>Therefore, we have shown that the eigenvalues have negative real parts and also obtain that the Disease Free Equilibrium is stable when <span class="math inline">\(R_0 = \frac{\beta}{\gamma} &lt; 1\)</span></p>
 </div>
 <div id="at-endemic-equilibrium" class="section level4 hasAnchor" number="4.2.1.2">
 <h4><span class="header-section-number">4.2.1.2</span> At Endemic Equilibrium<a href="equilibrium-stability-analysis.html#at-endemic-equilibrium" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The Endemic Equilibrium <a href="modelling-disease-dynamics-with-odes.html#def:EE">3.4</a> represents the state in which the Disease persists. Our equations for <span class="math inline">\(S^*\)</span> and <span class="math inline">\(I^*\)</span> are as follows. These will be integral to solving the Jacobian Matrix for the Endemic Equilibrium:</p>
-<p>We are able to find <span class="math inline">\(I^*\)</span> and <span class="math inline">\(S^*\)</span> by solving our system of equations (<span class="math inline">\(\dot{S}, \dot{I}\)</span>) for each value:
-<span class="math display">\[\begin{align*}
-\dot{S} &amp;= -\beta SI + \alpha(1-S-I) \\
-\dot{I} &amp;= \beta SI - \gamma I \\
-I^* &amp;= \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \\
-S^* &amp;=\frac{\gamma}{\beta} \\
-\end{align*}\]</span></p>
-<p>It is important to note that <span class="math inline">\(S^*\)</span> is equal to <span class="math inline">\(R_0\)</span> so <span class="math inline">\(R_0\)</span> only makes sense if <span class="math inline">\(R_0&gt;1\)</span></p>
-<p><span class="math display">\[S^*=\frac{\gamma}{\beta}=\frac{1}{R_0}\]</span></p>
-<ul>
-<li>Thus, if this equilibrium exists, the DFE is unstable.</li>
-</ul>
-<p>Like previously, the Jacobian Matrix (J) represents a matrix of the partial derivatives of the system of Functions F and G. As stated before, this is represented by <span class="math inline">\(\dot{S}, \dot{I}\)</span>. We are able to then subsitute our values for <span class="math inline">\(S^*\)</span> and <span class="math inline">\(I^*\)</span>:</p>
-<p><span class="math display">\[\begin{align*}
-J &amp;= \begin{bmatrix}-\beta I - \alpha &amp; -\beta S-\alpha \\ \beta I &amp; \beta S - \gamma\end{bmatrix} \\
-J &amp;= \begin{bmatrix}-\beta I^* - \alpha &amp; -\gamma-\alpha \\ \beta I &amp; 0\end{bmatrix}
-\end{align*}\]</span></p>
-<p>Next, we take the determinant, once again using the same process with the identity matrix:
-<span class="math display">\[
-\begin{align*}
-det(J-\lambda I) = 0 \\
-det(\lambda I - J) = 0
-\end{align*}\]</span></p>
-<p>After distributing <span class="math inline">\(\lambda\)</span> and combining the identity matrix with the Jacobian Matrix, we end up with:</p>
-<p><span class="math display">\[det(\begin{bmatrix}-\beta I* - \alpha -\lambda &amp; -\gamma-\alpha \\ \beta I &amp; -\lambda\end{bmatrix})\]</span>
-Using the same general rule of distribution of matricies, we produce this equation:</p>
-<p><span class="math display">\[(\beta I^* + \alpha + \lambda)\lambda + \beta I^*(\gamma+\alpha) = 0\]</span>
-After distributing, the equation as follows is our characteristic equation, or a polynomial equation produced from the Jacobian Matrix, used to find eigenvalues. In this case, the characterisitic equation contains similar properties as a quadratic equation and will be treated as such when solving for eigenvalues.</p>
-<p><span class="math display">\[\lambda^2 + (\beta I^* + \alpha)\lambda + \beta I^*(\gamma+\alpha) = 0\]</span></p>
-<p>Where <span class="math inline">\(a=\lambda^2, b=(\beta I^* + \alpha), c=\beta I^*(\gamma+\alpha)\)</span></p>
-<p>Substitute for <span class="math inline">\(I^*\)</span>:</p>
-<p><span class="math display">\[\lambda^2 + \alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right] + \alpha\beta(1-\frac{1}{R_0})=0\]</span></p>
-<p>Subsitute a, b, c into quadratic equation:</p>
-<p><span class="math display">\[\lambda = \frac{-\alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right] \pm \sqrt{(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha)}}{2}\]</span></p>
-<p>Where <span class="math inline">\(-\alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right]\)</span> is negative due to the signage</p>
-<p>Here, we can expand the discriminant to understand complexity:</p>
-<p><span class="math display">\[(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha) = \beta^2 (I^*)^2 + \alpha^2 + 2\beta(I^*)^2 - 4\beta I \alpha - 4\beta I \gamma\]</span>
-<span class="math inline">\(\lambda = \frac{-b}{2}\)</span> <span class="math inline">\(\pm\)</span> Complex Number, where <span class="math inline">\(\frac{-b}{2}\)</span> is a real part.</p>
+<p>The <strong>Endemic Equilibrium</strong> (<em>Definition</em> <a href="modelling-disease-dynamics-with-odes.html#def:EE">3.4</a>) represents the state in which the disease persists. Recall from Chapter 3.4 that at EE, we solve the system of equations (<span class="math inline">\(\dot{S}, \dot{I}\)</span>) where <span class="math inline">\(R = 1-S-I\)</span> and obtain (<span class="math inline">\(S^*\)</span>, <span class="math inline">\(I^*\)</span>).</p>
 <p><span class="math display">\[
 \begin{align*}
-\lambda &amp;= a \pm bi \\
-\lambda_1 &amp;= a + bi \\
-\lambda_2 &amp;= a-bi \\
-\end{align*}\]</span></p>
-<p><span class="math inline">\(Z=a+bi\)</span> where <span class="math inline">\(i=\sqrt{-1}\)</span> and <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are real;
-<span class="math inline">\(Re(Z)=\)</span> <span class="math inline">\(a\)</span> real part of <span class="math inline">\(Z\)</span>, and <span class="math inline">\(Im(Z)=\)</span> <span class="math inline">\(b\)</span>, imaginary number.</p>
-<p><span class="math display">\[b^2&gt;b^2-4c&gt;0\]</span>
-<span class="math display">\[\lambda_1=\frac{{-b} + \sqrt{(b^2 - 4c)^2}}{2}&lt;0\]</span></p>
-<p><span class="math inline">\(\lambda_2=\frac{{-b} - \sqrt{(b^2 - 4c)}}{2}\)</span> where <span class="math inline">\(b^2&gt;b^2 - 4c\)</span>, so</p>
-<p><span class="math display">\[&lt;\frac{{-b} - \sqrt{b^2}}{2}=0\]</span>
-With this knowledge, we can apply this to our equation:
-<span class="math display">\[\lambda = \frac{-(\beta I^*+\alpha) \pm \sqrt{(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha)}}{2}\]</span>
-Applying the rule, we are able to expand the discriminant:</p>
+\ \dot{S} &amp;= -\beta SI + \alpha(1-S-I) &amp;\Longrightarrow S^* &amp;=\frac{\gamma}{\beta} \\
+\ \dot{I} &amp;= \beta SI - \gamma I &amp;\Longrightarrow I^* &amp;= \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \\
+\end{align*}
+\]</span></p>
+<p>Note that since <span class="math inline">\(S^*=\frac{\gamma}{\beta}=\frac{1}{R_0}\)</span>, we have <span class="math inline">\(R_0&gt;1\)</span>. Thus, <strong>if EE exists, the DFE is unstable.</strong></p>
+<p>We substitute our value for <span class="math inline">\(S^*\)</span> into the Jacobian Matrix we defined at the start of Chapter 4.2.1. For simplicity, we will keep <span class="math inline">\(I^*\)</span> as is for now.</p>
+<p><span class="math display">\[
+\begin{align*}
+\ J &amp;= \begin{bmatrix}-\beta I^* - \alpha &amp; -\beta S^*-\alpha \\ \beta I^* &amp; \beta S^* - \gamma\end{bmatrix} \\
+\ J_{EE} &amp;= \begin{bmatrix}-\beta I^* - \alpha &amp; -\gamma-\alpha \\ \beta I^* &amp; 0\end{bmatrix} \\
+\end{align*}
+\]</span></p>
+<p>To <strong>solve for the eigenvalues</strong> of the Jacobian Matrix, we follow the same approach used earlier for the DFE. Use the formula <span class="math inline">\(det(J-\lambda I_n) = det(\lambda I_n -J) = 0\)</span>, and further simplify by matrix operations and determinant rules. We obtain the following:</p>
+<p><span class="math display">\[
+\begin{align*}
+\ 0 &amp;= det \left(\begin{bmatrix}-\beta I^* - \alpha -\lambda &amp; -\gamma-\alpha \\ \beta I &amp; -\lambda\end{bmatrix} \right) \\
+\ 0 &amp;= -(\beta I^* + \alpha + \lambda) (-\lambda) + (\beta I^*) (\gamma+\alpha) \\
+\ 0 &amp;= \lambda^2 + (\beta I^* + \alpha)\lambda + \beta I^*(\gamma+\alpha) \\
+\end{align*}
+\]</span>
+Finally we substitute <span class="math inline">\(I^*\)</span> into the equation and get:
+<span class="math display">\[
+\begin{align*}
+\ 0 &amp;= \lambda^2 + \left[ \beta \left(\frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \right) + \alpha \right] \lambda + \beta \left( \frac{\alpha (1 - \frac{\gamma}{\beta})}{\gamma + \alpha} \right) (\gamma+\alpha) \\
+\ 0 &amp;= \lambda^2 + \alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right]\lambda + \alpha\beta \left(1-\frac{1}{R_0} \right) \\
+\end{align*}
+\]</span></p>
+<p>The equation above is the <strong>characteristic equation</strong>, a polynomial equation produced from the Jacobian Matrix. This characteristic equation can be solved to find the eigenvalues.</p>
+<p>In this case, because the characteristic equation is a quadratic equation, we can apply the quadratic formula to solve for the eigenvalues.</p>
+<p>Recall the <strong>quadratic formula</strong>:
+<span class="math display">\[x = \frac{-b \pm \sqrt{b^2 - 4ac}} {2a}\]</span></p>
+<p>We have <span class="math inline">\(a = 1\)</span>, <span class="math inline">\(b = \alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right]\)</span>, and <span class="math inline">\(c=\alpha\beta \left(1-\frac{1}{R_0} \right)\)</span>.</p>
+<p>Substituting <em>a</em>, <em>b</em>, and <em>c</em> into quadratic formula:</p>
+<p><span class="math display">\[\lambda = \frac{-\alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right] \pm \sqrt{(\beta I^* + \alpha)^2 - 4\beta I(\gamma+\alpha)}}{2}\]</span></p>
+<p>The general solution to the eigenvalues is represented by <span class="math inline">\(\lambda = \frac{-b}{2}\)</span> <span class="math inline">\(\pm\)</span> <em>Complex Number</em>, where <span class="math inline">\(\frac{-b}{2}\)</span> is the real part. Therefore we get the two eigenvalues of the form <span class="math inline">\(\lambda_1 = v + wi\)</span> and <span class="math inline">\(\lambda_2 = v-wi\)</span>, where <span class="math inline">\(Re(\lambda)=v\)</span> represents the <strong>real part</strong>, <span class="math inline">\(Im(\lambda)=w\)</span> represents the <strong>complex part</strong>, and <span class="math inline">\(i = \sqrt{-1}\)</span> is the <strong>imaginary number</strong>. The complex part only exists if the sign of the discriminant is negative.</p>
+<p><strong>Stability Analysis of eigenvalues at EE</strong> using <em>Definition</em> <a href="equilibrium-stability-analysis.html#def:ESE">4.2</a>: For EFE to be stable, we will show both the eigenvalues <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> have negative real parts. Since eigenvalues of EE may potentially have a complex part, we must consider both the real and complex parts when interpreting stability.</p>
 <ul>
-<li>Notice the <span class="math inline">\(\pm\)</span> and only focus on <span class="math inline">\(+\)</span> and drop <span class="math inline">\(- 4\beta I(\gamma+\alpha)\)</span> due to complexity</li>
+<li><p>We know that the <strong>real part is negative</strong> from the signage of <span class="math inline">\(b = -\alpha \left[ \frac{1 - \frac{1}{R_0}}{R_0 + \frac{\alpha}{\beta}} + 1 \right]\)</span>. By <em>Definition</em> <a href="equilibrium-stability-analysis.html#def:ESE">4.2</a> we know this indicates that the <strong>EE is stable</strong>.</p></li>
+<li><p>To further our understanding, we can consider the case where the <strong>complex part</strong> exists. If <span class="math inline">\(c &gt; 0\)</span>, then <span class="math inline">\(0 &lt; b^2 - 4c &lt; b^2\)</span>. Recall that <span class="math inline">\(a = 1\)</span>. Then:</p></li>
 </ul>
-<p><span class="math display">\[&lt;\frac{-(\beta I^*+\alpha) \pm \sqrt{(\beta I^* + \alpha)^2}}{2}=\frac{-(\beta I^*+\alpha)+{(\beta I^* + \alpha)}}{2}=0\]</span></p>
-<p>As a result, since all coefficients of the characteristic equation are positive, as well as the resulting discriminant denoting negative real roots, both eigenvalues are real and negative. Thus, the Endemic Equilibrium is stable for <span class="math inline">\(R_0&gt;1\)</span>.</p>
+<p><span class="math display">\[
+\begin{align*}
+\lambda_1 &amp;= \frac{{-b} - \sqrt{b^2 - 4c}}{2} &lt; 0 \\
+\lambda_2 &amp;=\frac{{-b} + \sqrt{b^2 - 4c}}{2} &lt; \left( \frac{{-b} + \sqrt{b^2}}{2}=0 \right) \\
+\end{align*}
+\]</span>
+| Therefore we have shown that the eigenvalues are negative when the complex part is present or absent, so the Endemic Equilibrium is stable when <strong>c&gt;0</strong>.</p>
 </div>
 <div id="a-note-on-phase-diagrams" class="section level4 hasAnchor" number="4.2.1.3">
 <h4><span class="header-section-number">4.2.1.3</span> A Note on Phase Diagrams<a href="equilibrium-stability-analysis.html#a-note-on-phase-diagrams" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A <strong>phase diagram</strong> is a visual representation of the conditions that can occur at equilibrium.</p>
+<p>The phase diagram for the SIR model consists of a simplex where the diagonal line represents the boundary of no recovered individuals, and the origin represents the point at which all individuals are recovered. The space within the simplex is when there are some recovered individuals. The equilibrium exists somewhere within this simplex.</p>
+<p>Different phase diagrams can exist depending on the conditions:</p>
+<ul>
+<li>When <span class="math inline">\(R_0 &lt; 1\)</span>, a single equilibrium exists: <strong>DFE</strong>. The phase diagram will have a <strong>stable node</strong>, in which trajectory of the solution goes towards the equilibrium.<br />
+</li>
+<li>When <span class="math inline">\(R_0 &gt; 1\)</span>, two equilibrium exist: <strong>DFE and EE</strong>. DFE is always an <strong>unstable node</strong> and EE is either a <strong>stable node or a stable spiral</strong> The trajectory of the solution goes from the unstable DFE to the stable EE. Whether EE is a spiral depends on whether a complex solution exists for the eigenvalues. If the discriminant is negative, a complex value is present and a stable spiral will occur. If the discriminant is nonnegative, there is no complex number and a stable node will occur.</li>
+</ul>
 </div>
 </div>
 <div id="routh---hurwitz-criteria" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Routh - Hurwitz Criteria<a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For stability, it must be shown that the real part of all the eigenvalues is negative. The Routh-Hourwitz Criteria provides a method to check if the eigenvalues are negative and the system is stable without needing to solve for the roots. Instead, the Routh-Herwitz criteria can determine if the eignenvalues are negative by looking at the coefficients. Depending on the degree of the polynomial, the criteria varies.</p>
-<p>For a quadratic characteristic equation <span class="math display">\[c_2\lambda^2 + c_1\lambda + c_0=0\]</span></p>
-<p>the coefficients must all be positive. As long as <span class="math inline">\(c_2\)</span>, <span class="math inline">\(c_1\)</span>, and <span class="math inline">\(c_0\)</span> are positive the eigenvalues will be negative.</p>
+<p>For stability, it must be shown that the real part of all the eigenvalues is negative (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:ESE">4.2</a>).</p>
+<div class="definition">
+<p><span id="def:RHC" class="definition"><strong>Definition 4.3  (Routh-Hourwitz Criteria) </strong></span>A method to check if the eigenvalues are negative and the system is stable without needing to solve for the roots. The criteria can determine if the eigenvalues are negative by looking at the <strong>coefficients</strong>. Depending on the degree of the polynomial, the criteria varies.</p>
+</div>
+<p>We will consider stability analysis for different characteristic polynomials using the <strong>Routh-Hurwitz Criteria</strong> (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:RHC">4.3</a>).</p>
+<div id="quadratic-characteristic-equation" class="section level4 hasAnchor" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Quadratic Characteristic Equation<a href="equilibrium-stability-analysis.html#quadratic-characteristic-equation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For a <strong>quadratic characteristic equation</strong>, <span class="math inline">\(c_2\lambda^2 + c_1\lambda + c_0=0\)</span>, the coefficients must all be positive. As long as <span class="math inline">\(c_2\)</span>, <span class="math inline">\(c_1\)</span>, and <span class="math inline">\(c_0\)</span> are positive the eigenvalues will be negative.</p>
 <p>The quadratic characteristic equation can be used when there are 3 compartments. The SIR model, with the susceptible, infected, and recovered compartment, can be used with the quadratic characteristic equation.</p>
-<p>For a cubic characteristic equation <span class="math display">\[c_3\lambda^3+c_2\lambda^2 + c_1\lambda + c_0=0\]</span> the criteria are slightly more complicated. Here the conditions that must be met are :</p>
+</div>
+<div id="cubic-characteristic-equation" class="section level4 hasAnchor" number="4.2.2.2">
+<h4><span class="header-section-number">4.2.2.2</span> Cubic Characteristic Equation<a href="equilibrium-stability-analysis.html#cubic-characteristic-equation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For a <strong>cubic characteristic equation</strong>, <span class="math inline">\(c_3\lambda^3+c_2\lambda^2 + c_1\lambda + c_0=0\)</span>, the criteria are slightly more complicated. Here the conditions that must be met are :</p>
 <p><span class="math display">\[
 c_i&gt;0 \\
 c_1c_2&gt;c_0c_3 \\
@@ -335,7 +346,10 @@ c_1c_2&gt;c_0 \\
 \]</span>
 As long as these conditions are met, it can be found that a cubic characteristic equation has only negative real parts and the system is therefore stable.</p>
 <p>A cubic characteristic equation can be used for models with 4 compartments such as the SEIR (Susceptible, Exposed, Infected, Recovered) model, SAIR (Susceptible, Asymptomatic, Infected, Recovered) model, and the SIVR(Susceptible, Infected, Vaccinated, Recovered) model.</p>
-<p>For a quartic characteristic equation <span class="math display">\[c_4\lambda^4+ c_3\lambda^3+c_2\lambda^2 + c_1\lambda + c_0=0\]</span> the criteria are further complicated. Here the conditions that must be met are :</p>
+</div>
+<div id="quartic-characteristic-equation" class="section level4 hasAnchor" number="4.2.2.3">
+<h4><span class="header-section-number">4.2.2.3</span> Quartic Characteristic Equation<a href="equilibrium-stability-analysis.html#quartic-characteristic-equation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For a <strong>quartic characteristic equation</strong>, <span class="math display">\[c_4\lambda^4+ c_3\lambda^3+c_2\lambda^2 + c_1\lambda + c_0=0\]</span>, the criteria are further complicated. Here the conditions that must be met are :</p>
 <p><span class="math display">\[
 c_i&gt;0 \\
 c_2c_3&gt;c_1c_4 \\
@@ -343,11 +357,15 @@ c_1c_2c_3 - c_4c_1^2 &gt; c_0c_3^2
 \]</span>
 As long as these conditions are met, it can be found that a quartic characteristic equation has only negative real parts and the system is therefore stable.</p>
 </div>
+</div>
 <div id="descartes-rule-of-signs" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Descartes’ Rule of Signs<a href="equilibrium-stability-analysis.html#descartes-rule-of-signs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Descartes’ Rule of Signs is used to determine the number of potential real positive and/or negative roots.</p>
+<div class="definition">
+<p><span id="def:DRS" class="definition"><strong>Definition 4.4  (Descartes' Rule of Signs) </strong></span>A method to to determine the number of potential real positive and/or negative roots.</p>
+</div>
+<p>We will apply Descartes’ Rule of Signs (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:DRS">4.4</a>) for stability analysis to the following characteristuc equation.</p>
 <p><span class="math display">\[c_2\lambda^2 + c_1\lambda + c_0 = 0\]</span></p>
-<p>Using this general characterisitic equation, as seen when finding the eigenvalues of the Jacobian Matrix, we can understand how stable the equilibrium <a href="modelling-disease-dynamics-with-odes.html#def:Equilibrium">3.2</a> is in the system of differential equations. For stability to occur, all real roots and the real part of complex roots must be negative.</p>
+<p>Using this general characterisitic equation, as seen when finding the eigenvalues of the Jacobian Matrix, we can understand how stable the equilibrium is in the system of differential equations. For stability to occur, all real roots and the real part of complex roots must be negative (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:ESE">4.2</a>).</p>
 <div id="case-1-positive-roots-with-no-sign-changes" class="section level4 hasAnchor" number="4.2.3.1">
 <h4><span class="header-section-number">4.2.3.1</span> Case 1: Positive Roots with No Sign Changes<a href="equilibrium-stability-analysis.html#case-1-positive-roots-with-no-sign-changes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><span class="math display">\[(+)(+)(+)\]</span></p>
@@ -394,9 +412,39 @@ c_2\lambda^2-c_1\lambda+c_0=0
 </div>
 <div id="linear-stability-analysis-for-the-si-model" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Linear Stability Analysis for the SI Model<a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-si-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For <span class="math inline">\(S(t)\)</span>, <span class="math inline">\(S=\frac{\gamma}{\beta}\)</span></p>
-<p>DFE: <span class="math inline">\(I^*=0\)</span>, <span class="math inline">\(S^*=1\)</span></p>
-<p><span class="math display">\[S(t) =\left[\begin{align*}&amp;\dot{S}= -\beta SI + \alpha I\\&amp;\dot{S}=(-\beta S \gamma)(1-S)\\&amp;\dot{I} = \beta SI - \gamma I\\&amp;J = -\beta(1-S) - (-\beta S + \gamma) = -\beta + \beta S + \beta S - \gamma = 2\beta S - \beta - \gamma\\&amp;J_{DFE} = -\beta(1-1) - (-\beta + \gamma) = \beta - \gamma &lt; 0 \rightarrow \beta &lt; \gamma = R_0 &lt; 1 \\&amp;J_{EE} = 2\beta \left(\frac{\gamma}{\beta}\right) - \beta - \gamma = 2\gamma - \beta - \gamma = \gamma - \beta &lt; 0 \rightarrow 1 &lt; R_0\end{align*} \right]\]</span></p>
+<p>An additional example is provided for the stability analysis of the SI model. <span class="math inline">\(R_0\)</span> is used to analyze the stability of this simpler model.</p>
+<p><span class="math display">\[
+\begin{align*}
+\ \dot{S} &amp;= -\beta SI + \alpha I =(-\beta S \gamma)(1-S)\\
+\ \dot{I} &amp;= \beta SI - \gamma I\\
+\end{align*}
+\]</span></p>
+<p>Solving the Jacobian:<br />
+<span class="math display">\[
+det(J) = -\beta(1-S) - (-\beta S + \gamma) = 2\beta S - \beta - \gamma
+\]</span>
+At <strong>DFE</strong>, <span class="math inline">\(I^*=0\)</span>, <span class="math inline">\(S^*=1\)</span>, so:
+<span class="math display">\[
+det(J_{DFE}) = 2\beta (1) - \beta - \gamma = \beta - \gamma
+\]</span></p>
+<p><span class="math display">\[
+\begin{align*}
+\ \beta - \gamma &amp;&lt; 0 \\
+\ \frac{\beta}{\gamma} &amp;&lt; 1 \\
+\ R_0 &amp;&lt; 1 \\
+\end{align*}
+\]</span></p>
+<p>At <strong>EE</strong>, <span class="math inline">\(S=\frac{\gamma}{\beta}\)</span>, so:
+<span class="math display">\[
+det(J_{EE}) = 2\beta \left( \frac{\gamma}{\beta} \right) - \beta - \gamma = \gamma - \beta
+\]</span></p>
+<p><span class="math display">\[
+\begin{align*}
+\ \gamma -\beta &amp;&lt; 0 \\
+\ \frac{\beta}{\gamma} &amp;&gt; 1 \\
+\ R_0 &amp;&gt; 1 \\
+\end{align*}
+\]</span></p>
 
 </div>
 </div>

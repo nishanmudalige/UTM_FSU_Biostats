@@ -18,6 +18,8 @@ def:EE
 def:Effective
 def:LSA
 def:ESE
+def:RHC
+def:DRS
 def:Model
 fig:ExpGrowthDecay
 fig:LogisticExample
@@ -46,6 +48,9 @@ at-disease-free-equilibrium
 at-endemic-equilibrium
 a-note-on-phase-diagrams
 routh---hurwitz-criteria
+quadratic-characteristic-equation
+cubic-characteristic-equation
+quartic-characteristic-equation
 descartes-rule-of-signs
 case-1-positive-roots-with-no-sign-changes
 case-2-negative-roots-with-multiple-sign-changes
