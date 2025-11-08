@@ -335,9 +335,11 @@ largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{
 <div id="solving-the-seir-model-with-birth-and-death" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Solving the SEIR Model with Birth and Death<a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><span class="math display">\[S+E+I+R=N\]</span>
-<span class="math inline">\(\mu N\)</span> represents births in the system.</p>
+In this version of the SEIR model, demographic effects such as births and deaths are included to make the model more realistic.</p>
+<p><span class="math inline">\(\mu N\)</span> represents births in the system.</p>
 <p><span class="math inline">\(\mu\)</span> represents deaths.</p>
-<p>The four differential equations can then be constructed, however for the next generation model we only care about <span class="math inline">\(\dot{E}\)</span> and <span class="math inline">\(\dot{I}\)</span>.</p>
+<p>The birth term <span class="math inline">\(\mu N\)</span> adds to the susceptible population, while the deaths occur at a rate <span class="math inline">\(\mu\)</span> across the four compartments.</p>
+<p>The four differential equations can then be constructed, however for the next generation model we only care about <span class="math inline">\(\dot{E}\)</span> and <span class="math inline">\(\dot{I}\)</span>, since they represent the infected compartments.</p>
 <p><span class="math display">\[\begin{align*}
 \dot{S} &amp;= \mu N - \frac{\beta SI}{N} \\
 \dot{R} &amp;= \gamma I - \mu R \\
@@ -345,6 +347,9 @@ largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{
 \dot{E} &amp;= \frac{\beta SI}{N} - (\sigma + \mu)E \\
 \dot{I} &amp;= \sigma E - (\gamma + \mu)I
 \end{align*}\]</span></p>
+<p>At the disease-free equilibrium (DFE), there are no infections (<span class="math inline">\(E = 0\)</span> and <span class="math inline">\(I = 0\)</span>).
+From the first equation, <span class="math inline">\(\dot{S} = 0\)</span> when <span class="math inline">\(S = N\)</span>, meaning the entire population is susceptible.
+We use this equilibrium to linearize the system and separate infection terms (<span class="math inline">\(F(x)\)</span>) from other transition terms (<span class="math inline">\(V(x)\)</span>).</p>
 <p>Next Generation Model:
 <span class="math display">\[
 \begin{align*}
@@ -359,15 +364,16 @@ largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{
 \end{bmatrix}
 \end{align*}
 \]</span></p>
-<p>The first matrix in the above equation shows F(x) and the second shows
-V(x). The Jacobian of <span class="math inline">\(F(x)\)</span> is
+<p>Here, the first vector <span class="math inline">\(F(x)\)</span> captures new infections — in this case, the flow from the susceptible compartment <span class="math inline">\(S\)</span> to the exposed compartment <span class="math inline">\(E\)</span>.
+The second vector, <span class="math inline">\(V(x)\)</span>, represents all other movements between infected compartments (progression, recovery, and death).</p>
+<p>The Jacobian of <span class="math inline">\(F(x)\)</span> is
 <span class="math display">\[
 \begin{bmatrix}
 0 &amp; \frac{\beta S}{N} \\
 0 &amp; 0
 \end{bmatrix}
-\]</span>
-And since at the DFE S is equal to N,
+\]</span></p>
+<p>And since at the DFE S is equal to N,
 <span class="math display">\[
 \textbf{F} = \begin{bmatrix} 0 &amp;\beta \\0&amp;0 \end{bmatrix}
 \]</span>
@@ -394,9 +400,14 @@ FV^{-1} &amp;=
 0 &amp; 0
 \end{bmatrix}
 \end{align*}
-\]</span></p>
-<p>The largest eigenvalue
+\]</span>
+Multiplying <span class="math inline">\(F\)</span> by <span class="math inline">\(V^{-1}\)</span> captures how many new infections one infected individual generates in each compartment over their infectious period.</p>
+<p>The resulting matrix describes the expected number of new infections caused by an exposed or infectious person.
+The basic reproduction number <span class="math inline">\(R_0\)</span> is given by the the largest eigenvalue of the next generation matrix.</p>
+<p>The largest eigenvalue is :
 <span class="math inline">\(\frac{\beta \sigma}{(\sigma + \mu)(\gamma +\mu)} = R_0\)</span></p>
+<p>This value shows how the disease’s ability to spread depends not only on transmission (<span class="math inline">\(\beta\)</span>) and recovery (<span class="math inline">\(\gamma\)</span>), but also on the rates of progression (<span class="math inline">\(\sigma\)</span>) and death (<span class="math inline">\(\mu\)</span>).
+If <span class="math inline">\(\mu = 0\)</span>, meaning no births or deaths occur, this expression simplifies to <span class="math inline">\(R_0 = \frac{\beta}{\gamma}\)</span> which is the classic SIR result.</p>
 <p>References: <span class="citation">[<a href="references.html#ref-blackwood2018">12</a>]</span></p>
 
 </div>

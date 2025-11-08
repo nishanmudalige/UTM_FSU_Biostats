@@ -203,13 +203,15 @@ largest eigenvalue, so $R_0 = \lambda = \frac{\beta}{\gamma}$.
 ## Solving the SEIR Model with Birth and Death
 
 $$S+E+I+R=N$$
+In this version of the SEIR model, demographic effects such as births and deaths are included to make the model more realistic.
+
 $\mu N$ represents births in the system. 
 
 $\mu$ represents deaths.  
 
-The four differential equations can then be constructed, however for the next generation model we only care about $\dot{E}$ and $\dot{I}$.
+The birth term $\mu N$ adds to the susceptible population, while the deaths occur at a rate $\mu$ across the four compartments.
 
-
+The four differential equations can then be constructed, however for the next generation model we only care about $\dot{E}$ and $\dot{I}$, since they represent the infected compartments.
 
 \begin{align*}
 \dot{S} &= \mu N - \frac{\beta SI}{N} \\
@@ -219,7 +221,9 @@ The four differential equations can then be constructed, however for the next ge
 \dot{I} &= \sigma E - (\gamma + \mu)I
 \end{align*} 
 
-
+At the disease-free equilibrium (DFE), there are no infections ($E = 0$ and $I = 0$).
+From the first equation, $\dot{S} = 0$ when $S = N$, meaning the entire population is susceptible.
+We use this equilibrium to linearize the system and separate infection terms ($F(x)$) from other transition terms ($V(x)$).
 
 Next Generation Model: 
 $$
@@ -236,14 +240,17 @@ $$
 \end{align*}
 $$
 
-The first matrix in the above equation shows F(x) and the second shows
-V(x). The Jacobian of $F(x)$ is 
+Here, the first vector $F(x)$ captures new infections — in this case, the flow from the susceptible compartment $S$ to the exposed compartment $E$.
+The second vector, $V(x)$, represents all other movements between infected compartments (progression, recovery, and death).
+
+The Jacobian of $F(x)$ is 
 $$
 \begin{bmatrix}
 0 & \frac{\beta S}{N} \\
 0 & 0
 \end{bmatrix}
 $$ 
+
 And since at the DFE S is equal to N, 
 $$
 \textbf{F} = \begin{bmatrix} 0 &\beta \\0&0 \end{bmatrix}
@@ -272,8 +279,15 @@ FV^{-1} &=
 \end{bmatrix}
 \end{align*}
 $$
+Multiplying $F$ by $V^{-1}$ captures how many new infections one infected individual generates in each compartment over their infectious period.
 
-The largest eigenvalue
+The resulting matrix describes the expected number of new infections caused by an exposed or infectious person.
+The basic reproduction number $R_0$ is given by the the largest eigenvalue of the next generation matrix.
+
+The largest eigenvalue is : 
 $\frac{\beta \sigma}{(\sigma + \mu)(\gamma +\mu)} = R_0$
+
+This value shows how the disease’s ability to spread depends not only on transmission ($\beta$) and recovery ($\gamma$), but also on the rates of progression ($\sigma$) and death ($\mu$).
+If $\mu = 0$, meaning no births or deaths occur, this expression simplifies to $R_0 = \frac{\beta}{\gamma}$ which is the classic SIR result.
 
 References: [@blackwood2018]
