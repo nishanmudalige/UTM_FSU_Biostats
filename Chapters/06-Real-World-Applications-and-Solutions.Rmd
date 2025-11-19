@@ -8,14 +8,14 @@ In this chapter, we will discuss and solve in detail varying complext SIR-type c
 
 This model is based on the parameters and variables defined in the article cited. [@kalachev2022].
 
-It is important to note that the authors states their limitations, as they do not include an E, Exposed, compartment. This means that the complexities of the case in question, COVID-19, is not fully modelled. However, for our purposes, this pre-existing model serves the purpose of providing definitive parameters to be manipulated and solved.
+It is important to note that the authors states their limitations, as they do not include an E, Exposed, compartment. This means that the complexities of the case in question, COVID-19, is not fully modelled. However, for our purposes, this pre-existing model provides definitive parameters and variables to be manipulated and solved.
 
 ### Defining the Parameters
 
 Beginning with X, the vector of disease compartments. For the SIQR
 model, $X = \begin{bmatrix} I\\ Q\\ \end{bmatrix}$
 
-Refer back to the definitions of the new infection vector $F(x)$ and the transition vector $V(x)$ in (*Chapter*\@ref(sec:ngmparameters)).
+Refer back to the definitions of the new infection vector $F(x)$ and the transition vector $V(x)$ in (*Chapter* \@ref(sec:ngmparameters)).
 
 ### Defining the Disease Free Equilibrium
 
