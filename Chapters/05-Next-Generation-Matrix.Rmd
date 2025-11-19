@@ -18,7 +18,7 @@ what causes new cases and what accounts for everything else that happens
 to an infected person. It is also important to mention that these tools are
 not limited to specific models and can be used for a variety of models.
 
-## Definining the Parameters
+## Definining the Parameters {#sec:ngmparameters}
 
 Beginning with X, the vector of disease compartments. For the SEIR
 model, $X = \begin{bmatrix} E\\ I\\ \end{bmatrix}$. For the SIR model,
@@ -33,7 +33,7 @@ other outputs and inputs, respectively, for each disease compartment
 
 ### Defining the Disease Free Equilibrium (DFE)
 
-The Disease Free Equilibrium exists when all infected compartments (I and E), are set to 0. i.e. E=0 and I=0.
+The Disease Free Equilibrium exists when all infected compartments (I and E), are set to 0. i.e. $E=0$ and $I=0$.
 
 $$
 \begin{align*}
@@ -51,12 +51,12 @@ At the DFE:
 - $\dot{R}$ is true when I=0
 
 Since there are no infections: $E=I=R=0$
-This means that for $N=S+I+E+R$, $N=S$ due to our earlier statements
+This means that for $N=S+E+I+R$, $N=S$ due to our earlier statements
 So at the DFE for the (S,E,I,R) = (N,0,0,0)
 
 This is important for understanding later subsitutions in the Chapter.
 
-## Solving SEIR Model with NGM
+## Solving SEIR Model with NGM {#sec:ngm}
 
 Recall: that for the SEIR model the disease compartments are E and I
 
@@ -76,6 +76,7 @@ $$
 Insert an tikz image of SEIR compartments here
 
 For the SIR model, $X = \begin{bmatrix} I \end{bmatrix}$
+For the SEIR Model:
 
 $$
 \begin{align*}

@@ -1,0 +1,205 @@
+# Real World Applications and Solutions
+
+## Introduction
+
+In this chapter, we will discuss and solve in detail varying complext SIR-type compartmental models, such as SAIR, SVIR, and SIQR. These models are derived and solved from pre-existing scholarly articles and experiments in which the parameters, variables, and differential equations that defined the study are provided. In this, we can apply our knowledge and techniques from previous chapters to determine stability and analyze different compartmental models. It is important to note that in previous chapters, we discussed theoretical techniques, which can be applied here, but also are defined for every equilibria, such as the DFE and EE. In these examples below, not all are specifically defined for each equilibria due to varying reasons, specfically due to the closed system nature of the experiments, not allowing a disease to persist in regard to the model.
+
+## The SIQR Model
+
+This model is based on the parameters and variables defined in the article cited. [@kalachev2022].
+
+It is important to note that the authors states their limitations, as they do not include an E, Exposed, compartment. This means that the complexities of the case in question, COVID-19, is not fully modelled. However, for our purposes, this pre-existing model serves the purpose of providing definitive parameters to be manipulated and solved.
+
+### Defining the Parameters
+
+Beginning with X, the vector of disease compartments. For the SIQR
+model, $X = \begin{bmatrix} I\\ Q\\ \end{bmatrix}$
+
+Refer back to the definitions of the new infection vector $F(x)$ and the transition vector $V(x)$ in (*Chapter*\@ref(sec:ngmparameters)).
+
+### Defining the Disease Free Equilibrium
+
+Due to the closed system definition of the article, this SIQR Compartmental Model can only be solved at the DFE. This is due to the nature of a closed system in which the disease has already dissipated, thus, the Endemic Equilibrium cannot exist. However, modifications to create an open system with birth and death rates incorporated, an Endemic Equilibrium can then be solved for.
+
+The Disease Free Equilibrium exists when all infected compartments (I and Q), are set to 0. Thus, $I=0$ and $Q=0$.
+So:
+$$
+\begin{align*}
+\dot{S} &= -\alpha S I = 0\\
+\dot{I} &= \alpha S I - \beta I = 0 \\
+\dot{Q} &= \beta I - \gamma Q = 0 \\
+\dot{R} &= \gamma Q = 0 \\
+\end{align*}
+$$
+At the DFE:
+
+- $\dot{S}$ is true when $I=0$
+- $\dot{I}$ is true when $I=0$
+- $\dot{Q}$ is true when $I=0$ and $Q=0$
+- $\dot{R}$ is true when $Q=0$
+
+Since there are no infections: $I=Q=R=0$
+This means that for $N=S+I+Q+R$, $N=S$ due to our earlier statements
+So at the DFE for the (S,I,Q,R) = (S,0,0,0) = (N,0,0,0)
+
+### Solving the SIQR Model
+
+#### Defining F and V Matrices
+
+Recall: that for the SIQR model the disease compartments are I and Q:
+
+$\dot{X} = \begin{bmatrix} \dot{I}\\ \dot{Q}\\ \end{bmatrix}$
+
+In order to define the distinction between new infections and transferred compartments, we create 2 matrices: Transmission (F) and Transition (V)
+
+- Transmission Matrix (F)
+  - In this Matrix, only compartments in which new infections are created
+$$
+\begin{align*}
+\ F(x) &= \begin{bmatrix} \dot{I}\\ \dot{Q}\\ \end{bmatrix} \\
+\ F(x) &= \begin{bmatrix} \alpha S I - \beta I \\ \beta I - \gamma Q \\ \end{bmatrix} \\
+\ F(x) &= \begin{bmatrix} \alpha S I \\ 0 \\ \end{bmatrix}
+\end{align*}
+$$
+
+- Transition Matrix (V)
+  - In this Matrix, using $V = V^- + V^+$, we can find the transfer of infected individuals in and out of infected compartments
+  - We can see this transfer as each of the values stated below leave/subtracted from a differential equation of a compartment and enter/added to the differential equation of the next compartment
+$$
+\begin{align*}
+\ V(X) &= \begin{bmatrix} \beta I \\ -\beta I + \gamma Q \\ \end{bmatrix} \\
+\end{align*}
+$$
+
+Referring back to (*Chapter*\@ref(sec:ngmparameters)) once again for the equation for $\dot{X} = F(x) - V(x)$, we combine these matrices into:
+
+$$
+\begin{align*}
+\ \dot{X} &= \begin{bmatrix} \alpha S I \\ 0 \\ \end{bmatrix} - \begin{bmatrix} \beta I \\ -\beta I + \gamma Q \\ \end{bmatrix}
+\end{align*}
+$$
+For simplicity in later calculations:
+$$
+\begin{align*}
+\ F(x) &= \begin{bmatrix} \alpha S I \\ 0 \\ \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \end{bmatrix} \\
+\ V(x) &= \begin{bmatrix} \beta I \\ -\beta I + \gamma Q \\ \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \end{bmatrix}
+\end{align*}
+$$
+
+#### Taking the Jacobian Matrix of F and V
+
+Let the Jacobian of F(x) be **F**.
+
+$$
+\boldsymbol{F} = J_F (x) = \begin{bmatrix} 
+\frac{\partial F_1}{\partial E} & \frac{\partial F_1}{\partial I} \\
+\frac{\partial F_2}{\partial E} & \frac{\partial F_2}{\partial I} \\
+\end{bmatrix}
+= \begin{bmatrix} 
+\alpha S & 0\\
+0 & 0 \\
+\end{bmatrix}
+$$
+At DFE, $S = 1$
+
+- This is found by our earlier definition of the DFE.
+  - At the DFE for (S,I,Q,R) = (S,0,0,0) = (N,0,0,0)
+  - Since Population $"N"=1$ and $S=N$, then $S=1$
+- So after subsituting $S=1$:
+
+$$
+J_F (x) 
+= \begin{bmatrix} 
+\alpha S & 0 \\
+0 & 0 \\
+\end{bmatrix}
+$$
+
+Let the Jacobian of V(x) be **V**.
+$$
+\boldsymbol{V} = J_V (x) = \begin{bmatrix} 
+\frac{\partial V_1}{\partial E} & \frac{\partial V_1}{\partial I} \\
+\frac{\partial V_2}{\partial E} & \frac{\partial V_2}{\partial I} \\
+\end{bmatrix}
+= \begin{bmatrix} 
+\beta & 0 \\
+-\beta & \gamma \\
+\end{bmatrix}
+$$
+
+#### Finding the Next Generation Matrix
+
+Refer to (*Chapter* \@ref(sec:ngm)) where the NGM for the SEIR model is found. We will be using a similar structure once again. 
+$NGM = \boldsymbol{F} \boldsymbol{V}^{-1}$
+
+Thus:
+$$
+\boldsymbol{F}
+= \begin{bmatrix} 
+\alpha S & 0 \\
+0 & 0 \\
+\end{bmatrix}
+$$
+For $\boldsymbol{V}^{-1}$, we use the same inverse matrix rule.
+
+
+\begin{align*}
+\boldsymbol{V} &= 
+\begin{bmatrix} 
+\beta & 0 \\
+-\beta & \gamma \\
+\end{bmatrix}\\
+
+\boldsymbol{V}^{-1} &= \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ -c & a \\ \end{bmatrix} \\
+\boldsymbol{V}^{-1} &=\frac{1}{\beta \gamma} 
+\begin{bmatrix} 
+\gamma & 0 \\
+\beta & \beta \\
+\end{bmatrix}\\
+\boldsymbol{V}^{-1} &= \begin{bmatrix} 
+\frac{1}{\beta} & 0 \\
+\frac{1}{\gamma} & \frac{1}{\gamma} \\
+\end{bmatrix}\\
+\end{align*}
+
+So $\boldsymbol{F} \boldsymbol{V}^{-1}$ is:
+$$
+\begin{align*}
+\boldsymbol{F} \boldsymbol{V}^{-1} &= \begin{bmatrix} 
+\alpha S & 0 \\
+0 & 0 \\
+\end{bmatrix} \begin{bmatrix} 
+\frac{1}{\beta} & 0 \\
+\frac{1}{\gamma} & \frac{1}{\gamma} \\
+\end{bmatrix} \\
+\boldsymbol{F} \boldsymbol{V}^{-1} &= \begin{bmatrix} 
+\frac{\alpha S}{\beta} & 0 \\
+0 &0  \\
+\end{bmatrix}
+\end{align*}
+$$
+
+#### Calculating $R_0$ and Defining Stability
+
+As stated previously in (*Chapter* \@ref(sec:ngm)), $R_0$ is the spectral radius of the Next Generation Matrix $\ \boldsymbol{F} \boldsymbol{V}^{-1}$
+$$
+det \left( \begin{bmatrix} 
+\frac{\alpha S}{\beta} - \lambda & 0 \\
+0 & - \lambda \\
+\end{bmatrix} \right)
+= - \lambda \left( \frac{\alpha S}{\beta} - \lambda \right)
+$$
+Let $- \lambda \left( \frac{\alpha S}{\beta} - \lambda \right) = 0$ ($\lambda_1$ and $\lambda_2$ respectively)
+
+So $\lambda_1 = 0$ and $\lambda_2 = \frac{\alpha S}{\beta}$. 
+$\lambda_2$ is the largest eigenvalue, so $R_0 = \lambda = \frac{\beta}{\gamma}$.
+
+Thus:
+
+- If $R_0 < 1$ then the DFE is stable, and the disease dies out
+
+  - This means that $\alpha S < \beta$
+  
+- If $R_0 > 1$ then the DFE is unstable, and an epidemic occurs
+
+  - This means that $\alpha S > \beta$

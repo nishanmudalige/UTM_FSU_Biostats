@@ -12,4 +12,5 @@ rmd_files:
   - "Chapters/03-Modelling-Diseases.Rmd"
   - "Chapters/04-Compartmental-Model-Solutions.Rmd"
   - "Chapters/05-Next-Generation-Matrix.Rmd"
+  - "Chapters/06-Real-World-Applications-and-Solutions.Rmd"
   - "Chapters/sample-code-for-reference.Rmd"

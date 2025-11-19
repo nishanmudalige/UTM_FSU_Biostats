@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Biostats E-book</title>
+  <title>Chapter 6 Real World Applications and Solutions | Biostats E-book</title>
   <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Biostats E-book" />
+  <meta property="og:title" content="Chapter 6 Real World Applications and Solutions | Biostats E-book" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Bookdown hosted on github using bookdown::gitbook." />
   <meta name="github-repo" content="nishanmudalige/STA258" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Biostats E-book" />
+  <meta name="twitter:title" content="Chapter 6 Real World Applications and Solutions | Biostats E-book" />
   
   <meta name="twitter:description" content="Bookdown hosted on github using bookdown::gitbook." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="next-generation-matrix.html"/>
+<link rel="next" href="sample-chapter-introduction-to-mathematical-modelling.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -176,19 +176,215 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="real-world-applications-and-solutions" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Real World Applications and Solutions<a href="real-world-applications-and-solutions.html#real-world-applications-and-solutions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-1" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introduction<a href="real-world-applications-and-solutions.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter, we will discuss and solve in detail varying complext SIR-type compartmental models, such as SAIR, SVIR, and SIQR. These models are derived and solved from pre-existing scholarly articles and experiments in which the parameters, variables, and differential equations that defined the study are provided. In this, we can apply our knowledge and techniques from previous chapters to determine stability and analyze different compartmental models. It is important to note that in previous chapters, we discussed theoretical techniques, which can be applied here, but also are defined for every equilibria, such as the DFE and EE. In these examples below, not all are specifically defined for each equilibria due to varying reasons, specfically due to the closed system nature of the experiments, not allowing a disease to persist in regard to the model.</p>
+</div>
+<div id="the-siqr-model" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> The SIQR Model<a href="real-world-applications-and-solutions.html#the-siqr-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This model is based on the parameters and variables defined in the article cited. <span class="citation">[<a href="references.html#ref-kalachev2022">15</a>]</span>.</p>
+<p>It is important to note that the authors states their limitations, as they do not include an E, Exposed, compartment. This means that the complexities of the case in question, COVID-19, is not fully modelled. However, for our purposes, this pre-existing model serves the purpose of providing definitive parameters to be manipulated and solved.</p>
+<div id="defining-the-parameters" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Defining the Parameters<a href="real-world-applications-and-solutions.html#defining-the-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Beginning with X, the vector of disease compartments. For the SIQR
+model, <span class="math inline">\(X = \begin{bmatrix} I\\ Q\\ \end{bmatrix}\)</span></p>
+<p>Refer back to the definitions of the new infection vector <span class="math inline">\(F(x)\)</span> and the transition vector <span class="math inline">\(V(x)\)</span> in (<em>Chapter</em><a href="next-generation-matrix.html#sec:ngmparameters">5.2</a>).</p>
+</div>
+<div id="defining-the-disease-free-equilibrium" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Defining the Disease Free Equilibrium<a href="real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Due to the closed system definition of the article, this SIQR Compartmental Model can only be solved at the DFE. This is due to the nature of a closed system in which the disease has already dissipated, thus, the Endemic Equilibrium cannot exist. However, modifications to create an open system with birth and death rates incorporated, an Endemic Equilibrium can then be solved for.</p>
+<p>The Disease Free Equilibrium exists when all infected compartments (I and Q), are set to 0. Thus, <span class="math inline">\(I=0\)</span> and <span class="math inline">\(Q=0\)</span>.
+So:
+<span class="math display">\[
+\begin{align*}
+\dot{S} &amp;= -\alpha S I = 0\\
+\dot{I} &amp;= \alpha S I - \beta I = 0 \\
+\dot{Q} &amp;= \beta I - \gamma Q = 0 \\
+\dot{R} &amp;= \gamma Q = 0 \\
+\end{align*}
+\]</span>
+At the DFE:</p>
+<ul>
+<li><span class="math inline">\(\dot{S}\)</span> is true when <span class="math inline">\(I=0\)</span></li>
+<li><span class="math inline">\(\dot{I}\)</span> is true when <span class="math inline">\(I=0\)</span></li>
+<li><span class="math inline">\(\dot{Q}\)</span> is true when <span class="math inline">\(I=0\)</span> and <span class="math inline">\(Q=0\)</span></li>
+<li><span class="math inline">\(\dot{R}\)</span> is true when <span class="math inline">\(Q=0\)</span></li>
+</ul>
+<p>Since there are no infections: <span class="math inline">\(I=Q=R=0\)</span>
+This means that for <span class="math inline">\(N=S+I+Q+R\)</span>, <span class="math inline">\(N=S\)</span> due to our earlier statements
+So at the DFE for the (S,I,Q,R) = (S,0,0,0) = (N,0,0,0)</p>
+</div>
+<div id="solving-the-siqr-model" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Solving the SIQR Model<a href="real-world-applications-and-solutions.html#solving-the-siqr-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="defining-f-and-v-matrices" class="section level4 hasAnchor" number="6.2.3.1">
+<h4><span class="header-section-number">6.2.3.1</span> Defining F and V Matrices<a href="real-world-applications-and-solutions.html#defining-f-and-v-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Recall: that for the SIQR model the disease compartments are I and Q:</p>
+<p><span class="math inline">\(\dot{X} = \begin{bmatrix} \dot{I}\\ \dot{Q}\\ \end{bmatrix}\)</span></p>
+<p>In order to define the distinction between new infections and transferred compartments, we create 2 matrices: Transmission (F) and Transition (V)</p>
+<ul>
+<li>Transmission Matrix (F)
+<ul>
+<li>In this Matrix, only compartments in which new infections are created
+<span class="math display">\[
+\begin{align*}
+\ F(x) &amp;= \begin{bmatrix} \dot{I}\\ \dot{Q}\\ \end{bmatrix} \\
+\ F(x) &amp;= \begin{bmatrix} \alpha S I - \beta I \\ \beta I - \gamma Q \\ \end{bmatrix} \\
+\ F(x) &amp;= \begin{bmatrix} \alpha S I \\ 0 \\ \end{bmatrix}
+\end{align*}
+\]</span></li>
+</ul></li>
+<li>Transition Matrix (V)
+<ul>
+<li>In this Matrix, using <span class="math inline">\(V = V^- + V^+\)</span>, we can find the transfer of infected individuals in and out of infected compartments</li>
+<li>We can see this transfer as each of the values stated below leave/subtracted from a differential equation of a compartment and enter/added to the differential equation of the next compartment
+<span class="math display">\[
+\begin{align*}
+\ V(X) &amp;= \begin{bmatrix} \beta I \\ -\beta I + \gamma Q \\ \end{bmatrix} \\
+\end{align*}
+\]</span></li>
+</ul></li>
+</ul>
+<p>Referring back to (<em>Chapter</em><a href="next-generation-matrix.html#sec:ngmparameters">5.2</a>) once again for the equation for <span class="math inline">\(\dot{X} = F(x) - V(x)\)</span>, we combine these matrices into:</p>
+<p><span class="math display">\[
+\begin{align*}
+\ \dot{X} &amp;= \begin{bmatrix} \alpha S I \\ 0 \\ \end{bmatrix} - \begin{bmatrix} \beta I \\ -\beta I + \gamma Q \\ \end{bmatrix}
+\end{align*}
+\]</span>
+For simplicity in later calculations:
+<span class="math display">\[
+\begin{align*}
+\ F(x) &amp;= \begin{bmatrix} \alpha S I \\ 0 \\ \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \end{bmatrix} \\
+\ V(x) &amp;= \begin{bmatrix} \beta I \\ -\beta I + \gamma Q \\ \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \end{bmatrix}
+\end{align*}
+\]</span></p>
+</div>
+<div id="taking-the-jacobian-matrix-of-f-and-v" class="section level4 hasAnchor" number="6.2.3.2">
+<h4><span class="header-section-number">6.2.3.2</span> Taking the Jacobian Matrix of F and V<a href="real-world-applications-and-solutions.html#taking-the-jacobian-matrix-of-f-and-v" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let the Jacobian of F(x) be <strong>F</strong>.</p>
+<p><span class="math display">\[
+\boldsymbol{F} = J_F (x) = \begin{bmatrix}
+\frac{\partial F_1}{\partial E} &amp; \frac{\partial F_1}{\partial I} \\
+\frac{\partial F_2}{\partial E} &amp; \frac{\partial F_2}{\partial I} \\
+\end{bmatrix}
+= \begin{bmatrix}
+\alpha S &amp; 0\\
+0 &amp; 0 \\
+\end{bmatrix}
+\]</span>
+At DFE, <span class="math inline">\(S = 1\)</span></p>
+<ul>
+<li>This is found by our earlier definition of the DFE.
+<ul>
+<li>At the DFE for (S,I,Q,R) = (S,0,0,0) = (N,0,0,0)</li>
+<li>Since Population <span class="math inline">\(&quot;N&quot;=1\)</span> and <span class="math inline">\(S=N\)</span>, then <span class="math inline">\(S=1\)</span></li>
+</ul></li>
+<li>So after subsituting <span class="math inline">\(S=1\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+J_F (x)
+= \begin{bmatrix}
+\alpha S &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix}
+\]</span></p>
+<p>Let the Jacobian of V(x) be <strong>V</strong>.
+<span class="math display">\[
+\boldsymbol{V} = J_V (x) = \begin{bmatrix}
+\frac{\partial V_1}{\partial E} &amp; \frac{\partial V_1}{\partial I} \\
+\frac{\partial V_2}{\partial E} &amp; \frac{\partial V_2}{\partial I} \\
+\end{bmatrix}
+= \begin{bmatrix}
+\beta &amp; 0 \\
+-\beta &amp; \gamma \\
+\end{bmatrix}
+\]</span></p>
+</div>
+<div id="finding-the-next-generation-matrix" class="section level4 hasAnchor" number="6.2.3.3">
+<h4><span class="header-section-number">6.2.3.3</span> Finding the Next Generation Matrix<a href="real-world-applications-and-solutions.html#finding-the-next-generation-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Refer to (<em>Chapter</em> <a href="next-generation-matrix.html#sec:ngm">5.3</a>) where the NGM for the SEIR model is found. We will be using a similar structure once again.
+<span class="math inline">\(NGM = \boldsymbol{F} \boldsymbol{V}^{-1}\)</span></p>
+<p>Thus:
+<span class="math display">\[
+\boldsymbol{F}
+= \begin{bmatrix}
+\alpha S &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix}
+\]</span>
+For <span class="math inline">\(\boldsymbol{V}^{-1}\)</span>, we use the same inverse matrix rule.</p>
+<p><span class="math display">\[\begin{align*}
+\boldsymbol{V} &amp;=
+\begin{bmatrix}
+\beta &amp; 0 \\
+-\beta &amp; \gamma \\
+\end{bmatrix}\\
+
+\boldsymbol{V}^{-1} &amp;= \frac{1}{ad-bc} \begin{bmatrix} d &amp; -b \\ -c &amp; a \\ \end{bmatrix} \\
+\boldsymbol{V}^{-1} &amp;=\frac{1}{\beta \gamma}
+\begin{bmatrix}
+\gamma &amp; 0 \\
+\beta &amp; \beta \\
+\end{bmatrix}\\
+\boldsymbol{V}^{-1} &amp;= \begin{bmatrix}
+\frac{1}{\beta} &amp; 0 \\
+\frac{1}{\gamma} &amp; \frac{1}{\gamma} \\
+\end{bmatrix}\\
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(\boldsymbol{F} \boldsymbol{V}^{-1}\)</span> is:
+<span class="math display">\[
+\begin{align*}
+\boldsymbol{F} \boldsymbol{V}^{-1} &amp;= \begin{bmatrix}
+\alpha S &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix} \begin{bmatrix}
+\frac{1}{\beta} &amp; 0 \\
+\frac{1}{\gamma} &amp; \frac{1}{\gamma} \\
+\end{bmatrix} \\
+\boldsymbol{F} \boldsymbol{V}^{-1} &amp;= \begin{bmatrix}
+\frac{\alpha S}{\beta} &amp; 0 \\
+0 &amp;0  \\
+\end{bmatrix}
+\end{align*}
+\]</span></p>
+</div>
+<div id="calculating-r_0-and-defining-stability" class="section level4 hasAnchor" number="6.2.3.4">
+<h4><span class="header-section-number">6.2.3.4</span> Calculating <span class="math inline">\(R_0\)</span> and Defining Stability<a href="real-world-applications-and-solutions.html#calculating-r_0-and-defining-stability" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>As stated previously in (<em>Chapter</em> <a href="next-generation-matrix.html#sec:ngm">5.3</a>), <span class="math inline">\(R_0\)</span> is the spectral radius of the Next Generation Matrix <span class="math inline">\(\ \boldsymbol{F} \boldsymbol{V}^{-1}\)</span>
+<span class="math display">\[
+det \left( \begin{bmatrix}
+\frac{\alpha S}{\beta} - \lambda &amp; 0 \\
+0 &amp; - \lambda \\
+\end{bmatrix} \right)
+= - \lambda \left( \frac{\alpha S}{\beta} - \lambda \right)
+\]</span>
+Let <span class="math inline">\(- \lambda \left( \frac{\alpha S}{\beta} - \lambda \right) = 0\)</span> (<span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> respectively)</p>
+<p>So <span class="math inline">\(\lambda_1 = 0\)</span> and <span class="math inline">\(\lambda_2 = \frac{\alpha S}{\beta}\)</span>.
+<span class="math inline">\(\lambda_2\)</span> is the largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{\gamma}\)</span>.</p>
+<p>Thus:</p>
+<ul>
+<li><p>If <span class="math inline">\(R_0 &lt; 1\)</span> then the DFE is stable, and the disease dies out</p>
+<ul>
+<li>This means that <span class="math inline">\(\alpha S &lt; \beta\)</span></li>
+</ul></li>
+<li><p>If <span class="math inline">\(R_0 &gt; 1\)</span> then the DFE is unstable, and an epidemic occurs</p>
+<ul>
+<li>This means that <span class="math inline">\(\alpha S &gt; \beta\)</span></li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="next-generation-matrix.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sample-chapter-introduction-to-mathematical-modelling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
