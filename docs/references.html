@@ -145,11 +145,23 @@ div.csl-indent {
 <li class="chapter" data-level="6" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html"><i class="fa fa-check"></i><b>6</b> Real World Applications and Solutions</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#the-siqr-model"><i class="fa fa-check"></i><b>6.2</b> The SIQR Model</a>
+<li class="chapter" data-level="6.2" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#the-svir-model"><i class="fa fa-check"></i><b>6.2</b> The SVIR Model</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#defining-the-parameters"><i class="fa fa-check"></i><b>6.2.1</b> Defining the Parameters</a></li>
-<li class="chapter" data-level="6.2.2" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium"><i class="fa fa-check"></i><b>6.2.2</b> Defining the Disease Free Equilibrium</a></li>
-<li class="chapter" data-level="6.2.3" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#solving-the-siqr-model"><i class="fa fa-check"></i><b>6.2.3</b> Solving the SIQR Model</a></li>
+<li class="chapter" data-level="6.2.1" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#model-formulation"><i class="fa fa-check"></i><b>6.2.1</b> Model Formulation</a></li>
+<li class="chapter" data-level="6.2.2" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#solving-for-the-basic-reproduction-number"><i class="fa fa-check"></i><b>6.2.2</b> Solving for the Basic Reproduction Number</a></li>
+<li class="chapter" data-level="6.2.3" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#computing-the-basic-reproduction-number-for-the-svir-model"><i class="fa fa-check"></i><b>6.2.3</b> Computing the Basic Reproduction Number for the SVIR Model</a></li>
+<li class="chapter" data-level="6.2.4" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#linearization-around-the-disease-free-equilibrium"><i class="fa fa-check"></i><b>6.2.4</b> Linearization Around the Disease-Free Equilibrium</a></li>
+<li class="chapter" data-level="6.2.5" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#jacobian-of-mathcalf"><i class="fa fa-check"></i><b>6.2.5</b> Jacobian of <span class="math inline">\(\mathcal{F}\)</span></a></li>
+<li class="chapter" data-level="6.2.6" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#jacobian-of-mathcalv"><i class="fa fa-check"></i><b>6.2.6</b> Jacobian of <span class="math inline">\(\mathcal{V}\)</span></a></li>
+<li class="chapter" data-level="6.2.7" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#forming-the-next-generation-matrix"><i class="fa fa-check"></i><b>6.2.7</b> Forming the Next-Generation Matrix</a></li>
+<li class="chapter" data-level="6.2.8" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#computing-the-reproduction-number"><i class="fa fa-check"></i><b>6.2.8</b> Computing the Reproduction Number</a></li>
+<li class="chapter" data-level="6.2.9" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#interpretation"><i class="fa fa-check"></i><b>6.2.9</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#the-siqr-model"><i class="fa fa-check"></i><b>6.3</b> The SIQR Model</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#defining-the-parameters"><i class="fa fa-check"></i><b>6.3.1</b> Defining the Parameters</a></li>
+<li class="chapter" data-level="6.3.2" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium"><i class="fa fa-check"></i><b>6.3.2</b> Defining the Disease Free Equilibrium</a></li>
+<li class="chapter" data-level="6.3.3" data-path="real-world-applications-and-solutions.html"><a href="real-world-applications-and-solutions.html#solving-the-siqr-model"><i class="fa fa-check"></i><b>6.3.3</b> Solving the SIQR Model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>7</b> Sample Chapter: Introduction to Mathematical Modelling</a>
@@ -221,8 +233,11 @@ div.csl-indent {
 <div id="ref-nishiura2009" class="csl-entry">
 <div class="csl-left-margin">[14] </div><div class="csl-right-inline">Nishiura H, Chowell G. The effective reproduction number as a prelude to statistical estimation of time-dependent epidemic trends. In: Chowell G, Hyman JM, Bettencourt LMA, Castillo-Chavez C, editors. Mathematical and statistical estimation approaches in epidemiology, Dordrecht: Springer Netherlands; 2009, p. 103–21. <a href="https://doi.org/10.1007/978-90-481-2313-1_5">https://doi.org/10.1007/978-90-481-2313-1_5</a>.</div>
 </div>
+<div id="ref-ramponi2024" class="csl-entry">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">Ramponi A, Tessitore ME. Optimal social and vaccination control in the SVIR epidemic model. Mathematics 2024;12:933. <a href="https://doi.org/10.3390/math12070933">https://doi.org/10.3390/math12070933</a>.</div>
+</div>
 <div id="ref-kalachev2022" class="csl-entry">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline">Kalachev L, Landguth EL, Graham J. Revisiting classical SIR modelling in light of the COVID-19 pandemic. Infectious Disease Modelling 2023;8:72–83. https://doi.org/<a href="https://doi.org/10.1016/j.idm.2022.12.002">https://doi.org/10.1016/j.idm.2022.12.002</a>.</div>
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">Kalachev L, Landguth EL, Graham J. Revisiting classical SIR modelling in light of the COVID-19 pandemic. Infectious Disease Modelling 2023;8:72–83. https://doi.org/<a href="https://doi.org/10.1016/j.idm.2022.12.002">https://doi.org/10.1016/j.idm.2022.12.002</a>.</div>
 </div>
 </div>
 
