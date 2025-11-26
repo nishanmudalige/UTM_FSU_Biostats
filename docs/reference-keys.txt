@@ -64,6 +64,16 @@ sec:ngm
 solving-the-seir-model-with-birth-and-death
 real-world-applications-and-solutions
 introduction-1
+the-svir-model
+model-formulation
+solving-for-the-basic-reproduction-number
+computing-the-basic-reproduction-number-for-the-svir-model
+linearization-around-the-disease-free-equilibrium
+jacobian-of-mathcalf
+jacobian-of-mathcalv
+forming-the-next-generation-matrix
+computing-the-reproduction-number
+interpretation
 the-siqr-model
 defining-the-parameters
 defining-the-disease-free-equilibrium
