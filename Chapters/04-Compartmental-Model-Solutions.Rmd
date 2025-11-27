@@ -44,7 +44,7 @@ By substituting our system of equations, where $S^*$ and $I^*$ are the values of
 
 $$J = \begin{bmatrix}-\beta I^* - \alpha & -\beta S^*-\alpha \\ \beta I^* & \beta S^* - \gamma\end{bmatrix}$$
 
-#### At Disease-Free Equilibrium
+#### At Disease-Free Equilibrium {#sec:dfeesa}
 
 The **Disease-Free Equilibrium (DFE)** (*Definition* \@ref(def:DFE)) is the state in which the disease has been eradicated. Therefore, at DFE, $I^* = 0$ and $S^* = 1$. It is important to note that this equation must retain the balance from our earlier equation ($S+I+R = 0$), so $R^* = O$.
 
