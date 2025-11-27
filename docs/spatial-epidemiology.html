@@ -211,20 +211,24 @@ div.csl-indent {
 <h2><span class="header-section-number">7.2</span> Metapopulations<a href="spatial-epidemiology.html#metapopulations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In past models, we have broken down models into 3 compartments: S, I, and R. In these models, one key omission is the distinction of populations. These compartments model the entire population, but there might be variations in disease transmission, and a lack or abundance of prevalence of a disease in a certain location. In order to accurately account for this, we are able to use metapopulations. In this way, these populations are able to split so that the disease in each of these sub-populations can be understood. This allows us to see that maybe a disease is prevalent and rapidly spreading in one city, but is only just being introduced in another city, demonstrating weak coupling and asynchrony. Alternatively, strong coupling can exist, and the spread of disease in these two cities might occur at the same time. Thus, there is synchronization between the two metapopulations (City 1 and City 2). Utilizing metapopulations allows us to see these differences within the entire population, rather than coupling every population together.</p>
 <div class="example">
-<p><span id="exm:Asynchronous" class="example"><strong>Example 7.1  (Metapopulation Example 1) </strong></span>Headline: There is a breakout of COVID-19 in the United States of America
-Without Metapopulations: There are 100 million cases of COVID-19
-With Metapopulations (Dividing the Populations By Time Zone): Coastal Timezone States (EST and PST) account for 75% of COVID-19 Cases in the USA
-Takeaway:
-- Indicates that the disease is spreading from foreigners who are travelling into major airports on the coast rather than spreading through domestic transmission.
-- The disease is synchronous in coastal cities, as foreigners are abundant in these areas and are spreading the disease; inner-domestic cities, while still being infected, are asynchronous, as the infections are only starting to spread in these regions.</p>
+<p><span id="exm:Asynchronous" class="example"><strong>Example 7.1  (Metapopulation Example 1) </strong></span>Headline: There is a breakout of COVID-19 in the United States of America during early 2020’s</p>
+<p>Without Metapopulations: There are 100 million cases of COVID-19</p>
+<p>With Metapopulations (Dividing the Populations By Time Zone): Coastal Timezone States (EST and PST) account for 75% of COVID-19 Cases in the USA</p>
+<p>Takeaway:</p>
+<ul>
+<li><p>Indicates that the disease is spreading from foreigners who are travelling into major airports on the coast rather than spreading through domestic transmission.</p></li>
+<li><p>The disease is synchronous in coastal cities, as foreigners are abundant in these areas and are spreading the disease; inner-domestic cities, while still being infected, are asynchronous, as the infections are only starting to spread in these regions.</p></li>
+</ul>
 </div>
 <div class="example">
 <p><span id="exm:Synchronous" class="example"><strong>Example 7.2  (Metapopulation Example 1) </strong></span>Example 2:
-Headline: There is a breakout of Measles in the United States of America (month and year)
-Without Metapopulations: There are 1,798 cases of Measles
-With Metapopulations: 87% of all cases occur in close-knit, unvaccinated communities in South/South Central States (Texas, Oklahoma, New Mexico)
-Takeaway:
-- The transmission of the disease between these specific unvaccinated communities is a synchronized metapopulation that acts together, while external vaccinated populations can combat this disease and prevent further spreading.</p>
+Headline: In January 2025, there was a breakout of Measles in the United States of America</p>
+<p>Without Metapopulations: There are 1,798 cases of Measles</p>
+<p>With Metapopulations: 87% of all cases occur in close-knit, unvaccinated communities in South/South Central States (Texas, Oklahoma, New Mexico)</p>
+<p>Takeaway:</p>
+<ul>
+<li>The transmission of the disease between these specific unvaccinated communities is a synchronized metapopulation that acts together, while external vaccinated populations can combat this disease and prevent further spreading.</li>
+</ul>
 </div>
 <p>These are basic examples, but they help illustrate how defining metapopulations allows for further in-depth analysis of the spread of a disease within a population rather than a single group, such as those defined in our models. <span class="citation">[<a href="references.html#ref-mathis2025">17</a>]</span> <span class="citation">[<a href="references.html#ref-wang2014">18</a>]</span></p>
 </div>
@@ -266,12 +270,14 @@ Takeaway:
 <h3><span class="header-section-number">7.4.1</span> Contact Heterogeneity<a href="spatial-epidemiology.html#contact-heterogeneity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Since contact is not consistent between all individuals, we must define the distinctions that can cause variations in the transmission of diseases. If we recall, in our models we use <span class="math inline">\(R_0\)</span>, the basic reproductive number. In our models, <span class="math inline">\(R_0\)</span> is proportional to the average number of contacts, since homogeneity is assumed. However, with heterogeneity, a person with a high number of contacts is integral to this topic, since they not only have the highest chances of becoming infected but also of spreading the infection. Because of this existence, the average is irrelevant, and the variance is the most relevant measure of disease transmission.</p>
 <div class="example">
-<p><span id="exm:contact" class="example"><strong>Example 7.3  (Contact Homogeneity vs. Contact Heterogeneity) </strong></span>City 1: Everyone is in contact with 5 people
-- Average Contact: 5 = <span class="math inline">\(R_0\)</span>
-- If a person becomes infected, the disease has a constant transmission rate = <span class="math inline">\(R_0\)</span>, the average contacts in this case.
-City 2: 99 people are in contact with 1 person. 1 person is in contact with 401 people.
-- Average Contact: Also 5
-- However, if the 99 people become infected, the disease will spread too slowly and die out; if the 1 person becomes infected, then the disease is instantly spread to 401 people, leading to an epidemic.</p>
+<p><span id="exm:contact" class="example"><strong>Example 7.3  (Contact Homogeneity vs. Contact Heterogeneity) </strong></span>City 1: Everyone is in contact with 5 people</p>
+<ul>
+<li><p>Average Contact: 5 = <span class="math inline">\(R_0\)</span></p></li>
+<li><p>If a person becomes infected, the disease has a constant transmission rate = <span class="math inline">\(R_0\)</span>, the average contacts in this case.
+City 2: 99 people are in contact with 1 person. 1 person is in contact with 401 people.</p></li>
+<li><p>Average Contact: Also 5</p></li>
+<li><p>However, if the 99 people become infected, the disease will spread too slowly and die out; if the 1 person becomes infected, then the disease is instantly spread to 401 people, leading to an epidemic.</p></li>
+</ul>
 <p>So, while the mean number of contacts in each town is the same, because 1 person has an egregious and abnormal amount of contacts, you must account for the variance and the existence of the one outlier.</p>
 </div>
 </div>
