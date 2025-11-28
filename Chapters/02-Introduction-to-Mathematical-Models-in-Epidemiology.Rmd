@@ -28,7 +28,7 @@ The most common form of this type of model is the SIR model, organized in three 
 These models utilize simpler processes by using accessible key data across broader conditions to produce a sufficiently predictive and generalizable model. [@tang2020] [@wilta2022]
 :::
 
-### Approach to Compartmental Modelling
+### Approach to Compartmental Modelling {#sec:compartments}
 
 Referring back, compartmental modelling \@ref(def:Compartmental) is the framework for prediction in epidemiology. The fundamental thinking behind the most common compartmental model, the SIR model, is that at any given point, a person will fall into either the Susceptible, Infected, or Recovered compartments, under the model's assumptions.
 

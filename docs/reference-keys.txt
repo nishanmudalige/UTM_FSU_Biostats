@@ -20,6 +20,7 @@ def:LSA
 def:ESE
 def:RHC
 def:DRS
+fig:seirdiagram
 exm:Asynchronous
 exm:Synchronous
 exm:contact
@@ -31,7 +32,7 @@ role-of-models-in-public-health
 introduction-to-mathematical-models-in-epidemiology
 sec:mathematical_models
 introduction-to-compartmental-modelling-thinking
-approach-to-compartmental-modelling
+sec:compartments
 benefits-of-parsimonious-models
 limitations-of-compartmental-models
 modelling-disease-dynamics-with-odes

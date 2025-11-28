@@ -8,27 +8,42 @@ editor_options:
 
 ## Introduction to the Chapter
 
-This chapter describes in depth the use of a Next Generation Matrix
-(NGM). This tool is used to calculate the $R_0$ value \@ref(def:R0).
-Using the NGM achieves this this for multi-compartmental models, such as
-SEIR (Refer back to Chapter 2), by linearizing the system of
-differential equations around the Disease-Free Equilibrium (DFE)
-\@ref(def:DFE) and and dividing the flow \@ref(def:Flow) of disease into
-what causes new cases and what accounts for everything else that happens
-to an infected person. It is also important to mention that these tools are
-not limited to specific models and can be used for a variety of models.
+This chapter describes in depth the use of the **Next Generation Matrix (NGM) method**. This tool is used to calculate the $R_0$ value (*Definition* \@ref(def:R0)). Using the NGM achieves this this for multi-compartmental models (e.g. SEIR), by linearizing the system of differential equations around the Disease-Free Equilibrium (DFE)
+(*Definition* \@ref(def:DFE)) and dividing the flow of disease (*Definition* \@ref(def:Flow)) into
+what causes new cases and what accounts for everything else that happens to an infected person. It is also important to mention that these tools are not limited to specific models and can be used for a variety of models. 
+This chapter will use the **SEIR model** as an example for applying the NGM method (recall the SEIR model from *Chapter* \@ref(sec:compartments)). 
 
-## Definining the Parameters {#sec:ngmparameters}
+## Definining the SEIR Model and Parameters {#sec:ngmparameters}
 
-Beginning with X, the vector of disease compartments. For the SEIR
-model, $X = \begin{bmatrix} E\\ I\\ \end{bmatrix}$. For the SIR model,
-$X = \begin{bmatrix} I \end{bmatrix}$
+The SEIR model expands on our previous SIR model with the additional compartment "Exposed". This compartment represents individuals in the population that have been infected, but are not yet infectious. 
 
+```{r seirdiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='50%', fig.ext='png', fig.cap='The SEIR compartmental model.'}
+\begin{tikzpicture}[node distance=3.2cm,>=stealth,thick]
+
+% Nodes
+\node[draw, minimum width=2cm, minimum height=1cm] (S) {$S$};
+\node[draw, minimum width=2cm, minimum height=1cm, right of=S] (E) {$E$};
+\node[draw, minimum width=2cm, minimum height=1cm, right of=E] (I) {$I$};
+\node[draw, minimum width=2cm, minimum height=1cm, right of=I] (R) {$R$};
+
+% Arrows
+\draw[->] (S) -- (E) node[midway, above] {$\beta S I$};
+\draw[->] (E) -- (I) node[midway, above] {$\delta$};
+\draw[->] (I) -- (R) node[midway, above] {$\gamma I$};
+
+\end{tikzpicture}
+```
+
+We define X as the vector of disease compartments. For the SEIR
+model, $X = \begin{bmatrix} E\\ I\\ \end{bmatrix}$. Note that for the SIR model,
+$X = \begin{bmatrix} I \end{bmatrix}$. 
+
+Then we can have:
 $$\frac{dX}{dt} = F(x) - V(x)$$
 
-$F(x)$ is a vector of the terms that lead to new infections
+- $F(x)$ is a vector of the terms that lead to new infections
 
-$V(x) = V^- (x) -V^+ (x)$ where $V^- (x)$ and $-V^+ (x)$ contain all
+- $V(x) = V^- (x) -V^+ (x)$ where $V^- (x)$ and $-V^+ (x)$ contain all
 other outputs and inputs, respectively, for each disease compartment
 
 ### Defining the Disease Free Equilibrium (DFE)
@@ -52,17 +67,15 @@ At the DFE:
 
 Since there are no infections: $E=I=R=0$
 This means that for $N=S+E+I+R$, $N=S$ due to our earlier statements
-So at the DFE for the (S,E,I,R) = (N,0,0,0)
+So at the DFE for the $(S,E,I,R) = (N,0,0,0)$
 
-This is important for understanding later subsitutions in the Chapter.
+This is important for understanding later substitutions in the Chapter.
 
 ## Solving SEIR Model with NGM {#sec:ngm}
 
 Recall: that for the SEIR model the disease compartments are E and I
 
 $\dot{X} = \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix}$
-
-Recall from Ch \_\_:
 
 $$
 \begin{align*}
@@ -72,8 +85,6 @@ $$
 \ \dot{R} &= \gamma I \\ 
 \end{align*}
 $$
-
-Insert an tikz image of SEIR compartments here
 
 For the SIR model, $X = \begin{bmatrix} I \end{bmatrix}$
 For the SEIR Model:
@@ -185,8 +196,8 @@ $$
 \end{align*}
 $$
 
-Refer back to the formula in (*Chapter* \@ref(sec:dfeesa)), where $det(J-\lambda I_n) = 0$. $R_0$ is the spectral radius of $\ \boldsymbol{F} \boldsymbol{V} ^{-1}$
-(i.e. the largest eigenvalue)
+Refer back to the formula in (*Chapter* \@ref(sec:dfeesa)), where $det(J-\lambda I_n) = 0$. $R_0$ is the spectral radius (i.e. largest eigenvalue) of $\ \boldsymbol{F} \boldsymbol{V} ^{-1}$. 
+
 
 $$
 det \left( \begin{bmatrix} 
