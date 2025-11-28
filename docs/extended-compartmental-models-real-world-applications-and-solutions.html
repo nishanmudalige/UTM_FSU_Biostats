@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="next-generation-matrix.html"/>
-<link rel="next" href="sample-chapter-introduction-to-mathematical-modelling.html"/>
+<link rel="next" href="spatial-epidemiology.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -165,11 +165,18 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model"><i class="fa fa-check"></i><b>6.4</b> The SAIR Model</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>7</b> Sample Chapter: Introduction to Mathematical Modelling</a>
+<li class="chapter" data-level="7" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html"><i class="fa fa-check"></i><b>7</b> Spatial Epidemiology</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#sec:foundations"><i class="fa fa-check"></i><b>7.1</b> Foundations</a></li>
-<li class="chapter" data-level="7.2" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#exponential-growth-and-decay"><i class="fa fa-check"></i><b>7.2</b> Exponential Growth and Decay</a></li>
-<li class="chapter" data-level="7.3" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#logistic-model"><i class="fa fa-check"></i><b>7.3</b> Logistic Model</a></li>
+<li class="chapter" data-level="7.1" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#introduction-to-spatial-epidemiology"><i class="fa fa-check"></i><b>7.1</b> Introduction to Spatial Epidemiology</a></li>
+<li class="chapter" data-level="7.2" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#metapopulations"><i class="fa fa-check"></i><b>7.2</b> Metapopulations</a></li>
+<li class="chapter" data-level="7.3" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#diffusion-and-travel"><i class="fa fa-check"></i><b>7.3</b> Diffusion and Travel</a></li>
+<li class="chapter" data-level="7.4" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#networks"><i class="fa fa-check"></i><b>7.4</b> Networks</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#contact-heterogeneity"><i class="fa fa-check"></i><b>7.4.1</b> Contact Heterogeneity</a></li>
+<li class="chapter" data-level="7.4.2" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#scale-free-networks"><i class="fa fa-check"></i><b>7.4.2</b> Scale Free Networks</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#ring-vaccination"><i class="fa fa-check"></i><b>7.5</b> Ring Vaccination</a></li>
+<li class="chapter" data-level="7.6" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#agent-based-models"><i class="fa fa-check"></i><b>7.6</b> Agent-Based Models</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -717,12 +724,25 @@ p\beta(I-\alpha A)S-\epsilon A - \frac{uI}{1+kI} \end{bmatrix} \\
   (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S &amp; (\frac{1}{u})p \beta S \\ \end{bmatrix} \\
 \end{align*}
 \]</span></p>
-<p>Then since <span class="math inline">\(R_0\)</span> is the spectral radius ?</p>
+<p>Then since <span class="math inline">\(R_0\)</span> is the spectral radius ?
+Use: <span class="math inline">\(det(J-\lambda I_n) = det(\lambda I_n -J) = 0\)</span> ?</p>
 <p><span class="math display">\[
 \begin{align*}
-\ 0 &amp;= det \left(\begin{bmatrix}-\beta I^* - \alpha -\lambda &amp; -\gamma-\alpha \\ \beta I &amp; -\lambda\end{bmatrix} \right) \\
-\ 0 &amp;= -(\beta I^* + \alpha + \lambda) (-\lambda) + (\beta I^*) (\gamma+\alpha) \\
-\ 0 &amp;= \lambda^2 + (\beta I^* + \alpha)\lambda + \beta I^*(\gamma+\alpha) \\
+\ 0 &amp;= det \left(  
+  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S
+  &amp; (\frac{1}{u}) (1-p) \beta S \\
+  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S &amp; (\frac{1}{u})p \beta S \\ \end{bmatrix}
+  -\lambda\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{bmatrix} \right) \\
+\ 0 &amp;= det \left(
+  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S  - \lambda
+  &amp; (\frac{1}{u}) (1-p) \beta S \\
+  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S
+  &amp; (\frac{1}{u})p \beta S - \lambda \end{bmatrix} \right) \\
+\ 0 &amp;=
+  \left( (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S  - \lambda \right)
+  \left( (\frac{1}{u}) (1-p) \beta S \right)
+  - \left( (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S \right)
+  \left( (\frac{1}{u})p \beta S - \lambda \right)
 \end{align*}
 \]</span></p>
 
@@ -734,7 +754,7 @@ p\beta(I-\alpha A)S-\epsilon A - \frac{uI}{1+kI} \end{bmatrix} \\
         </div>
       </div>
 <a href="next-generation-matrix.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sample-chapter-introduction-to-mathematical-modelling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="spatial-epidemiology.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
