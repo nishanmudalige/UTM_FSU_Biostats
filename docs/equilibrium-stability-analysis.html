@@ -165,11 +165,24 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model"><i class="fa fa-check"></i><b>6.4</b> The SAIR Model</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>7</b> Sample Chapter: Introduction to Mathematical Modelling</a>
+<li class="chapter" data-level="7" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html"><i class="fa fa-check"></i><b>7</b> Spatial Epidemiology</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#sec:foundations"><i class="fa fa-check"></i><b>7.1</b> Foundations</a></li>
-<li class="chapter" data-level="7.2" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#exponential-growth-and-decay"><i class="fa fa-check"></i><b>7.2</b> Exponential Growth and Decay</a></li>
-<li class="chapter" data-level="7.3" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#logistic-model"><i class="fa fa-check"></i><b>7.3</b> Logistic Model</a></li>
+<li class="chapter" data-level="7.1" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#introduction-to-spatial-epidemiology"><i class="fa fa-check"></i><b>7.1</b> Introduction to Spatial Epidemiology</a></li>
+<li class="chapter" data-level="7.2" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#metapopulations"><i class="fa fa-check"></i><b>7.2</b> Metapopulations</a></li>
+<li class="chapter" data-level="7.3" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#diffusion-and-travel"><i class="fa fa-check"></i><b>7.3</b> Diffusion and Travel</a></li>
+<li class="chapter" data-level="7.4" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#networks"><i class="fa fa-check"></i><b>7.4</b> Networks</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#contact-heterogeneity"><i class="fa fa-check"></i><b>7.4.1</b> Contact Heterogeneity</a></li>
+<li class="chapter" data-level="7.4.2" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#scale-free-networks"><i class="fa fa-check"></i><b>7.4.2</b> Scale Free Networks</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#ring-vaccination"><i class="fa fa-check"></i><b>7.5</b> Ring Vaccination</a></li>
+<li class="chapter" data-level="7.6" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#agent-based-models"><i class="fa fa-check"></i><b>7.6</b> Agent-Based Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>8</b> Sample Chapter: Introduction to Mathematical Modelling</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#sec:foundations"><i class="fa fa-check"></i><b>8.1</b> Foundations</a></li>
+<li class="chapter" data-level="8.2" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#exponential-growth-and-decay"><i class="fa fa-check"></i><b>8.2</b> Exponential Growth and Decay</a></li>
+<li class="chapter" data-level="8.3" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#logistic-model"><i class="fa fa-check"></i><b>8.3</b> Logistic Model</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -224,8 +237,8 @@ Now, we have our 3 system of equations, (<span class="math inline">\(\dot{S}, \d
 <p><span class="math display">\[J = \begin{bmatrix} \frac{dF}{dS} &amp; \frac{dF}{dI} \\ \frac{dG}{dS} &amp; \frac{dG}{dI}\end{bmatrix}\]</span>
 By substituting our system of equations, where <span class="math inline">\(S^*\)</span> and <span class="math inline">\(I^*\)</span> are the values of S and I at our specific equilibrium point, the Jacobian Matrix is as follows:</p>
 <p><span class="math display">\[J = \begin{bmatrix}-\beta I^* - \alpha &amp; -\beta S^*-\alpha \\ \beta I^* &amp; \beta S^* - \gamma\end{bmatrix}\]</span></p>
-<div id="at-disease-free-equilibrium" class="section level4 hasAnchor" number="4.2.1.1">
-<h4><span class="header-section-number">4.2.1.1</span> At Disease-Free Equilibrium<a href="equilibrium-stability-analysis.html#at-disease-free-equilibrium" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="sec:dfeesa" class="section level4 hasAnchor" number="4.2.1.1">
+<h4><span class="header-section-number">4.2.1.1</span> At Disease-Free Equilibrium<a href="equilibrium-stability-analysis.html#sec:dfeesa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <strong>Disease-Free Equilibrium (DFE)</strong> (<em>Definition</em> <a href="modelling-disease-dynamics-with-odes.html#def:DFE">3.3</a>) is the state in which the disease has been eradicated. Therefore, at DFE, <span class="math inline">\(I^* = 0\)</span> and <span class="math inline">\(S^* = 1\)</span>. It is important to note that this equation must retain the balance from our earlier equation (<span class="math inline">\(S+I+R = 0\)</span>), so <span class="math inline">\(R^* = O\)</span>.</p>
 <p>We can substitute our values for <span class="math inline">\(I^*\)</span> and <span class="math inline">\(S^*\)</span> at the DFE into our Jacobian Matrix before, so we get:</p>
 <p><span class="math display">\[J_{DFE} = \begin{bmatrix}-\alpha &amp; -\beta-\alpha \\ 0 &amp; \beta-\gamma\end{bmatrix}\]</span></p>

@@ -185,7 +185,7 @@ $$
 \end{align*}
 $$
 
-$R_0$ is the spectral radius of $\ \boldsymbol{F} \boldsymbol{V} ^{-1}$
+Refer back to the formula in (*Chapter* \@ref(sec:dfeesa)), where $det(J-\lambda I_n) = 0$. $R_0$ is the spectral radius of $\ \boldsymbol{F} \boldsymbol{V} ^{-1}$
 (i.e. the largest eigenvalue)
 
 $$

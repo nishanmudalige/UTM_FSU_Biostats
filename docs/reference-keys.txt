@@ -20,6 +20,9 @@ def:LSA
 def:ESE
 def:RHC
 def:DRS
+exm:Asynchronous
+exm:Synchronous
+exm:contact
 def:Model
 fig:ExpGrowthDecay
 fig:LogisticExample
@@ -44,7 +47,7 @@ equilibrium-stability-analysis
 introduction-to-the-chapter-1
 linear-stability-analysis-for-the-sir-model
 direct-calculation
-at-disease-free-equilibrium
+sec:dfeesa
 at-endemic-equilibrium
 a-note-on-phase-diagrams
 routh---hurwitz-criteria
@@ -62,7 +65,7 @@ sec:ngmparameters
 defining-the-disease-free-equilibrium-dfe
 sec:ngm
 solving-the-seir-model-with-birth-and-death
-extended-compartmental-models-real-world-applications-and-solutions
+real-world-applications-and-solutions
 introduction-1
 the-svir-model
 model-formulation
@@ -82,7 +85,15 @@ defining-f-and-v-matrices
 taking-the-jacobian-matrix-of-f-and-v
 finding-the-next-generation-matrix
 calculating-r_0-and-defining-stability
-the-sair-model
+spatial-epidemiology
+introduction-to-spatial-epidemiology
+metapopulations
+diffusion-and-travel
+networks
+contact-heterogeneity
+scale-free-networks
+ring-vaccination
+agent-based-models
 sample-chapter-introduction-to-mathematical-modelling
 sec:foundations
 exponential-growth-and-decay

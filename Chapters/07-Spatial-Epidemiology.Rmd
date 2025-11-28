@@ -1,0 +1,107 @@
+# Spatial Epidemiology
+
+## Introduction to Spatial Epidemiology
+
+Throughout this textbook, we began with historical and foundational topics surrounding compartmental models, then learned to solve them using various methods. In all of these models, we assume that every susceptible person in proximity to an infected individual has an equal chance of becoming infected as well; while this is a great assumption for models and convenient for the mathematical processes we execute, it does not accurately reflect real-world disease transmission dynamics. Because of the omission of these external factors that reflect realism, understanding Spatial Epidemiology allows us to understand the geographical/physical factors that contribute to the spread of disease, and narrow down the random susceptibility of being infected to understanding the source at play.
+
+## Metapopulations
+
+In past models, we have broken down models into 3 compartments: S, I, and R. In these models, one key omission is the distinction of populations. These compartments model the entire population, but there might be variations in disease transmission, and a lack or abundance of prevalence of a disease in a certain location. In order to accurately account for this, we are able to use metapopulations. In this way, these populations are able to split so that the disease in each of these sub-populations can be understood. This allows us to see that maybe a disease is prevalent and rapidly spreading in one city, but is only just being introduced in another city, demonstrating weak coupling and asynchrony. Alternatively, strong coupling can exist, and the spread of disease in these two cities might occur at the same time. Thus, there is synchronization between the two metapopulations (City 1 and City 2). Utilizing metapopulations allows us to see these differences within the entire population, rather than coupling every population together.
+
+:::{.example name="Metapopulation Example 1" #Asynchronous}
+
+Headline: There is a breakout of COVID-19 in the United States of America during early 2020's
+
+Without Metapopulations: There are 100 million cases of COVID-19
+
+With Metapopulations (Dividing the Populations By Time Zone): Coastal Timezone States (EST and PST) account for 75% of COVID-19 Cases in the USA
+
+Takeaway:
+
+  - Indicates that the disease is spreading from foreigners who are travelling into major airports on the coast rather than spreading through domestic transmission.
+  
+  - The disease is synchronous in coastal cities, as foreigners are abundant in these areas and are spreading the disease; inner-domestic cities, while still being infected, are asynchronous, as the infections are only starting to spread in these regions.
+  
+:::
+
+:::{.example name="Metapopulation Example 1" #Synchronous}
+
+Example 2:
+Headline: In January 2025, there was a breakout of Measles in the United States of America
+
+Without Metapopulations: There are 1,798 cases of Measles
+
+With Metapopulations: 87% of all cases occur in close-knit, unvaccinated communities in South/South Central States (Texas, Oklahoma, New Mexico)
+
+Takeaway:
+
+  - The transmission of the disease between these specific unvaccinated communities is a synchronized metapopulation that acts together, while external vaccinated populations can combat this disease and prevent further spreading.
+
+:::
+
+These are basic examples, but they help illustrate how defining metapopulations allows for further in-depth analysis of the spread of a disease within a population rather than a single group, such as those defined in our models. [@mathis2025] [@wang2014]
+
+## Diffusion and Travel
+
+In Epidemiology, the travel and transmission of disease are not random. There are many different ways in which a disease can travel, whether at airports from foreign contact, waterborne from an infected spout, between communities with specific characteristics, etc. Being able to understand the differences in how these diseases spread, we must understand the different types of diffusion that contribute to these distinctions.
+
+- Expansion Diffusion
+  - A disease spreads outward from the initial source, but remains intensified at the origin as it continues to spread. This is the most common type of disease spreading, as it continues to spread from new infections as well as the source.
+  - Examples: H1N1 (Swine Flu), COVID-19, Common Cold
+  - Characteristics: Mass Outbreaks, Continuous Spread
+
+- Relocation Diffusion
+  - A disease/infected population migrates from the initial source, becoming prevalent in a new location; the prevalence at the origin declines. This can occur because the host/source moves, and transmission begins in the new area and stops in the old area, without infecting areas in between
+  - Examples: 2010 Haiti Cholera Outbreak, STDs
+  - Characteristics: Discontinuous Spread, Migration
+
+- Contagious Diffusion
+  - The chance of being infected is strictly based on the distance to an infected individual. The chance of catching an infection is inversely proportional to the distance from the infected.
+  - Examples: Varicella-Zoster, Ebola
+  - Characteristics: Based on Distance-Decay, Slow Spreading, Continuous Wave
+  
+- Hierarchical Diffusion
+  - A disease spreads from larger hubs to smaller hubs based on connectivity. A disease spreads from a large hub to another hub and slowly makes its way into smaller and smaller hubs, usually through long-distance travel.
+  - Examples: Early COVID-19, HIV, H1N1
+  - Characteristics: Non-contagious spread (Spatial Separation), Transportation-based
+
+References: [@Delussu2023] [@Gupta2025]
+
+## Networks
+
+In this section, we will look at the other way in which diseases spread. First, we looked at metapopulations and diffusion, in which the transmission of disease was spread geographically. Now we look at Networks, which involve the transmission of disease through social factors and structure. In our models, we assume that everyone has the same amount of contact, or homogenous contact, for simplicity; however, in the real world, this is not accurate, and contact is heterogeneous.
+
+### Contact Heterogeneity
+
+Since contact is not consistent between all individuals, we must define the distinctions that can cause variations in the transmission of diseases. If we recall, in our models we use $R_0$, the basic reproductive number. In our models, $R_0$ is proportional to the average number of contacts, since homogeneity is assumed. However, with heterogeneity, a person with a high number of contacts is integral to this topic, since they not only have the highest chances of becoming infected but also of spreading the infection. Because of this existence, the average is irrelevant, and the variance is the most relevant measure of disease transmission.
+
+:::{.example name="Contact Homogeneity vs. Contact Heterogeneity" #contact}
+
+City 1: Everyone is in contact with 5 people
+
+  - Average Contact: 5 = $R_0$
+  
+  - If a person becomes infected, the disease has a constant transmission rate = $R_0$, the average contacts in this case.
+City 2: 99 people are in contact with 1 person. 1 person is in contact with 401 people.
+
+  - Average Contact: Also 5
+  
+  - However, if the 99 people become infected, the disease will spread too slowly and die out; if the 1 person becomes infected, then the disease is instantly spread to 401 people, leading to an epidemic.
+  
+So, while the mean number of contacts in each town is the same, because 1 person has an egregious and abnormal amount of contacts, you must account for the variance and the existence of the one outlier.
+
+:::
+
+### Scale Free Networks
+
+As seen in the previous example with City 2, most people had a low contact rate, and few had abnormal contact rates. This distribution is called a Poisson Distribution, and this phenomenon is reflected in the real world, and is known as a scale-free network. The person with an abnormal contact rate is known as a Hub, and is the primary subject of the hub effect. As diseases spread within this type of population, they will eventually come into contact with a hub, which will then exponentially infect a large number of individuals instantly. It is observed that in scale-free networks, the epidemic may never die out without intervention, thus becoming endemic. [@Mckee2024]
+
+## Ring Vaccination
+
+As discussed before, with herd immunity, a population can become protected if enough of the population becomes vaccinated. However, this may sometimes be hard to achieve, especially when an outbreak suddenly occurs. To combat this case, a new concept, called Ring Vaccination, takes effect. By tracking an initial case, the network of individuals connected to the initial case can be found and vaccinated. Then, the contacts of those contacts can also be vaccinated. This is very effective as only the susceptible people in contact with the infected individual can be protected and thus prevent the transmission of the disease. This only works with slower transmitting diseases; as with the case of COVID-19, if a vaccination existed, Ring Vaccination may not be effective since the transmission of the disease occurred rapidly.
+
+In the modern day, the Ring of Vaccination is implemented slightly differently, since the goal is to prevent outbreaks before they happen rather than after. Even if not enough vaccinations are available to achieve herd immunity, by vaccinating rings, so networks of people, rather than random individuals, if a disease were to occur, then the spread can be contained and thus eradicated (at that instance). Thus, an outbreak cannot occur if enough rings are in place to contain the transmission. [@Berry2025] [@Dean2022]
+
+## Agent-Based Models
+
+We have only looked at Compartmental Models, in which we use different transmission rates and parameters to model the changes of a population as the population becomes infected, as well as the specifics on the spread of the disease. However, there are many other types of models, such as an Agent-Based Model. Instead of assuming homogeneity for a population, we can model each individual as an agent with specific characteristics. These can range from age, occupation, antibody protection levels, and even their day-to-day life. These agents can even be programmed to behave differently, such as if they become sick, they will lock themselves down. All of this is done to simulate reality by creating agents that can reflect the behaviors and choices of the average population. When simulated, aspects of these models can be altered to test different outcomes. For example, if an epidemic occurs within the Agent-Based Model, the researchers can test whether closing an airport or switching their water supply can affect the spread of disease. Similar to the discussion with Stochastic Models, these can reflect the randomness and variability of reality; however, while Agent-Based Models reflect stochasticity, the complexity involved with these models proves instead to be a limitation, as it can be difficult to understand the true origins, causes, and effects at play when the model is altered. Additionally, as stated with the complexity, these models are also very hard to create without intensive labor and data available. So while these models are able to simulate normal lives of people, the complexities may also prove futile in the goal of truly understanding and testing population and transmission dynamics. [@hunter2017]

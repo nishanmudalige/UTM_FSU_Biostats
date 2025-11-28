@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Sample Chapter: Introduction to Mathematical Modelling | Biostats E-book</title>
+  <title>Chapter 7 Spatial Epidemiology | Biostats E-book</title>
   <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Sample Chapter: Introduction to Mathematical Modelling | Biostats E-book" />
+  <meta property="og:title" content="Chapter 7 Spatial Epidemiology | Biostats E-book" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Bookdown hosted on github using bookdown::gitbook." />
   <meta name="github-repo" content="nishanmudalige/STA258" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Sample Chapter: Introduction to Mathematical Modelling | Biostats E-book" />
+  <meta name="twitter:title" content="Chapter 7 Spatial Epidemiology | Biostats E-book" />
   
   <meta name="twitter:description" content="Bookdown hosted on github using bookdown::gitbook." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="spatial-epidemiology.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="real-world-applications-and-solutions.html"/>
+<link rel="next" href="sample-chapter-introduction-to-mathematical-modelling.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -201,66 +201,100 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sample-chapter-introduction-to-mathematical-modelling" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Sample Chapter: Introduction to Mathematical Modelling<a href="sample-chapter-introduction-to-mathematical-modelling.html#sample-chapter-introduction-to-mathematical-modelling" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="sec:foundations" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Foundations<a href="sample-chapter-introduction-to-mathematical-modelling.html#sec:foundations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="definition">
-<p><span id="def:Model" class="definition"><strong>Definition 8.1  (Model) </strong></span>A mathematical model is a mathematical framework describing a simplified version of reality.</p>
+<div id="spatial-epidemiology" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Spatial Epidemiology<a href="spatial-epidemiology.html#spatial-epidemiology" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-to-spatial-epidemiology" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Introduction to Spatial Epidemiology<a href="spatial-epidemiology.html#introduction-to-spatial-epidemiology" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Throughout this textbook, we began with historical and foundational topics surrounding compartmental models, then learned to solve them using various methods. In all of these models, we assume that every susceptible person in proximity to an infected individual has an equal chance of becoming infected as well; while this is a great assumption for models and convenient for the mathematical processes we execute, it does not accurately reflect real-world disease transmission dynamics. Because of the omission of these external factors that reflect realism, understanding Spatial Epidemiology allows us to understand the geographical/physical factors that contribute to the spread of disease, and narrow down the random susceptibility of being infected to understanding the source at play.</p>
 </div>
-<p>Some examples of mathematical models from Definition <a href="sample-chapter-introduction-to-mathematical-modelling.html#def:Model">8.1</a> include</p>
+<div id="metapopulations" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Metapopulations<a href="spatial-epidemiology.html#metapopulations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In past models, we have broken down models into 3 compartments: S, I, and R. In these models, one key omission is the distinction of populations. These compartments model the entire population, but there might be variations in disease transmission, and a lack or abundance of prevalence of a disease in a certain location. In order to accurately account for this, we are able to use metapopulations. In this way, these populations are able to split so that the disease in each of these sub-populations can be understood. This allows us to see that maybe a disease is prevalent and rapidly spreading in one city, but is only just being introduced in another city, demonstrating weak coupling and asynchrony. Alternatively, strong coupling can exist, and the spread of disease in these two cities might occur at the same time. Thus, there is synchronization between the two metapopulations (City 1 and City 2). Utilizing metapopulations allows us to see these differences within the entire population, rather than coupling every population together.</p>
+<div class="example">
+<p><span id="exm:Asynchronous" class="example"><strong>Example 7.1  (Metapopulation Example 1) </strong></span>Headline: There is a breakout of COVID-19 in the United States of America during early 2020’s</p>
+<p>Without Metapopulations: There are 100 million cases of COVID-19</p>
+<p>With Metapopulations (Dividing the Populations By Time Zone): Coastal Timezone States (EST and PST) account for 75% of COVID-19 Cases in the USA</p>
+<p>Takeaway:</p>
 <ul>
-<li><p><strong>Population Growth Model</strong>: A model that describes how the size of a population changes over time depending on birth rates and death rates.</p></li>
-<li><p><strong>Supply and Demand Model</strong>: A model in economics that relates the price of a good to its availability (supply) and how much people want it (demand). It predicts that the price will adjust until the amount supplied equals the amount demanded (market equilibrium).</p></li>
-<li><p><strong>Projectile Motion Model</strong>: A physics model for the path of an object thrown into the air.</p></li>
-<li><p><strong>Linear Regression Model</strong>: A statistical model that expresses the relationship between a response variable (like exam score) and one or more explanatory variables (like study hours).</p></li>
+<li><p>Indicates that the disease is spreading from foreigners who are travelling into major airports on the coast rather than spreading through domestic transmission.</p></li>
+<li><p>The disease is synchronous in coastal cities, as foreigners are abundant in these areas and are spreading the disease; inner-domestic cities, while still being infected, are asynchronous, as the infections are only starting to spread in these regions.</p></li>
 </ul>
 </div>
-<div id="exponential-growth-and-decay" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Exponential Growth and Decay<a href="sample-chapter-introduction-to-mathematical-modelling.html#exponential-growth-and-decay" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Exponential models describe processes that grow or decline at rates proportional to their current size. In the case of exponential growth, the model is</p>
-<p><span class="math display">\[
-\frac{dN}{dt} = rN, \quad r &gt; 0,
-\]</span></p>
-<p>which has the solution</p>
-<p><span class="math display">\[
-N(t) = N_0 e^{rt}.
-\]</span></p>
-<p>When the rate <span class="math inline">\(r\)</span> is negative, we obtain exponential decay, where the quantity decreases over time:</p>
-<p><span class="math display">\[
-N(t) = N_0 e^{rt}, \quad r &lt; 0.
-\]</span></p>
-<p>These models are widely used in contexts such as population growth, radioactive decay, and compound interest.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ExpGrowthDecay"></span>
-<img src="_main_files/figure-html/ExpGrowthDecay-1.png" alt="Exponential growth (left) and exponential decay (right) with initial value $N_0=10$; rates $r=0.3$ and $r=-0.3$." width="50%" /><img src="_main_files/figure-html/ExpGrowthDecay-2.png" alt="Exponential growth (left) and exponential decay (right) with initial value $N_0=10$; rates $r=0.3$ and $r=-0.3$." width="50%" />
-<p class="caption">
-Figure 8.1: Exponential growth (left) and exponential decay (right) with initial value <span class="math inline">\(N_0=10\)</span>; rates <span class="math inline">\(r=0.3\)</span> and <span class="math inline">\(r=-0.3\)</span>.
-</p>
+<div class="example">
+<p><span id="exm:Synchronous" class="example"><strong>Example 7.2  (Metapopulation Example 1) </strong></span>Example 2:
+Headline: In January 2025, there was a breakout of Measles in the United States of America</p>
+<p>Without Metapopulations: There are 1,798 cases of Measles</p>
+<p>With Metapopulations: 87% of all cases occur in close-knit, unvaccinated communities in South/South Central States (Texas, Oklahoma, New Mexico)</p>
+<p>Takeaway:</p>
+<ul>
+<li>The transmission of the disease between these specific unvaccinated communities is a synchronized metapopulation that acts together, while external vaccinated populations can combat this disease and prevent further spreading.</li>
+</ul>
+</div>
+<p>These are basic examples, but they help illustrate how defining metapopulations allows for further in-depth analysis of the spread of a disease within a population rather than a single group, such as those defined in our models. <span class="citation">[<a href="references.html#ref-mathis2025">17</a>]</span> <span class="citation">[<a href="references.html#ref-wang2014">18</a>]</span></p>
+</div>
+<div id="diffusion-and-travel" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Diffusion and Travel<a href="spatial-epidemiology.html#diffusion-and-travel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In Epidemiology, the travel and transmission of disease are not random. There are many different ways in which a disease can travel, whether at airports from foreign contact, waterborne from an infected spout, between communities with specific characteristics, etc. Being able to understand the differences in how these diseases spread, we must understand the different types of diffusion that contribute to these distinctions.</p>
+<ul>
+<li>Expansion Diffusion
+<ul>
+<li>A disease spreads outward from the initial source, but remains intensified at the origin as it continues to spread. This is the most common type of disease spreading, as it continues to spread from new infections as well as the source.</li>
+<li>Examples: H1N1 (Swine Flu), COVID-19, Common Cold</li>
+<li>Characteristics: Mass Outbreaks, Continuous Spread</li>
+</ul></li>
+<li>Relocation Diffusion
+<ul>
+<li>A disease/infected population migrates from the initial source, becoming prevalent in a new location; the prevalence at the origin declines. This can occur because the host/source moves, and transmission begins in the new area and stops in the old area, without infecting areas in between</li>
+<li>Examples: 2010 Haiti Cholera Outbreak, STDs</li>
+<li>Characteristics: Discontinuous Spread, Migration</li>
+</ul></li>
+<li>Contagious Diffusion
+<ul>
+<li>The chance of being infected is strictly based on the distance to an infected individual. The chance of catching an infection is inversely proportional to the distance from the infected.</li>
+<li>Examples: Varicella-Zoster, Ebola</li>
+<li>Characteristics: Based on Distance-Decay, Slow Spreading, Continuous Wave</li>
+</ul></li>
+<li>Hierarchical Diffusion
+<ul>
+<li>A disease spreads from larger hubs to smaller hubs based on connectivity. A disease spreads from a large hub to another hub and slowly makes its way into smaller and smaller hubs, usually through long-distance travel.</li>
+<li>Examples: Early COVID-19, HIV, H1N1</li>
+<li>Characteristics: Non-contagious spread (Spatial Separation), Transportation-based</li>
+</ul></li>
+</ul>
+<p>References: <span class="citation">[<a href="references.html#ref-Delussu2023">19</a>]</span> <span class="citation">[<a href="references.html#ref-Gupta2025">20</a>]</span></p>
+</div>
+<div id="networks" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Networks<a href="spatial-epidemiology.html#networks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this section, we will look at the other way in which diseases spread. First, we looked at metapopulations and diffusion, in which the transmission of disease was spread geographically. Now we look at Networks, which involve the transmission of disease through social factors and structure. In our models, we assume that everyone has the same amount of contact, or homogenous contact, for simplicity; however, in the real world, this is not accurate, and contact is heterogeneous.</p>
+<div id="contact-heterogeneity" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Contact Heterogeneity<a href="spatial-epidemiology.html#contact-heterogeneity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Since contact is not consistent between all individuals, we must define the distinctions that can cause variations in the transmission of diseases. If we recall, in our models we use <span class="math inline">\(R_0\)</span>, the basic reproductive number. In our models, <span class="math inline">\(R_0\)</span> is proportional to the average number of contacts, since homogeneity is assumed. However, with heterogeneity, a person with a high number of contacts is integral to this topic, since they not only have the highest chances of becoming infected but also of spreading the infection. Because of this existence, the average is irrelevant, and the variance is the most relevant measure of disease transmission.</p>
+<div class="example">
+<p><span id="exm:contact" class="example"><strong>Example 7.3  (Contact Homogeneity vs. Contact Heterogeneity) </strong></span>City 1: Everyone is in contact with 5 people</p>
+<ul>
+<li><p>Average Contact: 5 = <span class="math inline">\(R_0\)</span></p></li>
+<li><p>If a person becomes infected, the disease has a constant transmission rate = <span class="math inline">\(R_0\)</span>, the average contacts in this case.
+City 2: 99 people are in contact with 1 person. 1 person is in contact with 401 people.</p></li>
+<li><p>Average Contact: Also 5</p></li>
+<li><p>However, if the 99 people become infected, the disease will spread too slowly and die out; if the 1 person becomes infected, then the disease is instantly spread to 401 people, leading to an epidemic.</p></li>
+</ul>
+<p>So, while the mean number of contacts in each town is the same, because 1 person has an egregious and abnormal amount of contacts, you must account for the variance and the existence of the one outlier.</p>
 </div>
 </div>
-<div id="logistic-model" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Logistic Model<a href="sample-chapter-introduction-to-mathematical-modelling.html#logistic-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The logistic growth model describes how a population grows over time with limited resources.</p>
-<p>The differential equation form is</p>
-<p><span class="math display">\[
-\frac{dN}{dt} = rN \left(1 - \frac{N}{K}\right),
-\]</span></p>
-<p>where<br />
-- <span class="math inline">\(N(t)\)</span> = population size at time <span class="math inline">\(t\)</span><br />
-- <span class="math inline">\(r\)</span> = intrinsic growth rate<br />
-- <span class="math inline">\(K\)</span> = carrying capacity.</p>
-<p>The solution to this differential equation is</p>
-<p><span class="math display">\[
-N(t) = \frac{K}{1 + \left(\frac{K - N_0}{N_0}\right)e^{-rt}},
-\]</span></p>
-<p>where <span class="math inline">\(N_0\)</span> is the initial population size at <span class="math inline">\(t=0\)</span>.</p>
-<p>As <span class="math inline">\(t \to \infty\)</span>, <span class="math inline">\(N(t) \to K\)</span>, meaning the population stabilizes at the carrying capacity.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:LogisticExample"></span>
-<img src="_main_files/figure-html/LogisticExample-1.png" alt="An illustration of the logisitc model for a growth rate of 0.5, a carrying capacity of 100 and an initial population size of 5." width="672" />
-<p class="caption">
-Figure 8.2: An illustration of the logisitc model for a growth rate of 0.5, a carrying capacity of 100 and an initial population size of 5.
-</p>
+<div id="scale-free-networks" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Scale Free Networks<a href="spatial-epidemiology.html#scale-free-networks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As seen in the previous example with City 2, most people had a low contact rate, and few had abnormal contact rates. This distribution is called a Poisson Distribution, and this phenomenon is reflected in the real world, and is known as a scale-free network. The person with an abnormal contact rate is known as a Hub, and is the primary subject of the hub effect. As diseases spread within this type of population, they will eventually come into contact with a hub, which will then exponentially infect a large number of individuals instantly. It is observed that in scale-free networks, the epidemic may never die out without intervention, thus becoming endemic. <span class="citation">[<a href="#ref-Mckee2024"><strong>Mckee2024?</strong></a>]</span></p>
 </div>
+</div>
+<div id="ring-vaccination" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Ring Vaccination<a href="spatial-epidemiology.html#ring-vaccination" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As discussed before, with herd immunity, a population can become protected if enough of the population becomes vaccinated. However, this may sometimes be hard to achieve, especially when an outbreak suddenly occurs. To combat this case, a new concept, called Ring Vaccination, takes effect. By tracking an initial case, the network of individuals connected to the initial case can be found and vaccinated. Then, the contacts of those contacts can also be vaccinated. This is very effective as only the susceptible people in contact with the infected individual can be protected and thus prevent the transmission of the disease. This only works with slower transmitting diseases; as with the case of COVID-19, if a vaccination existed, Ring Vaccination may not be effective since the transmission of the disease occurred rapidly.</p>
+<p>In the modern day, the Ring of Vaccination is implemented slightly differently, since the goal is to prevent outbreaks before they happen rather than after. Even if not enough vaccinations are available to achieve herd immunity, by vaccinating rings, so networks of people, rather than random individuals, if a disease were to occur, then the spread can be contained and thus eradicated (at that instance). Thus, an outbreak cannot occur if enough rings are in place to contain the transmission. <span class="citation">[<a href="references.html#ref-Berry2025">21</a>]</span> <span class="citation">[<a href="references.html#ref-Dean2022">22</a>]</span></p>
+</div>
+<div id="agent-based-models" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Agent-Based Models<a href="spatial-epidemiology.html#agent-based-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have only looked at Compartmental Models, in which we use different transmission rates and parameters to model the changes of a population as the population becomes infected, as well as the specifics on the spread of the disease. However, there are many other types of models, such as an Agent-Based Model. Instead of assuming homogeneity for a population, we can model each individual as an agent with specific characteristics. These can range from age, occupation, antibody protection levels, and even their day-to-day life. These agents can even be programmed to behave differently, such as if they become sick, they will lock themselves down. All of this is done to simulate reality by creating agents that can reflect the behaviors and choices of the average population. When simulated, aspects of these models can be altered to test different outcomes. For example, if an epidemic occurs within the Agent-Based Model, the researchers can test whether closing an airport or switching their water supply can affect the spread of disease. Similar to the discussion with Stochastic Models, these can reflect the randomness and variability of reality; however, while Agent-Based Models reflect stochasticity, the complexity involved with these models proves instead to be a limitation, as it can be difficult to understand the true origins, causes, and effects at play when the model is altered. Additionally, as stated with the complexity, these models are also very hard to create without intensive labor and data available. So while these models are able to simulate normal lives of people, the complexities may also prove futile in the goal of truly understanding and testing population and transmission dynamics. <span class="citation">[<a href="references.html#ref-hunter2017">23</a>]</span></p>
+
 </div>
 </div>
             </section>
@@ -268,8 +302,8 @@ Figure 8.2: An illustration of the logisitc model for a growth rate of 0.5, a ca
           </div>
         </div>
       </div>
-<a href="spatial-epidemiology.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="real-world-applications-and-solutions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sample-chapter-introduction-to-mathematical-modelling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
