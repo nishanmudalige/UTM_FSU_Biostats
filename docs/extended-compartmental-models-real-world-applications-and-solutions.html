@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Extended Compartmental Models: Real World Applications and Solutions | Biostats E-book</title>
+  <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Extended Compartmental Models: Real World Applications and Solutions | Biostats E-book" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Bookdown hosted on github using bookdown::gitbook." />
+  <meta name="github-repo" content="nishanmudalige/STA258" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Extended Compartmental Models: Real World Applications and Solutions | Biostats E-book" />
+  
+  <meta name="twitter:description" content="Bookdown hosted on github using bookdown::gitbook." />
+  
+
+<meta name="author" content="Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Bryce Morsky, Nishan Mudalige" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="next-generation-matrix.html"/>
+<link rel="next" href="sample-chapter-introduction-to-mathematical-modelling.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#sec:goal"><i class="fa fa-check"></i><b>1.1</b> Goals of this E-book</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#recommended-background"><i class="fa fa-check"></i><b>1.2</b> Recommended Background</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#history-of-mathematical-epidemiology"><i class="fa fa-check"></i><b>1.3</b> History of Mathematical Epidemiology</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#role-of-models-in-public-health"><i class="fa fa-check"></i><b>1.4</b> Role of Models in Public Health</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html"><i class="fa fa-check"></i><b>2</b> Introduction to Mathematical Models in Epidemiology</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#sec:mathematical_models"><i class="fa fa-check"></i><b>2.1</b> Defining Mathematical Models</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#introduction-to-compartmental-modelling-thinking"><i class="fa fa-check"></i><b>2.2</b> Introduction to Compartmental Modelling Thinking</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#approach-to-compartmental-modelling"><i class="fa fa-check"></i><b>2.2.1</b> Approach to Compartmental Modelling</a></li>
+<li class="chapter" data-level="2.2.2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#benefits-of-parsimonious-models"><i class="fa fa-check"></i><b>2.2.2</b> Benefits of Parsimonious Models</a></li>
+<li class="chapter" data-level="2.2.3" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#limitations-of-compartmental-models"><i class="fa fa-check"></i><b>2.2.3</b> Limitations of Compartmental Models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html"><i class="fa fa-check"></i><b>3</b> Modelling Disease Dynamics with ODEs</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#introduction-to-the-chapter"><i class="fa fa-check"></i><b>3.1</b> Introduction to the Chapter</a></li>
+<li class="chapter" data-level="3.2" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactions-between-compartments"><i class="fa fa-check"></i><b>3.2</b> Interactions Between Compartments</a></li>
+<li class="chapter" data-level="3.3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#sec:SI_model"><i class="fa fa-check"></i><b>3.3</b> Solving the SI Model</a></li>
+<li class="chapter" data-level="3.4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>3.4</b> Solving the SIR Model</a></li>
+<li class="chapter" data-level="3.5" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.5</b> Interactive Dashboard</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html"><i class="fa fa-check"></i><b>4</b> Equilibrium Stability Analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#introduction-to-the-chapter-1"><i class="fa fa-check"></i><b>4.1</b> Introduction to the Chapter</a></li>
+<li class="chapter" data-level="4.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-sir-model"><i class="fa fa-check"></i><b>4.2</b> Linear Stability Analysis for the SIR Model</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#direct-calculation"><i class="fa fa-check"></i><b>4.2.1</b> Direct Calculation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria"><i class="fa fa-check"></i><b>4.2.2</b> Routh - Hurwitz Criteria</a></li>
+<li class="chapter" data-level="4.2.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#descartes-rule-of-signs"><i class="fa fa-check"></i><b>4.2.3</b> Descartes’ Rule of Signs</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-si-model"><i class="fa fa-check"></i><b>4.3</b> Linear Stability Analysis for the SI Model</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html"><i class="fa fa-check"></i><b>5</b> Next Generation Matrix</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#introduction-to-the-chapter-2"><i class="fa fa-check"></i><b>5.1</b> Introduction to the Chapter</a></li>
+<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngmparameters"><i class="fa fa-check"></i><b>5.2</b> Definining the Parameters</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe"><i class="fa fa-check"></i><b>5.2.1</b> Defining the Disease Free Equilibrium (DFE)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngm"><i class="fa fa-check"></i><b>5.3</b> Solving SEIR Model with NGM</a></li>
+<li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.4</b> Solving the SEIR Model with Birth and Death</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html"><i class="fa fa-check"></i><b>6</b> Extended Compartmental Models: Real World Applications and Solutions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-svir-model"><i class="fa fa-check"></i><b>6.2</b> The SVIR Model</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#model-formulation"><i class="fa fa-check"></i><b>6.2.1</b> Model Formulation</a></li>
+<li class="chapter" data-level="6.2.2" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-for-the-basic-reproduction-number"><i class="fa fa-check"></i><b>6.2.2</b> Solving for the Basic Reproduction Number</a></li>
+<li class="chapter" data-level="6.2.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#computing-the-basic-reproduction-number-for-the-svir-model"><i class="fa fa-check"></i><b>6.2.3</b> Computing the Basic Reproduction Number for the SVIR Model</a></li>
+<li class="chapter" data-level="6.2.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#linearization-around-the-disease-free-equilibrium"><i class="fa fa-check"></i><b>6.2.4</b> Linearization Around the Disease-Free Equilibrium</a></li>
+<li class="chapter" data-level="6.2.5" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#jacobian-of-mathcalf"><i class="fa fa-check"></i><b>6.2.5</b> Jacobian of <span class="math inline">\(\mathcal{F}\)</span></a></li>
+<li class="chapter" data-level="6.2.6" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#jacobian-of-mathcalv"><i class="fa fa-check"></i><b>6.2.6</b> Jacobian of <span class="math inline">\(\mathcal{V}\)</span></a></li>
+<li class="chapter" data-level="6.2.7" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#forming-the-next-generation-matrix"><i class="fa fa-check"></i><b>6.2.7</b> Forming the Next-Generation Matrix</a></li>
+<li class="chapter" data-level="6.2.8" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#computing-the-reproduction-number"><i class="fa fa-check"></i><b>6.2.8</b> Computing the Reproduction Number</a></li>
+<li class="chapter" data-level="6.2.9" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#interpretation"><i class="fa fa-check"></i><b>6.2.9</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-siqr-model"><i class="fa fa-check"></i><b>6.3</b> The SIQR Model</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-parameters"><i class="fa fa-check"></i><b>6.3.1</b> Defining the Parameters</a></li>
+<li class="chapter" data-level="6.3.2" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium"><i class="fa fa-check"></i><b>6.3.2</b> Defining the Disease Free Equilibrium</a></li>
+<li class="chapter" data-level="6.3.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-the-siqr-model"><i class="fa fa-check"></i><b>6.3.3</b> Solving the SIQR Model</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model"><i class="fa fa-check"></i><b>6.4</b> The SAIR Model</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html"><i class="fa fa-check"></i><b>7</b> Sample Chapter: Introduction to Mathematical Modelling</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#sec:foundations"><i class="fa fa-check"></i><b>7.1</b> Foundations</a></li>
+<li class="chapter" data-level="7.2" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#exponential-growth-and-decay"><i class="fa fa-check"></i><b>7.2</b> Exponential Growth and Decay</a></li>
+<li class="chapter" data-level="7.3" data-path="sample-chapter-introduction-to-mathematical-modelling.html"><a href="sample-chapter-introduction-to-mathematical-modelling.html#logistic-model"><i class="fa fa-check"></i><b>7.3</b> Logistic Model</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Biostats E-book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="extended-compartmental-models-real-world-applications-and-solutions" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Extended Compartmental Models: Real World Applications and Solutions<a href="extended-compartmental-models-real-world-applications-and-solutions.html#extended-compartmental-models-real-world-applications-and-solutions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-1" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introduction<a href="extended-compartmental-models-real-world-applications-and-solutions.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter, we will discuss and solve in detail varying complext
+SIR-type compartmental models, such as SAIR, SVIR, and SIQR. These
+models are derived and solved from pre-existing scholarly articles and
+experiments in which the parameters, variables, and differential
+equations that defined the study are provided. In this, we can apply our
+knowledge and techniques from previous chapters to determine stability
+and analyze different compartmental models. It is important to note that
+in previous chapters, we discussed theoretical techniques, which can be
+applied here, but also are defined for every equilibria, such as the DFE
+and EE. In these examples below, not all are specifically defined for
+each equilibria due to varying reasons, specfically due to the closed
+system nature of the experiments, not allowing a disease to persist in
+regard to the model.</p>
+</div>
+<div id="the-svir-model" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> The SVIR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-svir-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This model is based on the parameters and variables defined in the
+article cited. <span class="citation">[<a href="references.html#ref-ramponi2024">15</a>]</span> The model takes into account vaccination
+rate, vaccine effectiveness, and vaccine induced decline in the immune
+rate.</p>
+<div id="model-formulation" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Model Formulation<a href="extended-compartmental-models-real-world-applications-and-solutions.html#model-formulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>With <span class="math inline">\(N(t)\)</span> representing the total pupulation it can also be divided in
+to the four compartments: susceptible, vaccinated, infected and
+recovered.</p>
+<p>Therefore, <span class="math inline">\(N(t) = V(t) + S(t) + I(t) + R(t)\)</span></p>
+<p>The model assumes that after vaccination, people will develop immunity
+but after some time they will become susceptible again as the immunity
+wares off. Based on this, the following parameters can be defined:</p>
+<p><span class="math inline">\(\Lambda\)</span> : susceptible individuals recruited by immigration/birth</p>
+<p><span class="math inline">\(\beta\)</span> : effective contact rate between susceptible and infected
+individuals</p>
+<p><span class="math inline">\(d\)</span> : natural death rate</p>
+<p><span class="math inline">\(\theta\)</span> : vaccine effectiveness rate</p>
+<p><span class="math inline">\(\gamma\)</span> : vaccination rate of susceptible individuals</p>
+<p><span class="math inline">\(b\)</span> : cure rate of infected individuals</p>
+<p><span class="math inline">\(\alpha\)</span> : disease induced mortality</p>
+<p><span class="math inline">\(\delta\)</span> : loss rate of immunity</p>
+<p>The epidemic dynamical model is given by the following four models :</p>
+<p><span class="math display">\[
+\begin{align*}
+\frac{dV}{dt} &amp;= \gamma S -(1- \theta) \beta VI - (\gamma +d)V \\
+\frac{dS}{dt} &amp;= \Lambda + \delta V - \beta SI - (\gamma + d)S \\
+\frac{dI}{dt} &amp;= \beta SI + (1- \theta) \beta VI - (d+ \alpha + b)I \\
+\frac{dR}{dt} &amp;= bI - dR\\
+\end{align*}
+\]</span></p>
+</div>
+<div id="solving-for-the-basic-reproduction-number" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Solving for the Basic Reproduction Number<a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-for-the-basic-reproduction-number" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From here the basic reproduction number, <span class="math inline">\(R_0\)</span>, can be solved for using
+the next generation matrix method. When <span class="math inline">\(\theta = \gamma = \delta =0\)</span>, the system is then the SIR model essentially. Finding the regeneration and transfer matrix then gives:</p>
+<p><span class="math display">\[
+F_0 = \begin{bmatrix} \beta SI \\ 0 \\ 0 \end{bmatrix},
+V_0 = \begin{bmatrix} (d+ \alpha + b) I \\ -bI + dR \\ - \Lambda + \beta SI +dS \end{bmatrix}
+\]</span></p>
+<p>The next step would be to differentiate <span class="math inline">\(F_0\)</span> and <span class="math inline">\(V_0\)</span> and calculate
+the value of <span class="math inline">\(E_{00} = (S_{00},0,0) = (\frac{\Lambda}{d} , 0,0)\)</span> which
+is at the DFE of the SIR model.</p>
+<p>It can be found that</p>
+<p><span class="math display">\[
+F_0 = \begin{bmatrix} \beta S_{00} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{bmatrix},
+V_0 = \begin{bmatrix} (d + \alpha + b) &amp; 0 &amp; 0 \\ -b &amp; d &amp; 0 \\ \beta S_0 &amp; 0 &amp; d \end{bmatrix}
+\]</span></p>
+<p>Since <span class="math inline">\(R_0 = \rho (F_0 V^{-1}_0)\)</span>,</p>
+<p><span class="math display">\[
+R_0 = \frac {\beta S_{00}}{d+b+\alpha } = \frac{\beta \Lambda}{d(d+b+ \alpha)}
+\]</span></p>
+<p>Using this same process to solve for the SVIR. system’s disease free equlibrium, the derivatives can be set to 0, that is,</p>
+<p><span class="math inline">\(E_0 = (V_0, S_0, 0,0) = (\frac{\Lambda \gamma} {d (\delta + d +\gamma)} , \frac {\Lambda (\delta + d)} {d (\delta + d +\gamma)}, 0,0 )\)</span></p>
+<p>Where <span class="math inline">\(x = (I, R, V, S)^T\)</span>, the regeneration matrix, <span class="math inline">\(F\)</span> and the
+transfer matrix, <span class="math inline">\(V\)</span> can be found to be :</p>
+<p><span class="math display">\[
+F = \begin{bmatrix} \beta SI + (1- \theta) \beta VI \\ 0\\ 0 \\ 0 \end{bmatrix},
+V =\begin{bmatrix} (d + \alpha +b) I \\ -bI + dR\\ -\gamma S + (1-\theta) \beta VI +(\delta +d) V \\ - \Lambda - \delta V + \beta SI + (\gamma +d)S \end{bmatrix}
+\]</span></p>
+</div>
+<div id="computing-the-basic-reproduction-number-for-the-svir-model" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Computing the Basic Reproduction Number for the SVIR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#computing-the-basic-reproduction-number-for-the-svir-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To compute the basic reproduction number using the next-generation
+method, we separate the system into:</p>
+<ul>
+<li><strong>new infection terms</strong>, denoted by <span class="math inline">\(\mathcal{F}\)</span><br />
+</li>
+<li><strong>all other transitions</strong>, denoted by <span class="math inline">\(\mathcal{V}\)</span></li>
+</ul>
+<p>The system state is ordered as:</p>
+<p><span class="math display">\[
+x = (I, R, V, S)^T
+\]</span></p>
+<p>From the SVIR model, only the infected class <span class="math inline">\(I\)</span> receives new
+infections. Therefore, the new infection terms are:</p>
+<p><span class="math display">\[
+\mathcal{F} =
+\begin{bmatrix}
+\beta SI + (1-\theta)\beta V I\\
+0\\
+0\\
+0
+\end{bmatrix}
+\]</span></p>
+<p>All other terms in the system are collected into the transition matrix
+<span class="math inline">\(\mathcal{V}\)</span>:</p>
+<p><span class="math display">\[
+\mathcal{V} =
+\begin{bmatrix}
+(d + \alpha + b)I \\
+-bI + dR\\
+-\gamma S + (1-\theta)\beta V I + (\delta + d)V \\
+-\Lambda - \delta V + \beta S I + (\gamma + d)S
+\end{bmatrix}
+\]</span></p>
+</div>
+<div id="linearization-around-the-disease-free-equilibrium" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Linearization Around the Disease-Free Equilibrium<a href="extended-compartmental-models-real-world-applications-and-solutions.html#linearization-around-the-disease-free-equilibrium" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The disease-free equilibrium (DFE) for the SVIR model is:</p>
+<p><span class="math display">\[
+E_0 = (V_0, S_0, 0, 0)
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+V_0 = \frac{\Lambda\gamma}{d(\delta + d + \gamma)}, \quad
+S_0 = \frac{\Lambda(\delta + d)}{d(\delta + d + \gamma)}
+\]</span></p>
+<p>We now compute the Jacobians <span class="math inline">\(D\mathcal{F}(E_0)\)</span> and
+<span class="math inline">\(D\mathcal{V}(E_0)\)</span>.</p>
+</div>
+<div id="jacobian-of-mathcalf" class="section level3 hasAnchor" number="6.2.5">
+<h3><span class="header-section-number">6.2.5</span> Jacobian of <span class="math inline">\(\mathcal{F}\)</span><a href="extended-compartmental-models-real-world-applications-and-solutions.html#jacobian-of-mathcalf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Only the first component of <span class="math inline">\(\mathcal{F}\)</span> is non-zero:</p>
+<p><span class="math display">\[
+\mathcal{F}_1 = \beta SI + (1-\theta)\beta V I
+\]</span></p>
+<p>Taking partial derivatives:</p>
+<p><span class="math display">\[
+\frac{\partial \mathcal{F}_1}{\partial I} = \beta S + (1-\theta)\beta V, \quad
+\frac{\partial \mathcal{F}_1}{\partial R} = 0
+\]</span></p>
+<p>Thus, the Jacobian evaluated at the DFE is:</p>
+<p><span class="math display">\[
+D\mathcal{F}(E_0)=
+\begin{bmatrix}
+\beta S_0 + (1-\theta)\beta V_0 &amp; 0\\
+0 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<p>We denote this upper-left block as <span class="math inline">\(F\)</span>.</p>
+</div>
+<div id="jacobian-of-mathcalv" class="section level3 hasAnchor" number="6.2.6">
+<h3><span class="header-section-number">6.2.6</span> Jacobian of <span class="math inline">\(\mathcal{V}\)</span><a href="extended-compartmental-models-real-world-applications-and-solutions.html#jacobian-of-mathcalv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first two components of <span class="math inline">\(\mathcal{V}\)</span> involve the infected
+subsystem:</p>
+<p><span class="math display">\[
+\mathcal{V}_1 = (d + \alpha + b)I, \quad
+\mathcal{V}_2 = -bI + dR
+\]</span></p>
+<p>Taking partial derivatives:</p>
+<p><span class="math display">\[
+\frac{\partial \mathcal{V}_1}{\partial I} = d + \alpha + b, \quad
+\frac{\partial \mathcal{V}_2}{\partial I} = -b, \quad
+\frac{\partial \mathcal{V}_2}{\partial R} = d
+\]</span></p>
+<p>Thus, the upper-left block of <span class="math inline">\(D\mathcal{V}(E_0)\)</span> is:</p>
+<p><span class="math display">\[
+V =
+\begin{bmatrix}
+d + \alpha + b &amp; 0\\
+-b &amp; d
+\end{bmatrix}
+\]</span></p>
+<p>Lower blocks exist for the vaccinated and susceptible compartments, but
+they do not affect the computation of the reproduction number and are
+dropped.</p>
+</div>
+<div id="forming-the-next-generation-matrix" class="section level3 hasAnchor" number="6.2.7">
+<h3><span class="header-section-number">6.2.7</span> Forming the Next-Generation Matrix<a href="extended-compartmental-models-real-world-applications-and-solutions.html#forming-the-next-generation-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The next-generation matrix is:</p>
+<p><span class="math display">\[
+FV^{-1}
+\]</span></p>
+<p>First, compute the inverse of <span class="math inline">\(V\)</span>. For a matrix:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+a &amp; 0\\
+c &amp; d
+\end{bmatrix}
+\]</span></p>
+<p>the inverse is:</p>
+<p><span class="math display">\[
+\frac{1}{ad}
+\begin{bmatrix}
+d &amp; 0\\
+-c &amp; a
+\end{bmatrix}
+\]</span></p>
+<p>Applying this formula gives:</p>
+<p><span class="math display">\[
+V^{-1} =
+\frac{1}{d(d+\alpha + b)}
+\begin{bmatrix}
+d &amp; 0\\
+b &amp; d+\alpha + b
+\end{bmatrix}
+\]</span></p>
+<p>Now multiply:</p>
+<p><span class="math display">\[
+FV^{-1} =
+\begin{bmatrix}
+\frac{\beta\left(S_0 + (1-\theta)V_0\right)}{d+\alpha + b} &amp; 0\\
+0 &amp; 0
+\end{bmatrix}
+\]</span></p>
+</div>
+<div id="computing-the-reproduction-number" class="section level3 hasAnchor" number="6.2.8">
+<h3><span class="header-section-number">6.2.8</span> Computing the Reproduction Number<a href="extended-compartmental-models-real-world-applications-and-solutions.html#computing-the-reproduction-number" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The basic reproduction number is the dominant eigenvalue (spectral
+radius) of <span class="math inline">\(FV^{-1}\)</span>:</p>
+<p><span class="math display">\[
+R_{\text{vac}} =
+\frac{\beta\left(S_0 + (1-\theta)V_0\right)}{d+\alpha + b}
+\]</span></p>
+<p>Substituting the formulas for <span class="math inline">\(S_0\)</span> and <span class="math inline">\(V_0\)</span>:</p>
+<p><span class="math display">\[
+S_0 = \frac{\Lambda(\delta + d)}{d(\delta + d + \gamma)}, \quad
+V_0 = \frac{\Lambda\gamma}{d(\delta + d + \gamma)}
+\]</span></p>
+</div>
+<div id="interpretation" class="section level3 hasAnchor" number="6.2.9">
+<h3><span class="header-section-number">6.2.9</span> Interpretation<a href="extended-compartmental-models-real-world-applications-and-solutions.html#interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><span class="math inline">\(\dfrac{\beta}{d+\alpha+b}\)</span> represents the expected number of
+infections produced by an infectious individual before leaving the
+infected class through recovery or death.<br />
+</li>
+<li><span class="math inline">\(S_0 + (1-\theta)V_0\)</span> is the <em>effective number of individuals at
+risk</em>, because:
+<ul>
+<li>susceptible individuals contribute fully,</li>
+<li>vaccinated individuals contribute only by the fraction
+<span class="math inline">\((1-\theta)\)</span> that the vaccine fails.</li>
+</ul></li>
+</ul>
+<p>Thus:</p>
+<ul>
+<li>A higher vaccination rate <span class="math inline">\(\gamma\)</span>,<br />
+</li>
+<li>a more effective vaccine <span class="math inline">\(\theta\)</span>,</li>
+</ul>
+<p>both reduce <span class="math inline">\(R_{\text{vac}}\)</span>, helping to prevent the spread of
+infection.</p>
+</div>
+</div>
+<div id="the-siqr-model" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> The SIQR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-siqr-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This model is based on the parameters and variables defined in the
+article cited. <span class="citation">[<a href="references.html#ref-kalachev2022">16</a>]</span>.</p>
+<p>It is important to note that the authors states their limitations, as
+they do not include an E, Exposed, compartment. This means that the
+complexities of the case in question, COVID-19, is not fully modeled.
+However, for our purposes, this pre-existing model provides definitive
+parameters and variables to be manipulated and solved.</p>
+<div id="defining-the-parameters" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Defining the Parameters<a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Beginning with X, the vector of disease compartments. For the SIQR
+model, <span class="math inline">\(X = \begin{bmatrix} I\\ Q\\ \end{bmatrix}\)</span></p>
+<p>Refer back to the definitions of the new infection vector <span class="math inline">\(F(x)\)</span> and the
+transition vector <span class="math inline">\(V(x)\)</span> in (<em>Chapter</em> <a href="next-generation-matrix.html#sec:ngmparameters">5.2</a>).</p>
+</div>
+<div id="defining-the-disease-free-equilibrium" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Defining the Disease Free Equilibrium<a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Due to the closed system definition of the article, this SIQR
+Compartmental Model can only be solved at the DFE. This is due to the
+nature of a closed system in which the disease has already dissipated,
+thus, the Endemic Equilibrium cannot exist. However, modifications to
+create an open system with birth and death rates incorporated, an
+Endemic Equilibrium can then be solved for.</p>
+<p>The Disease Free Equilibrium exists when all infected compartments (I
+and Q), are set to 0. Thus, <span class="math inline">\(I=0\)</span> and <span class="math inline">\(Q=0\)</span>. So: <span class="math display">\[
+\begin{align*}
+\dot{S} &amp;= -\alpha S I = 0\\
+\dot{I} &amp;= \alpha S I - \beta I = 0 \\
+\dot{Q} &amp;= \beta I - \gamma Q = 0 \\
+\dot{R} &amp;= \gamma Q = 0 \\
+\end{align*}
+\]</span> At the DFE:</p>
+<ul>
+<li><span class="math inline">\(\dot{S}\)</span> is true when <span class="math inline">\(I=0\)</span></li>
+<li><span class="math inline">\(\dot{I}\)</span> is true when <span class="math inline">\(I=0\)</span></li>
+<li><span class="math inline">\(\dot{Q}\)</span> is true when <span class="math inline">\(I=0\)</span> and <span class="math inline">\(Q=0\)</span></li>
+<li><span class="math inline">\(\dot{R}\)</span> is true when <span class="math inline">\(Q=0\)</span></li>
+</ul>
+<p>Since there are no infections: <span class="math inline">\(I=Q=R=0\)</span> This means that for
+<span class="math inline">\(N=S+I+Q+R\)</span>, <span class="math inline">\(N=S\)</span> due to our earlier statements So at the DFE for the
+(S,I,Q,R) = (S,0,0,0) = (N,0,0,0)</p>
+</div>
+<div id="solving-the-siqr-model" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Solving the SIQR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-the-siqr-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="defining-f-and-v-matrices" class="section level4 hasAnchor" number="6.3.3.1">
+<h4><span class="header-section-number">6.3.3.1</span> Defining F and V Matrices<a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-f-and-v-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Recall: that for the SIQR model the disease compartments are I and Q:</p>
+<p><span class="math inline">\(\dot{X} = \begin{bmatrix} \dot{I}\\ \dot{Q}\\ \end{bmatrix}\)</span></p>
+<p>In order to define the distinction between new infections and
+transferred compartments, we create 2 matrices: Transmission (F) and
+Transition (V)</p>
+<ul>
+<li>Transmission Matrix (F)
+<ul>
+<li>In this Matrix, only compartments in which new infections are
+created <span class="math display">\[
+\begin{align*}
+\ F(x) &amp;= \begin{bmatrix} \dot{I}\\ \dot{Q}\\ \end{bmatrix} \\
+\ F(x) &amp;= \begin{bmatrix} \alpha S I - \beta I \\ \beta I - \gamma Q \\ \end{bmatrix} \\
+\ F(x) &amp;= \begin{bmatrix} \alpha S I \\ 0 \\ \end{bmatrix}
+\end{align*}
+\]</span></li>
+</ul></li>
+<li>Transition Matrix (V)
+<ul>
+<li>In this Matrix, using <span class="math inline">\(V = V^- + V^+\)</span>, we can find the transfer
+of infected individuals in and out of infected compartments</li>
+<li>We can see this transfer as each of the values stated below
+leave/subtracted from a differential equation of a compartment
+and enter/added to the differential equation of the next
+compartment <span class="math display">\[
+\begin{align*}
+\ V(X) &amp;= \begin{bmatrix} \beta I \\ -\beta I + \gamma Q \\ \end{bmatrix} \\
+\end{align*}
+\]</span></li>
+</ul></li>
+</ul>
+<p>Referring back to (<em>Chapter</em><a href="next-generation-matrix.html#sec:ngmparameters">5.2</a>) once again for the
+equation for <span class="math inline">\(\dot{X} = F(x) - V(x)\)</span>, we combine these matrices into:</p>
+<p><span class="math display">\[
+\begin{align*}
+\ \dot{X} &amp;= \begin{bmatrix} \alpha S I \\ 0 \\ \end{bmatrix} - \begin{bmatrix} \beta I \\ -\beta I + \gamma Q \\ \end{bmatrix}
+\end{align*}
+\]</span> For simplicity in later calculations: <span class="math display">\[
+\begin{align*}
+\ F(x) &amp;= \begin{bmatrix} \alpha S I \\ 0 \\ \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \end{bmatrix} \\
+\ V(x) &amp;= \begin{bmatrix} \beta I \\ -\beta I + \gamma Q \\ \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \end{bmatrix}
+\end{align*}
+\]</span></p>
+</div>
+<div id="taking-the-jacobian-matrix-of-f-and-v" class="section level4 hasAnchor" number="6.3.3.2">
+<h4><span class="header-section-number">6.3.3.2</span> Taking the Jacobian Matrix of F and V<a href="extended-compartmental-models-real-world-applications-and-solutions.html#taking-the-jacobian-matrix-of-f-and-v" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let the Jacobian of F(x) be <strong>F</strong>.</p>
+<p><span class="math display">\[
+\boldsymbol{F} = J_F (x) = \begin{bmatrix}
+\frac{\partial F_1}{\partial E} &amp; \frac{\partial F_1}{\partial I} \\
+\frac{\partial F_2}{\partial E} &amp; \frac{\partial F_2}{\partial I} \\
+\end{bmatrix}
+= \begin{bmatrix}
+\alpha S &amp; 0\\
+0 &amp; 0 \\
+\end{bmatrix}
+\]</span> At DFE, <span class="math inline">\(S = 1\)</span></p>
+<ul>
+<li>This is found by our earlier definition of the DFE.
+<ul>
+<li>At the DFE for (S,I,Q,R) = (S,0,0,0) = (N,0,0,0)</li>
+<li>Since Population <span class="math inline">\(&quot;N&quot;=1\)</span> and <span class="math inline">\(S=N\)</span>, then <span class="math inline">\(S=1\)</span></li>
+</ul></li>
+<li>So after subsituting <span class="math inline">\(S=1\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+J_F (x)
+= \begin{bmatrix}
+\alpha S &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix}
+\]</span></p>
+<p>Let the Jacobian of V(x) be <strong>V</strong>. <span class="math display">\[
+\boldsymbol{V} = J_V (x) = \begin{bmatrix}
+\frac{\partial V_1}{\partial E} &amp; \frac{\partial V_1}{\partial I} \\
+\frac{\partial V_2}{\partial E} &amp; \frac{\partial V_2}{\partial I} \\
+\end{bmatrix}
+= \begin{bmatrix}
+\beta &amp; 0 \\
+-\beta &amp; \gamma \\
+\end{bmatrix}
+\]</span></p>
+</div>
+<div id="finding-the-next-generation-matrix" class="section level4 hasAnchor" number="6.3.3.3">
+<h4><span class="header-section-number">6.3.3.3</span> Finding the Next Generation Matrix<a href="extended-compartmental-models-real-world-applications-and-solutions.html#finding-the-next-generation-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Refer to (<em>Chapter</em> <a href="next-generation-matrix.html#sec:ngm">5.3</a>) where the NGM for the SEIR model is
+found. We will be using a similar structure once again.
+<span class="math inline">\(NGM = \boldsymbol{F} \boldsymbol{V}^{-1}\)</span></p>
+<p>Thus: <span class="math display">\[
+\boldsymbol{F}
+= \begin{bmatrix}
+\alpha S &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix}
+\]</span> For <span class="math inline">\(\boldsymbol{V}^{-1}\)</span>, we use the same inverse matrix rule.</p>
+<p><span class="math display">\[\begin{align*}
+\boldsymbol{V} &amp;=
+\begin{bmatrix}
+\beta &amp; 0 \\
+-\beta &amp; \gamma \\
+\end{bmatrix}\\
+
+\boldsymbol{V}^{-1} &amp;= \frac{1}{ad-bc} \begin{bmatrix} d &amp; -b \\ -c &amp; a \\ \end{bmatrix} \\
+\boldsymbol{V}^{-1} &amp;=\frac{1}{\beta \gamma}
+\begin{bmatrix}
+\gamma &amp; 0 \\
+\beta &amp; \beta \\
+\end{bmatrix}\\
+\boldsymbol{V}^{-1} &amp;= \begin{bmatrix}
+\frac{1}{\beta} &amp; 0 \\
+\frac{1}{\gamma} &amp; \frac{1}{\gamma} \\
+\end{bmatrix}\\
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(\boldsymbol{F} \boldsymbol{V}^{-1}\)</span> is: <span class="math display">\[
+\begin{align*}
+\boldsymbol{F} \boldsymbol{V}^{-1} &amp;= \begin{bmatrix}
+\alpha S &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix} \begin{bmatrix}
+\frac{1}{\beta} &amp; 0 \\
+\frac{1}{\gamma} &amp; \frac{1}{\gamma} \\
+\end{bmatrix} \\
+\boldsymbol{F} \boldsymbol{V}^{-1} &amp;= \begin{bmatrix}
+\frac{\alpha S}{\beta} &amp; 0 \\
+0 &amp;0  \\
+\end{bmatrix}
+\end{align*}
+\]</span></p>
+</div>
+<div id="calculating-r_0-and-defining-stability" class="section level4 hasAnchor" number="6.3.3.4">
+<h4><span class="header-section-number">6.3.3.4</span> Calculating <span class="math inline">\(R_0\)</span> and Defining Stability<a href="extended-compartmental-models-real-world-applications-and-solutions.html#calculating-r_0-and-defining-stability" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>As stated previously in (<em>Chapter</em> <a href="next-generation-matrix.html#sec:ngm">5.3</a>), <span class="math inline">\(R_0\)</span> is the
+spectral radius of the Next Generation Matrix
+<span class="math inline">\(\ \boldsymbol{F} \boldsymbol{V}^{-1}\)</span> <span class="math display">\[
+det \left( \begin{bmatrix}
+\frac{\alpha S}{\beta} - \lambda &amp; 0 \\
+0 &amp; - \lambda \\
+\end{bmatrix} \right)
+= - \lambda \left( \frac{\alpha S}{\beta} - \lambda \right)
+\]</span> Let <span class="math inline">\(- \lambda \left( \frac{\alpha S}{\beta} - \lambda \right) = 0\)</span>
+(<span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> respectively)</p>
+<p>So <span class="math inline">\(\lambda_1 = 0\)</span> and <span class="math inline">\(\lambda_2 = \frac{\alpha S}{\beta}\)</span>. <span class="math inline">\(\lambda_2\)</span>
+is the largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{\gamma}\)</span>.</p>
+<p>Thus:</p>
+<ul>
+<li><p>If <span class="math inline">\(R_0 &lt; 1\)</span> then the DFE is stable, and the disease dies out</p>
+<ul>
+<li>This means that <span class="math inline">\(\alpha S &lt; \beta\)</span></li>
+</ul></li>
+<li><p>If <span class="math inline">\(R_0 &gt; 1\)</span> then the DFE is unstable, and an epidemic occurs</p>
+<ul>
+<li>This means that <span class="math inline">\(\alpha S &gt; \beta\)</span></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="the-sair-model" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> The SAIR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment “A”) as separate from the symptomatic individuals (compartment “I”).</p>
+<p><strong>Include a compartmental diagram here:</strong></p>
+<p>We define the differential equations as follows:</p>
+<p><span class="math display">\[
+\begin{align*}
+\ \dot{S} &amp;= -\beta(I+\alpha A)S \\
+\ \dot{A} &amp;= (1-p)\beta(I+\alpha A)S-(\gamma + \epsilon)A \\
+\ \dot{I} &amp;= p\beta(I+\alpha A)S-\epsilon A - \frac{uI}{1+kI} \\
+\ \dot{R} &amp;= \delta S + \frac{uI}{1+kI} + \gamma A \\
+\ \end{align*}
+\]</span></p>
+<p>Let <span class="math inline">\(N = 1\)</span>, and N = S + A + I + R so 1 = S + A + I + R</p>
+<p>We use the Next Generation Matrix method to analyze this example.</p>
+<p>At DFE: I = 0, how about A?</p>
+<p>define the parameters ins</p>
+<p>Find <span class="math inline">\(R_0\)</span>:</p>
+<p>X is the matrix of infected compartments.</p>
+<p><span class="math display">\[
+\begin{align*}
+\ \dot{X} &amp;= \begin{bmatrix} \dot{A} \\  \dot{I}\\ \end{bmatrix} \\
+\ \dot{X} &amp;= \begin{bmatrix} (1-p)\beta(I-\alpha A)S-(\gamma + \epsilon)A \\
+p\beta(I-\alpha A)S-\epsilon A - \frac{uI}{1+kI} \end{bmatrix} \\
+\end{align*}
+\]</span></p>
+<p>So then, from X we obtain: <span class="math inline">\(\boldsymbol{F} = \begin{bmatrix} (1-p)\beta(I+\alpha A)S \\ p\beta(I+\alpha A)S \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix}\)</span> and <span class="math inline">\(\boldsymbol{V} = \begin{bmatrix} (\gamma + \epsilon)A \\ \frac{uI}{1+kI} -\epsilon A \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix}\)</span></p>
+<p>Solving for the Jacobian matrices, we get:</p>
+<p><span class="math display">\[
+\begin{align*}
+\ \boldsymbol{F} &amp;= J_F (x) =
+  \begin{bmatrix} \frac{\partial F_1}{\partial E} &amp; \frac{\partial F_1}{\partial I} \\
+  \frac{\partial F_2}{\partial E} &amp; \frac{\partial F_2}{\partial I} \\ \end{bmatrix}
+  = \begin{bmatrix} (1-p) \alpha \beta S &amp; (1-p) \beta S \\
+  (p) \alpha \beta S &amp; p \beta S  \\\end{bmatrix} \\
+\ \boldsymbol{V} &amp;= J_V (x) =
+  \begin{bmatrix} \frac{\partial V_1}{\partial E} &amp; \frac{\partial V_1}{\partial I} \\
+  \frac{\partial V_2}{\partial E} &amp; \frac{\partial V_2}{\partial I} \\ \end{bmatrix}
+  = \begin{bmatrix} \epsilon &amp; 0 \\ -\epsilon &amp; u \\ \end{bmatrix} \\
+\end{align*}
+\]</span></p>
+<p><strong>Question: Why is the paper using u instead of <span class="math inline">\(\frac{uI}{(1+kI)^2}\)</span> ?</strong></p>
+<p>Then we can get:
+<span class="math display">\[
+\begin{align*}
+\boldsymbol{V}^{-1} =
+  \frac{1}{u\epsilon}
+  \begin{bmatrix} u &amp; 0 \\ \epsilon &amp; \epsilon \\ \end{bmatrix}
+\end{align*}
+\]</span></p>
+<p>Next, recall that: <span class="math inline">\(NGM = \boldsymbol{F} \boldsymbol{V}^{-1}\)</span></p>
+<p><span class="math display">\[
+\begin{align*}
+\ \boldsymbol{F} \boldsymbol{V} ^{-1} &amp;=
+  \begin{bmatrix} (1-p) \alpha \beta S &amp; (1-p) \beta S \\
+  (p) \alpha \beta S &amp; p \beta S \\ \end{bmatrix}
+  \frac{1}{u\epsilon}
+  \begin{bmatrix} u &amp; 0 \\ \epsilon &amp; \epsilon \\ \end{bmatrix} \\
+\ &amp;=
+  \begin{bmatrix} (1-p) \alpha \beta S &amp; (1-p) \beta S \\
+  (p) \alpha \beta S &amp; p \beta S \\ \end{bmatrix}
+  \begin{bmatrix} \frac{1}{\epsilon} &amp; 0 \\ \frac{1}{u} &amp; \frac{1}{u} \\ \end{bmatrix} \\
+\ &amp;=
+  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S
+  &amp; (\frac{1}{u}) (1-p) \beta S \\
+  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S &amp; (\frac{1}{u})p \beta S \\ \end{bmatrix} \\
+\end{align*}
+\]</span></p>
+<p>Then since <span class="math inline">\(R_0\)</span> is the spectral radius ?</p>
+<p><span class="math display">\[
+\begin{align*}
+\ 0 &amp;= det \left(\begin{bmatrix}-\beta I^* - \alpha -\lambda &amp; -\gamma-\alpha \\ \beta I &amp; -\lambda\end{bmatrix} \right) \\
+\ 0 &amp;= -(\beta I^* + \alpha + \lambda) (-\lambda) + (\beta I^*) (\gamma+\alpha) \\
+\ 0 &amp;= \lambda^2 + (\beta I^* + \alpha)\lambda + \beta I^*(\gamma+\alpha) \\
+\end{align*}
+\]</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="next-generation-matrix.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sample-chapter-introduction-to-mathematical-modelling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

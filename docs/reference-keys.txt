@@ -62,7 +62,7 @@ sec:ngmparameters
 defining-the-disease-free-equilibrium-dfe
 sec:ngm
 solving-the-seir-model-with-birth-and-death
-real-world-applications-and-solutions
+extended-compartmental-models-real-world-applications-and-solutions
 introduction-1
 the-svir-model
 model-formulation
@@ -82,6 +82,7 @@ defining-f-and-v-matrices
 taking-the-jacobian-matrix-of-f-and-v
 finding-the-next-generation-matrix
 calculating-r_0-and-defining-stability
+the-sair-model
 sample-chapter-introduction-to-mathematical-modelling
 sec:foundations
 exponential-growth-and-decay

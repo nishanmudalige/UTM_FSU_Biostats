@@ -4,7 +4,7 @@ editor_options:
     wrap: 72
 ---
 
-# Real World Applications and Solutions
+# Extended Compartmental Models: Real World Applications and Solutions
 
 ## Introduction
 
@@ -525,3 +525,115 @@ Thus:
 -   If $R_0 > 1$ then the DFE is unstable, and an epidemic occurs
 
     -   This means that $\alpha S > \beta$
+    
+    
+## The SAIR Model
+
+SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment "A") as separate from the symptomatic individuals (compartment "I"). 
+
+**Include a compartmental diagram here:**
+
+We define the differential equations as follows: 
+
+$$
+\begin{align*}
+\ \dot{S} &= -\beta(I+\alpha A)S \\
+\ \dot{A} &= (1-p)\beta(I+\alpha A)S-(\gamma + \epsilon)A \\
+\ \dot{I} &= p\beta(I+\alpha A)S-\epsilon A - \frac{uI}{1+kI} \\
+\ \dot{R} &= \delta S + \frac{uI}{1+kI} + \gamma A \\
+\ \end{align*}
+$$
+
+Let $N = 1$, and N = S + A + I + R so 1 = S + A + I + R  
+
+
+We use the Next Generation Matrix method to analyze this example. 
+
+At DFE: I = 0, how about A? 
+
+define the parameters ins
+
+Find $R_0$: 
+
+X is the matrix of infected compartments. 
+
+
+$$
+\begin{align*}
+\ \dot{X} &= \begin{bmatrix} \dot{A} \\  \dot{I}\\ \end{bmatrix} \\
+\ \dot{X} &= \begin{bmatrix} (1-p)\beta(I-\alpha A)S-(\gamma + \epsilon)A \\ 
+p\beta(I-\alpha A)S-\epsilon A - \frac{uI}{1+kI} \end{bmatrix} \\
+\end{align*}
+$$
+
+So then, from X we obtain: $\boldsymbol{F} = \begin{bmatrix} (1-p)\beta(I+\alpha A)S \\ p\beta(I+\alpha A)S \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix}$ and $\boldsymbol{V} = \begin{bmatrix} (\gamma + \epsilon)A \\ \frac{uI}{1+kI} -\epsilon A \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix}$
+
+Solving for the Jacobian matrices, we get: 
+
+$$
+\begin{align*}
+\ \boldsymbol{F} &= J_F (x) = 
+  \begin{bmatrix} \frac{\partial F_1}{\partial E} & \frac{\partial F_1}{\partial I} \\
+  \frac{\partial F_2}{\partial E} & \frac{\partial F_2}{\partial I} \\ \end{bmatrix}
+  = \begin{bmatrix} (1-p) \alpha \beta S & (1-p) \beta S \\ 
+  (p) \alpha \beta S & p \beta S  \\\end{bmatrix} \\
+\ \boldsymbol{V} &= J_V (x) = 
+  \begin{bmatrix} \frac{\partial V_1}{\partial E} & \frac{\partial V_1}{\partial I} \\
+  \frac{\partial V_2}{\partial E} & \frac{\partial V_2}{\partial I} \\ \end{bmatrix} 
+  = \begin{bmatrix} \epsilon & 0 \\ -\epsilon & u \\ \end{bmatrix} \\
+\end{align*}
+$$
+
+**Question: Why is the paper using u instead of $\frac{uI}{(1+kI)^2}$ ?**
+
+Then we can get: 
+$$
+\begin{align*}
+\boldsymbol{V}^{-1} = 
+  \frac{1}{u\epsilon} 
+  \begin{bmatrix} u & 0 \\ \epsilon & \epsilon \\ \end{bmatrix}
+\end{align*}
+$$
+
+Next, recall that: $NGM = \boldsymbol{F} \boldsymbol{V}^{-1}$
+
+$$
+\begin{align*}
+\ \boldsymbol{F} \boldsymbol{V} ^{-1} &= 
+  \begin{bmatrix} (1-p) \alpha \beta S & (1-p) \beta S \\
+  (p) \alpha \beta S & p \beta S \\ \end{bmatrix} 
+  \frac{1}{u\epsilon} 
+  \begin{bmatrix} u & 0 \\ \epsilon & \epsilon \\ \end{bmatrix} \\
+\ &= 
+  \begin{bmatrix} (1-p) \alpha \beta S & (1-p) \beta S \\
+  (p) \alpha \beta S & p \beta S \\ \end{bmatrix}
+  \begin{bmatrix} \frac{1}{\epsilon} & 0 \\ \frac{1}{u} & \frac{1}{u} \\ \end{bmatrix} \\
+\ &= 
+  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S 
+  & (\frac{1}{u}) (1-p) \beta S \\
+  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S & (\frac{1}{u})p \beta S \\ \end{bmatrix} \\
+\end{align*}
+$$
+
+Then since $R_0$ is the spectral radius ?
+Use: $det(J-\lambda I_n) = det(\lambda I_n -J) = 0$ ?
+
+$$
+\begin{align*}
+\ 0 &= det \left(  
+  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S 
+  & (\frac{1}{u}) (1-p) \beta S \\
+  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S & (\frac{1}{u})p \beta S \\ \end{bmatrix}
+  -\lambda\begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix} \right) \\
+\ 0 &= det \left(
+  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S  - \lambda
+  & (\frac{1}{u}) (1-p) \beta S \\
+  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S 
+  & (\frac{1}{u})p \beta S - \lambda \end{bmatrix} \right) \\
+\ 0 &= 
+  \left( (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S  - \lambda \right)
+  \left( (\frac{1}{u}) (1-p) \beta S \right) 
+  - \left( (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S \right) 
+  \left( (\frac{1}{u})p \beta S - \lambda \right)
+\end{align*}
+$$
