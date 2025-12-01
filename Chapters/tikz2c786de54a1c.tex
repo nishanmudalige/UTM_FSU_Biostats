@@ -1,0 +1,38 @@
+\documentclass[
+%% TIKZ_CLASSOPTION %%
+tikz
+]{standalone}
+\usepackage{amsmath}
+\usetikzlibrary{matrix}
+%% EXTRA_TIKZ_PREAMBLE_CODE %%
+\begin{document}
+%% TIKZ_CODE %%
+\begin{tikzpicture}[
+    node distance = 3cm,
+    every node/.style={draw, minimum width=2cm, minimum height=1cm},
+    >=Stealth
+]
+
+% Nodes
+\node (S) {S};
+\node[right=6cm of S] (R) {R};
+
+\node[above right=2.5cm and 3cm of S] (A) {A};
+\node[above=2.5cm of A] (I) {I};
+
+% Arrows from S to A and I
+\draw[->] (S) -- (A) node[midway, above left=2pt] {$(1-p)\,\beta (I+\alpha A)$};
+\draw[->] (S) -- (I) node[midway, above left=2pt] {$p\,\beta (I+\alpha A)$};
+
+% Arrow A to I
+\draw[->] (A) -- (I) node[midway, right] {$\varepsilon_A$};
+
+% Arrows to R
+\draw[->] (A) -- (R) node[midway, above] {$\gamma_A$};
+\draw[->] (I) -- (R) node[midway, right] {$\displaystyle \frac{u I}{1 + k I}$};
+
+% Arrow S to R
+\draw[->] (S) -- (R) node[midway, below] {$\delta_S$};
+
+\end{tikzpicture}
+\end{document}

@@ -531,68 +531,117 @@ Thus:
 
 SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment "A") as separate from the symptomatic individuals (compartment "I"). 
 
+We will use the NGM to solve an example of SAIR modelling COVID-19 while excluding vital dynamics (birth, death) to account for a short-term model. This example was modified from a paper by Ouyang et al. (2025) [@ouyang2025]. 
+
+### Defining the Parameters
+
 **Include a compartmental diagram here:**
 
-We define the differential equations as follows: 
+- $p$: proportion of population that shows symptoms ($0 < p < 1$)
+
+  - $(1-p)$: proportion of population that does not show symptoms
+
+- $\beta(I+\alpha A)S$: new infection
+
+  - $\beta$: transmission rate
+
+  - $\alpha$: relative infectivity of asymptomatic infected (A) to symptomatic infected (I) ($0 < a < 1$)
+        
+- $\gamma$: rate of the asymptomatic infected individuals' self-healing (producing antibodies for resistance to diseases) 
+
+- $\epsilon$: rate of the asymptomatic infected individuals showing symptoms (if resistance to disease is poor)
+
+- $\frac{uI}{1+kI}$: saturated treatment function as the Holling Type 2 Functional Response **[cite: ]**
+  - $u$: cure rate of the infected individual
+  - $k$: handling time
+  - $\frac{u}{k}$: maximal treatment capacity, due to limited medical resources or handling time 
+
+- $\delta$: immunization rate of susceptible population from vaccination (this model considers vaccination without including a fifth compartment)
+
+- vital dynamics: 
+
+  - $\Lambda$: recruitment rate of susceptible population (e.g. births, immigration)
+
+  - $\mu$: natural death rate per capita (all deaths unrelated to the disease)
+  
+  - $\theta$: mortality rate of the disease (all deaths caused by the disease)
+
+We define the **differential equations for the SAIR Model** as follows: 
 
 $$
 \begin{align*}
-\ \dot{S} &= -\beta(I+\alpha A)S \\
-\ \dot{A} &= (1-p)\beta(I+\alpha A)S-(\gamma + \epsilon)A \\
-\ \dot{I} &= p\beta(I+\alpha A)S-\epsilon A - \frac{uI}{1+kI} \\
-\ \dot{R} &= \delta S + \frac{uI}{1+kI} + \gamma A \\
+\ \dot{S} &= \Lambda -\beta(I+\alpha A)S - (\mu + \delta) S \\
+\ \dot{A} &= (1-p)\beta(I+\alpha A)S-(\gamma + \epsilon + \mu)A \\
+\ \dot{I} &= p\beta(I+\alpha A)S+\epsilon A - \frac{uI}{1+kI} - (\mu + \theta)I \\
+\ \dot{R} &= \delta S + \frac{uI}{1+kI} + \gamma A - \mu R \\
 \ \end{align*}
 $$
 
-Let $N = 1$, and N = S + A + I + R so 1 = S + A + I + R  
+For the SAIR model, $\dot{X} = \begin{bmatrix} \dot{A} \\ \dot{I}\\ \end{bmatrix}$, where X is the matrix representing the infected compartments. 
+
+### Defining the Disease Free Equilibrium (DFE)
+
+The Disease Free Equilibrium exists when all infected compartments (A and I), are set to 0. i.e. $A=0$ and $I=0$. (*Definition* \@ref(def:DFE)).
+
+$$
+\begin{align*}
+\ \dot{S} &= \Lambda -\beta(I+\alpha A)S - (\mu + \delta) S &= 0 \\
+\ \dot{A} &= (1-p)\beta(I+\alpha A)S-(\gamma + \epsilon + \mu)A &= 0 \\
+\ \dot{I} &= p\beta(I+\alpha A)S+\epsilon A - \frac{uI}{1+kI} - (\mu + \theta)I &= 0 \\
+\ \dot{R} &= \delta S + \frac{uI}{1+kI} + \gamma A - \mu R &= 0 \\
+\ \end{align*}
+$$
+
+By setting all of the differential equations to 0, we obtain that initial $S$ is $S = \frac{\Lambda}{\mu+\delta}$. 
 
 
-We use the Next Generation Matrix method to analyze this example. 
+Since we let $N = 1$, $S + A + I + R = N = 1$. 
 
-At DFE: I = 0, how about A? 
+Therefore, at the DFE: $(S, A, I, R) = (\frac{\Lambda}{\mu+\delta}, 0, 0, \frac{\delta\Lambda}{\mu(\mu+\delta)})$
 
-define the parameters ins
+Q: Does R = 0? 
 
-Find $R_0$: 
+### Solving SAIR Model with NGM 
 
-X is the matrix of infected compartments. 
+We begin by finding $R_0$, starting with the X matrix. 
 
 
 $$
 \begin{align*}
 \ \dot{X} &= \begin{bmatrix} \dot{A} \\  \dot{I}\\ \end{bmatrix} \\
-\ \dot{X} &= \begin{bmatrix} (1-p)\beta(I-\alpha A)S-(\gamma + \epsilon)A \\ 
-p\beta(I-\alpha A)S-\epsilon A - \frac{uI}{1+kI} \end{bmatrix} \\
+\ \dot{X} &= \begin{bmatrix} (1-p)\beta(I+\alpha A)S-(\gamma + \epsilon + \mu)A \\ 
+p\beta(I+\alpha A)S+\epsilon A - \frac{uI}{1+kI} - (\mu + \theta)I \end{bmatrix} \\
 \end{align*}
 $$
 
-So then, from X we obtain: $\boldsymbol{F} = \begin{bmatrix} (1-p)\beta(I+\alpha A)S \\ p\beta(I+\alpha A)S \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix}$ and $\boldsymbol{V} = \begin{bmatrix} (\gamma + \epsilon)A \\ \frac{uI}{1+kI} -\epsilon A \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix}$
+So then, from X we obtain: $\boldsymbol{F} = \begin{bmatrix} (1-p)\beta(I+\alpha A)S \\ p\beta(I+\alpha A)S \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix}$ and $\boldsymbol{V} = \begin{bmatrix} (\gamma + \epsilon + \mu)A \\ -\epsilon A + \frac{uI}{1+kI} + (\mu + \theta)I \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix}$
 
 Solving for the Jacobian matrices, we get: 
 
 $$
 \begin{align*}
 \ \boldsymbol{F} &= J_F (x) = 
-  \begin{bmatrix} \frac{\partial F_1}{\partial E} & \frac{\partial F_1}{\partial I} \\
-  \frac{\partial F_2}{\partial E} & \frac{\partial F_2}{\partial I} \\ \end{bmatrix}
+  \begin{bmatrix} \frac{\partial F_1}{\partial A} & \frac{\partial F_1}{\partial I} \\
+  \frac{\partial F_2}{\partial A} & \frac{\partial F_2}{\partial I} \\ \end{bmatrix}
   = \begin{bmatrix} (1-p) \alpha \beta S & (1-p) \beta S \\ 
   (p) \alpha \beta S & p \beta S  \\\end{bmatrix} \\
 \ \boldsymbol{V} &= J_V (x) = 
-  \begin{bmatrix} \frac{\partial V_1}{\partial E} & \frac{\partial V_1}{\partial I} \\
-  \frac{\partial V_2}{\partial E} & \frac{\partial V_2}{\partial I} \\ \end{bmatrix} 
-  = \begin{bmatrix} \epsilon & 0 \\ -\epsilon & u \\ \end{bmatrix} \\
+  \begin{bmatrix} \frac{\partial V_1}{\partial A} & \frac{\partial V_1}{\partial I} \\
+  \frac{\partial V_2}{\partial A} & \frac{\partial V_2}{\partial I} \\ \end{bmatrix} 
+  = \begin{bmatrix} \gamma + \epsilon + \mu & 0 \\ -\epsilon & \frac{u}{(1+kI)^2} + \mu + \theta \\ \end{bmatrix} \\
 \end{align*}
 $$
 
-**Question: Why is the paper using u instead of $\frac{uI}{(1+kI)^2}$ ?**
+Since $I = 0$: 
+$$
+\boldsymbol{V} = \begin{bmatrix} \gamma + \epsilon + \mu & 0 \\ -\epsilon & u + \mu + \theta \\ \end{bmatrix}
+$$
 
 Then we can get: 
 $$
-\begin{align*}
 \boldsymbol{V}^{-1} = 
-  \frac{1}{u\epsilon} 
-  \begin{bmatrix} u & 0 \\ \epsilon & \epsilon \\ \end{bmatrix}
-\end{align*}
+  \frac{1}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)} 
+  \begin{bmatrix} u + \mu + \theta & 0 \\ \epsilon & \gamma + \epsilon + \mu \\ \end{bmatrix}
 $$
 
 Next, recall that: $NGM = \boldsymbol{F} \boldsymbol{V}^{-1}$
@@ -602,38 +651,42 @@ $$
 \ \boldsymbol{F} \boldsymbol{V} ^{-1} &= 
   \begin{bmatrix} (1-p) \alpha \beta S & (1-p) \beta S \\
   (p) \alpha \beta S & p \beta S \\ \end{bmatrix} 
-  \frac{1}{u\epsilon} 
-  \begin{bmatrix} u & 0 \\ \epsilon & \epsilon \\ \end{bmatrix} \\
+  \frac{1}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)} 
+  \begin{bmatrix} u + \mu + \theta & 0 \\ \epsilon & \gamma + \epsilon + \mu \\ \end{bmatrix} \\
 \ &= 
   \begin{bmatrix} (1-p) \alpha \beta S & (1-p) \beta S \\
   (p) \alpha \beta S & p \beta S \\ \end{bmatrix}
-  \begin{bmatrix} \frac{1}{\epsilon} & 0 \\ \frac{1}{u} & \frac{1}{u} \\ \end{bmatrix} \\
+  \begin{bmatrix} \frac{1}{\gamma + \epsilon + \mu} & 0 \\ \frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)} & \frac{1}{u + \mu +\theta} \\ \end{bmatrix} \\
 \ &= 
-  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S 
-  & (\frac{1}{u}) (1-p) \beta S \\
-  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S & (\frac{1}{u})p \beta S \\ \end{bmatrix} \\
+  \begin{bmatrix} (\frac{1}{\gamma + \epsilon + \mu})(1-p) \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) (1-p) \beta S 
+  & (\frac{1}{u + \mu +\theta}) (1-p) \beta S \\
+  (\frac{1}{\gamma + \epsilon + \mu})p \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) p \beta S & (\frac{1}{u + \mu +\theta})p \beta S \\ \end{bmatrix} \\
 \end{align*}
 $$
 
-Then since $R_0$ is the spectral radius ?
-Use: $det(J-\lambda I_n) = det(\lambda I_n -J) = 0$ ?
+Use the formula $det(J-\lambda I_n) = det(\lambda I_n -J) = 0$ to find the spectral radius, $R_0$.
 
 $$
 \begin{align*}
 \ 0 &= det \left(  
-  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S 
-  & (\frac{1}{u}) (1-p) \beta S \\
-  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S & (\frac{1}{u})p \beta S \\ \end{bmatrix}
+  \begin{bmatrix} (\frac{1}{\gamma + \epsilon + \mu})(1-p) \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) (1-p) \beta S 
+  & (\frac{1}{u + \mu +\theta}) (1-p) \beta S \\
+  (\frac{1}{\gamma + \epsilon + \mu})p \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) p \beta S & (\frac{1}{u + \mu +\theta})p \beta S \\ \end{bmatrix} 
   -\lambda\begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix} \right) \\
 \ 0 &= det \left(
-  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S  - \lambda
-  & (\frac{1}{u}) (1-p) \beta S \\
-  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S 
-  & (\frac{1}{u})p \beta S - \lambda \end{bmatrix} \right) \\
-\ 0 &= 
-  \left( (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S  - \lambda \right)
-  \left( (\frac{1}{u}) (1-p) \beta S \right) 
-  - \left( (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S \right) 
-  \left( (\frac{1}{u})p \beta S - \lambda \right)
+  \begin{bmatrix} (\frac{1}{\gamma + \epsilon + \mu})(1-p) \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) (1-p) \beta S - \lambda
+  & (\frac{1}{u + \mu +\theta}) (1-p) \beta S \\
+  (\frac{1}{\gamma + \epsilon + \mu})p \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) p \beta S & (\frac{1}{u + \mu +\theta})p \beta S - \lambda \\ \end{bmatrix} 
+  \right) \\
+\ 0 &= \left( (\frac{1}{\gamma + \epsilon + \mu})(1-p) \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) (1-p) \beta S - \lambda \right)
+\left( (\frac{1}{u + \mu +\theta})p \beta S - \lambda \right) - \left( (\frac{1}{u + \mu +\theta}) (1-p) \beta S \right) \left( (\frac{1}{\gamma + \epsilon + \mu})p \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) p \beta S \right) \\
 \end{align*}
 $$
+
+Eventually, having substituted $S = \frac{\Lambda}{\mu+\delta}$ into the equation, we obtain the following: 
+
+$$
+R_0 = \frac{\beta \Lambda [(1-p)\alpha(u+\mu+\theta)+(1-p)\epsilon+p(\gamma+\epsilon+\mu)]}{(\mu+\delta)(\gamma+\epsilon+\mu)(u+\mu+\theta)}
+$$
+
+We interpret this $R_0$ as we have previously done: $R_0 > 1$ indicates continuous spread of the disease (EE is stable), and $R_0 < 1$ indicates that the disease will eventually die out (DFE is stable). 

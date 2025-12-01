@@ -163,7 +163,12 @@ div.csl-indent {
 <li class="chapter" data-level="6.3.2" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium"><i class="fa fa-check"></i><b>6.3.2</b> Defining the Disease Free Equilibrium</a></li>
 <li class="chapter" data-level="6.3.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-the-siqr-model"><i class="fa fa-check"></i><b>6.3.3</b> Solving the SIQR Model</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model"><i class="fa fa-check"></i><b>6.4</b> The SAIR Model</a></li>
+<li class="chapter" data-level="6.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model"><i class="fa fa-check"></i><b>6.4</b> The SAIR Model</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-parameters-1"><i class="fa fa-check"></i><b>6.4.1</b> Defining the Parameters</a></li>
+<li class="chapter" data-level="6.4.2" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium-dfe-1"><i class="fa fa-check"></i><b>6.4.2</b> Defining the Disease Free Equilibrium (DFE)</a></li>
+<li class="chapter" data-level="6.4.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-sair-model-with-ngm"><i class="fa fa-check"></i><b>6.4.3</b> Solving SAIR Model with NGM</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html"><i class="fa fa-check"></i><b>7</b> Spatial Epidemiology</a>
 <ul>
@@ -659,52 +664,97 @@ is the largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{
 <div id="the-sair-model" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> The SAIR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment “A”) as separate from the symptomatic individuals (compartment “I”).</p>
+<p>We will use the NGM to solve an example of SAIR modelling COVID-19 while excluding vital dynamics (birth, death) to account for a short-term model. This example was modified from a paper by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">17</a>]</span>.</p>
+<div id="defining-the-parameters-1" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Defining the Parameters<a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-parameters-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Include a compartmental diagram here:</strong></p>
-<p>We define the differential equations as follows:</p>
+<ul>
+<li><p><span class="math inline">\(p\)</span>: proportion of population that shows symptoms (<span class="math inline">\(0 &lt; p &lt; 1\)</span>)</p>
+<ul>
+<li><span class="math inline">\((1-p)\)</span>: proportion of population that does not show symptoms</li>
+</ul></li>
+<li><p><span class="math inline">\(\beta(I+\alpha A)S\)</span>: new infection</p>
+<ul>
+<li><p><span class="math inline">\(\beta\)</span>: transmission rate</p></li>
+<li><p><span class="math inline">\(\alpha\)</span>: relative infectivity of asymptomatic infected (A) to symptomatic infected (I) (<span class="math inline">\(0 &lt; a &lt; 1\)</span>)</p></li>
+</ul></li>
+<li><p><span class="math inline">\(\gamma\)</span>: rate of the asymptomatic infected individuals’ self-healing (producing antibodies for resistance to diseases)</p></li>
+<li><p><span class="math inline">\(\epsilon\)</span>: rate of the asymptomatic infected individuals showing symptoms (if resistance to disease is poor)</p></li>
+<li><p><span class="math inline">\(\frac{uI}{1+kI}\)</span>: saturated treatment function as the Holling Type 2 Functional Response <strong>[cite: ]</strong></p>
+<ul>
+<li><span class="math inline">\(u\)</span>: cure rate of the infected individual</li>
+<li><span class="math inline">\(k\)</span>: handling time</li>
+<li><span class="math inline">\(\frac{u}{k}\)</span>: maximal treatment capacity, due to limited medical resources or handling time</li>
+</ul></li>
+<li><p><span class="math inline">\(\delta\)</span>: immunization rate of susceptible population from vaccination (this model considers vaccination without including a fifth compartment)</p></li>
+<li><p>vital dynamics:</p>
+<ul>
+<li><p><span class="math inline">\(\Lambda\)</span>: recruitment rate of susceptible population (e.g. births, immigration)</p></li>
+<li><p><span class="math inline">\(\mu\)</span>: natural death rate per capita (all deaths unrelated to the disease)</p></li>
+<li><p><span class="math inline">\(\theta\)</span>: mortality rate of the disease (all deaths caused by the disease)</p></li>
+</ul></li>
+</ul>
+<p>We define the <strong>differential equations for the SAIR Model</strong> as follows:</p>
 <p><span class="math display">\[
 \begin{align*}
-\ \dot{S} &amp;= -\beta(I+\alpha A)S \\
-\ \dot{A} &amp;= (1-p)\beta(I+\alpha A)S-(\gamma + \epsilon)A \\
-\ \dot{I} &amp;= p\beta(I+\alpha A)S-\epsilon A - \frac{uI}{1+kI} \\
-\ \dot{R} &amp;= \delta S + \frac{uI}{1+kI} + \gamma A \\
+\ \dot{S} &amp;= \Lambda -\beta(I+\alpha A)S - (\mu + \delta) S \\
+\ \dot{A} &amp;= (1-p)\beta(I+\alpha A)S-(\gamma + \epsilon + \mu)A \\
+\ \dot{I} &amp;= p\beta(I+\alpha A)S+\epsilon A - \frac{uI}{1+kI} - (\mu + \theta)I \\
+\ \dot{R} &amp;= \delta S + \frac{uI}{1+kI} + \gamma A - \mu R \\
 \ \end{align*}
 \]</span></p>
-<p>Let <span class="math inline">\(N = 1\)</span>, and N = S + A + I + R so 1 = S + A + I + R</p>
-<p>We use the Next Generation Matrix method to analyze this example.</p>
-<p>At DFE: I = 0, how about A?</p>
-<p>define the parameters ins</p>
-<p>Find <span class="math inline">\(R_0\)</span>:</p>
-<p>X is the matrix of infected compartments.</p>
+<p>For the SAIR model, <span class="math inline">\(\dot{X} = \begin{bmatrix} \dot{A} \\ \dot{I}\\ \end{bmatrix}\)</span>, where X is the matrix representing the infected compartments.</p>
+</div>
+<div id="defining-the-disease-free-equilibrium-dfe-1" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Defining the Disease Free Equilibrium (DFE)<a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium-dfe-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Disease Free Equilibrium exists when all infected compartments (A and I), are set to 0. i.e. <span class="math inline">\(A=0\)</span> and <span class="math inline">\(I=0\)</span>. (<em>Definition</em> <a href="modelling-disease-dynamics-with-odes.html#def:DFE">3.3</a>).</p>
+<p><span class="math display">\[
+\begin{align*}
+\ \dot{S} &amp;= \Lambda -\beta(I+\alpha A)S - (\mu + \delta) S &amp;= 0 \\
+\ \dot{A} &amp;= (1-p)\beta(I+\alpha A)S-(\gamma + \epsilon + \mu)A &amp;= 0 \\
+\ \dot{I} &amp;= p\beta(I+\alpha A)S+\epsilon A - \frac{uI}{1+kI} - (\mu + \theta)I &amp;= 0 \\
+\ \dot{R} &amp;= \delta S + \frac{uI}{1+kI} + \gamma A - \mu R &amp;= 0 \\
+\ \end{align*}
+\]</span></p>
+<p>By setting all of the differential equations to 0, we obtain that initial <span class="math inline">\(S\)</span> is <span class="math inline">\(S = \frac{\Lambda}{\mu+\delta}\)</span>.</p>
+<p>Since we let <span class="math inline">\(N = 1\)</span>, <span class="math inline">\(S + A + I + R = N = 1\)</span>.</p>
+<p>Therefore, at the DFE: <span class="math inline">\((S, A, I, R) = (\frac{\Lambda}{\mu+\delta}, 0, 0, \frac{\delta\Lambda}{\mu(\mu+\delta)})\)</span></p>
+<p>Q: Does R = 0?</p>
+</div>
+<div id="solving-sair-model-with-ngm" class="section level3 hasAnchor" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Solving SAIR Model with NGM<a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-sair-model-with-ngm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We begin by finding <span class="math inline">\(R_0\)</span>, starting with the X matrix.</p>
 <p><span class="math display">\[
 \begin{align*}
 \ \dot{X} &amp;= \begin{bmatrix} \dot{A} \\  \dot{I}\\ \end{bmatrix} \\
-\ \dot{X} &amp;= \begin{bmatrix} (1-p)\beta(I-\alpha A)S-(\gamma + \epsilon)A \\
-p\beta(I-\alpha A)S-\epsilon A - \frac{uI}{1+kI} \end{bmatrix} \\
+\ \dot{X} &amp;= \begin{bmatrix} (1-p)\beta(I+\alpha A)S-(\gamma + \epsilon + \mu)A \\
+p\beta(I+\alpha A)S+\epsilon A - \frac{uI}{1+kI} - (\mu + \theta)I \end{bmatrix} \\
 \end{align*}
 \]</span></p>
-<p>So then, from X we obtain: <span class="math inline">\(\boldsymbol{F} = \begin{bmatrix} (1-p)\beta(I+\alpha A)S \\ p\beta(I+\alpha A)S \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix}\)</span> and <span class="math inline">\(\boldsymbol{V} = \begin{bmatrix} (\gamma + \epsilon)A \\ \frac{uI}{1+kI} -\epsilon A \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix}\)</span></p>
+<p>So then, from X we obtain: <span class="math inline">\(\boldsymbol{F} = \begin{bmatrix} (1-p)\beta(I+\alpha A)S \\ p\beta(I+\alpha A)S \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix}\)</span> and <span class="math inline">\(\boldsymbol{V} = \begin{bmatrix} (\gamma + \epsilon + \mu)A \\ -\epsilon A + \frac{uI}{1+kI} + (\mu + \theta)I \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix}\)</span></p>
 <p>Solving for the Jacobian matrices, we get:</p>
 <p><span class="math display">\[
 \begin{align*}
 \ \boldsymbol{F} &amp;= J_F (x) =
-  \begin{bmatrix} \frac{\partial F_1}{\partial E} &amp; \frac{\partial F_1}{\partial I} \\
-  \frac{\partial F_2}{\partial E} &amp; \frac{\partial F_2}{\partial I} \\ \end{bmatrix}
+  \begin{bmatrix} \frac{\partial F_1}{\partial A} &amp; \frac{\partial F_1}{\partial I} \\
+  \frac{\partial F_2}{\partial A} &amp; \frac{\partial F_2}{\partial I} \\ \end{bmatrix}
   = \begin{bmatrix} (1-p) \alpha \beta S &amp; (1-p) \beta S \\
   (p) \alpha \beta S &amp; p \beta S  \\\end{bmatrix} \\
 \ \boldsymbol{V} &amp;= J_V (x) =
-  \begin{bmatrix} \frac{\partial V_1}{\partial E} &amp; \frac{\partial V_1}{\partial I} \\
-  \frac{\partial V_2}{\partial E} &amp; \frac{\partial V_2}{\partial I} \\ \end{bmatrix}
-  = \begin{bmatrix} \epsilon &amp; 0 \\ -\epsilon &amp; u \\ \end{bmatrix} \\
+  \begin{bmatrix} \frac{\partial V_1}{\partial A} &amp; \frac{\partial V_1}{\partial I} \\
+  \frac{\partial V_2}{\partial A} &amp; \frac{\partial V_2}{\partial I} \\ \end{bmatrix}
+  = \begin{bmatrix} \gamma + \epsilon + \mu &amp; 0 \\ -\epsilon &amp; \frac{u}{(1+kI)^2} + \mu + \theta \\ \end{bmatrix} \\
 \end{align*}
 \]</span></p>
-<p><strong>Question: Why is the paper using u instead of <span class="math inline">\(\frac{uI}{(1+kI)^2}\)</span> ?</strong></p>
+<p>Since <span class="math inline">\(I = 0\)</span>:
+<span class="math display">\[
+\boldsymbol{V} = \begin{bmatrix} \gamma + \epsilon + \mu &amp; 0 \\ -\epsilon &amp; u + \mu + \theta \\ \end{bmatrix}
+\]</span></p>
 <p>Then we can get:
 <span class="math display">\[
-\begin{align*}
 \boldsymbol{V}^{-1} =
-  \frac{1}{u\epsilon}
-  \begin{bmatrix} u &amp; 0 \\ \epsilon &amp; \epsilon \\ \end{bmatrix}
-\end{align*}
+  \frac{1}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}
+  \begin{bmatrix} u + \mu + \theta &amp; 0 \\ \epsilon &amp; \gamma + \epsilon + \mu \\ \end{bmatrix}
 \]</span></p>
 <p>Next, recall that: <span class="math inline">\(NGM = \boldsymbol{F} \boldsymbol{V}^{-1}\)</span></p>
 <p><span class="math display">\[
@@ -712,40 +762,42 @@ p\beta(I-\alpha A)S-\epsilon A - \frac{uI}{1+kI} \end{bmatrix} \\
 \ \boldsymbol{F} \boldsymbol{V} ^{-1} &amp;=
   \begin{bmatrix} (1-p) \alpha \beta S &amp; (1-p) \beta S \\
   (p) \alpha \beta S &amp; p \beta S \\ \end{bmatrix}
-  \frac{1}{u\epsilon}
-  \begin{bmatrix} u &amp; 0 \\ \epsilon &amp; \epsilon \\ \end{bmatrix} \\
+  \frac{1}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}
+  \begin{bmatrix} u + \mu + \theta &amp; 0 \\ \epsilon &amp; \gamma + \epsilon + \mu \\ \end{bmatrix} \\
 \ &amp;=
   \begin{bmatrix} (1-p) \alpha \beta S &amp; (1-p) \beta S \\
   (p) \alpha \beta S &amp; p \beta S \\ \end{bmatrix}
-  \begin{bmatrix} \frac{1}{\epsilon} &amp; 0 \\ \frac{1}{u} &amp; \frac{1}{u} \\ \end{bmatrix} \\
+  \begin{bmatrix} \frac{1}{\gamma + \epsilon + \mu} &amp; 0 \\ \frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)} &amp; \frac{1}{u + \mu +\theta} \\ \end{bmatrix} \\
 \ &amp;=
-  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S
-  &amp; (\frac{1}{u}) (1-p) \beta S \\
-  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S &amp; (\frac{1}{u})p \beta S \\ \end{bmatrix} \\
+  \begin{bmatrix} (\frac{1}{\gamma + \epsilon + \mu})(1-p) \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) (1-p) \beta S
+  &amp; (\frac{1}{u + \mu +\theta}) (1-p) \beta S \\
+  (\frac{1}{\gamma + \epsilon + \mu})p \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) p \beta S &amp; (\frac{1}{u + \mu +\theta})p \beta S \\ \end{bmatrix} \\
 \end{align*}
 \]</span></p>
-<p>Then since <span class="math inline">\(R_0\)</span> is the spectral radius ?
-Use: <span class="math inline">\(det(J-\lambda I_n) = det(\lambda I_n -J) = 0\)</span> ?</p>
+<p>Use the formula <span class="math inline">\(det(J-\lambda I_n) = det(\lambda I_n -J) = 0\)</span> to find the spectral radius, <span class="math inline">\(R_0\)</span>.</p>
 <p><span class="math display">\[
 \begin{align*}
 \ 0 &amp;= det \left(  
-  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S
-  &amp; (\frac{1}{u}) (1-p) \beta S \\
-  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S &amp; (\frac{1}{u})p \beta S \\ \end{bmatrix}
+  \begin{bmatrix} (\frac{1}{\gamma + \epsilon + \mu})(1-p) \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) (1-p) \beta S
+  &amp; (\frac{1}{u + \mu +\theta}) (1-p) \beta S \\
+  (\frac{1}{\gamma + \epsilon + \mu})p \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) p \beta S &amp; (\frac{1}{u + \mu +\theta})p \beta S \\ \end{bmatrix}
   -\lambda\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{bmatrix} \right) \\
 \ 0 &amp;= det \left(
-  \begin{bmatrix} (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S  - \lambda
-  &amp; (\frac{1}{u}) (1-p) \beta S \\
-  (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S
-  &amp; (\frac{1}{u})p \beta S - \lambda \end{bmatrix} \right) \\
-\ 0 &amp;=
-  \left( (\frac{1}{\epsilon})(1-p) \alpha \beta S + (\frac{1}{u}) (1-p) \beta S  - \lambda \right)
-  \left( (\frac{1}{u}) (1-p) \beta S \right)
-  - \left( (\frac{1}{\epsilon})p \alpha \beta S + (\frac{1}{u}) p \beta S \right)
-  \left( (\frac{1}{u})p \beta S - \lambda \right)
+  \begin{bmatrix} (\frac{1}{\gamma + \epsilon + \mu})(1-p) \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) (1-p) \beta S - \lambda
+  &amp; (\frac{1}{u + \mu +\theta}) (1-p) \beta S \\
+  (\frac{1}{\gamma + \epsilon + \mu})p \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) p \beta S &amp; (\frac{1}{u + \mu +\theta})p \beta S - \lambda \\ \end{bmatrix}
+  \right) \\
+\ 0 &amp;= \left( (\frac{1}{\gamma + \epsilon + \mu})(1-p) \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) (1-p) \beta S - \lambda \right)
+\left( (\frac{1}{u + \mu +\theta})p \beta S - \lambda \right) - \left( (\frac{1}{u + \mu +\theta}) (1-p) \beta S \right) \left( (\frac{1}{\gamma + \epsilon + \mu})p \alpha \beta S + (\frac{\epsilon}{ (u + \mu + \theta) (\gamma + \epsilon + \mu)}) p \beta S \right) \\
 \end{align*}
 \]</span></p>
+<p>Eventually, having substituted <span class="math inline">\(S = \frac{\Lambda}{\mu+\delta}\)</span> into the equation, we obtain the following:</p>
+<p><span class="math display">\[
+R_0 = \frac{\beta \Lambda [(1-p)\alpha(u+\mu+\theta)+(1-p)\epsilon+p(\gamma+\epsilon+\mu)]}{(\mu+\delta)(\gamma+\epsilon+\mu)(u+\mu+\theta)}
+\]</span></p>
+<p>We interpret this <span class="math inline">\(R_0\)</span> as we have previously done: <span class="math inline">\(R_0 &gt; 1\)</span> indicates continuous spread of the disease (EE is stable), and <span class="math inline">\(R_0 &lt; 1\)</span> indicates that the disease will eventually die out (DFE is stable).</p>
 
+</div>
 </div>
 </div>
             </section>

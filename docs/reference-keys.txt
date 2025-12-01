@@ -84,6 +84,9 @@ taking-the-jacobian-matrix-of-f-and-v
 finding-the-next-generation-matrix
 calculating-r_0-and-defining-stability
 the-sair-model
+defining-the-parameters-1
+defining-the-disease-free-equilibrium-dfe-1
+solving-sair-model-with-ngm
 spatial-epidemiology
 introduction-to-spatial-epidemiology
 metapopulations
