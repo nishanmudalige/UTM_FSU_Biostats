@@ -21,6 +21,7 @@ def:ESE
 def:RHC
 def:DRS
 fig:seirdiagram
+fig:siqrdiagram
 exm:Asynchronous
 exm:Synchronous
 exm:contact

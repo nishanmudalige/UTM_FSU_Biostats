@@ -329,6 +329,30 @@ complexities of the case in question, COVID-19, is not fully modeled.
 However, for our purposes, this pre-existing model provides definitive
 parameters and variables to be manipulated and solved.
 
+```{r siqrdiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='50%', fig.ext='png', fig.cap='The SIQR compartmental model.'}
+\usetikzlibrary{arrows.meta, positioning}
+
+\begin{tikzpicture}[block/.style={rectangle, draw, minimum width=1.5cm, minimum height=1cm, text centered, font=\Large},
+    arrow/.style={-Latex, thick}]
+
+% Nodes
+\node (S) at (0,0) [block] {S};
+\node (I) [right=2cm of S, block] {I};
+\node (Q) [right=2cm of I, block] {Q};
+\node (R) [right=2cm of Q, block] {R};
+
+% Arrows
+% S to I
+\draw [arrow] (S) -- node [midway, above] {$\alpha SI$} (I);
+
+% I to R
+\draw [arrow] (I) -- node [midway, above] {$\beta I$} (Q);
+
+\draw [arrow] (Q) -- node [midway, above] {$\gamma Q$} (R);
+
+\end{tikzpicture}
+```
+
 ### Defining the Parameters
 
 Beginning with X, the vector of disease compartments. For the SIQR
@@ -363,7 +387,7 @@ $$ At the DFE:
 
 Since there are no infections: $I=Q=R=0$ This means that for
 $N=S+I+Q+R$, $N=S$ due to our earlier statements So at the DFE for the
-(S,I,Q,R) = (S,0,0,0) = (N,0,0,0)
+$(S,I,Q,R) = (S,0,0,0) = (N,0,0,0)$
 
 ### Solving the SIQR Model
 
@@ -428,7 +452,7 @@ $$
 $$ At DFE, $S = 1$
 
 -   This is found by our earlier definition of the DFE.
-    -   At the DFE for (S,I,Q,R) = (S,0,0,0) = (N,0,0,0)
+    -   At the DFE for $(S,I,Q,R) = (S,0,0,0) = (N,0,0,0)$
     -   Since Population $"N"=1$ and $S=N$, then $S=1$
 -   So after subsituting $S=1$:
 
@@ -514,7 +538,7 @@ $$ Let $- \lambda \left( \frac{\alpha S}{\beta} - \lambda \right) = 0$
 ($\lambda_1$ and $\lambda_2$ respectively)
 
 So $\lambda_1 = 0$ and $\lambda_2 = \frac{\alpha S}{\beta}$. $\lambda_2$
-is the largest eigenvalue, so $R_0 = \lambda = \frac{\beta}{\gamma}$.
+is the largest eigenvalue, so $R_0 = \frac{\alpha S}{\beta}$.
 
 Thus:
 
