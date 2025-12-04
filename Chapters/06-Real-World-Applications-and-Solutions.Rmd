@@ -29,6 +29,40 @@ article cited. [@ramponi2024] The model takes into account vaccination
 rate, vaccine effectiveness, and vaccine induced decline in the immune
 rate.
 
+
+
+```{r vsir_diagram, echo=FALSE, engine='tikz', fig.ext='png', out.width='60%', fig.cap='The VSIR compartmental model.'}
+\usetikzlibrary{arrows.meta, positioning}
+
+\begin{tikzpicture}[
+    block/.style={rectangle, draw, rounded corners, minimum width=2.3cm, minimum height=1.2cm, text centered, font=\Large},
+    arrow/.style={-Latex, thick}
+]
+
+% Nodes
+\node (V) at (0,0)   [block, fill=red!20]     {$V(t)$};
+\node (S) [right=3.2cm of V, block, fill=green!20] {$S(t)$};
+\node (I) [right=3.2cm of S, block, fill=yellow!30] {$I(t)$};
+\node (R) [right=3.2cm of I, block, fill=orange!30] {$R(t)$};
+
+% Flows
+\draw[arrow] (V) -- node[midway, above] {$\delta V$} (S);
+\draw[arrow] (S) -- node[midway, below] {$\gamma S$} (V);
+\draw[arrow] ([yshift=1.3cm]S.north) -- node[midway,right] {$\Lambda$} (S.north);
+\draw[arrow] (S.south) -- ++(0,-1.0) node[midway,right] {$dS$};
+\draw[arrow] (V.south) -- ++(0,-1.0) node[midway,right] {$dV$};
+\draw[arrow] (I.south) -- ++(0,-1.0) node[midway,left] {$dI$};
+\draw[arrow] (I.south) -- ++(1,-1.2) node[midway,right] {$\alpha I$};
+\draw[arrow] (R.south) -- ++(0,-1.0) node[midway,left] {$dR$};
+\draw[arrow] (S) -- node[midway, above] {$\beta S I$} (I);
+\draw[arrow] (V.north) -- ++(0,1) -- ++(6.4,0) -- (I.north) node[midway, above] {$(1-\theta)\beta S I$};
+\draw[arrow] (I) -- node[midway, above] {$b I$} (R);
+
+\end{tikzpicture}
+```
+
+
+
 ### Model Formulation
 
 With $N(t)$ representing the total pupulation it can also be divided in
