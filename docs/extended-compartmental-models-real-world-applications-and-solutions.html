@@ -511,6 +511,7 @@ and Q), are set to 0. Thus, <span class="math inline">\(I=0\)</span> and <span c
 <p>Since there are no infections: <span class="math inline">\(I=Q=R=0\)</span> This means that for
 <span class="math inline">\(N=S+I+Q+R\)</span>, <span class="math inline">\(N=S\)</span> due to our earlier statements So at the DFE for the
 <span class="math inline">\((S,I,Q,R) = (S,0,0,0) = (N,0,0,0)\)</span></p>
+<p><strong>It is important to note that we normally use <span class="math inline">\(\beta\)</span> for the transmission parameter, while in this example it is <span class="math inline">\(\alpha\)</span>. Additionally <span class="math inline">\(\beta\)</span> becomes the quarantine rate and <span class="math inline">\(\gamma\)</span> remains as the recovery rate.</strong></p>
 </div>
 <div id="solving-the-siqr-model" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Solving the SIQR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-the-siqr-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -670,6 +671,46 @@ is the largest eigenvalue, so <span class="math inline">\(R_0 = \frac{\alpha S}{
 <li>This means that <span class="math inline">\(\alpha S &gt; \beta\)</span></li>
 </ul></li>
 </ul>
+</div>
+<div id="fitting-data-to-the-siqr-model" class="section level4 hasAnchor" number="6.3.3.5">
+<h4><span class="header-section-number">6.3.3.5</span> Fitting Data to the SIQR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#fitting-data-to-the-siqr-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Throughout this textbook, we have discussed how to solve and understand varying models on a theoretical level. However; we are also able to fit these models to data in with certain datasets. To do this, we will use a very commonly used example in the world of applied epidemiology, the 1978 Influenza Outbreak in a British Boarding School. The data contained total cases, quarantined defined as “Confined to Bed,” and Recovering defined as “Convalescent.” This was a closed system and contained detail reports to understand what occured using our modern techniques and models. Doing so allows us to map the data into the variables of our models and understand the situation from which our data was recorded.</p>
+<ul>
+<li><p>Parameter Values</p>
+<ul>
+<li><p>Our normal parameter values <span class="math inline">\(\beta, \gamma, \alpha\)</span> are derived using a MATLAB Optimization Toolbox</p></li>
+<li><p>By giving the solver the total population, N, which is 763 in this scenario, and setting the initial infected, I(0) equal to 1, the software can create predicted curves</p></li>
+<li><p>By minimizing the Standard Squared Error between the predicted curves and data points, the values of the parameters can be found</p></li>
+</ul></li>
+<li><p>Fitting the SIQR Model</p>
+<ul>
+<li><p>When fitting this model, there were two clear ways in which we could go about it</p>
+<ul>
+<li><p>Scenario 1: Combine both the I and Q compartments, so that the individuals identified as infected are active cases and not immediately quarantined and can still spread the disease, before becoming quarantined</p></li>
+<li><p>Scenario 2: Fit the model to only Q, so that the individuals identified as “Confined to Bed” are immediately quarantined and thus, are not able to continue spreading the disease</p>
+<ul>
+<li>This accounts for the time lag between being infected and quarantined, so that we can model the inital spike of disease in the population, I, occuring before they transfer to quarantine, Q, and predicting the transmission of disease during the period between the transfer</li>
+</ul></li>
+</ul></li>
+<li><p>Using the methodology of Scenario 2, we are able to find our parameters using the previously described processes:</p>
+<ul>
+<li><p><span class="math inline">\(N\)</span> = 763</p></li>
+<li><p><span class="math inline">\(\alpha\)</span> = .00297</p></li>
+<li><p><span class="math inline">\(\beta\)</span> = .79</p></li>
+<li><p><span class="math inline">\(\gamma\)</span> = .24</p></li>
+</ul></li>
+<li><p>Using these parameters, and fitting the data, the model reveals, as expected, that the Infected compartment spikes before the quarantined compartment, accounting for spread of disease before transferring to the Quarantined compartment. Below is a plot showing these relationships.</p></li>
+</ul></li>
+</ul>
+<p>Insert Plot</p>
+<p>Write a closing thing for this</p>
+<p>Reference: <span class="citation">[<a href="references.html#ref-kalachev2022">16</a>]</span></p>
+</div>
+<div id="complex-models-vs.-parsimony-in-real-world-situations" class="section level4 hasAnchor" number="6.3.3.6">
+<h4><span class="header-section-number">6.3.3.6</span> Complex Models Vs. Parsimony in Real World Situations<a href="extended-compartmental-models-real-world-applications-and-solutions.html#complex-models-vs.-parsimony-in-real-world-situations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>As we have discussed, models may be too complex to fit the data. Key distinctions may be missing, which are vital to defining compartmental-specific data. In these scenarios, models are reduced to present a more general model while still being capable of great predictive power. In this specific scenario, the authors dive into attempting to use the SIQR model to use readily available data to define the perfect trends and relationships of COVID-19 in Missoula County, Montana, USA.</p>
+<p>The authors state how the available data for one of the applied cases of the model included Active and New cases. However, an issue arose since the data values are not able to define <span class="math inline">\(\gamma\)</span>. This meant that individuals moved from Q to R were not defined, and thus, it was difficult to determine the transition number from individuals leaving the compartment. An individual might become recovered or quarantined but none of these outcomes are defined.</p>
+<p>Because the data could not effectively be fit to the SIQR model, the author’s decided to reduce the model to an SIR model. In this situation, the Q and R compartments would be combined, resolving the issue of the unclear distinction between the two compartments. While this does remove the dynamics between quarantine and recovery, and removing the role that quarantine plays in the context, reducing to an SIR model is still the most effective choice. The SIR model allows for a powerful model to be utilized due to fewer parameters, preventing over fitting. While the SIQR model would have given more precise results with distinctions between the Q and R compartments, using an SIR model still allows for a general trend to be established about the spread of the disease in this certain population and case.</p>
 </div>
 </div>
 </div>

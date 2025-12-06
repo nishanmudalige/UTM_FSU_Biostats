@@ -84,6 +84,8 @@ defining-f-and-v-matrices
 taking-the-jacobian-matrix-of-f-and-v
 finding-the-next-generation-matrix
 calculating-r_0-and-defining-stability
+fitting-data-to-the-siqr-model
+complex-models-vs.-parsimony-in-real-world-situations
 the-sair-model
 defining-the-parameters-1
 defining-the-disease-free-equilibrium-dfe-1
