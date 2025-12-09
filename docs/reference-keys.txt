@@ -90,6 +90,7 @@ the-sair-model
 defining-the-parameters-1
 defining-the-disease-free-equilibrium-dfe-1
 solving-sair-model-with-ngm
+example-with-parameters
 spatial-epidemiology
 introduction-to-spatial-epidemiology
 metapopulations

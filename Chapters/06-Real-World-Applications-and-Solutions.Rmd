@@ -4,6 +4,20 @@ editor_options:
     wrap: 72
 ---
 
+```{r plot_setup, include=FALSE}
+library(deSolve)    # For solving differential equations
+library(ggplot2)    # For plotting
+library(tidyr)      # For data reshaping
+
+knitr::opts_chunk$set(
+  fig.width = 7,       # Default figure width (inches) when R creates it
+  fig.asp = 0.618,     # Aspect ratio (height/width). The 0.618 is the golden ratio.
+  out.width = "80%",   # Size of the figure in your final output document
+  fig.align = "center", # Alignment
+  fig.cap = "Figure"    # Base text for captions (bookdown will add numbers)
+)
+```
+
 # Extended Compartmental Models: Real World Applications and Solutions
 
 ## Introduction
@@ -389,6 +403,12 @@ parameters and variables to be manipulated and solved.
 
 ### Defining the Parameters
 
+- $\alpha$: infection rate
+
+- $\beta$: quarantine rate
+
+- $\gamma$: recovery rate
+
 Beginning with X, the vector of disease compartments. For the SIQR
 model, $X = \begin{bmatrix} I\\ Q\\ \end{bmatrix}$
 
@@ -513,7 +533,7 @@ $$
 
 #### Finding the Next Generation Matrix
 
-Refer to (*Chapter* \@ref(sec:ngm)) where the NGM for the SEIR model is
+Refer to (*Chapter * \@ref(sec:ngm)) where the NGM for the SEIR model is
 found. We will be using a similar structure once again.
 $NGM = \boldsymbol{F} \boldsymbol{V}^{-1}$
 
@@ -618,9 +638,61 @@ Throughout this textbook, we have discussed how to solve and understand varying 
     
     - $\gamma$ = .24
   
-  - Using these parameters, and fitting the data, the model reveals, as expected, that the Infected compartment spikes before the quarantined compartment, accounting for spread of disease before transferring to the Quarantined compartment. Below is a plot showing these relationships.
-  
-Insert Plot
+  - Using these parameters, and fitting the data, the model reveals, as expected, that the Infected compartment spikes before the quarantined compartment, accounting for spread of disease before transferring to the Quarantined compartment. Below is a time series plot showing these relationships.
+
+```{r siqr_plot, echo=FALSE}
+# Define the SIQR model function
+siqr_model <- function(time, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    # Differential equations
+    dS <- -alpha * S * I
+    dI <- alpha * S * I - beta * I
+    dQ <- beta * I - gamma * Q
+    dR <- gamma * Q
+    
+    list(c(dS, dI, dQ, dR)) # Return the rates of change
+  })
+}
+
+# Set parameters
+N <- 763
+siqr_param <- c(alpha = 0.00297, beta = 0.79, gamma = 0.24)
+
+# Initial conditions (assuming 1 initial infected, rest susceptible)
+siqr_initial <- c(S = N-1, I = 1, Q = 0, R = 0)
+
+# Time points to solve for (0 to 100 days, steps of 0.1)
+times <- seq(0, 100, by = 0.1)
+
+# Solve the differential equations
+siqr_output <- ode(y = siqr_initial, times = times, func = siqr_model, parms = siqr_param)
+
+# Convert to data frame
+siqr_results <- as.data.frame(siqr_output)
+
+# PLOT TIME SERIES PLOT
+# Reshape data from wide to long format for ggplot2
+siqr_results <- pivot_longer(siqr_results, cols = c(S, I, Q, R), 
+                             names_to = "Compartment", values_to = "Population")
+
+# Create the time series plot
+ggplot(siqr_results, aes(x = time, y = Population, color = Compartment)) +
+  geom_line(linewidth = 1.2) +
+  labs(title = "Time Series Plot for SIQR Model",
+       subtitle = paste0("N = ", N, ", α = ", siqr_param["alpha"], 
+                         ", β = ", siqr_param["beta"], ", γ = ", siqr_param["gamma"]),
+       x = "Time (days)",
+       y = "Population",
+       color = "Compartment") +
+  scale_color_manual(values = c("S" = "cornflowerblue",      # Susceptible
+                                "I" = "tomato",       # Infected
+                                "Q" = "darkgoldenrod1",    # Quarantined
+                                "R" = "dodgerblue4")) +  # Recovered
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
+```
 
 Write a closing thing for this
 
@@ -639,7 +711,10 @@ Because the data could not effectively be fit to the SIQR model, the author's de
 
 SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment "A") as separate from the symptomatic individuals (compartment "I"). 
 
-We will use the NGM to solve an example of SAIR modelling COVID-19 while excluding vital dynamics (birth, death) to account for a short-term model. This example was modified from a paper by Ouyang et al. (2025) [@ouyang2025]. 
+
+In this section we will use the NGM to solve an example of SAIR modelling COVID-19. Included in this model are vital dynamics (birth, death), and vaccination of individuals as a parameter rather than an additional compartment. This example was modified from a paper by Ouyang et al. (2025) [@ouyang2025].
+
+This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved. 
 
 ### Defining the Parameters
 
@@ -659,7 +734,7 @@ We will use the NGM to solve an example of SAIR modelling COVID-19 while excludi
 
 - $\epsilon$: rate of the asymptomatic infected individuals showing symptoms (if resistance to disease is poor)
 
-- $\frac{uI}{1+kI}$: saturated treatment function as the Holling Type 2 Functional Response **[cite: ]**
+- $\frac{uI}{1+kI}$: saturated treatment function represented by the Holling Type 2 Functional Response [@real1977], which considers saturation of treatment rate when the numbers of infected are high.
   - $u$: cure rate of the infected individual
   - $k$: handling time
   - $\frac{u}{k}$: maximal treatment capacity, due to limited medical resources or handling time 
@@ -706,8 +781,6 @@ By setting all of the differential equations to 0, we obtain that initial $S$ is
 Since we let $N = 1$, $S + A + I + R = N = 1$. 
 
 Therefore, at the DFE: $(S, A, I, R) = (\frac{\Lambda}{\mu+\delta}, 0, 0, \frac{\delta\Lambda}{\mu(\mu+\delta)})$
-
-Q: Does R = 0? 
 
 ### Solving SAIR Model with NGM 
 
@@ -798,3 +871,39 @@ R_0 = \frac{\beta \Lambda [(1-p)\alpha(u+\mu+\theta)+(1-p)\epsilon+p(\gamma+\eps
 $$
 
 We interpret this $R_0$ as we have previously done: $R_0 > 1$ indicates continuous spread of the disease (EE is stable), and $R_0 < 1$ indicates that the disease will eventually die out (DFE is stable). 
+
+### Example with Parameters
+
+We use the following parameters to display real applications of data. 
+
+We will analyze the $R_0$ value by fitting the model with the following parameters. We choose the parameter values based on examples in the article, and United States of America demographic data from the year 2020.  
+let recruitment rate $\Lambda = 1$, transmission rate $\beta = 0.05$, $\alpha = 0.00025$, $\mu = 0.014$, $\delta = 0.04$, $\gamma = 0.12$, $p = 0.0065$, $\epsilon = 0.25$, COVID-19 death rate $theta = 0.01$, saturation function $u = 0.25$, $k = 20$. 
+
+$$
+R_0 = \frac{3.1828 × 10^{−7} \times 1 [(1-0.0065)0.00025(0.25+0.014+0.01)+(1-0.0065) 0.25+0.0065(0.12+ 0.25+0.014)]}{(0.014+0.04)(0.12+0.25+0.014)(0.25+0.014+0.01)} \\ 
+R_0 = \frac{3.1828 × 10^{−7} [(0.9935)0.00025(0.274)+(0.9935)0.25+0.0065(0.384)]}
+{(0.054)(0.384)(0.274)} \\ 
+R_0 = \frac{3.1828 × 10^{−7} [(6.805475×10^{−5})+(0.248375)+(0.002496)]}
+{0.005681664} \\
+R_0 = \frac{(3.1828 × 10^{−7}) (0.2509391)} {0.005681664} \\
+R_0 = 1.405731 × 10^{-5}
+$$
+
+Since $R_0 = 0.000014 < 1$, we determine that DFE is stable and the disease will die out. 
+
+try again with beta = 0.05
+$$
+R_0 = \frac{3.1828 × 10^{−7} \times 1 [(1-0.0065)0.00025(0.25+0.014+0.01)+(1-0.0065) 0.25+0.0065(0.12+ 0.25+0.014)]}{(0.014+0.04)(0.12+0.25+0.014)(0.25+0.014+0.01)} \\ 
+R_0 = \frac{3.1828 × 10^{−7} [(0.9935)0.00025(0.274)+(0.9935)0.25+0.0065(0.384)]}
+{(0.054)(0.384)(0.274)} \\ 
+R_0 = \frac{3.1828 × 10^{−7} [(6.805475×10^{−5})+(0.248375)+(0.002496)]}
+{0.005681664} \\
+R_0 = \frac{(0.05) (0.2509391)} {0.005681664} \\
+R_0 = 2.208324
+$$
+
+Since $R_0 = 2.208 > 1$, we determine that EE is stable and the disease will persist. 
+
+Plot: 
+
+
