@@ -1,5 +1,5 @@
 ---
-title: "Biostats E-book"
+title: "An Introduction to Mathematical Epidemiology"
 author: "Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Bryce Morsky, Nishan Mudalige"
 date: ""
 site: bookdown::bookdown_site
