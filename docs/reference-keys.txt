@@ -22,6 +22,7 @@ def:RHC
 def:DRS
 fig:seirdiagram
 fig:vsirdiagram
+fig:vsirplot
 fig:siqrdiagram
 fig:siqrplot
 fig:sairdiagram
@@ -80,6 +81,7 @@ jacobian-of-mathcalv
 forming-the-next-generation-matrix
 computing-the-reproduction-number
 interpretation
+example-with-parameter-values
 the-siqr-model
 defining-the-parameters
 defining-the-disease-free-equilibrium

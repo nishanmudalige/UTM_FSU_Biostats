@@ -156,6 +156,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.2.7" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#forming-the-next-generation-matrix"><i class="fa fa-check"></i><b>6.2.7</b> Forming the Next-Generation Matrix</a></li>
 <li class="chapter" data-level="6.2.8" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#computing-the-reproduction-number"><i class="fa fa-check"></i><b>6.2.8</b> Computing the Reproduction Number</a></li>
 <li class="chapter" data-level="6.2.9" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#interpretation"><i class="fa fa-check"></i><b>6.2.9</b> Interpretation</a></li>
+<li class="chapter" data-level="6.2.10" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-with-parameter-values"><i class="fa fa-check"></i><b>6.2.10</b> Example with Parameter Values</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-siqr-model"><i class="fa fa-check"></i><b>6.3</b> The SIQR Model</a>
 <ul>
@@ -465,6 +466,17 @@ risk</em>, because:
 <p>both reduce <span class="math inline">\(R_{\text{vac}}\)</span>, helping to prevent the spread of
 infection.</p>
 </div>
+<div id="example-with-parameter-values" class="section level3 hasAnchor" number="6.2.10">
+<h3><span class="header-section-number">6.2.10</span> Example with Parameter Values<a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-with-parameter-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Parameter values used: b = 0.0085, d = 0.005, theta = 0.6, beta = 0.29, delta = 0.005, Lambda = 10, alpha = 0.0099, gamma = 0.2</p>
+<p><strong>I am not really sure why the vaccination line is on the axis? (Check this!)</strong></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vsirplot"></span>
+<img src="_main_files/figure-html/vsirplot-1.png" alt="Time series plot of VSIR model at endemic equilibrium, simulated with parameter values." width="60%" />
+<p class="caption">
+Figure 6.2: Time series plot of VSIR model at endemic equilibrium, simulated with parameter values.
+</p>
+</div>
+</div>
 </div>
 <div id="the-siqr-model" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> The SIQR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-siqr-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -478,7 +490,7 @@ parameters and variables to be manipulated and solved.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:siqrdiagram"></span>
 <img src="_main_files/figure-html/siqrdiagram-1.png" alt="The SIQR compartmental model." width="50%" />
 <p class="caption">
-Figure 6.2: The SIQR compartmental model.
+Figure 6.3: The SIQR compartmental model.
 </p>
 </div>
 <div id="defining-the-parameters" class="section level3 hasAnchor" number="6.3.1">
@@ -707,16 +719,16 @@ is the largest eigenvalue, so <span class="math inline">\(R_0 = \frac{\alpha S}{
 <li><p><span class="math inline">\(\beta\)</span> = .79</p></li>
 <li><p><span class="math inline">\(\gamma\)</span> = .24</p></li>
 </ul></li>
-<li><p>Using these parameters, and fitting the data, the model reveals, as expected, that the Infected compartment spikes before the quarantined compartment, accounting for spread of disease before transferring to the Quarantined compartment. Below is a time series plot showing these relationships.</p></li>
+<li><p>Using these parameters, and fitting the data, the model reveals, as expected, that the Infected compartment spikes before the quarantined compartment, accounting for spread of disease before transferring to the Quarantined compartment. Figure <a href="extended-compartmental-models-real-world-applications-and-solutions.html#fig:siqrplot">6.4</a> is a time series plot showing these relationships.</p></li>
+<li><p>From these parameter values, we also obtain that <span class="math inline">\(R_0 = 2.87 &gt; 1\)</span>. Therefore, the endemic equilibrium is stable.</p></li>
 </ul></li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:siqrplot"></span>
 <img src="_main_files/figure-html/siqrplot-1.png" alt="Time series plot of SIQR model at endemic equilibrium, simulated with parameter values." width="60%" />
 <p class="caption">
-Figure 6.3: Time series plot of SIQR model at endemic equilibrium, simulated with parameter values.
+Figure 6.4: Time series plot of SIQR model at endemic equilibrium, simulated with parameter values.
 </p>
 </div>
-<p>Write a closing thing for this</p>
 <p>Reference: <span class="citation">[<a href="references.html#ref-kalachev2022">16</a>]</span></p>
 </div>
 <div id="complex-models-vs.-parsimony-in-real-world-situations" class="section level4 hasAnchor" number="6.3.3.6">
@@ -730,13 +742,13 @@ Figure 6.3: Time series plot of SIQR model at endemic equilibrium, simulated wit
 <div id="the-sair-model" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> The SAIR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment “A”) as separate from the symptomatic individuals (compartment “I”).</p>
-<p>In this section we will use the NGM to solve an example of SAIR that models COVID-19. This example was modified from a paper by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">17</a>]</span>, and it should be noted that the model includes parameters for vital dynamics (birth, death) and vaccination. This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved. See Figure <a href="extended-compartmental-models-real-world-applications-and-solutions.html#fig:sairdiagram">6.4</a> for the SAIR compartmental model diagram.</p>
+<p>In this section we will use the NGM to solve an example of SAIR that models COVID-19. This example was modified from a paper by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">17</a>]</span>, and it should be noted that the model includes parameters for vital dynamics (birth, death) and vaccination. This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved. See Figure <a href="extended-compartmental-models-real-world-applications-and-solutions.html#fig:sairdiagram">6.5</a> for the SAIR compartmental model diagram.</p>
 <div id="defining-the-parameters-1" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Defining the Parameters<a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-parameters-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:sairdiagram"></span>
 <img src="_main_files/figure-html/sairdiagram-1.png" alt="The SAIR compartmental model." width="60%" />
 <p class="caption">
-Figure 6.4: The SAIR compartmental model.
+Figure 6.5: The SAIR compartmental model.
 </p>
 </div>
 <p><strong>SAIR Model Parameters:</strong></p>
@@ -891,12 +903,11 @@ R_0 = \frac{\beta \Lambda [(1-p)\alpha(u+\mu+\theta)+(1-p)\epsilon+p(\gamma+\eps
 </ul></li>
 </ul>
 <p>By plugging these parameter values into the previously solved equation for <span class="math inline">\(R_0\)</span>, we obtain <span class="math inline">\(R_0 = 2.208 &gt; 1\)</span>. Thus, we conclude that the endemic equilibrium is stable and the disease will persist.</p>
-<p>Figure <a href="extended-compartmental-models-real-world-applications-and-solutions.html#fig:sairplot">6.5</a> represents a simulation based on these parameter values that displays the populations in each compartment of the SAIR model over the period of 2 years.</p>
-<pre><code>## Warning in plot_theme(plot): The `subtitle.position` theme element is not defined in the element hierarchy.</code></pre>
+<p>Figure <a href="extended-compartmental-models-real-world-applications-and-solutions.html#fig:sairplot">6.6</a> represents a simulation based on these parameter values that displays the populations in each compartment of the SAIR model over the period of 2 years.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:sairplot"></span>
 <img src="_main_files/figure-html/sairplot-1.png" alt="Time series plot of SAIR model at endemic equilibrium, simulated with parameter values." width="60%" />
 <p class="caption">
-Figure 6.5: Time series plot of SAIR model at endemic equilibrium, simulated with parameter values.
+Figure 6.6: Time series plot of SAIR model at endemic equilibrium, simulated with parameter values.
 </p>
 </div>
 

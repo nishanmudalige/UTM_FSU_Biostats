@@ -367,6 +367,81 @@ Thus:
 both reduce $R_{\text{vac}}$, helping to prevent the spread of
 infection.
 
+### Example with Parameter Values
+
+Parameter values used: b = 0.0085, d = 0.005, theta = 0.6, beta = 0.29, delta = 0.005, Lambda = 10, alpha = 0.0099, gamma = 0.2
+
+**I am not really sure why the vaccination line is on the axis? (Check this!)**
+
+```{r vsirplot, echo=FALSE, fig.align='center', fig.align='center', out.width='60%', fig.cap='Time series plot of VSIR model at endemic equilibrium, simulated with parameter values.'}
+# Define the SVIR model function
+svir_model <- function(time, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    # Differential equations
+    dV <- gamma*S - (1-theta)*beta*V*I - (gamma +d)*V
+    dS <- Lambda + delta*V - beta*S*I - (gamma + d)*S
+    dI <- beta*S*I + (1-theta)*beta*V*I - (d+ alpha + b)*I
+    dR <- b*I - d*R
+
+    list(c(dV, dS, dI, dR)) # Return the rates of change
+  })
+}
+
+# Set parameters
+svir_param <- c(b = 0.0085, d = 0.005, theta = 0.6, beta = 0.29, delta = 0.005, 
+                Lambda = 10, alpha = 0.0099, gamma = 0.2) # at endemic equilibrium
+
+# calculate DFE:
+Lambda <- 10
+gamma <- 0.2
+d <- 0.005
+delta <- 0.005
+
+V0 <- Lambda*gamma/(d*(delta+d+gamma))
+S0 <- Lambda*(delta+d)/(d*(delta+d+gamma))
+N_dfe <- V0 + S0 
+
+# Initial conditions: small outbreak with small A, I, and S slightly below DFE
+svir_initial <- c(V = V0 * 0.99, S = S0 * 0.99, I = 0.01, R = 0)
+
+# Time points to solve for (0 to 2-years simulation (daily steps)
+times <- seq(0, 365 *2, by = 1)
+
+
+# Solve the differential equations
+svir_output <- ode(y = svir_initial, times = times, func = svir_model, parms = svir_param)
+
+# Convert to data frame
+svir_results <- as.data.frame(svir_output)
+
+# Calculate derived quantities
+svir_results <- svir_results %>% mutate(N = S + V + I + R, Day = time)
+
+# PLOT TIME SERIES PLOT
+
+plot_svir <- svir_results %>%
+  pivot_longer(cols = c(V, S, I, R), 
+               names_to = "Compartment", 
+               values_to = "Count") %>%
+  ggplot(aes(x = Day, y = Count, color = Compartment)) +
+  geom_line(linewidth = 1.2, alpha = 0.8) +
+  labs(subtitle = paste("β =", svir_param["beta"], ", α =", svir_param["alpha"],
+                        ", Λ =", svir_param["Lambda"], 
+                        ", δ = ", svir_param["delta"],
+                        ", b = ", svir_param["b"], ", d = ", svir_param["d"], 
+                        ", γ = ", svir_param["gamma"],
+                        ", θ = ", svir_param["theta"]),
+       x = "Time (days)", y = "Population (N)") +
+  scale_color_manual(values = c("V" = "darkgoldenrod1",      # Vaccinated 
+                                "S" = "cornflowerblue", # Susceptible
+                                "I" = "tomato",   # Infected
+                                "R" = "dodgerblue4")) +  # Recovered
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+plot_svir
+```
+
 ## The SIQR Model
 
 This model is based on the parameters and variables defined in the
@@ -639,7 +714,9 @@ Throughout this textbook, we have discussed how to solve and understand varying 
     
     - $\gamma$ = .24
   
-  - Using these parameters, and fitting the data, the model reveals, as expected, that the Infected compartment spikes before the quarantined compartment, accounting for spread of disease before transferring to the Quarantined compartment. Below is a time series plot showing these relationships.
+  - Using these parameters, and fitting the data, the model reveals, as expected, that the Infected compartment spikes before the quarantined compartment, accounting for spread of disease before transferring to the Quarantined compartment. Figure \@ref(fig:siqrplot) is a time series plot showing these relationships. 
+  
+  - From these parameter values, we also obtain that $R_0 = 2.87 > 1$. Therefore, the endemic equilibrium is stable. 
 
 ```{r siqrplot, echo=FALSE, fig.align='center', out.width='60%', fig.cap='Time series plot of SIQR model at endemic equilibrium, simulated with parameter values.'}
 # Define the SIQR model function
