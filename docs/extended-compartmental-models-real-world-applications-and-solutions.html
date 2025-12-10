@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Extended Compartmental Models: Real World Applications and Solutions | An Introduction to Mathematical Epidemiology</title>
   <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Extended Compartmental Models: Real World Applications and Solutions | An Introduction to Mathematical Epidemiology" />
   <meta property="og:type" content="book" />
@@ -227,7 +227,8 @@ regard to the model.</p>
 <div id="the-svir-model" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> The SVIR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-svir-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This model is based on the parameters and variables defined in the
-article cited. <span class="citation">[<a href="references.html#ref-ramponi2024">15</a>]</span> The model takes into account vaccination
+articles cited. <span class="citation">[<a href="references.html#ref-ramponi2024">15</a>]</span> <span class="citation">[<a href="references.html#ref-zhu2024">16</a>]</span>
+The model takes into account vaccination
 rate, vaccine effectiveness, and vaccine induced decline in the immune
 rate.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:vsirdiagram"></span>
@@ -471,6 +472,19 @@ infection.</p>
 </div>
 <div id="example-with-parameter-values" class="section level3 hasAnchor" number="6.2.10">
 <h3><span class="header-section-number">6.2.10</span> Example with Parameter Values<a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-with-parameter-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The following parameter values were retrieved from the article by Zhu et al. (2024) <span class="citation">[<a href="references.html#ref-zhu2024">16</a>]</span>.</p>
+<ul>
+<li><p><span class="math inline">\(b= 0.0085\)</span> (cure rate of infected individuals )</p></li>
+<li><p><span class="math inline">\(d = 0.005\)</span> (natural death rate)</p></li>
+<li><p><span class="math inline">\(\theta = 0.6\)</span> (vaccine effectiveness rate)</p></li>
+<li><p><span class="math inline">\(\beta = 0.29\)</span> (effective contact rate between susceptible and infected
+individuals)</p></li>
+<li><p><span class="math inline">\(\delta = 0.005\)</span> (loss rate of immunity)</p></li>
+<li><p><span class="math inline">\(\lambda = 10\)</span> (susceptible individuals recruited by immigration/birth)</p></li>
+<li><p><span class="math inline">\(\alpha = 0.0099\)</span> (disease induced mortality)</p></li>
+<li><p><span class="math inline">\(\gamma = 0.2\)</span> (vaccination rate of susceptible individuals)</p></li>
+</ul>
+<p>By plugging these parameter values into the previously solved equation for <span class="math inline">\(R_{vac}\)</span>, we obtain <span class="math inline">\(R_{vac} = 2.4716*10^4\)</span> . Thus, we conclude that the endemic equilibrium is stable and the disease will persist.</p>
 <p>Parameter values used: b = 0.0085, d = 0.005, theta = 0.6, beta = 0.29, delta = 0.005, Lambda = 10, alpha = 0.0099, gamma = 0.2</p>
 <p><strong>I am not really sure why the vaccination line is on the axis? (Check this!)</strong></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:vsirplot"></span>
@@ -484,7 +498,7 @@ Figure 6.2: Time series plot of VSIR model at endemic equilibrium, simulated wit
 <div id="the-siqr-model" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> The SIQR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-siqr-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This model is based on the parameters and variables defined in the
-article cited. <span class="citation">[<a href="references.html#ref-kalachev2022">16</a>]</span>.</p>
+article cited. <span class="citation">[<a href="references.html#ref-kalachev2022">17</a>]</span>.</p>
 <p>It is important to note that the authors states their limitations, as
 they do not include an E, Exposed, compartment. This means that the
 complexities of the case in question, COVID-19, is not fully modeled.
@@ -732,7 +746,7 @@ is the largest eigenvalue, so <span class="math inline">\(R_0 = \frac{\alpha S}{
 Figure 6.4: Time series plot of SIQR model at endemic equilibrium, simulated with parameter values.
 </p>
 </div>
-<p>Reference: <span class="citation">[<a href="references.html#ref-kalachev2022">16</a>]</span></p>
+<p>Reference: <span class="citation">[<a href="references.html#ref-kalachev2022">17</a>]</span></p>
 </div>
 <div id="complex-models-vs.-parsimony-in-real-world-situations" class="section level4 hasAnchor" number="6.3.3.6">
 <h4><span class="header-section-number">6.3.3.6</span> Complex Models Vs. Parsimony in Real World Situations<a href="extended-compartmental-models-real-world-applications-and-solutions.html#complex-models-vs.-parsimony-in-real-world-situations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -745,7 +759,7 @@ Figure 6.4: Time series plot of SIQR model at endemic equilibrium, simulated wit
 <div id="the-sair-model" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> The SAIR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment “A”) as separate from the symptomatic individuals (compartment “I”).</p>
-<p>In this section we will use the NGM to solve an example of SAIR that models COVID-19. This example was modified from a paper by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">17</a>]</span>, and it should be noted that the model includes parameters for vital dynamics (birth, death) and vaccination. This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved. See Figure <a href="extended-compartmental-models-real-world-applications-and-solutions.html#fig:sairdiagram">6.5</a> for the SAIR compartmental model diagram.</p>
+<p>In this section we will use the NGM to solve an example of SAIR that models COVID-19. This example was modified from a paper by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">18</a>]</span>, and it should be noted that the model includes parameters for vital dynamics (birth, death) and vaccination. This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved. See Figure <a href="extended-compartmental-models-real-world-applications-and-solutions.html#fig:sairdiagram">6.5</a> for the SAIR compartmental model diagram.</p>
 <div id="defining-the-parameters-1" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Defining the Parameters<a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-parameters-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:sairdiagram"></span>
@@ -767,7 +781,7 @@ Figure 6.5: The SAIR compartmental model.
 </ul></li>
 <li><p><span class="math inline">\(\gamma\)</span>: rate of the asymptomatic infected individuals’ self-healing (producing antibodies for resistance to diseases)</p></li>
 <li><p><span class="math inline">\(\epsilon\)</span>: rate of the asymptomatic infected individuals showing symptoms (if resistance to disease is poor)</p></li>
-<li><p><span class="math inline">\(\frac{uI}{1+kI}\)</span>: saturated treatment function represented by the Holling Type 2 Functional Response <span class="citation">[<a href="references.html#ref-real1977">18</a>]</span>, which considers saturation of treatment rate when the numbers of infected are high.</p>
+<li><p><span class="math inline">\(\frac{uI}{1+kI}\)</span>: saturated treatment function represented by the Holling Type 2 Functional Response <span class="citation">[<a href="references.html#ref-real1977">19</a>]</span>, which considers saturation of treatment rate when the numbers of infected are high.</p>
 <ul>
 <li><span class="math inline">\(u\)</span>: cure rate of the infected individual</li>
 <li><span class="math inline">\(k\)</span>: handling time</li>
@@ -885,7 +899,7 @@ R_0 = \frac{\beta \Lambda [(1-p)\alpha(u+\mu+\theta)+(1-p)\epsilon+p(\gamma+\eps
 </div>
 <div id="example-parameters-and-simulation" class="section level3 hasAnchor" number="6.4.4">
 <h3><span class="header-section-number">6.4.4</span> Example Parameters and Simulation<a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-parameters-and-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The following parameter values were retrieved from the article by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">17</a>]</span>, and also considers some demographic data from the United States of America in 2020.</p>
+<p>The following parameter values were retrieved from the article by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">18</a>]</span>, and also considers some demographic data from the United States of America in 2020.</p>
 <ul>
 <li><p><span class="math inline">\(p = 0.0065\)</span> (proportion of symptomatic individuals)</p></li>
 <li><p><span class="math inline">\(\beta = 0.05\)</span> (transmission rate)</p></li>

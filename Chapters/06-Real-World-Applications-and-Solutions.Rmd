@@ -40,7 +40,8 @@ regard to the model.
 ## The SVIR Model
 
 This model is based on the parameters and variables defined in the
-article cited. [@ramponi2024] The model takes into account vaccination
+articles cited. [@ramponi2024] [@zhu2024] 
+The model takes into account vaccination
 rate, vaccine effectiveness, and vaccine induced decline in the immune
 rate.
 
@@ -368,6 +369,29 @@ both reduce $R_{\text{vac}}$, helping to prevent the spread of
 infection.
 
 ### Example with Parameter Values
+
+The following parameter values were retrieved from the article by Zhu et al. (2024) [@zhu2024].
+
+
+- $b= 0.0085$ (cure rate of infected individuals )
+
+- $d = 0.005$ (natural death rate)
+
+- $\theta = 0.6$ (vaccine effectiveness rate)
+
+- $\beta = 0.29$ (effective contact rate between susceptible and infected 
+individuals)
+
+- $\delta = 0.005$ (loss rate of immunity)
+
+- $\lambda = 10$ (susceptible individuals recruited by immigration/birth)
+
+- $\alpha = 0.0099$ (disease induced mortality)
+
+- $\gamma = 0.2$ (vaccination rate of susceptible individuals)
+
+
+By plugging these parameter values into the previously solved equation for $R_{vac}$, we obtain $R_{vac} = 2.4716*10^4$ . Thus, we conclude that the endemic equilibrium is stable and the disease will persist. 
 
 Parameter values used: b = 0.0085, d = 0.005, theta = 0.6, beta = 0.29, delta = 0.005, Lambda = 10, alpha = 0.0099, gamma = 0.2
 
