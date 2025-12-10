@@ -365,11 +365,11 @@ This equation shows the temporal decline in the epidemic \@ref(def:Epidemic) due
 
 Monitoring $R_e$ \@ref(def:Effective) over time provides a statistical framework for assessing how disease transmission responds to interventions or natural immunity accumulation. In this sense, $R_e$ serves as a bridge between theoretical epidemic models and real-time epidemiological data, allowing researchers to evaluate and predict time-dependent trends in disease spread. [@nishiura2009]
 
-## Interactive Dashboard
+### Interactive Dashboard
 
 <center>
 
-```{r CorrShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
+```{r SIRShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
 knitr::include_app("https://nishan-mudalige.shinyapps.io/SIR_Dashboard/", height = "1200")
 ```
 

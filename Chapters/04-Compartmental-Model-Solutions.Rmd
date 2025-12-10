@@ -186,6 +186,15 @@ Different phase diagrams can exist depending on the conditions:
 - When $R_0 < 1$, a single equilibrium exists: **DFE**. The phase diagram will have a **stable node**, in which trajectory of the solution goes towards the equilibrium.  
 - When $R_0 > 1$, two equilibrium exist: **DFE and EE**. DFE is always an **unstable node** and EE is either a **stable node or a stable spiral** The trajectory of the solution goes from the unstable DFE to the stable EE. Whether EE is a spiral depends on whether a complex solution exists for the eigenvalues. If the discriminant is negative, a complex value is present and a stable spiral will occur. If the discriminant is nonnegative, there is no complex number and a stable node will occur.
 
+
+### Interactive Dashboard
+
+```{r PhaseShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
+knitr::include_app("https://fsubiomath.shinyapps.io/SIR_Phase_Diagrams/", height = "1500")
+```
+
+
+
 ### Routh - Hurwitz Criteria
 
 For stability, it must be shown that the real part of all the eigenvalues is negative (*Definition* \@ref(def:ESE)). 

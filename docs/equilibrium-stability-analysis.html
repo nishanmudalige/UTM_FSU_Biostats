@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Equilibrium Stability Analysis | An Introduction to Mathematical Epidemiology</title>
   <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Equilibrium Stability Analysis | An Introduction to Mathematical Epidemiology" />
   <meta property="og:type" content="book" />
@@ -118,8 +118,10 @@ div.csl-indent {
 <li class="chapter" data-level="3.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#introduction-to-the-chapter"><i class="fa fa-check"></i><b>3.1</b> Introduction to the Chapter</a></li>
 <li class="chapter" data-level="3.2" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactions-between-compartments"><i class="fa fa-check"></i><b>3.2</b> Interactions Between Compartments</a></li>
 <li class="chapter" data-level="3.3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#sec:SI_model"><i class="fa fa-check"></i><b>3.3</b> Solving the SI Model</a></li>
-<li class="chapter" data-level="3.4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>3.4</b> Solving the SIR Model</a></li>
-<li class="chapter" data-level="3.5" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.5</b> Interactive Dashboard</a></li>
+<li class="chapter" data-level="3.4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>3.4</b> Solving the SIR Model</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.4.1</b> Interactive Dashboard</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html"><i class="fa fa-check"></i><b>4</b> Equilibrium Stability Analysis</a>
 <ul>
@@ -127,8 +129,9 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-sir-model"><i class="fa fa-check"></i><b>4.2</b> Linear Stability Analysis for the SIR Model</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#direct-calculation"><i class="fa fa-check"></i><b>4.2.1</b> Direct Calculation</a></li>
-<li class="chapter" data-level="4.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria"><i class="fa fa-check"></i><b>4.2.2</b> Routh - Hurwitz Criteria</a></li>
-<li class="chapter" data-level="4.2.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#descartes-rule-of-signs"><i class="fa fa-check"></i><b>4.2.3</b> Descartes’ Rule of Signs</a></li>
+<li class="chapter" data-level="4.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#interactive-dashboard-1"><i class="fa fa-check"></i><b>4.2.2</b> Interactive Dashboard</a></li>
+<li class="chapter" data-level="4.2.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria"><i class="fa fa-check"></i><b>4.2.3</b> Routh - Hurwitz Criteria</a></li>
+<li class="chapter" data-level="4.2.4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#descartes-rule-of-signs"><i class="fa fa-check"></i><b>4.2.4</b> Descartes’ Rule of Signs</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-si-model"><i class="fa fa-check"></i><b>4.3</b> Linear Stability Analysis for the SI Model</a></li>
 </ul></li>
@@ -359,20 +362,25 @@ Finally we substitute <span class="math inline">\(I^*\)</span> into the equation
 </ul>
 </div>
 </div>
-<div id="routh---hurwitz-criteria" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Routh - Hurwitz Criteria<a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="interactive-dashboard-1" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Interactive Dashboard<a href="equilibrium-stability-analysis.html#interactive-dashboard-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<iframe src="https://fsubiomath.shinyapps.io/SIR_Phase_Diagrams/?showcase=0" width="100%" height="1500" data-external="1">
+</iframe>
+</div>
+<div id="routh---hurwitz-criteria" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Routh - Hurwitz Criteria<a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For stability, it must be shown that the real part of all the eigenvalues is negative (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:ESE">4.2</a>).</p>
 <div class="definition">
 <p><span id="def:RHC" class="definition"><strong>Definition 4.3  (Routh-Hourwitz Criteria) </strong></span>A method to check if the eigenvalues are negative and the system is stable without needing to solve for the roots. The criteria can determine if the eigenvalues are negative by looking at the <strong>coefficients</strong>. Depending on the degree of the polynomial, the criteria varies.</p>
 </div>
 <p>We will consider stability analysis for different characteristic polynomials using the <strong>Routh-Hurwitz Criteria</strong> (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:RHC">4.3</a>).</p>
-<div id="quadratic-characteristic-equation" class="section level4 hasAnchor" number="4.2.2.1">
-<h4><span class="header-section-number">4.2.2.1</span> Quadratic Characteristic Equation<a href="equilibrium-stability-analysis.html#quadratic-characteristic-equation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="quadratic-characteristic-equation" class="section level4 hasAnchor" number="4.2.3.1">
+<h4><span class="header-section-number">4.2.3.1</span> Quadratic Characteristic Equation<a href="equilibrium-stability-analysis.html#quadratic-characteristic-equation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>For a <strong>quadratic characteristic equation</strong>, <span class="math inline">\(c_2\lambda^2 + c_1\lambda + c_0=0\)</span>, the coefficients must all be positive. As long as <span class="math inline">\(c_2\)</span>, <span class="math inline">\(c_1\)</span>, and <span class="math inline">\(c_0\)</span> are positive the eigenvalues will be negative.</p>
 <p>The quadratic characteristic equation can be used when there are 3 compartments. The SIR model, with the susceptible, infected, and recovered compartment, can be used with the quadratic characteristic equation.</p>
 </div>
-<div id="cubic-characteristic-equation" class="section level4 hasAnchor" number="4.2.2.2">
-<h4><span class="header-section-number">4.2.2.2</span> Cubic Characteristic Equation<a href="equilibrium-stability-analysis.html#cubic-characteristic-equation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="cubic-characteristic-equation" class="section level4 hasAnchor" number="4.2.3.2">
+<h4><span class="header-section-number">4.2.3.2</span> Cubic Characteristic Equation<a href="equilibrium-stability-analysis.html#cubic-characteristic-equation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>For a <strong>cubic characteristic equation</strong>, <span class="math inline">\(c_3\lambda^3+c_2\lambda^2 + c_1\lambda + c_0=0\)</span>, the criteria are slightly more complicated. Here the conditions that must be met are :</p>
 <p><span class="math display">\[
 c_i&gt;0 \\
@@ -386,8 +394,8 @@ c_1c_2&gt;c_0 \\
 As long as these conditions are met, it can be found that a cubic characteristic equation has only negative real parts and the system is therefore stable.</p>
 <p>A cubic characteristic equation can be used for models with 4 compartments such as the SEIR (Susceptible, Exposed, Infected, Recovered) model, SAIR (Susceptible, Asymptomatic, Infected, Recovered) model, and the SIVR(Susceptible, Infected, Vaccinated, Recovered) model.</p>
 </div>
-<div id="quartic-characteristic-equation" class="section level4 hasAnchor" number="4.2.2.3">
-<h4><span class="header-section-number">4.2.2.3</span> Quartic Characteristic Equation<a href="equilibrium-stability-analysis.html#quartic-characteristic-equation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="quartic-characteristic-equation" class="section level4 hasAnchor" number="4.2.3.3">
+<h4><span class="header-section-number">4.2.3.3</span> Quartic Characteristic Equation<a href="equilibrium-stability-analysis.html#quartic-characteristic-equation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>For a <strong>quartic characteristic equation</strong>, <span class="math inline">\(c_4\lambda^4+ c_3\lambda^3+c_2\lambda^2 + c_1\lambda + c_0=0\)</span>, the criteria are further complicated. Here the conditions that must be met are:</p>
 <p><span class="math display">\[
 c_i&gt;0 \\
@@ -397,16 +405,16 @@ c_1c_2c_3 - c_4c_1^2 &gt; c_0c_3^2
 As long as these conditions are met, it can be found that a quartic characteristic equation has only negative real parts and the system is therefore stable.</p>
 </div>
 </div>
-<div id="descartes-rule-of-signs" class="section level3 hasAnchor" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Descartes’ Rule of Signs<a href="equilibrium-stability-analysis.html#descartes-rule-of-signs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="descartes-rule-of-signs" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Descartes’ Rule of Signs<a href="equilibrium-stability-analysis.html#descartes-rule-of-signs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
 <p><span id="def:DRS" class="definition"><strong>Definition 4.4  (Descartes' Rule of Signs) </strong></span>A method to to determine the number of potential real positive and/or negative roots.</p>
 </div>
 <p>We will apply Descartes’ Rule of Signs (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:DRS">4.4</a>) for stability analysis to the following characteristuc equation.</p>
 <p><span class="math display">\[c_2\lambda^2 + c_1\lambda + c_0 = 0\]</span></p>
 <p>Using this general characterisitic equation, as seen when finding the eigenvalues of the Jacobian Matrix, we can understand how stable the equilibrium is in the system of differential equations. For stability to occur, all real roots and the real part of complex roots must be negative (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:ESE">4.2</a>).</p>
-<div id="case-1-positive-roots-with-no-sign-changes" class="section level4 hasAnchor" number="4.2.3.1">
-<h4><span class="header-section-number">4.2.3.1</span> Case 1: Positive Roots with No Sign Changes<a href="equilibrium-stability-analysis.html#case-1-positive-roots-with-no-sign-changes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="case-1-positive-roots-with-no-sign-changes" class="section level4 hasAnchor" number="4.2.4.1">
+<h4><span class="header-section-number">4.2.4.1</span> Case 1: Positive Roots with No Sign Changes<a href="equilibrium-stability-analysis.html#case-1-positive-roots-with-no-sign-changes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><span class="math display">\[(+)(+)(+)\]</span></p>
 <ul>
 <li><p>0 sign changes from term to term</p></li>
@@ -416,8 +424,8 @@ As long as these conditions are met, it can be found that a quartic characterist
 </ul></li>
 </ul>
 </div>
-<div id="case-2-negative-roots-with-multiple-sign-changes" class="section level4 hasAnchor" number="4.2.3.2">
-<h4><span class="header-section-number">4.2.3.2</span> Case 2: Negative Roots with Multiple Sign Changes<a href="equilibrium-stability-analysis.html#case-2-negative-roots-with-multiple-sign-changes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="case-2-negative-roots-with-multiple-sign-changes" class="section level4 hasAnchor" number="4.2.4.2">
+<h4><span class="header-section-number">4.2.4.2</span> Case 2: Negative Roots with Multiple Sign Changes<a href="equilibrium-stability-analysis.html#case-2-negative-roots-with-multiple-sign-changes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><span class="math display">\[\begin{align*}
 c_2(-\lambda)^2+c_1(-\lambda)+c_0=0 \\
 c_2\lambda^2-c_1\lambda+c_0=0
@@ -435,8 +443,8 @@ c_2\lambda^2-c_1\lambda+c_0=0
 </ul></li>
 </ul>
 </div>
-<div id="cases-with-one-sign-change" class="section level4 hasAnchor" number="4.2.3.3">
-<h4><span class="header-section-number">4.2.3.3</span> Cases with One Sign Change:<a href="equilibrium-stability-analysis.html#cases-with-one-sign-change" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="cases-with-one-sign-change" class="section level4 hasAnchor" number="4.2.4.3">
+<h4><span class="header-section-number">4.2.4.3</span> Cases with One Sign Change:<a href="equilibrium-stability-analysis.html#cases-with-one-sign-change" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Example:</p>
 <p><span class="math inline">\((-) \rightarrow (+) (+)\)</span><span class="math inline">\(\cdots\)</span><span class="math inline">\(\lambda \rightarrow\)</span> 1 Positive Root</p>
 <ul>

@@ -54,6 +54,7 @@ direct-calculation
 sec:dfeesa
 at-endemic-equilibrium
 a-note-on-phase-diagrams
+interactive-dashboard-1
 routh---hurwitz-criteria
 quadratic-characteristic-equation
 cubic-characteristic-equation
