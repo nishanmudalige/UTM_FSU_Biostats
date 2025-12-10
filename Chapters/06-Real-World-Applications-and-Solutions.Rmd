@@ -8,6 +8,7 @@ editor_options:
 library(deSolve)    # For solving differential equations
 library(ggplot2)    # For plotting
 library(tidyr)      # For data reshaping
+library(dplyr)
 
 knitr::opts_chunk$set(
   fig.width = 7,       # Default figure width (inches) when R creates it
@@ -45,7 +46,7 @@ rate.
 
 
 
-```{r vsir_diagram, echo=FALSE, engine='tikz', fig.ext='png', out.width='60%', fig.cap='The VSIR compartmental model.'}
+```{r vsirdiagram, echo=FALSE, engine='tikz', fig.ext='png', out.width='60%', fig.cap='The VSIR compartmental model.'}
 \usetikzlibrary{arrows.meta, positioning}
 
 \begin{tikzpicture}[
@@ -89,22 +90,22 @@ The model assumes that after vaccination, people will develop immunity
 but after some time they will become susceptible again as the immunity
 wares off. Based on this, the following parameters can be defined:
 
-$\Lambda$ : susceptible individuals recruited by immigration/birth 
+- $\Lambda$ : susceptible individuals recruited by immigration/birth 
 
-$\beta$ : effective contact rate between susceptible and infected 
+- $\beta$ : effective contact rate between susceptible and infected 
 individuals 
 
-$d$ : natural death rate 
+- $d$ : natural death rate 
 
-$\theta$ : vaccine effectiveness rate 
+- $\theta$ : vaccine effectiveness rate 
 
-$\gamma$ : vaccination rate of susceptible individuals 
+- $\gamma$ : vaccination rate of susceptible individuals 
 
-$b$ : cure rate of infected individuals 
+- $b$ : cure rate of infected individuals 
 
-$\alpha$ : disease induced mortality 
+- $\alpha$ : disease induced mortality 
 
-$\delta$ : loss rate of immunity
+- $\delta$ : loss rate of immunity
 
 The epidemic dynamical model is given by the following four models :
 
@@ -640,7 +641,7 @@ Throughout this textbook, we have discussed how to solve and understand varying 
   
   - Using these parameters, and fitting the data, the model reveals, as expected, that the Infected compartment spikes before the quarantined compartment, accounting for spread of disease before transferring to the Quarantined compartment. Below is a time series plot showing these relationships.
 
-```{r siqr_plot, echo=FALSE}
+```{r siqrplot, echo=FALSE, fig.align='center', out.width='60%', fig.cap='Time series plot of SIQR model at endemic equilibrium, simulated with parameter values.'}
 # Define the SIQR model function
 siqr_model <- function(time, state, parameters) {
   with(as.list(c(state, parameters)), {
@@ -678,11 +679,10 @@ siqr_results <- pivot_longer(siqr_results, cols = c(S, I, Q, R),
 # Create the time series plot
 ggplot(siqr_results, aes(x = time, y = Population, color = Compartment)) +
   geom_line(linewidth = 1.2) +
-  labs(title = "Time Series Plot for SIQR Model",
-       subtitle = paste0("N = ", N, ", α = ", siqr_param["alpha"], 
+  labs(subtitle = paste0("N = ", N, ", α = ", siqr_param["alpha"], 
                          ", β = ", siqr_param["beta"], ", γ = ", siqr_param["gamma"]),
        x = "Time (days)",
-       y = "Population",
+       y = "Population (N)",
        color = "Compartment") +
   scale_color_manual(values = c("S" = "cornflowerblue",      # Susceptible
                                 "I" = "tomato",       # Infected
@@ -693,8 +693,6 @@ ggplot(siqr_results, aes(x = time, y = Population, color = Compartment)) +
         plot.title = element_text(hjust = 0.5),
         plot.subtitle = element_text(hjust = 0.5))
 ```
-
-Write a closing thing for this
 
 Reference: [@kalachev2022]
 
@@ -711,14 +709,47 @@ Because the data could not effectively be fit to the SIQR model, the author's de
 
 SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment "A") as separate from the symptomatic individuals (compartment "I"). 
 
-
-In this section we will use the NGM to solve an example of SAIR modelling COVID-19. Included in this model are vital dynamics (birth, death), and vaccination of individuals as a parameter rather than an additional compartment. This example was modified from a paper by Ouyang et al. (2025) [@ouyang2025].
-
-This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved. 
+In this section we will use the NGM to solve an example of SAIR that models COVID-19. This example was modified from a paper by Ouyang et al. (2025) [@ouyang2025], and it should be noted that the model includes parameters for vital dynamics (birth, death) and vaccination. This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved. See Figure \@ref(fig:sairdiagram) for the SAIR compartmental model diagram. 
 
 ### Defining the Parameters
 
-**Include a compartmental diagram here:**
+```{r sairdiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='60%', fig.ext='png', fig.cap='The SAIR compartmental model.'}
+\begin{tikzpicture}[node distance=4cm,>=stealth,thick]
+
+% Nodes
+\node[draw, minimum width=2cm, minimum height=1cm] (S) {$S$};
+\node[draw, minimum width=2cm, minimum height=1cm, right of=S, yshift=50] (A) {$A$};
+\node[draw, minimum width=2cm, minimum height=1cm, above of=A, yshift=-50] (I) {$I$};
+\node[draw, minimum width=2cm, minimum height=1cm, right of=A, yshift=-50] (R) {$R$};
+
+% empty nodes
+\node[draw=none, minimum width=2cm, minimum height=1cm, left of=S, xshift=30] (lambda) {};
+\node[draw=none, minimum width=2cm, minimum height=1cm, below of=S, yshift=60] (muS) {};
+\node[draw=none, minimum width=2cm, minimum height=1cm, above of=R, xshift=-30, yshift=-65] (muA) {};
+\node[draw=none, minimum width=2cm, minimum height=1cm, below of=R, yshift=60] (muR) {};
+\node[draw=none, minimum width=2cm, minimum height=1cm, above of=I, yshift=-60] (muI) {};
+\node[draw=none, minimum width=2cm, minimum height=1cm, right of=I, xshift=-30] (thetaI) {};
+
+% Arrows between compartments
+\draw [->] (S) -- (A) node[midway, right, yshift = -7] {$(1-p) \beta (I + \alpha A)$};
+\draw [->] (A) -- (R) node[midway, above, xshift=5] {$\gamma A$};
+\draw [->] (S) -- (I) node[midway, above, xshift=-30] {$p \beta(I + \alpha A)$};
+\draw [->] (I) -- (R) node[midway, above, xshift=30] {$uI / (1+kI)$};
+\draw [->] (S) -- (R) node[midway, below] {$\delta S$};
+\draw [->] (A) -- (I) node[midway, right] {$\epsilon A$};
+
+% Arrows for vital dynamics
+\draw [->] (lambda) -- node[midway, above] {$\Lambda$} (S);
+\draw [->] (S) -- node[midway, right] {$\mu S$} (muS);
+\draw [->] (A) -- node[midway, above, xshift=-2] {$\mu A$} (muA);
+\draw [->] (R) -- node[midway, right] {$\mu R$} (muR);
+\draw [->] (I) -- node[midway, right] {$\mu I$} (muI);
+\draw [->] (I) -- node[midway, above] {$\theta I$} (thetaI);
+
+\end{tikzpicture}
+```
+
+**SAIR Model Parameters:**
 
 - $p$: proportion of population that shows symptoms ($0 < p < 1$)
 
@@ -776,9 +807,7 @@ $$
 $$
 
 By setting all of the differential equations to 0, we obtain that initial $S$ is $S = \frac{\Lambda}{\mu+\delta}$. 
-
-
-Since we let $N = 1$, $S + A + I + R = N = 1$. 
+Note that since we allow the population to vary by vital dynamics, we get $N \neq 1$. 
 
 Therefore, at the DFE: $(S, A, I, R) = (\frac{\Lambda}{\mu+\delta}, 0, 0, \frac{\delta\Lambda}{\mu(\mu+\delta)})$
 
@@ -872,38 +901,101 @@ $$
 
 We interpret this $R_0$ as we have previously done: $R_0 > 1$ indicates continuous spread of the disease (EE is stable), and $R_0 < 1$ indicates that the disease will eventually die out (DFE is stable). 
 
-### Example with Parameters
+### Example Parameters and Simulation 
 
-We use the following parameters to display real applications of data. 
+The following parameter values were retrieved from the article by Ouyang et al. (2025) [@ouyang2025], and also considers some demographic data from the United States of America in 2020. 
 
-We will analyze the $R_0$ value by fitting the model with the following parameters. We choose the parameter values based on examples in the article, and United States of America demographic data from the year 2020.  
-let recruitment rate $\Lambda = 1$, transmission rate $\beta = 0.05$, $\alpha = 0.00025$, $\mu = 0.014$, $\delta = 0.04$, $\gamma = 0.12$, $p = 0.0065$, $\epsilon = 0.25$, COVID-19 death rate $theta = 0.01$, saturation function $u = 0.25$, $k = 20$. 
+- $p = 0.0065$ (proportion of symptomatic individuals)
 
-$$
-R_0 = \frac{3.1828 × 10^{−7} \times 1 [(1-0.0065)0.00025(0.25+0.014+0.01)+(1-0.0065) 0.25+0.0065(0.12+ 0.25+0.014)]}{(0.014+0.04)(0.12+0.25+0.014)(0.25+0.014+0.01)} \\ 
-R_0 = \frac{3.1828 × 10^{−7} [(0.9935)0.00025(0.274)+(0.9935)0.25+0.0065(0.384)]}
-{(0.054)(0.384)(0.274)} \\ 
-R_0 = \frac{3.1828 × 10^{−7} [(6.805475×10^{−5})+(0.248375)+(0.002496)]}
-{0.005681664} \\
-R_0 = \frac{(3.1828 × 10^{−7}) (0.2509391)} {0.005681664} \\
-R_0 = 1.405731 × 10^{-5}
-$$
+- $\beta = 0.05$ (transmission rate)
 
-Since $R_0 = 0.000014 < 1$, we determine that DFE is stable and the disease will die out. 
+- $\alpha = 0.00025$ (relative infectivity of asymptomatic individuals)
 
-try again with beta = 0.05
-$$
-R_0 = \frac{3.1828 × 10^{−7} \times 1 [(1-0.0065)0.00025(0.25+0.014+0.01)+(1-0.0065) 0.25+0.0065(0.12+ 0.25+0.014)]}{(0.014+0.04)(0.12+0.25+0.014)(0.25+0.014+0.01)} \\ 
-R_0 = \frac{3.1828 × 10^{−7} [(0.9935)0.00025(0.274)+(0.9935)0.25+0.0065(0.384)]}
-{(0.054)(0.384)(0.274)} \\ 
-R_0 = \frac{3.1828 × 10^{−7} [(6.805475×10^{−5})+(0.248375)+(0.002496)]}
-{0.005681664} \\
-R_0 = \frac{(0.05) (0.2509391)} {0.005681664} \\
-R_0 = 2.208324
-$$
+- $\gamma = 0.12$ (rate of asymptomatic self-healing)
 
-Since $R_0 = 2.208 > 1$, we determine that EE is stable and the disease will persist. 
+- $\epsilon = 0.25$ (rate of asymptomatic individuals showing symptoms)
 
-Plot: 
+- $\delta = 0.04$ (immunization rate) 
 
+- saturated treatment function: 
+
+  - $u = 0.25$ (cure rate) 
+  
+  - $k = 20$ (handling time)
+
+- vital dynamics: 
+
+  - $\Lambda = 1$ (recruitment rate)
+
+  - $\mu = 0.014$ (natural death rate)
+
+  - $theta = 0.01$ (COVID-19 death rate)
+
+By plugging these parameter values into the previously solved equation for $R_0$, we obtain $R_0 = 2.208 > 1$. Thus, we conclude that the endemic equilibrium is stable and the disease will persist. 
+
+Figure \@ref(fig:sairplot) represents a simulation based on these parameter values that displays the populations in each compartment of the SAIR model over the period of 2 years.  
+
+```{r sairplot, echo=FALSE, fig.align='center', , fig.align='center', out.width='60%', fig.cap='Time series plot of SAIR model at endemic equilibrium, simulated with parameter values.'}
+# Define the SAIR model function
+sair_model <- function(time, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    # Differential equations
+    dS <- Lambda - beta*(I+alpha*A)*S - (mu+delta)*S
+    dA <- (1-p)*beta*(I+alpha*A)*S - (gamma+epsilon+mu)*A
+    dI <- p*beta*(I+alpha*A)*S + epsilon*A - ( (u*I)/(1+k*I) ) - (mu+theta)*I
+    dR <- delta*S + ( (u*I)/(1+k*I) ) + gamma*A - mu*R
+    
+    list(c(dS, dA, dI, dR)) # Return the rates of change
+  })
+}
+
+sair_param <- c(Lambda = 1, beta = 0.05, alpha = 0.00025, mu = 0.014, 
+                delta = 0.04, gamma = 0.12, p = 0.0065, epsilon = 0.25, 
+                theta = 0.01, u = 0.25, k = 20) 
+
+# calculate DFE:
+Lambda <- 1
+mu <- 0.014
+delta <- 0.04
+
+S0 <- Lambda/(mu+delta)
+R0 <- (delta*Lambda) / (mu*(mu+delta))
+N_dfe <- S0 + R0  # = Λ/μ
+
+# Initial conditions: small outbreak with small A, I, and S slightly below DFE
+sair_initial <- c(S = S0 * 0.99, A = 0.01, I = 0.01, R = R0)
+
+# Time points to solve for (0 to 2-years simulation (daily steps)
+times <- seq(0, 365 *2, by = 1)
+
+# Solve the differential equations
+sair_output <- ode(y = sair_initial, times = times, func = sair_model, parms = sair_param)
+
+# Convert to data frame
+sair_results <- as.data.frame(sair_output)
+
+# Calculate derived quantities
+sair_results <- sair_results %>% mutate(N = S + A + I + R, Day = time)
+
+# PLOT TIME SERIES PLOT
+p1 <- sair_results %>%
+  pivot_longer(cols = c(S, A, I, R), names_to = "Compartment", values_to = "Count") %>%
+  ggplot(aes(x = Day, y = Count, color = Compartment)) +
+  geom_line(linewidth = 1.2, alpha = 0.8) +
+  labs(subtitle = paste("β =", sair_param["beta"], ", α =", sair_param["alpha"],
+                        ", p =", sair_param["p"], ", Λ =", sair_param["Lambda"], 
+                        ", μ = ", sair_param["mu"], ", δ = ", sair_param["delta"],
+                        ", ε = ", sair_param["epsilon"], ", γ = ", sair_param["gamma"],
+                        ", θ = ", sair_param["theta"], ", u = ", sair_param["u"], ", 
+                        k = ", sair_param["k"]),
+       x = "Time (days)", y = "Population (N)") +
+  scale_color_manual(values = c("S" = "cornflowerblue", 
+                                "A" = "darkgoldenrod1",
+                                "I" = "tomato", 
+                                "R" = "dodgerblue4")) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+p1
+```
 

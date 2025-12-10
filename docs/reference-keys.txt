@@ -21,7 +21,11 @@ def:ESE
 def:RHC
 def:DRS
 fig:seirdiagram
+fig:vsirdiagram
 fig:siqrdiagram
+fig:siqrplot
+fig:sairdiagram
+fig:sairplot
 exm:Asynchronous
 exm:Synchronous
 exm:contact
@@ -90,7 +94,7 @@ the-sair-model
 defining-the-parameters-1
 defining-the-disease-free-equilibrium-dfe-1
 solving-sair-model-with-ngm
-example-with-parameters
+example-parameters-and-simulation
 spatial-epidemiology
 introduction-to-spatial-epidemiology
 metapopulations

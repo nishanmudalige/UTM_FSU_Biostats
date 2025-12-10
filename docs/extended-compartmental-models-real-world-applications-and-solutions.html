@@ -168,7 +168,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.4.1" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-parameters-1"><i class="fa fa-check"></i><b>6.4.1</b> Defining the Parameters</a></li>
 <li class="chapter" data-level="6.4.2" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium-dfe-1"><i class="fa fa-check"></i><b>6.4.2</b> Defining the Disease Free Equilibrium (DFE)</a></li>
 <li class="chapter" data-level="6.4.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-sair-model-with-ngm"><i class="fa fa-check"></i><b>6.4.3</b> Solving SAIR Model with NGM</a></li>
-<li class="chapter" data-level="6.4.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-with-parameters"><i class="fa fa-check"></i><b>6.4.4</b> Example with Parameters</a></li>
+<li class="chapter" data-level="6.4.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-parameters-and-simulation"><i class="fa fa-check"></i><b>6.4.4</b> Example Parameters and Simulation</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html"><i class="fa fa-check"></i><b>7</b> Spatial Epidemiology</a>
@@ -226,10 +226,10 @@ regard to the model.</p>
 article cited. <span class="citation">[<a href="references.html#ref-ramponi2024">15</a>]</span> The model takes into account vaccination
 rate, vaccine effectiveness, and vaccine induced decline in the immune
 rate.</p>
-<div class="figure" style="text-align: center">
-<img src="_main_files/figure-html/vsir_diagram-1.png" alt="The VSIR compartmental model." width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vsirdiagram"></span>
+<img src="_main_files/figure-html/vsirdiagram-1.png" alt="The VSIR compartmental model." width="60%" />
 <p class="caption">
-(#fig:vsir_diagram)The VSIR compartmental model.
+Figure 6.1: The VSIR compartmental model.
 </p>
 </div>
 <div id="model-formulation" class="section level3 hasAnchor" number="6.2.1">
@@ -241,15 +241,17 @@ recovered.</p>
 <p>The model assumes that after vaccination, people will develop immunity
 but after some time they will become susceptible again as the immunity
 wares off. Based on this, the following parameters can be defined:</p>
-<p><span class="math inline">\(\Lambda\)</span> : susceptible individuals recruited by immigration/birth</p>
-<p><span class="math inline">\(\beta\)</span> : effective contact rate between susceptible and infected
-individuals</p>
-<p><span class="math inline">\(d\)</span> : natural death rate</p>
-<p><span class="math inline">\(\theta\)</span> : vaccine effectiveness rate</p>
-<p><span class="math inline">\(\gamma\)</span> : vaccination rate of susceptible individuals</p>
-<p><span class="math inline">\(b\)</span> : cure rate of infected individuals</p>
-<p><span class="math inline">\(\alpha\)</span> : disease induced mortality</p>
-<p><span class="math inline">\(\delta\)</span> : loss rate of immunity</p>
+<ul>
+<li><p><span class="math inline">\(\Lambda\)</span> : susceptible individuals recruited by immigration/birth</p></li>
+<li><p><span class="math inline">\(\beta\)</span> : effective contact rate between susceptible and infected
+individuals</p></li>
+<li><p><span class="math inline">\(d\)</span> : natural death rate</p></li>
+<li><p><span class="math inline">\(\theta\)</span> : vaccine effectiveness rate</p></li>
+<li><p><span class="math inline">\(\gamma\)</span> : vaccination rate of susceptible individuals</p></li>
+<li><p><span class="math inline">\(b\)</span> : cure rate of infected individuals</p></li>
+<li><p><span class="math inline">\(\alpha\)</span> : disease induced mortality</p></li>
+<li><p><span class="math inline">\(\delta\)</span> : loss rate of immunity</p></li>
+</ul>
 <p>The epidemic dynamical model is given by the following four models :</p>
 <p><span class="math display">\[
 \begin{align*}
@@ -476,7 +478,7 @@ parameters and variables to be manipulated and solved.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:siqrdiagram"></span>
 <img src="_main_files/figure-html/siqrdiagram-1.png" alt="The SIQR compartmental model." width="50%" />
 <p class="caption">
-Figure 6.1: The SIQR compartmental model.
+Figure 6.2: The SIQR compartmental model.
 </p>
 </div>
 <div id="defining-the-parameters" class="section level3 hasAnchor" number="6.3.1">
@@ -708,10 +710,10 @@ is the largest eigenvalue, so <span class="math inline">\(R_0 = \frac{\alpha S}{
 <li><p>Using these parameters, and fitting the data, the model reveals, as expected, that the Infected compartment spikes before the quarantined compartment, accounting for spread of disease before transferring to the Quarantined compartment. Below is a time series plot showing these relationships.</p></li>
 </ul></li>
 </ul>
-<div class="figure" style="text-align: center">
-<img src="_main_files/figure-html/siqr_plot-1.png" alt="Figure" width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:siqrplot"></span>
+<img src="_main_files/figure-html/siqrplot-1.png" alt="Time series plot of SIQR model at endemic equilibrium, simulated with parameter values." width="60%" />
 <p class="caption">
-(#fig:siqr_plot)Figure
+Figure 6.3: Time series plot of SIQR model at endemic equilibrium, simulated with parameter values.
 </p>
 </div>
 <p>Write a closing thing for this</p>
@@ -728,11 +730,16 @@ is the largest eigenvalue, so <span class="math inline">\(R_0 = \frac{\alpha S}{
 <div id="the-sair-model" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> The SAIR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment “A”) as separate from the symptomatic individuals (compartment “I”).</p>
-<p>In this section we will use the NGM to solve an example of SAIR modelling COVID-19. Included in this model are vital dynamics (birth, death), and vaccination of individuals as a parameter rather than an additional compartment. This example was modified from a paper by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">17</a>]</span>.</p>
-<p>This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved.</p>
+<p>In this section we will use the NGM to solve an example of SAIR that models COVID-19. This example was modified from a paper by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">17</a>]</span>, and it should be noted that the model includes parameters for vital dynamics (birth, death) and vaccination. This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved. See Figure <a href="extended-compartmental-models-real-world-applications-and-solutions.html#fig:sairdiagram">6.4</a> for the SAIR compartmental model diagram.</p>
 <div id="defining-the-parameters-1" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Defining the Parameters<a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-parameters-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>Include a compartmental diagram here:</strong></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sairdiagram"></span>
+<img src="_main_files/figure-html/sairdiagram-1.png" alt="The SAIR compartmental model." width="60%" />
+<p class="caption">
+Figure 6.4: The SAIR compartmental model.
+</p>
+</div>
+<p><strong>SAIR Model Parameters:</strong></p>
 <ul>
 <li><p><span class="math inline">\(p\)</span>: proportion of population that shows symptoms (<span class="math inline">\(0 &lt; p &lt; 1\)</span>)</p>
 <ul>
@@ -781,8 +788,8 @@ is the largest eigenvalue, so <span class="math inline">\(R_0 = \frac{\alpha S}{
 \ \dot{R} &amp;= \delta S + \frac{uI}{1+kI} + \gamma A - \mu R &amp;= 0 \\
 \ \end{align*}
 \]</span></p>
-<p>By setting all of the differential equations to 0, we obtain that initial <span class="math inline">\(S\)</span> is <span class="math inline">\(S = \frac{\Lambda}{\mu+\delta}\)</span>.</p>
-<p>Since we let <span class="math inline">\(N = 1\)</span>, <span class="math inline">\(S + A + I + R = N = 1\)</span>.</p>
+<p>By setting all of the differential equations to 0, we obtain that initial <span class="math inline">\(S\)</span> is <span class="math inline">\(S = \frac{\Lambda}{\mu+\delta}\)</span>.
+Note that since we allow the population to vary by vital dynamics, we get <span class="math inline">\(N \neq 1\)</span>.</p>
 <p>Therefore, at the DFE: <span class="math inline">\((S, A, I, R) = (\frac{\Lambda}{\mu+\delta}, 0, 0, \frac{\delta\Lambda}{\mu(\mu+\delta)})\)</span></p>
 </div>
 <div id="solving-sair-model-with-ngm" class="section level3 hasAnchor" number="6.4.3">
@@ -861,33 +868,37 @@ R_0 = \frac{\beta \Lambda [(1-p)\alpha(u+\mu+\theta)+(1-p)\epsilon+p(\gamma+\eps
 \]</span></p>
 <p>We interpret this <span class="math inline">\(R_0\)</span> as we have previously done: <span class="math inline">\(R_0 &gt; 1\)</span> indicates continuous spread of the disease (EE is stable), and <span class="math inline">\(R_0 &lt; 1\)</span> indicates that the disease will eventually die out (DFE is stable).</p>
 </div>
-<div id="example-with-parameters" class="section level3 hasAnchor" number="6.4.4">
-<h3><span class="header-section-number">6.4.4</span> Example with Parameters<a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-with-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We use the following parameters to display real applications of data.</p>
-<p>We will analyze the <span class="math inline">\(R_0\)</span> value by fitting the model with the following parameters. We choose the parameter values based on examples in the article, and United States of America demographic data from the year 2020.<br />
-let recruitment rate <span class="math inline">\(\Lambda = 1\)</span>, transmission rate <span class="math inline">\(\beta = 0.05\)</span>, <span class="math inline">\(\alpha = 0.00025\)</span>, <span class="math inline">\(\mu = 0.014\)</span>, <span class="math inline">\(\delta = 0.04\)</span>, <span class="math inline">\(\gamma = 0.12\)</span>, <span class="math inline">\(p = 0.0065\)</span>, <span class="math inline">\(\epsilon = 0.25\)</span>, COVID-19 death rate <span class="math inline">\(theta = 0.01\)</span>, saturation function <span class="math inline">\(u = 0.25\)</span>, <span class="math inline">\(k = 20\)</span>.</p>
-<p><span class="math display">\[
-R_0 = \frac{3.1828 × 10^{−7} \times 1 [(1-0.0065)0.00025(0.25+0.014+0.01)+(1-0.0065) 0.25+0.0065(0.12+ 0.25+0.014)]}{(0.014+0.04)(0.12+0.25+0.014)(0.25+0.014+0.01)} \\
-R_0 = \frac{3.1828 × 10^{−7} [(0.9935)0.00025(0.274)+(0.9935)0.25+0.0065(0.384)]}
-{(0.054)(0.384)(0.274)} \\
-R_0 = \frac{3.1828 × 10^{−7} [(6.805475×10^{−5})+(0.248375)+(0.002496)]}
-{0.005681664} \\
-R_0 = \frac{(3.1828 × 10^{−7}) (0.2509391)} {0.005681664} \\
-R_0 = 1.405731 × 10^{-5}
-\]</span></p>
-<p>Since <span class="math inline">\(R_0 = 0.000014 &lt; 1\)</span>, we determine that DFE is stable and the disease will die out.</p>
-<p>try again with beta = 0.05
-<span class="math display">\[
-R_0 = \frac{3.1828 × 10^{−7} \times 1 [(1-0.0065)0.00025(0.25+0.014+0.01)+(1-0.0065) 0.25+0.0065(0.12+ 0.25+0.014)]}{(0.014+0.04)(0.12+0.25+0.014)(0.25+0.014+0.01)} \\
-R_0 = \frac{3.1828 × 10^{−7} [(0.9935)0.00025(0.274)+(0.9935)0.25+0.0065(0.384)]}
-{(0.054)(0.384)(0.274)} \\
-R_0 = \frac{3.1828 × 10^{−7} [(6.805475×10^{−5})+(0.248375)+(0.002496)]}
-{0.005681664} \\
-R_0 = \frac{(0.05) (0.2509391)} {0.005681664} \\
-R_0 = 2.208324
-\]</span></p>
-<p>Since <span class="math inline">\(R_0 = 2.208 &gt; 1\)</span>, we determine that EE is stable and the disease will persist.</p>
-<p>Plot:</p>
+<div id="example-parameters-and-simulation" class="section level3 hasAnchor" number="6.4.4">
+<h3><span class="header-section-number">6.4.4</span> Example Parameters and Simulation<a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-parameters-and-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The following parameter values were retrieved from the article by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">17</a>]</span>, and also considers some demographic data from the United States of America in 2020.</p>
+<ul>
+<li><p><span class="math inline">\(p = 0.0065\)</span> (proportion of symptomatic individuals)</p></li>
+<li><p><span class="math inline">\(\beta = 0.05\)</span> (transmission rate)</p></li>
+<li><p><span class="math inline">\(\alpha = 0.00025\)</span> (relative infectivity of asymptomatic individuals)</p></li>
+<li><p><span class="math inline">\(\gamma = 0.12\)</span> (rate of asymptomatic self-healing)</p></li>
+<li><p><span class="math inline">\(\epsilon = 0.25\)</span> (rate of asymptomatic individuals showing symptoms)</p></li>
+<li><p><span class="math inline">\(\delta = 0.04\)</span> (immunization rate)</p></li>
+<li><p>saturated treatment function:</p>
+<ul>
+<li><p><span class="math inline">\(u = 0.25\)</span> (cure rate)</p></li>
+<li><p><span class="math inline">\(k = 20\)</span> (handling time)</p></li>
+</ul></li>
+<li><p>vital dynamics:</p>
+<ul>
+<li><p><span class="math inline">\(\Lambda = 1\)</span> (recruitment rate)</p></li>
+<li><p><span class="math inline">\(\mu = 0.014\)</span> (natural death rate)</p></li>
+<li><p><span class="math inline">\(theta = 0.01\)</span> (COVID-19 death rate)</p></li>
+</ul></li>
+</ul>
+<p>By plugging these parameter values into the previously solved equation for <span class="math inline">\(R_0\)</span>, we obtain <span class="math inline">\(R_0 = 2.208 &gt; 1\)</span>. Thus, we conclude that the endemic equilibrium is stable and the disease will persist.</p>
+<p>Figure <a href="extended-compartmental-models-real-world-applications-and-solutions.html#fig:sairplot">6.5</a> represents a simulation based on these parameter values that displays the populations in each compartment of the SAIR model over the period of 2 years.</p>
+<pre><code>## Warning in plot_theme(plot): The `subtitle.position` theme element is not defined in the element hierarchy.</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sairplot"></span>
+<img src="_main_files/figure-html/sairplot-1.png" alt="Time series plot of SAIR model at endemic equilibrium, simulated with parameter values." width="60%" />
+<p class="caption">
+Figure 6.5: Time series plot of SAIR model at endemic equilibrium, simulated with parameter values.
+</p>
+</div>
 
 </div>
 </div>
