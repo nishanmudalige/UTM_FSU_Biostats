@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 —- SEIR MODEL WITH BIRTH AND DEATH —- | An Introduction to Mathematical Epidemiology</title>
+  <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 —- SEIR MODEL WITH BIRTH AND DEATH —- | An Introduction to Mathematical Epidemiology" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Bookdown hosted on github using bookdown::gitbook." />
+  <meta name="github-repo" content="nishanmudalige/STA258" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 —- SEIR MODEL WITH BIRTH AND DEATH —- | An Introduction to Mathematical Epidemiology" />
+  
+  <meta name="twitter:description" content="Bookdown hosted on github using bookdown::gitbook." />
+  
+
+<meta name="author" content="Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Bryce Morsky, Nishan Mudalige" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="next-generation-matrix.html"/>
+<link rel="next" href="extended-compartmental-models-real-world-applications-and-solutions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> — CITATION CONFIGURATION —</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#sec:goal"><i class="fa fa-check"></i><b>2.1</b> Goals of this E-book</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#recommended-background"><i class="fa fa-check"></i><b>2.2</b> Recommended Background</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#history-of-mathematical-epidemiology"><i class="fa fa-check"></i><b>2.3</b> History of Mathematical Epidemiology</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#role-of-models-in-public-health"><i class="fa fa-check"></i><b>2.4</b> Role of Models in Public Health</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html"><i class="fa fa-check"></i><b>3</b> Introduction to Mathematical Models in Epidemiology</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#sec:mathematical_models"><i class="fa fa-check"></i><b>3.1</b> Defining Mathematical Models</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#introduction-to-compartmental-modelling-thinking"><i class="fa fa-check"></i><b>3.2</b> Introduction to Compartmental Modelling Thinking</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#sec:compartments"><i class="fa fa-check"></i><b>3.2.1</b> Approach to Compartmental Modelling</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#benefits-of-parsimonious-models"><i class="fa fa-check"></i><b>3.2.2</b> Benefits of Parsimonious Models</a></li>
+<li class="chapter" data-level="3.2.3" data-path="introduction-to-mathematical-models-in-epidemiology.html"><a href="introduction-to-mathematical-models-in-epidemiology.html#limitations-of-compartmental-models"><i class="fa fa-check"></i><b>3.2.3</b> Limitations of Compartmental Models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html"><i class="fa fa-check"></i><b>4</b> Modelling Disease Dynamics with ODEs</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#introduction-to-the-chapter"><i class="fa fa-check"></i><b>4.1</b> Introduction to the Chapter</a></li>
+<li class="chapter" data-level="4.2" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactions-between-compartments"><i class="fa fa-check"></i><b>4.2</b> Interactions Between Compartments</a></li>
+<li class="chapter" data-level="4.3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#sec:SI_model"><i class="fa fa-check"></i><b>4.3</b> Solving the SI Model</a></li>
+<li class="chapter" data-level="4.4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>4.4</b> Solving the SIR Model</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>4.4.1</b> Interactive Dashboard</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html"><i class="fa fa-check"></i><b>5</b> Equilibrium Stability Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#introduction-to-the-chapter-1"><i class="fa fa-check"></i><b>5.1</b> Introduction to the Chapter</a></li>
+<li class="chapter" data-level="5.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-sir-model"><i class="fa fa-check"></i><b>5.2</b> Linear Stability Analysis for the SIR Model</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#direct-calculation"><i class="fa fa-check"></i><b>5.2.1</b> Direct Calculation</a></li>
+<li class="chapter" data-level="5.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#interactive-dashboard-1"><i class="fa fa-check"></i><b>5.2.2</b> Interactive Dashboard</a></li>
+<li class="chapter" data-level="5.2.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria"><i class="fa fa-check"></i><b>5.2.3</b> Routh - Hurwitz Criteria</a></li>
+<li class="chapter" data-level="5.2.4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#descartes-rule-of-signs"><i class="fa fa-check"></i><b>5.2.4</b> Descartes’ Rule of Signs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-si-model"><i class="fa fa-check"></i><b>5.3</b> Linear Stability Analysis for the SI Model</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html"><i class="fa fa-check"></i><b>6</b> Next Generation Matrix</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#introduction-to-the-chapter-2"><i class="fa fa-check"></i><b>6.1</b> Introduction to the Chapter</a></li>
+<li class="chapter" data-level="6.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngmparameters"><i class="fa fa-check"></i><b>6.2</b> Definining the SEIR Model and Parameters</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe"><i class="fa fa-check"></i><b>6.2.1</b> Defining the Disease Free Equilibrium (DFE)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngm"><i class="fa fa-check"></i><b>6.3</b> Solving SEIR Model with NGM</a></li>
+<li class="chapter" data-level="6.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>6.4</b> Solving the SEIR Model with Birth and Death</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="seir-model-with-birth-and-death--.html"><a href="seir-model-with-birth-and-death--.html"><i class="fa fa-check"></i><b>7</b> —- SEIR MODEL WITH BIRTH AND DEATH —-</a></li>
+<li class="chapter" data-level="8" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html"><i class="fa fa-check"></i><b>8</b> Extended Compartmental Models: Real World Applications and Solutions</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#introduction-1"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-svir-model"><i class="fa fa-check"></i><b>8.2</b> The SVIR Model</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#model-formulation"><i class="fa fa-check"></i><b>8.2.1</b> Model Formulation</a></li>
+<li class="chapter" data-level="8.2.2" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-for-the-basic-reproduction-number"><i class="fa fa-check"></i><b>8.2.2</b> Solving for the Basic Reproduction Number</a></li>
+<li class="chapter" data-level="8.2.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#computing-the-basic-reproduction-number-for-the-svir-model"><i class="fa fa-check"></i><b>8.2.3</b> Computing the Basic Reproduction Number for the SVIR Model</a></li>
+<li class="chapter" data-level="8.2.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#linearization-around-the-disease-free-equilibrium"><i class="fa fa-check"></i><b>8.2.4</b> Linearization Around the Disease-Free Equilibrium</a></li>
+<li class="chapter" data-level="8.2.5" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#jacobian-of-mathcalf"><i class="fa fa-check"></i><b>8.2.5</b> Jacobian of <span class="math inline">\(\mathcal{F}\)</span></a></li>
+<li class="chapter" data-level="8.2.6" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#jacobian-of-mathcalv"><i class="fa fa-check"></i><b>8.2.6</b> Jacobian of <span class="math inline">\(\mathcal{V}\)</span></a></li>
+<li class="chapter" data-level="8.2.7" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#forming-the-next-generation-matrix"><i class="fa fa-check"></i><b>8.2.7</b> Forming the Next-Generation Matrix</a></li>
+<li class="chapter" data-level="8.2.8" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#computing-the-reproduction-number"><i class="fa fa-check"></i><b>8.2.8</b> Computing the Reproduction Number</a></li>
+<li class="chapter" data-level="8.2.9" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#interpretation"><i class="fa fa-check"></i><b>8.2.9</b> Interpretation</a></li>
+<li class="chapter" data-level="8.2.10" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-with-parameter-values"><i class="fa fa-check"></i><b>8.2.10</b> Example with Parameter Values</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-siqr-model"><i class="fa fa-check"></i><b>8.3</b> The SIQR Model</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-parameters"><i class="fa fa-check"></i><b>8.3.1</b> Defining the Parameters</a></li>
+<li class="chapter" data-level="8.3.2" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium"><i class="fa fa-check"></i><b>8.3.2</b> Defining the Disease Free Equilibrium</a></li>
+<li class="chapter" data-level="8.3.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-the-siqr-model"><i class="fa fa-check"></i><b>8.3.3</b> Solving the SIQR Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model"><i class="fa fa-check"></i><b>8.4</b> The SAIR Model</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-parameters-1"><i class="fa fa-check"></i><b>8.4.1</b> Defining the Parameters</a></li>
+<li class="chapter" data-level="8.4.2" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium-dfe-1"><i class="fa fa-check"></i><b>8.4.2</b> Defining the Disease Free Equilibrium (DFE)</a></li>
+<li class="chapter" data-level="8.4.3" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#solving-sair-model-with-ngm"><i class="fa fa-check"></i><b>8.4.3</b> Solving SAIR Model with NGM</a></li>
+<li class="chapter" data-level="8.4.4" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-parameters-and-simulation"><i class="fa fa-check"></i><b>8.4.4</b> Example Parameters and Simulation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html"><i class="fa fa-check"></i><b>9</b> Spatial Epidemiology</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#introduction-to-spatial-epidemiology"><i class="fa fa-check"></i><b>9.1</b> Introduction to Spatial Epidemiology</a></li>
+<li class="chapter" data-level="9.2" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#metapopulations"><i class="fa fa-check"></i><b>9.2</b> Metapopulations</a></li>
+<li class="chapter" data-level="9.3" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#diffusion-and-travel"><i class="fa fa-check"></i><b>9.3</b> Diffusion and Travel</a></li>
+<li class="chapter" data-level="9.4" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#networks"><i class="fa fa-check"></i><b>9.4</b> Networks</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#contact-heterogeneity"><i class="fa fa-check"></i><b>9.4.1</b> Contact Heterogeneity</a></li>
+<li class="chapter" data-level="9.4.2" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#scale-free-networks"><i class="fa fa-check"></i><b>9.4.2</b> Scale Free Networks</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#ring-vaccination"><i class="fa fa-check"></i><b>9.5</b> Ring Vaccination</a></li>
+<li class="chapter" data-level="9.6" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#agent-based-models"><i class="fa fa-check"></i><b>9.6</b> Agent-Based Models</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An Introduction to Mathematical Epidemiology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="seir-model-with-birth-and-death--" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> —- SEIR MODEL WITH BIRTH AND DEATH —-<a href="seir-model-with-birth-and-death--.html#seir-model-with-birth-and-death--" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:seirplot"></span>
+<img src="_main_files/figure-html/seirplot-1.png" alt="Time series plot of SEIR model at endemic equilibrium, simulated with parameter values." width="60%" />
+<p class="caption">
+Figure 7.1: Time series plot of SEIR model at endemic equilibrium, simulated with parameter values.
+</p>
+</div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="next-generation-matrix.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="extended-compartmental-models-real-world-applications-and-solutions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
