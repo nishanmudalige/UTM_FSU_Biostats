@@ -71,7 +71,7 @@ sec:ngmparameters
 defining-the-disease-free-equilibrium-dfe
 sec:ngm
 solving-the-seir-model-with-birth-and-death
-seir-model-with-birth-and-death
+seir-model-with-birth-and-death-rates
 extended-compartmental-models-real-world-applications-and-solutions
 introduction-1
 the-svir-model

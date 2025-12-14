@@ -30,7 +30,7 @@ These models utilize simpler processes by using accessible key data across broad
 
 ### Approach to Compartmental Modelling {#sec:compartments}
 
-Referring back, compartmental modelling \@ref(def:Compartmental) is the framework for prediction in epidemiology. The fundamental thinking behind the most common compartmental model, the SIR model, is that at any given point, a person will fall into either the Susceptible, Infected, or Recovered compartments, under the model's assumptions.
+Referring back, compartmental modelling (*Definition* \@ref(def:Compartmental)) is the framework for prediction in epidemiology. The fundamental thinking behind the most common compartmental model, the SIR model, is that at any given point, a person will fall into either the Susceptible, Infected, or Recovered compartments, under the model's assumptions.
 
 ::: {.definition name="Susceptible" #Susceptible} 
 Those at risk of the disease, but not yet infected
@@ -45,7 +45,7 @@ Individuals who have recovered and developed immunity, or died from the disease
 :::
 - Can either be denoted as Recovered or Removed, to account for all outcomes when leaving the "R" compartment. Either individuals are recovered, gaining immunity, and leave or die and leave, counting instead as removed
 
-Diving deeper, the relationship between each of these compartments is defined by differential equations, specifically ODEs and dynamical systems. These differential equations depict the movement between S and I, as well as I and R. The differential equations will show the flow of susceptible individuals to the infected compartment as the disease is transmitted at the transmission rate ($\beta$) as well as the flow of infected individuals either back to the susceptible \@ref(def:Susceptible) compartment or to the recovered \@ref(def:Recovered) compartment at the recovery rate($\gamma$).
+Diving deeper, the relationship between each of these compartments is defined by differential equations, specifically ODEs and dynamical systems. These differential equations depict the movement between S and I, as well as I and R. The differential equations will show the flow of susceptible individuals to the infected compartment as the disease is transmitted at the transmission rate ($\beta$) as well as the flow of infected individuals either back to the susceptible (*Definition* \@ref(def:Susceptible)) compartment or to the recovered (*Definition* \@ref(def:Recovered)) compartment at the recovery rate($\gamma$).
 
 Other forms of the SIR model exist, in which compartments are added to depict realistic features of disease transmission. Each of these models utilizes an additional compartment that accounts for specific epidemiological situations, described below:
 
@@ -68,7 +68,7 @@ These variations of the SIR model will be discussed at length in Chapter 5 and 6
   Herd immunity is acheived when a sufficiently large fraction of the population is immune, either through vaccination or recovery, so that disease transmission cannot be sustained within the community.
 :::
 
-Mathematically, this is expressed in terms of the basic reproduction number, $R_0$ \@ref(def:R0). If a proportion p of the population is immunized, the effective reproduction number becomes $R_0(1-p)$. We will define the Effective Reproduction Number in Chapter 3 \@ref(def:Effective). To prevent the disease from becoming endemic \@ref(def:Endemic), this effective reproduction number must be below one, leading to the inequality:
+Mathematically, this is expressed in terms of the basic reproduction number, $R_0$ (*Definition* \@ref(def:R0)). If a proportion p of the population is immunized, the effective reproduction number becomes $R_0(1-p)$. We will define the Effective Reproduction Number in Chapter 3 (*Definition* \@ref(def:Effective)). To prevent the disease from becoming endemic (*Definition* \@ref(def:Endemic)), this effective reproduction number must be below one, leading to the inequality:
 
 $R_0(1-p) <1$
 
@@ -80,14 +80,14 @@ or
 
 $p>1-\frac{1}{R_0}$
 
-A population is said to have herd immunity \@ref(def:Herd) if a great enough fraction of the population has been immunized so that the disease cannot become endemic \@ref(def:Endemic). 
+A population is said to have herd immunity (*Definition* \@ref(def:Herd)) if a great enough fraction of the population has been immunized so that the disease cannot become endemic (*Definition* \@ref(def:Endemic)). 
 
-An example of a disease that has been eradicated is smallpox. Smallpox was eradicated because it requires a lower percentage of the population to be immunized and therefore herd immunity was attainable. Measles, conversely, requires greater percentages of vaccination and the vaccine is not always effective which is why herd immunity \@ref(def:Herd) against measles has not been achieved yet. These examples underscore how diseases with higher transmissibility require larger immunized fractions for herd immunity, a principle directly relevant to SVIR models where vaccination rates determine the system's long-term equilibrium.
+An example of a disease that has been eradicated is smallpox. Smallpox was eradicated because it requires a lower percentage of the population to be immunized and therefore herd immunity was attainable. Measles, conversely, requires greater percentages of vaccination and the vaccine is not always effective which is why herd immunity against measles has not been achieved yet. These examples underscore how diseases with higher transmissibility require larger immunized fractions for herd immunity, a principle directly relevant to SVIR models where vaccination rates determine the system's long-term equilibrium.
 
 ### Benefits of Parsimonious Models
 
 As seen, SIR models and other forms can provide great predictive power. Recently, parsimonious models have become of interest in epidemiological modelling. 
-These models are based on the premise that the simplest answer is the best. Allude to earlier in this section where parsimonious models are defined \@ref(def:Parsimonious). These are able to use significantly less data and parameters in order to produce a generalized and understandable model. In a real-world setting, these models have been effectively utilized to predict disease outbreaks. Not only are these models more accurate than those with more complexity, but they can also be applied to a multitude of situations; additionally, with the presence of noisy data, these models can also avoid over fitting. [@gupta2021]
+These models are based on the premise that the simplest answer is the best. Allude to earlier in this section where parsimonious models are defined (*Definition* \@ref(def:Parsimonious)). These are able to use significantly less data and parameters in order to produce a generalized and understandable model. In a real-world setting, these models have been effectively utilized to predict disease outbreaks. Not only are these models more accurate than those with more complexity, but they can also be applied to a multitude of situations; additionally, with the presence of noisy data, these models can also avoid over fitting. [@gupta2021]
 
 ### Limitations of Compartmental Models
 

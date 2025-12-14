@@ -144,7 +144,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngm"><i class="fa fa-check"></i><b>5.3</b> Solving SEIR Model with NGM</a></li>
 <li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.4</b> Solving the SEIR Model with Birth and Death</a></li>
-<li class="chapter" data-level="5.5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.5</b> SEIR MODEL WITH BIRTH AND DEATH</a></li>
+<li class="chapter" data-level="5.5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#seir-model-with-birth-and-death-rates"><i class="fa fa-check"></i><b>5.5</b> SEIR Model with Birth and Death Rates</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html"><i class="fa fa-check"></i><b>6</b> Extended Compartmental Models: Real World Applications and Solutions</a>
 <ul>
@@ -237,7 +237,7 @@ other outputs and inputs, respectively, for each disease compartment</p></li>
 </ul>
 <div id="defining-the-disease-free-equilibrium-dfe" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Defining the Disease Free Equilibrium (DFE)<a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The Disease Free Equilibrium exists when all infected compartments (I and E), are set to 0. i.e. <span class="math inline">\(E=0\)</span> and <span class="math inline">\(I=0\)</span>.</p>
+<p>The Disease Free Equilibrium exists when all infected compartments <span class="math inline">\((I and E)\)</span>, are set to 0. i.e. <span class="math inline">\(E=0\)</span> and <span class="math inline">\(I=0\)</span>.</p>
 <p><span class="math display">\[
 \begin{align*}
 \ \dot{S} &amp;= - \beta SI = 0\\
@@ -312,7 +312,7 @@ V(x) = \begin{bmatrix} \delta E \\ \gamma I - \delta E \\ \end{bmatrix} = \begin
 <ul>
 <li>This is found by our earlier definition of the DFE.
 <ul>
-<li>At the DFE for (S,E,I,R) = (N,0,0,0)</li>
+<li>At the DFE for <span class="math inline">\((S,E,I,R) = (N,0,0,0)\)</span></li>
 <li>Since Population <span class="math inline">\(&quot;N&quot;=1\)</span> and <span class="math inline">\(S=N\)</span>, then <span class="math inline">\(S=1\)</span></li>
 </ul></li>
 <li>So after subsituting <span class="math inline">\(S=1\)</span>:</li>
@@ -454,8 +454,8 @@ The basic reproduction number <span class="math inline">\(R_0\)</span> is given 
 If <span class="math inline">\(\mu = 0\)</span>, meaning no births or deaths occur, this expression simplifies to <span class="math inline">\(R_0 = \frac{\beta}{\gamma}\)</span> which is the classic SIR result.</p>
 <p>References: <span class="citation">[<a href="references.html#ref-blackwood2018">12</a>]</span></p>
 </div>
-<div id="seir-model-with-birth-and-death" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> SEIR MODEL WITH BIRTH AND DEATH<a href="next-generation-matrix.html#seir-model-with-birth-and-death" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="seir-model-with-birth-and-death-rates" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> SEIR Model with Birth and Death Rates<a href="next-generation-matrix.html#seir-model-with-birth-and-death-rates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:seirplot"></span>
 <img src="_main_files/figure-html/seirplot-1.png" alt="Time series plot of SEIR model at endemic equilibrium, simulated with parameter values." width="60%" />
 <p class="caption">

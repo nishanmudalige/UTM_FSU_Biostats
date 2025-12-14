@@ -578,7 +578,7 @@ Transition (V)
         \end{align*}
         $$
 
-Referring back to (*Chapter*\@ref(sec:ngmparameters)) once again for the
+Referring back to (*Chapter* \@ref(sec:ngmparameters)) once again for the
 equation for $\dot{X} = F(x) - V(x)$, we combine these matrices into:
 
 $$

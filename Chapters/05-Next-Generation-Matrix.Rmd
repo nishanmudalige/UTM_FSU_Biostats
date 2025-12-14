@@ -64,7 +64,7 @@ other outputs and inputs, respectively, for each disease compartment
 
 ### Defining the Disease Free Equilibrium (DFE)
 
-The Disease Free Equilibrium exists when all infected compartments (I and E), are set to 0. i.e. $E=0$ and $I=0$.
+The Disease Free Equilibrium exists when all infected compartments $(I and E)$, are set to 0. i.e. $E=0$ and $I=0$.
 
 $$
 \begin{align*}
@@ -151,7 +151,7 @@ $$
 At DFE, $S = 1$
 
 - This is found by our earlier definition of the DFE.
-  - At the DFE for (S,E,I,R) = (N,0,0,0)
+  - At the DFE for $(S,E,I,R) = (N,0,0,0)$
   - Since Population $"N"=1$ and $S=N$, then $S=1$
 - So after subsituting $S=1$:
 
@@ -321,7 +321,7 @@ If $\mu = 0$, meaning no births or deaths occur, this expression simplifies to $
 References: [@blackwood2018]
 
 
-## SEIR MODEL WITH BIRTH AND DEATH
+## SEIR Model with Birth and Death Rates
 
 ```{r seirplot, echo=FALSE, fig.align='center', out.width='60%', fig.cap='Time series plot of SEIR model at endemic equilibrium, simulated with parameter values.'}
 
