@@ -321,56 +321,72 @@ If $\mu = 0$, meaning no births or deaths occur, this expression simplifies to $
 References: [@blackwood2018]
 
 
-## SEIR Model with Birth and Death Rates
+## Visualizing the SEIR Models
 
-```{r seirplot, echo=FALSE, fig.align='center', out.width='60%', fig.cap='Time series plot of SEIR model at endemic equilibrium, simulated with parameter values.'}
+Below, we have time series plots displaying the two examples we have looked at in this chapter. We used the following parameters in these plots: 
+
+- initial population size: $N = 500$
+
+- transmission rate: $\beta = 0.4$
+
+- progression rate from exposed to infected: $\delta = \sigma = 0.27$ 
+
+- recovery rate: $\gamma = 0.10$
+
+- death rate: $\mu = 0.0001$ (only used in Figure \@ref(fig:seirvitalplot))
+
+Figures \@ref(fig:seirplot) and \@ref(fig:seirvitalplot) visualize the differences that vital dynamics can have on a disease model, despite the rest of the parameters being the same. Also note the difference in the time scales between the plots. 
+ 
+
+```{r seirplot, echo=FALSE, fig.align='center', out.width='60%', fig.cap='Time series plot of SEIR model without vital dynamics at endemic equilibrium, simulated with parameter values.'}
 
 
+# SEIR model without vital dynamics
 seir_model <- function(time, state, parameters) {
-with(as.list(c(state, parameters)), {
-
-
-# Differential equations (from Chapter 5.4)
-dS <- mu*N - beta * S * I / N
-dE <- beta * S * I / N - (sigma + mu) * E
-dI <- sigma * E - (gamma + mu) * I
-dR <- gamma * I - mu * R
-
-list(c(dS, dE, dI, dR))
-
-})
+  with(as.list(c(state, parameters)), {
+    
+    # Differential equations (from Chapter 5.4)
+    dS <- - beta * S * I 
+    dE <- beta * S * I - delta * E
+    dI <- delta * E - gamma * I
+    dR <- gamma * I 
+    
+    list(c(dS, dE, dI, dR))
+    
+  })
 }
 # ---- PARAMETERS (you may edit these if your chapter has specific values) ----
 
-N <- 763
+N <- 500
+
 seir_param <- c(
-N = N, 
-beta = 0.5,   # transmission
-sigma = 0.27,    # progression E→I
-gamma = 0.10,    # recovery
-mu = 0.0001       # birth/death rate
+  N = N, 
+  beta = 0.4,   # transmission 0.01
+  delta = 0.27, # progression rate of exposed to infected  0.09
+  gamma = 0.10 # infected to recovery 0.05
 )
+
 
 # ---- INITIAL CONDITIONS ----
 
 seir_initial <- c(
-S = N - 1,
-E = 1,
-I = 0,
-R = 0
+  S = N - 1,
+  E = 1,
+  I = 0,
+  R = 0
 )
 
 # ---- TIME SEQUENCE ----
 
-times <- seq(0, 200, by = 1)
+times <- seq(0, 75, by = 1) 
 
 # ---- SOLVE ODE ----
 
 seir_output <- deSolve::ode(
-y = seir_initial,
-times = times,
-func = seir_model,
-parms = seir_param
+  y = seir_initial,
+  times = times,
+  func = seir_model,
+  parms = seir_param
 )
 
 seir_results <- as.data.frame(seir_output)
@@ -378,33 +394,102 @@ seir_results <- as.data.frame(seir_output)
 # ---- RESHAPE FOR GGPLOT ----
 
 seir_results <- tidyr::pivot_longer(
-seir_results,
-cols = c(S, E, I, R),
-names_to = "Compartment",
-values_to = "Population"
+  seir_results,
+  cols = c(S, E, I, R),
+  names_to = "Compartment",
+  values_to = "Population"
 )
 
 # ---- PLOT ----
 
-ggplot2::ggplot(seir_results, aes(x = time, y = Population, color = Compartment)) +
-ggplot2::geom_line(linewidth = 1.2) +
-ggplot2::labs(
-subtitle = paste0(
-"N = ", N,
-", β = ", seir_param['beta'],
-", σ = ", seir_param['sigma'],
-", γ = ", seir_param['gamma'],
-", μ = ", seir_param['mu']
-),
-x = "Time (days)",
-y = "Population (N)",
-color = "Compartment"
-) +
-ggplot2::theme_minimal() +
-ggplot2::theme(
-legend.position = "bottom",
-plot.subtitle = ggplot2::element_text(hjust = 0.5)
-)
+ggplot(seir_results, aes(x = time, y = Population, color = Compartment)) +
+  geom_line(linewidth = 1.2) +
+  labs(
+    subtitle = paste0(
+      "N = ", N,
+      ", β = ", seir_param['beta'],
+      ", δ = ", seir_param['delta'],
+      ", γ = ", seir_param['gamma']
+    ),
+    x = "Time (days)",
+    y = "Population (N)"
+  ) +
+  scale_color_manual(values = c("S" = "cornflowerblue", 
+                                "E" = "darkgoldenrod1",
+                                "I" = "tomato", 
+                                "R" = "dodgerblue4")) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.subtitle = element_text(hjust = 0.5)
+  )
 
 ```
 
+```{r seirvitalplot, echo=FALSE, fig.align='center', out.width='60%', fig.cap='Time series plot of SEIR model with vital dynamics at endemic equilibrium, simulated with parameter values.'}
+
+# Define the SEIR model function
+seir_vital_model <- function(time, state, parameters) {
+  with(as.list(c(state, parameters)), {
+
+    # Differential equations (from Chapter 5.4)
+    dS <- mu*N - (beta * S * I) / N
+    dE <- (beta * S * I) / N - (sigma + mu) * E
+    dI <- sigma * E - (gamma + mu) * I
+    dR <- gamma * I - mu * R
+    
+    list(c(dS, dE, dI, dR)) # Return the rates of change
+  })
+}
+
+# choose some starting N 
+N <- 500 
+
+seir_vital_param <- c(N = N, 
+                      beta = 0.4,   # transmission
+                      sigma = 0.27,    # progression E→I 
+                      gamma = 0.10,    # recovery
+                      mu = 0.0001       # birth/death rate
+                      ) 
+
+
+# Initial conditions: small outbreak with small E, I, and S slightly below DFE
+seir_vital_initial <- c(S = N - 5 - 1, E = 0, I = 1, R = 5)
+
+# Time points to solve for (0 to 2-years simulation (daily steps)
+times <- seq(0, 365, by = 1)
+
+# Solve the differential equations
+seir_vital_output <- ode(y = seir_vital_initial, times = times, func = seir_vital_model, parms = seir_vital_param)
+
+# Convert to data frame
+seir_vital_results <- as.data.frame(seir_vital_output)
+
+# Calculate derived quantities
+seir_vital_results <- seir_vital_results %>%
+  mutate(N = S + E + I + R, Day = time)
+
+# PLOT TIME SERIES PLOT
+seir_vital_results %>%
+  pivot_longer(cols = c(S, E, I, R), 
+               names_to = "Compartment", 
+               values_to = "Count") %>%
+  ggplot(aes(x = Day, y = Count, color = Compartment)) +
+  geom_line(linewidth = 1.2, alpha = 0.8) +
+  labs(subtitle = paste("β =", seir_vital_param["beta"], 
+                        ", σ =", seir_vital_param["sigma"],
+                        ", μ =", seir_vital_param["mu"],
+                        ", γ = ", seir_vital_param['gamma']       
+                        ),
+       x = "Time (days)", y = "Population (N)") +
+  scale_color_manual(values = c("S" = "cornflowerblue", 
+                                "E" = "darkgoldenrod1",
+                                "I" = "tomato", 
+                                "R" = "dodgerblue4")) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.subtitle = element_text(hjust = 0.5)
+  )
+
+```

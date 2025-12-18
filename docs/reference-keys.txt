@@ -22,6 +22,7 @@ def:RHC
 def:DRS
 fig:seirdiagram
 fig:seirplot
+fig:seirvitalplot
 fig:vsirdiagram
 fig:vsirplot
 fig:siqrdiagram
@@ -71,7 +72,7 @@ sec:ngmparameters
 defining-the-disease-free-equilibrium-dfe
 sec:ngm
 solving-the-seir-model-with-birth-and-death
-seir-model-with-birth-and-death-rates
+visualizing-the-seir-models
 extended-compartmental-models-real-world-applications-and-solutions
 introduction-1
 the-svir-model
