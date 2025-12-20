@@ -21,463 +21,31 @@ knitr::opts_chunk$set(
 
 # Extended Compartmental Models: Real World Applications and Solutions
 
-## Introduction
-
-In this chapter, we will discuss and solve in detail varying complext
-SIR-type compartmental models, such as SAIR, SVIR, and SIQR. These
-models are derived and solved from pre-existing scholarly articles and
-experiments in which the parameters, variables, and differential
-equations that defined the study are provided. In this, we can apply our
-knowledge and techniques from previous chapters to determine stability
-and analyze different compartmental models. It is important to note that
-in previous chapters, we discussed theoretical techniques, which can be
-applied here, but also are defined for every equilibria, such as the DFE
-and EE. In these examples below, not all are specifically defined for
-each equilibria due to varying reasons, specfically due to the closed
-system nature of the experiments, not allowing a disease to persist in
-regard to the model.
-
-## The SVIR Model
-
-This model is based on the parameters and variables defined in the
-articles cited. [@ramponi2024] [@zhu2024] 
-The model takes into account vaccination
-rate, vaccine effectiveness, and vaccine induced decline in the immune
-rate.
-
-
-
-```{r vsirdiagram, echo=FALSE, engine='tikz', fig.ext='png', out.width='60%', fig.cap='The VSIR compartmental model.'}
-\usetikzlibrary{arrows.meta, positioning}
-
-\begin{tikzpicture}[
-    block/.style={rectangle, draw, rounded corners, minimum width=2.3cm, minimum height=1.2cm, text centered, font=\Large},
-    arrow/.style={-Latex, thick}
-]
-
-% Nodes
-\node (V) at (0,0)   [block, fill=red!20]     {$V(t)$};
-\node (S) [right=3.2cm of V, block, fill=green!20] {$S(t)$};
-\node (I) [right=3.2cm of S, block, fill=yellow!30] {$I(t)$};
-\node (R) [right=3.2cm of I, block, fill=orange!30] {$R(t)$};
-
-% Flows
-\draw[arrow] (V) -- node[midway, above] {$\delta V$} (S);
-\draw[arrow] (S) -- node[midway, below] {$\gamma S$} (V);
-\draw[arrow] ([yshift=1.3cm]S.north) -- node[midway,right] {$\Lambda$} (S.north);
-\draw[arrow] (S.south) -- ++(0,-1.0) node[midway,right] {$dS$};
-\draw[arrow] (V.south) -- ++(0,-1.0) node[midway,right] {$dV$};
-\draw[arrow] (I.south) -- ++(0,-1.0) node[midway,left] {$dI$};
-\draw[arrow] (I.south) -- ++(1,-1.2) node[midway,right] {$\alpha I$};
-\draw[arrow] (R.south) -- ++(0,-1.0) node[midway,left] {$dR$};
-\draw[arrow] (S) -- node[midway, above] {$\beta S I$} (I);
-\draw[arrow] (V.north) -- ++(0,1) -- ++(6.4,0) -- (I.north) node[midway, above] {$(1-\theta)\beta S I$};
-\draw[arrow] (I) -- node[midway, above] {$b I$} (R);
-
-\end{tikzpicture}
-```
-
-
-
-### Model Formulation
-
-With $N(t)$ representing the total pupulation it can also be divided in
-to the four compartments: susceptible, vaccinated, infected and
-recovered.
-
-Therefore, $N(t) = V(t) + S(t) + I(t) + R(t)$
-
-The model assumes that after vaccination, people will develop immunity
-but after some time they will become susceptible again as the immunity
-wares off. Based on this, the following parameters can be defined:
-
-- $\Lambda$ : susceptible individuals recruited by immigration/birth 
-
-- $\beta$ : effective contact rate between susceptible and infected 
-individuals 
-
-- $d$ : natural death rate 
-
-- $\theta$ : vaccine effectiveness rate 
-
-- $\gamma$ : vaccination rate of susceptible individuals 
-
-- $b$ : cure rate of infected individuals 
-
-- $\alpha$ : disease induced mortality 
-
-- $\delta$ : loss rate of immunity
-
-The epidemic dynamical model is given by the following four models :
-
-$$ 
-\begin{align*}
-\frac{dV}{dt} &= \gamma S -(1- \theta) \beta VI - (\gamma +d)V \\
-\frac{dS}{dt} &= \Lambda + \delta V - \beta SI - (\gamma + d)S \\
-\frac{dI}{dt} &= \beta SI + (1- \theta) \beta VI - (d+ \alpha + b)I \\
-\frac{dR}{dt} &= bI - dR\\
-\end{align*}
-$$
-
-
-### Solving for the Basic Reproduction Number
-
-From here the basic reproduction number, $R_0$, can be solved for using
-the next generation matrix method. When $\theta = \gamma = \delta =0$, the system is then the SIR model essentially. Finding the regeneration and transfer matrix then gives:
-
-$$
-F_0 = \begin{bmatrix} \beta SI \\ 0 \\ 0 \end{bmatrix},
-V_0 = \begin{bmatrix} (d+ \alpha + b) I \\ -bI + dR \\ - \Lambda + \beta SI +dS \end{bmatrix}
-$$
-
-The next step would be to differentiate $F_0$ and $V_0$ and calculate
-the value of $E_{00} = (S_{00},0,0) = (\frac{\Lambda}{d} , 0,0)$ which
-is at the DFE of the SIR model.
-
-It can be found that
-
-$$ 
-F_0 = \begin{bmatrix} \beta S_{00} & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix},
-V_0 = \begin{bmatrix} (d + \alpha + b) & 0 & 0 \\ -b & d & 0 \\ \beta S_0 & 0 & d \end{bmatrix}
-$$
-
-Since $R_0 = \rho (F_0 V^{-1}_0)$,
-
-$$
-R_0 = \frac {\beta S_{00}}{d+b+\alpha } = \frac{\beta \Lambda}{d(d+b+ \alpha)}
-$$
-
-Using this same process to solve for the SVIR. system's disease free equlibrium, the derivatives can be set to 0, that is,
-
-$E_0 = (V_0, S_0, 0,0) = (\frac{\Lambda \gamma} {d (\delta + d +\gamma)} , \frac {\Lambda (\delta + d)} {d (\delta + d +\gamma)}, 0,0 )$
-
-Where $x = (I, R, V, S)^T$, the regeneration matrix, $F$ and the
-transfer matrix, $V$ can be found to be :
-
-$$ 
-F = \begin{bmatrix} \beta SI + (1- \theta) \beta VI \\ 0\\ 0 \\ 0 \end{bmatrix},
-V =\begin{bmatrix} (d + \alpha +b) I \\ -bI + dR\\ -\gamma S + (1-\theta) \beta VI +(\delta +d) V \\ - \Lambda - \delta V + \beta SI + (\gamma +d)S \end{bmatrix}
-$$
-
-### Computing the Basic Reproduction Number for the SVIR Model
-
-To compute the basic reproduction number using the next-generation
-method, we separate the system into:
-
--   **new infection terms**, denoted by $\mathcal{F}$\
--   **all other transitions**, denoted by $\mathcal{V}$
-
-The system state is ordered as:
-
-$$
-x = (I, R, V, S)^T
-$$
-
-From the SVIR model, only the infected class $I$ receives new
-infections. Therefore, the new infection terms are:
-
-$$
-\mathcal{F} =
-\begin{bmatrix}
-\beta SI + (1-\theta)\beta V I\\
-0\\
-0\\
-0
-\end{bmatrix}
-$$
-
-All other terms in the system are collected into the transition matrix
-$\mathcal{V}$:
-
-$$
-\mathcal{V} =
-\begin{bmatrix}
-(d + \alpha + b)I \\
--bI + dR\\
--\gamma S + (1-\theta)\beta V I + (\delta + d)V \\
--\Lambda - \delta V + \beta S I + (\gamma + d)S
-\end{bmatrix}
-$$
-
-
-### Linearization Around the Disease-Free Equilibrium
-
-The disease-free equilibrium (DFE) for the SVIR model is:
-
-$$
-E_0 = (V_0, S_0, 0, 0)
-$$
-
-where:
-
-$$
-V_0 = \frac{\Lambda\gamma}{d(\delta + d + \gamma)}, \quad
-S_0 = \frac{\Lambda(\delta + d)}{d(\delta + d + \gamma)}
-$$
-
-We now compute the Jacobians $D\mathcal{F}(E_0)$ and
-$D\mathcal{V}(E_0)$.
-
-
-### Jacobian of $\mathcal{F}$
-
-Only the first component of $\mathcal{F}$ is non-zero:
-
-$$
-\mathcal{F}_1 = \beta SI + (1-\theta)\beta V I
-$$
-
-Taking partial derivatives:
-
-$$
-\frac{\partial \mathcal{F}_1}{\partial I} = \beta S + (1-\theta)\beta V, \quad
-\frac{\partial \mathcal{F}_1}{\partial R} = 0
-$$
-
-Thus, the Jacobian evaluated at the DFE is:
-
-$$
-D\mathcal{F}(E_0)=
-\begin{bmatrix}
-\beta S_0 + (1-\theta)\beta V_0 & 0\\
-0 & 0
-\end{bmatrix}
-$$
-
-We denote this upper-left block as $F$.
-
-
-
-### Jacobian of $\mathcal{V}$
-
-The first two components of $\mathcal{V}$ involve the infected
-subsystem:
-
-$$
-\mathcal{V}_1 = (d + \alpha + b)I, \quad
-\mathcal{V}_2 = -bI + dR
-$$
-
-Taking partial derivatives:
-
-$$
-\frac{\partial \mathcal{V}_1}{\partial I} = d + \alpha + b, \quad
-\frac{\partial \mathcal{V}_2}{\partial I} = -b, \quad
-\frac{\partial \mathcal{V}_2}{\partial R} = d
-$$
-
-Thus, the upper-left block of $D\mathcal{V}(E_0)$ is:
-
-$$
-V =
-\begin{bmatrix}
-d + \alpha + b & 0\\
--b & d
-\end{bmatrix}
-$$
-
-Lower blocks exist for the vaccinated and susceptible compartments, but
-they do not affect the computation of the reproduction number and are
-dropped.
-
-
-
-### Forming the Next-Generation Matrix
-
-The next-generation matrix is:
-
-$$
-FV^{-1}
-$$
-
-First, compute the inverse of $V$. For a matrix:
-
-$$
-\begin{bmatrix}
-a & 0\\
-c & d
-\end{bmatrix}
-$$
-
-the inverse is:
-
-$$
-\frac{1}{ad}
-\begin{bmatrix}
-d & 0\\
--c & a
-\end{bmatrix}
-$$
-
-Applying this formula gives:
-
-$$
-V^{-1} =
-\frac{1}{d(d+\alpha + b)}
-\begin{bmatrix}
-d & 0\\
-b & d+\alpha + b
-\end{bmatrix}
-$$
-
-Now multiply:
-
-$$
-FV^{-1} =
-\begin{bmatrix}
-\frac{\beta\left(S_0 + (1-\theta)V_0\right)}{d+\alpha + b} & 0\\
-0 & 0
-\end{bmatrix}
-$$
-
-
-### Computing the Reproduction Number
-
-The basic reproduction number is the dominant eigenvalue (spectral
-radius) of $FV^{-1}$:
-
-$$
-R_{\text{vac}} =
-\frac{\beta\left(S_0 + (1-\theta)V_0\right)}{d+\alpha + b}
-$$
-
-Substituting the formulas for $S_0$ and $V_0$:
-
-$$
-S_0 = \frac{\Lambda(\delta + d)}{d(\delta + d + \gamma)}, \quad
-V_0 = \frac{\Lambda\gamma}{d(\delta + d + \gamma)}
-$$
-
-
-### Interpretation
-
--   $\dfrac{\beta}{d+\alpha+b}$ represents the expected number of
-    infections produced by an infectious individual before leaving the
-    infected class through recovery or death.\
--   $S_0 + (1-\theta)V_0$ is the *effective number of individuals at
-    risk*, because:
-    -   susceptible individuals contribute fully,
-    -   vaccinated individuals contribute only by the fraction
-        $(1-\theta)$ that the vaccine fails.
-
-Thus:
-
--   A higher vaccination rate $\gamma$,\
--   a more effective vaccine $\theta$,
-
-both reduce $R_{\text{vac}}$, helping to prevent the spread of
-infection.
-
-### Example with Parameter Values
-
-The following parameter values were retrieved from the article by Zhu et al. (2024) [@zhu2024].
-
-
-- $b= 0.0085$ (cure rate of infected individuals )
-
-- $d = 0.005$ (natural death rate)
-
-- $\theta = 0.6$ (vaccine effectiveness rate)
-
-- $\beta = 0.29$ (effective contact rate between susceptible and infected 
-individuals)
-
-- $\delta = 0.005$ (loss rate of immunity)
-
-- $\lambda = 10$ (susceptible individuals recruited by immigration/birth)
-
-- $\alpha = 0.0099$ (disease induced mortality)
-
-- $\gamma = 0.2$ (vaccination rate of susceptible individuals)
-
-
-By plugging these parameter values into the previously solved equation for $R_{vac}$, we obtain $R_{vac} = 2.4716*10^4$ . Thus, we conclude that the endemic equilibrium is stable and the disease will persist. 
-
-Parameter values used: b = 0.0085, d = 0.005, theta = 0.6, beta = 0.29, delta = 0.005, Lambda = 10, alpha = 0.0099, gamma = 0.2
-
-**I am not really sure why the vaccination line is on the axis? (Check this!)**
-
-```{r vsirplot, echo=FALSE, fig.align='center', fig.align='center', out.width='60%', fig.cap='Time series plot of VSIR model at endemic equilibrium, simulated with parameter values.'}
-# Define the SVIR model function
-svir_model <- function(time, state, parameters) {
-  with(as.list(c(state, parameters)), {
-    # Differential equations
-    dV <- gamma*S - (1-theta)*beta*V*I - (gamma +d)*V
-    dS <- Lambda + delta*V - beta*S*I - (gamma + d)*S
-    dI <- beta*S*I + (1-theta)*beta*V*I - (d+ alpha + b)*I
-    dR <- b*I - d*R
-
-    list(c(dV, dS, dI, dR)) # Return the rates of change
-  })
-}
-
-# Set parameters
-svir_param <- c(b = 0.0085, d = 0.005, theta = 0.6, beta = 0.29, delta = 0.005, 
-                Lambda = 10, alpha = 0.0099, gamma = 0.2) # at endemic equilibrium
-
-# calculate DFE:
-Lambda <- 10
-gamma <- 0.2
-d <- 0.005
-delta <- 0.005
-
-V0 <- Lambda*gamma/(d*(delta+d+gamma))
-S0 <- Lambda*(delta+d)/(d*(delta+d+gamma))
-N_dfe <- V0 + S0 
-
-# Initial conditions: small outbreak with small A, I, and S slightly below DFE
-svir_initial <- c(V = V0 * 0.99, S = S0 * 0.99, I = 0.01, R = 0)
-
-# Time points to solve for (0 to 2-years simulation (daily steps)
-times <- seq(0, 365 *2, by = 1)
-
-
-# Solve the differential equations
-svir_output <- ode(y = svir_initial, times = times, func = svir_model, parms = svir_param)
-
-# Convert to data frame
-svir_results <- as.data.frame(svir_output)
-
-# Calculate derived quantities
-svir_results <- svir_results %>% mutate(N = S + V + I + R, Day = time)
-
-# PLOT TIME SERIES PLOT
-
-plot_svir <- svir_results %>%
-  pivot_longer(cols = c(V, S, I, R), 
-               names_to = "Compartment", 
-               values_to = "Count") %>%
-  ggplot(aes(x = Day, y = Count, color = Compartment)) +
-  geom_line(linewidth = 1.2, alpha = 0.8) +
-  labs(subtitle = paste("β =", svir_param["beta"], ", α =", svir_param["alpha"],
-                        ", Λ =", svir_param["Lambda"], 
-                        ", δ = ", svir_param["delta"],
-                        ", b = ", svir_param["b"], ", d = ", svir_param["d"], 
-                        ", γ = ", svir_param["gamma"],
-                        ", θ = ", svir_param["theta"]),
-       x = "Time (days)", y = "Population (N)") +
-  scale_color_manual(values = c("V" = "darkgoldenrod1",      # Vaccinated 
-                                "S" = "cornflowerblue", # Susceptible
-                                "I" = "tomato",   # Infected
-                                "R" = "dodgerblue4")) +  # Recovered
-  theme_minimal() +
-  theme(legend.position = "bottom")
-
-plot_svir
-```
+## Introduction to the Chapter
+
+In this chapter, we will solve a variety of four-compartment models of 
+varying complexity: the SIQR, SVIR, and SAIR models. 
+These models are derived from scholarly articles and experiments in which
+the parameters, variables, and differential equations are provided. 
+In this, we can apply our knowledge and techniques from previous chapters 
+to analyze different compartmental models. After solving and analyzing these 
+models, we will also look at some specific examples to understand the 
+usage of these models with real data. 
 
 ## The SIQR Model
 
 This model is based on the parameters and variables defined in the
-article cited. [@kalachev2022].
+article by Kalachev et al. (2023) and is used to model COVID-19. [@kalachev2022] 
 
-It is important to note that the authors states their limitations, as
-they do not include an E, Exposed, compartment. This means that the
+The "Q" compartment represents quarantined individuals. 
+
+It is important to note that the authors state their limitations, as
+they do not include an "E" (Exposed) compartment. This means that the
 complexities of the case in question, COVID-19, is not fully modeled.
 However, for our purposes, this pre-existing model provides definitive
 parameters and variables to be manipulated and solved.
 
-```{r siqrdiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='50%', fig.ext='png', fig.cap='The SIQR compartmental model.'}
+```{r siqrdiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='60%', fig.ext='png', fig.cap='The SIQR compartmental model.'}
 \usetikzlibrary{arrows.meta, positioning}
 
 \begin{tikzpicture}[block/.style={rectangle, draw, minimum width=1.5cm, minimum height=1cm, text centered, font=\Large},
@@ -513,7 +81,7 @@ Beginning with X, the vector of disease compartments. For the SIQR
 model, $X = \begin{bmatrix} I\\ Q\\ \end{bmatrix}$
 
 Refer back to the definitions of the new infection vector $F(x)$ and the
-transition vector $V(x)$ in (*Chapter* \@ref(sec:ngmparameters)).
+transition vector $V(x)$ in *Chapter* \@ref(sec:ngmparameters).
 
 ### Defining the Disease Free Equilibrium
 
@@ -578,7 +146,7 @@ Transition (V)
         \end{align*}
         $$
 
-Referring back to (*Chapter* \@ref(sec:ngmparameters)) once again for the
+Referring back to *Chapter* \@ref(sec:ngmparameters) once again for the
 equation for $\dot{X} = F(x) - V(x)$, we combine these matrices into:
 
 $$
@@ -633,7 +201,7 @@ $$
 
 #### Finding the Next Generation Matrix
 
-Refer to (*Chapter * \@ref(sec:ngm)) where the NGM for the SEIR model is
+Refer to *Chapter * \@ref(sec:ngm) where the NGM for the SEIR model is
 found. We will be using a similar structure once again.
 $NGM = \boldsymbol{F} \boldsymbol{V}^{-1}$
 
@@ -706,9 +274,9 @@ Thus:
 
     -   This means that $\alpha S > \beta$
     
-#### Fitting Data to the SIQR Model
+### Example with Parameter Values and Simulation 
 
-Throughout this textbook, we have discussed how to solve and understand varying models on a theoretical level. However; we are also able to fit these models to data in with certain datasets. To do this, we will use a very commonly used example in the world of applied epidemiology, the 1978 Influenza Outbreak in a British Boarding School. The data contained total cases, quarantined defined as "Confined to Bed," and Recovering defined as "Convalescent." This was a closed system and contained detail reports to understand what occured using our modern techniques and models. Doing so allows us to map the data into the variables of our models and understand the situation from which our data was recorded.
+Throughout this textbook, we have discussed how to solve and understand varying models on a theoretical level. However; we are also able to fit these models to data in with certain datasets. To do this, we will use a very commonly used example in the world of applied epidemiology, the 1978 Influenza Outbreak in a British Boarding School. The data contained total cases, quarantined defined as "Confined to Bed," and Recovering defined as "Convalescent." This was a closed system and contained detail reports to understand what occurred using our modern techniques and models. Doing so allows us to map the data into the variables of our models and understand the situation from which our data was recorded.[@kalachev2022]
 
 - Parameter Values
 
@@ -742,7 +310,7 @@ Throughout this textbook, we have discussed how to solve and understand varying 
   
   - From these parameter values, we also obtain that $R_0 = 2.87 > 1$. Therefore, the endemic equilibrium is stable. 
 
-```{r siqrplot, echo=FALSE, fig.align='center', out.width='60%', fig.cap='Time series plot of SIQR model at endemic equilibrium, simulated with parameter values.'}
+```{r siqrplot, echo=FALSE, fig.align='center', out.width='70%', fig.cap='Time series plot of SIQR model at endemic equilibrium, simulated with parameter values.'}
 # Define the SIQR model function
 siqr_model <- function(time, state, parameters) {
   with(as.list(c(state, parameters)), {
@@ -795,8 +363,6 @@ ggplot(siqr_results, aes(x = time, y = Population, color = Compartment)) +
         plot.subtitle = element_text(hjust = 0.5))
 ```
 
-Reference: [@kalachev2022]
-
 #### Complex Models Vs. Parsimony in Real World Situations
 
 As we have discussed, models may be too complex to fit the data. Key distinctions may be missing, which are vital to defining compartmental-specific data. In these scenarios, models are reduced to present a more general model while still being capable of great predictive power. In this specific scenario, the authors dive into attempting to use the SIQR model to use readily available data to define the perfect trends and relationships of COVID-19 in Missoula County, Montana, USA.
@@ -805,16 +371,482 @@ The authors state how the available data for one of the applied cases of the mod
 
 Because the data could not effectively be fit to the SIQR model, the author's decided to reduce the model to an SIR model. In this situation, the Q and R compartments would be combined, resolving the issue of the unclear distinction between the two compartments. While this does remove the dynamics between quarantine and recovery, and removing the role that quarantine plays in the context, reducing to an SIR model is still the most effective choice. The SIR model allows for a powerful model to be utilized due to fewer parameters, preventing over fitting. While the SIQR model would have given more precise results with distinctions between the Q and R compartments, using an SIR model still allows for a general trend to be established about the spread of the disease in this certain population and case.
 
+## The SVIR Model
+
+The model in this example is based on the parameters and variables defined in the
+articles by Ramponi et al. (2024) and Zhu X et al. (2024). [@ramponi2024] [@zhu2024] 
+
+A non-specific disease that considers vaccination of the population is modelled. 
+The model includes a "V" compartment for vaccinated individuals, and takes into account vaccination
+rate, vaccine effectiveness, and vaccine induced decline in the immune
+rate. 
+
+
+```{r vsirdiagram, echo=FALSE, engine='tikz', fig.ext='png', out.width='70%', fig.cap='The VSIR compartmental model.'}
+\usetikzlibrary{arrows.meta, positioning}
+
+\begin{tikzpicture}[
+    block/.style={rectangle, draw, rounded corners, minimum width=2.3cm, minimum height=1.2cm, text centered, font=\Large},
+    arrow/.style={-Latex, thick}
+]
+
+% Nodes
+\node (V) at (0,0)   [block, fill=red!20]     {$V(t)$};
+\node (S) [right=3.2cm of V, block, fill=green!20] {$S(t)$};
+\node (I) [right=3.2cm of S, block, fill=yellow!30] {$I(t)$};
+\node (R) [right=3.2cm of I, block, fill=orange!30] {$R(t)$};
+
+% Flows
+\draw[arrow] (V) -- node[midway, above] {$\delta V$} (S);
+\draw[arrow] (S) -- node[midway, below] {$\gamma S$} (V);
+\draw[arrow] ([yshift=1.3cm]S.north) -- node[midway,right] {$\Lambda$} (S.north);
+\draw[arrow] (S.south) -- ++(0,-1.0) node[midway,right] {$dS$};
+\draw[arrow] (V.south) -- ++(0,-1.0) node[midway,right] {$dV$};
+\draw[arrow] (I.south) -- ++(0,-1.0) node[midway,left] {$dI$};
+\draw[arrow] (I.south) -- ++(1,-1.2) node[midway,right] {$\alpha I$};
+\draw[arrow] (R.south) -- ++(0,-1.0) node[midway,left] {$dR$};
+\draw[arrow] (S) -- node[midway, above] {$\beta S I$} (I);
+\draw[arrow] (V.north) -- ++(0,1) -- ++(6.4,0) -- (I.north) node[midway, above] {$(1-\theta)\beta S I$};
+\draw[arrow] (I) -- node[midway, above] {$b I$} (R);
+
+\end{tikzpicture}
+```
+
+
+
+### Defining the Parameters and Model Formulation
+
+With $N(t)$ representing the total population it can also be divided in
+to the four compartments: susceptible, vaccinated, infected and
+recovered.
+
+Therefore, $N(t) = V(t) + S(t) + I(t) + R(t)$
+
+The model assumes that after vaccination, people will develop immunity
+but after some time they will become susceptible again as the immunity
+wares off. Based on this, the following parameters can be defined:
+
+- $\Lambda$ : susceptible individuals recruited by immigration/birth 
+
+- $\beta$ : effective contact rate between susceptible and infected 
+individuals 
+
+- $d$ : natural death rate 
+
+- $\theta$ : vaccine effectiveness rate 
+
+- $\gamma$ : vaccination rate of susceptible individuals 
+
+- $b$ : cure rate of infected individuals 
+
+- $\alpha$ : disease induced mortality 
+
+- $\delta$ : loss rate of immunity
+
+The epidemic dynamical model is given by the following four models :
+
+$$ 
+\begin{align*}
+\frac{dV}{dt} &= \gamma S -(1- \theta) \beta VI - (\gamma +d)V \\
+\frac{dS}{dt} &= \Lambda + \delta V - \beta SI - (\gamma + d)S \\
+\frac{dI}{dt} &= \beta SI + (1- \theta) \beta VI - (d+ \alpha + b)I \\
+\frac{dR}{dt} &= bI - dR\\
+\end{align*}
+$$
+
+### Defining the Disease Free Equilibrium  
+
+#### Solving for the Basic Reproduction Number
+
+From here the basic reproduction number, $R_0$, can be solved for using
+the next generation matrix method. When $\theta = \gamma = \delta =0$, the system is then the SIR model essentially. Finding the regeneration and transfer matrix then gives:
+
+$$
+F_0 = \begin{bmatrix} \beta SI \\ 0 \\ 0 \end{bmatrix},
+V_0 = \begin{bmatrix} (d+ \alpha + b) I \\ -bI + dR \\ - \Lambda + \beta SI +dS \end{bmatrix}
+$$
+
+The next step would be to differentiate $F_0$ and $V_0$ and calculate
+the value of $E_{00} = (S_{00},0,0) = (\frac{\Lambda}{d} , 0,0)$ which
+is at the DFE of the SIR model.
+
+It can be found that
+
+$$ 
+F_0 = \begin{bmatrix} \beta S_{00} & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix},
+V_0 = \begin{bmatrix} (d + \alpha + b) & 0 & 0 \\ -b & d & 0 \\ \beta S_0 & 0 & d \end{bmatrix}
+$$
+
+Since $R_0 = \rho (F_0 V^{-1}_0)$,
+
+$$
+R_0 = \frac {\beta S_{00}}{d+b+\alpha } = \frac{\beta \Lambda}{d(d+b+ \alpha)}
+$$
+
+Using this same process to solve for the SVIR. system's disease free equlibrium, the derivatives can be set to 0, that is,
+
+$E_0 = (V_0, S_0, 0,0) = (\frac{\Lambda \gamma} {d (\delta + d +\gamma)} , \frac {\Lambda (\delta + d)} {d (\delta + d +\gamma)}, 0,0 )$
+
+Where $x = (I, R, V, S)^T$, the regeneration matrix, $F$ and the
+transfer matrix, $V$ can be found to be :
+
+$$ 
+F = \begin{bmatrix} \beta SI + (1- \theta) \beta VI \\ 0\\ 0 \\ 0 \end{bmatrix},
+V =\begin{bmatrix} (d + \alpha +b) I \\ -bI + dR\\ -\gamma S + (1-\theta) \beta VI +(\delta +d) V \\ - \Lambda - \delta V + \beta SI + (\gamma +d)S \end{bmatrix}
+$$
+
+#### Computing the Basic Reproduction Number for the SVIR Model
+
+To compute the basic reproduction number using the next-generation
+method, we separate the system into:
+
+-   **new infection terms**, denoted by $\mathcal{F}$\
+-   **all other transitions**, denoted by $\mathcal{V}$
+
+The system state is ordered as:
+
+$$
+x = (I, R, V, S)^T
+$$
+
+From the SVIR model, only the infected class $I$ receives new
+infections. Therefore, the new infection terms are:
+
+$$
+\mathcal{F} =
+\begin{bmatrix}
+\beta SI + (1-\theta)\beta V I\\
+0\\
+0\\
+0
+\end{bmatrix}
+$$
+
+All other terms in the system are collected into the transition matrix
+$\mathcal{V}$:
+
+$$
+\mathcal{V} =
+\begin{bmatrix}
+(d + \alpha + b)I \\
+-bI + dR\\
+-\gamma S + (1-\theta)\beta V I + (\delta + d)V \\
+-\Lambda - \delta V + \beta S I + (\gamma + d)S
+\end{bmatrix}
+$$
+
+
+#### Linearization Around the Disease-Free Equilibrium
+
+The disease-free equilibrium (DFE) for the SVIR model is:
+
+$$
+E_0 = (V_0, S_0, 0, 0)
+$$
+
+where:
+
+$$
+V_0 = \frac{\Lambda\gamma}{d(\delta + d + \gamma)}, \quad
+S_0 = \frac{\Lambda(\delta + d)}{d(\delta + d + \gamma)}
+$$
+
+We now compute the Jacobians $D\mathcal{F}(E_0)$ and
+$D\mathcal{V}(E_0)$.
+
+
+#### Jacobian of $\mathcal{F}$
+
+Only the first component of $\mathcal{F}$ is non-zero:
+
+$$
+\mathcal{F}_1 = \beta SI + (1-\theta)\beta V I
+$$
+
+Taking partial derivatives:
+
+$$
+\frac{\partial \mathcal{F}_1}{\partial I} = \beta S + (1-\theta)\beta V, \quad
+\frac{\partial \mathcal{F}_1}{\partial R} = 0
+$$
+
+Thus, the Jacobian evaluated at the DFE is:
+
+$$
+D\mathcal{F}(E_0)=
+\begin{bmatrix}
+\beta S_0 + (1-\theta)\beta V_0 & 0\\
+0 & 0
+\end{bmatrix}
+$$
+
+We denote this upper-left block as $F$.
+
+
+
+#### Jacobian of $\mathcal{V}$
+
+The first two components of $\mathcal{V}$ involve the infected
+subsystem:
+
+$$
+\mathcal{V}_1 = (d + \alpha + b)I, \quad
+\mathcal{V}_2 = -bI + dR
+$$
+
+Taking partial derivatives:
+
+$$
+\frac{\partial \mathcal{V}_1}{\partial I} = d + \alpha + b, \quad
+\frac{\partial \mathcal{V}_2}{\partial I} = -b, \quad
+\frac{\partial \mathcal{V}_2}{\partial R} = d
+$$
+
+Thus, the upper-left block of $D\mathcal{V}(E_0)$ is:
+
+$$
+V =
+\begin{bmatrix}
+d + \alpha + b & 0\\
+-b & d
+\end{bmatrix}
+$$
+
+Lower blocks exist for the vaccinated and susceptible compartments, but
+they do not affect the computation of the reproduction number and are
+dropped.
+
+
+### Solving the SVIR Model
+
+#### Forming the Next-Generation Matrix
+
+The next-generation matrix is:
+
+$$
+FV^{-1}
+$$
+
+First, compute the inverse of $V$. For a matrix:
+
+$$
+\begin{bmatrix}
+a & 0\\
+c & d
+\end{bmatrix}
+$$
+
+the inverse is:
+
+$$
+\frac{1}{ad}
+\begin{bmatrix}
+d & 0\\
+-c & a
+\end{bmatrix}
+$$
+
+Applying this formula gives:
+
+$$
+V^{-1} =
+\frac{1}{d(d+\alpha + b)}
+\begin{bmatrix}
+d & 0\\
+b & d+\alpha + b
+\end{bmatrix}
+$$
+
+Now multiply:
+
+$$
+FV^{-1} =
+\begin{bmatrix}
+\frac{\beta\left(S_0 + (1-\theta)V_0\right)}{d+\alpha + b} & 0\\
+0 & 0
+\end{bmatrix}
+$$
+
+
+#### Computing the Reproduction Number
+
+The basic reproduction number is the dominant eigenvalue (spectral
+radius) of $FV^{-1}$:
+
+$$
+R_{\text{vac}} =
+\frac{\beta\left(S_0 + (1-\theta)V_0\right)}{d+\alpha + b}
+$$
+
+Substituting the formulas for $S_0$ and $V_0$:
+
+$$
+S_0 = \frac{\Lambda(\delta + d)}{d(\delta + d + \gamma)}, \quad
+V_0 = \frac{\Lambda\gamma}{d(\delta + d + \gamma)}
+$$
+
+
+#### Interpretation
+
+-   $\dfrac{\beta}{d+\alpha+b}$ represents the expected number of
+    infections produced by an infectious individual before leaving the
+    infected class through recovery or death.\
+-   $S_0 + (1-\theta)V_0$ is the *effective number of individuals at
+    risk*, because:
+    -   susceptible individuals contribute fully,
+    -   vaccinated individuals contribute only by the fraction
+        $(1-\theta)$ that the vaccine fails.
+
+Thus:
+
+-   A higher vaccination rate $\gamma$,\
+-   a more effective vaccine $\theta$,
+
+both reduce $R_{\text{vac}}$, helping to prevent the spread of
+infection.
+
+### Example with Parameter Values and Simulation
+
+The following parameter values were retrieved from the article by Zhu et al. (2024) [@zhu2024].
+
+
+- $b= 0.0085$ (cure rate of infected individuals )
+
+- $d = 0.005$ (natural death rate)
+
+- $\theta = 0.6$ (vaccine effectiveness rate)
+
+- $\beta = 0.29$ (effective contact rate between susceptible and infected 
+individuals)
+
+- $\delta = 0.005$ (loss rate of immunity)
+
+- $\lambda = 10$ (susceptible individuals recruited by immigration/birth)
+
+- $\alpha = 0.0099$ (disease induced mortality)
+
+- $\gamma = 0.2$ (vaccination rate of susceptible individuals)
+
+
+By plugging these parameter values into the previously solved equation for $R_{vac}$, we obtain $R_{vac} = 2.4716*10^4 \gg 1$ . Thus, we conclude that the endemic equilibrium is stable and the disease will persist. 
+
+Figure \@ref(fig:vsirplot) represents a simulation based on these parameter values that displays the populations in each compartment of the VSIR model over the period of 1 year. Due to the set-up of the model, the time series plot does not follow the usual trends of compartmental model time series plots. In Figure \@ref(fig:vsirplotzoom), we focus on the initial 10 days of the VSIR simulation. From this, we can see that the compartments change very drastically within a single day (this looks like a vertical drop in the Vaccination compartment of Figure \@ref(fig:vsirplot)). 
+
+```{r vsirplot, echo=FALSE, fig.align='center', out.width='70%', fig.cap='Time series plot of VSIR model at endemic equilibrium, simulated with parameter values for 1 year time scale.'}
+# Define the SVIR model function
+svir_model <- function(time, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    # Differential equations
+    dV <- gamma*S - (1-theta)*beta*V*I - (gamma +d)*V
+    dS <- Lambda + delta*V - beta*S*I - (gamma + d)*S
+    dI <- beta*S*I + (1-theta)*beta*V*I - (d+ alpha + b)*I
+    dR <- b*I - d*R
+
+    list(c(dV, dS, dI, dR)) # Return the rates of change
+  })
+}
+
+# Set parameters
+svir_param <- c(b = 0.0085, d = 0.005, theta = 0.6, beta = 0.29, delta = 0.005, 
+                Lambda = 10, alpha = 0.0099, gamma = 0.2) # at endemic equilibrium
+# note that adjusting lambda changes the scale, while theta (vaccine effectiveness) doesn't change much
+
+# calculate DFE:
+Lambda <- 10
+gamma <- 0.2
+d <- 0.005
+delta <- 0.005
+
+V0 <- round((Lambda*gamma)/(d*(delta+d+gamma)))
+S0 <- round(Lambda*(delta+d)/(d*(delta+d+gamma)))
+N_dfe <- V0 + S0 
+
+# Initial conditions: small outbreak with small A, I, and S slightly below DFE
+svir_initial <- c(V = V0 - 1, S = S0 - 1, I = 2, R = 0)
+
+# Time points to solve for (0 to 1-years simulation (daily steps)
+times <- seq(0, 365, by = 1)
+
+# Solve the differential equations
+svir_output <- ode(y = svir_initial, times = times, func = svir_model, parms = svir_param)
+
+# Convert to data frame
+svir_results <- as.data.frame(svir_output)
+
+# Calculate derived quantities
+svir_results <- svir_results %>% mutate(N = S + V + I + R, Day = time)
+
+# PLOT TIME SERIES PLOT
+
+plot_svir <- svir_results %>%
+  pivot_longer(cols = c(V, S, I, R), 
+               names_to = "Compartment", 
+               values_to = "Count") %>%
+  ggplot(aes(x = Day, y = Count, color = Compartment)) +
+  geom_line(linewidth = 1.2, alpha = 0.8) +
+  labs(subtitle = paste("β =", svir_param["beta"], ", α =", svir_param["alpha"],
+                        ", Λ =", svir_param["Lambda"], 
+                        ", δ = ", svir_param["delta"],
+                        ", b = ", svir_param["b"], ", d = ", svir_param["d"], 
+                        ", γ = ", svir_param["gamma"],
+                        ", θ = ", svir_param["theta"]),
+       x = "Time (days)", y = "Population (N)") +
+  scale_color_manual(values = c("V" = "darkgoldenrod1",      # Vaccinated 
+                                "S" = "cornflowerblue", # Susceptible
+                                "I" = "tomato",   # Infected
+                                "R" = "dodgerblue4")) +  # Recovered
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+plot_svir
+```
+
+```{r vsirplotzoom, echo=FALSE, fig.align='center', out.width='70%', fig.cap='Time series plot of VSIR model at endemic equilibrium, simulated with parameter values for 10 days time scale.'}
+# Time points to solve for (0 to 10 days simulation (daily steps)
+times <- seq(0, 10, by = 1)
+
+# Solve the differential equations
+svir_output <- ode(y = svir_initial, times = times, func = svir_model, parms = svir_param)
+
+# Convert to data frame
+svir_results <- as.data.frame(svir_output)
+
+# Calculate derived quantities
+svir_results <- svir_results %>% mutate(N = S + V + I + R, Day = time)
+
+# PLOT TIME SERIES PLOT
+
+plot_svir2 <- svir_results %>%
+  pivot_longer(cols = c(V, S, I, R), 
+               names_to = "Compartment", 
+               values_to = "Count") %>%
+  ggplot(aes(x = Day, y = Count, color = Compartment)) +
+  geom_line(linewidth = 1.2, alpha = 0.8) +
+  labs(subtitle = paste("β =", svir_param["beta"], ", α =", svir_param["alpha"],
+                        ", Λ =", svir_param["Lambda"], 
+                        ", δ = ", svir_param["delta"],
+                        ", b = ", svir_param["b"], ", d = ", svir_param["d"], 
+                        ", γ = ", svir_param["gamma"],
+                        ", θ = ", svir_param["theta"]),
+       x = "Time (days)", y = "Population (N)") +
+  scale_color_manual(values = c("V" = "darkgoldenrod1",      # Vaccinated 
+                                "S" = "cornflowerblue", # Susceptible
+                                "I" = "tomato",   # Infected
+                                "R" = "dodgerblue4")) +  # Recovered
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+plot_svir2
+```
+
 
 ## The SAIR Model
 
 SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment "A") as separate from the symptomatic individuals (compartment "I"). 
 
-In this section we will use the NGM to solve an example of SAIR that models COVID-19. This example was modified from a paper by Ouyang et al. (2025) [@ouyang2025], and it should be noted that the model includes parameters for vital dynamics (birth, death) and vaccination. This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved. See Figure \@ref(fig:sairdiagram) for the SAIR compartmental model diagram. 
+In this section we will use the NGM to solve an example of SAIR that models COVID-19. This example was modified from a paper by Ouyang et al. (2025) [@ouyang2025], and it should be noted that the model includes parameters for vital dynamics (birth, death) and vaccination. This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved.  
 
-### Defining the Parameters
-
-```{r sairdiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='60%', fig.ext='png', fig.cap='The SAIR compartmental model.'}
+```{r sairdiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='70%', fig.ext='png', fig.cap='The SAIR compartmental model.'}
 \begin{tikzpicture}[node distance=4cm,>=stealth,thick]
 
 % Nodes
@@ -849,6 +881,8 @@ In this section we will use the NGM to solve an example of SAIR that models COVI
 
 \end{tikzpicture}
 ```
+
+### Defining the Parameters
 
 **SAIR Model Parameters:**
 
@@ -1036,7 +1070,7 @@ By plugging these parameter values into the previously solved equation for $R_0$
 
 Figure \@ref(fig:sairplot) represents a simulation based on these parameter values that displays the populations in each compartment of the SAIR model over the period of 2 years.  
 
-```{r sairplot, echo=FALSE, fig.align='center', , fig.align='center', out.width='60%', fig.cap='Time series plot of SAIR model at endemic equilibrium, simulated with parameter values.'}
+```{r sairplot, echo=FALSE, fig.align='center', out.width='70%', fig.cap='Time series plot of SAIR model at endemic equilibrium, simulated with parameter values.'}
 # Define the SAIR model function
 sair_model <- function(time, state, parameters) {
   with(as.list(c(state, parameters)), {
