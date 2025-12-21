@@ -281,14 +281,13 @@ Thus, we can set each equation in our system of equations to 0.
 There are two types of equilibrium in epidemiology:
 
 1.  
-
 :::{.definition name="Disease Free Equilibria (DFE)" #DFE} 
-There are no infected in the population, so I\* = 0 in our SIR model
+There are no infected in the population, so $I* = 0$ in our SIR model (notation: asterix indicates equilibrium solution)
 :::
 
 2.  
 :::{.definition name="Endemic Equilibria (EE)" #EE} 
-Infected (*Definition* \@ref(def:Infected)) persist indefinitely, so I\* \> 0 in our SIR model (notation: asterix indicates equilibrium (*Definition* \@ref(def:Equilibrium)) solution)
+Infected (*Definition* \@ref(def:Infected)) persist indefinitely, so $I* > 0$ in our SIR model (notation: asterix indicates equilibrium solution)
 :::
 
 **First we solve for DFE.** From equation 2 we get: $I = 0$, or $S=\frac{\gamma}{\beta}$

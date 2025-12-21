@@ -21,6 +21,7 @@ def:ESE
 def:RHC
 def:DRS
 fig:seirdiagram
+fig:seirvitaldiagram
 fig:seirplot
 fig:seirvitalplot
 fig:siqrdiagram

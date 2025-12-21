@@ -215,7 +215,7 @@ This chapter will use the <strong>SEIR model</strong> as an example for applying
 <h2><span class="header-section-number">5.2</span> Definining the SEIR Model and Parameters<a href="next-generation-matrix.html#sec:ngmparameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The SEIR model expands on our previous SIR model with the additional compartment “Exposed”. This compartment represents individuals in the population that have been infected, but are not yet infectious.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:seirdiagram"></span>
-<img src="_main_files/figure-html/seirdiagram-1.png" alt="The SEIR compartmental model." width="50%" />
+<img src="_main_files/figure-html/seirdiagram-1.png" alt="The SEIR compartmental model." width="60%" />
 <p class="caption">
 Figure 5.1: The SEIR compartmental model.
 </p>
@@ -373,18 +373,24 @@ largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{
 </div>
 <div id="solving-the-seir-model-with-birth-and-death" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Solving the SEIR Model with Birth and Death<a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math display">\[S+E+I+R=N\]</span>
-In this version of the SEIR model, demographic effects such as births and deaths are included to make the model more realistic.</p>
-<p><span class="math inline">\(\mu N\)</span> represents births in the system.</p>
-<p><span class="math inline">\(\mu\)</span> represents deaths.</p>
+<p>In this version of the SEIR model, demographic effects such as births and deaths (also known as <strong>vital dynamics</strong>) are included to increase model realism.</p>
+<ul>
+<li><p><span class="math inline">\(\mu N\)</span> represents <strong>births</strong></p></li>
+<li><p><span class="math inline">\(\mu\)</span> represents <strong>deaths</strong></p></li>
+</ul>
 <p>The birth term <span class="math inline">\(\mu N\)</span> adds to the susceptible population, while the deaths occur at a rate <span class="math inline">\(\mu\)</span> across the four compartments.</p>
-<p>The four differential equations can then be constructed, however for the next generation model we only care about <span class="math inline">\(\dot{E}\)</span> and <span class="math inline">\(\dot{I}\)</span>, since they represent the infected compartments.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:seirvitaldiagram"></span>
+<img src="_main_files/figure-html/seirvitaldiagram-1.png" alt="The SEIR compartmental model." width="70%" />
+<p class="caption">
+Figure 5.2: The SEIR compartmental model.
+</p>
+</div>
+<p>The four <strong>differential equations</strong> can then be constructed. However, for the next generation model, we only care about <span class="math inline">\(\dot{E}\)</span> and <span class="math inline">\(\dot{I}\)</span>, since they represent the infected compartments. Also note that <span class="math inline">\(S+E+I+R=N\)</span>.</p>
 <p><span class="math display">\[\begin{align*}
 \dot{S} &amp;= \mu N - \frac{\beta SI}{N} \\
-\dot{R} &amp;= \gamma I - \mu R \\
-
 \dot{E} &amp;= \frac{\beta SI}{N} - (\sigma + \mu)E \\
 \dot{I} &amp;= \sigma E - (\gamma + \mu)I
+\dot{R} &amp;= \gamma I - \mu R \\
 \end{align*}\]</span></p>
 <p>At the disease-free equilibrium (DFE), there are no infections (<span class="math inline">\(E = 0\)</span> and <span class="math inline">\(I = 0\)</span>).
 From the first equation, <span class="math inline">\(\dot{S} = 0\)</span> when <span class="math inline">\(S = N\)</span>, meaning the entire population is susceptible.
@@ -457,19 +463,19 @@ If <span class="math inline">\(\mu = 0\)</span>, meaning no births or deaths occ
 <li><p>transmission rate: <span class="math inline">\(\beta = 0.4\)</span></p></li>
 <li><p>progression rate from exposed to infected: <span class="math inline">\(\delta = \sigma = 0.27\)</span></p></li>
 <li><p>recovery rate: <span class="math inline">\(\gamma = 0.10\)</span></p></li>
-<li><p>death rate: <span class="math inline">\(\mu = 0.0001\)</span> (only used in Figure <a href="next-generation-matrix.html#fig:seirvitalplot">5.3</a>)</p></li>
+<li><p>death rate: <span class="math inline">\(\mu = 0.0001\)</span> (only used in Figure <a href="next-generation-matrix.html#fig:seirvitalplot">5.4</a>)</p></li>
 </ul>
-<p>Figures <a href="next-generation-matrix.html#fig:seirplot">5.2</a> and <a href="next-generation-matrix.html#fig:seirvitalplot">5.3</a> visualize the differences that vital dynamics can have on a disease model, despite the rest of the parameters being the same. Also note the difference in the time scales between the plots.</p>
+<p>Figures <a href="next-generation-matrix.html#fig:seirplot">5.3</a> and <a href="next-generation-matrix.html#fig:seirvitalplot">5.4</a> visualize the effects of vital dynamics (births, deaths) on a disease model, despite the rest of the parameters being the same. Also, note the difference in the time scales between the plots. The plot without vital dynamics (Figure <a href="next-generation-matrix.html#fig:seirplot">5.3</a>) is simulated over a period of 75 days, while the plot including vital dynamics (Figure <a href="next-generation-matrix.html#fig:seirvitalplot">5.4</a>) is simulated over a period of 1 year.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:seirplot"></span>
-<img src="_main_files/figure-html/seirplot-1.png" alt="Time series plot of SEIR model without vital dynamics at endemic equilibrium, simulated with parameter values." width="60%" />
+<img src="_main_files/figure-html/seirplot-1.png" alt="Time series plot of SEIR model without vital dynamics at endemic equilibrium, simulated with parameter values." width="70%" />
 <p class="caption">
-Figure 5.2: Time series plot of SEIR model without vital dynamics at endemic equilibrium, simulated with parameter values.
+Figure 5.3: Time series plot of SEIR model without vital dynamics at endemic equilibrium, simulated with parameter values.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:seirvitalplot"></span>
-<img src="_main_files/figure-html/seirvitalplot-1.png" alt="Time series plot of SEIR model with vital dynamics at endemic equilibrium, simulated with parameter values." width="60%" />
+<img src="_main_files/figure-html/seirvitalplot-1.png" alt="Time series plot of SEIR model with vital dynamics at endemic equilibrium, simulated with parameter values." width="70%" />
 <p class="caption">
-Figure 5.3: Time series plot of SEIR model with vital dynamics at endemic equilibrium, simulated with parameter values.
+Figure 5.4: Time series plot of SEIR model with vital dynamics at endemic equilibrium, simulated with parameter values.
 </p>
 </div>
 

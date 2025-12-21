@@ -33,7 +33,7 @@ This chapter will use the **SEIR model** as an example for applying the NGM meth
 
 The SEIR model expands on our previous SIR model with the additional compartment "Exposed". This compartment represents individuals in the population that have been infected, but are not yet infectious. 
 
-```{r seirdiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='50%', fig.ext='png', fig.cap='The SEIR compartmental model.'}
+```{r seirdiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='60%', fig.ext='png', fig.cap='The SEIR compartmental model.'}
 \begin{tikzpicture}[node distance=3.2cm,>=stealth,thick]
 
 % Nodes
@@ -230,23 +230,50 @@ largest eigenvalue, so $R_0 = \lambda = \frac{\beta}{\gamma}$.
 
 ## Solving the SEIR Model with Birth and Death
 
-$$S+E+I+R=N$$
-In this version of the SEIR model, demographic effects such as births and deaths are included to make the model more realistic.
+In this version of the SEIR model, demographic effects such as births and deaths (also known as **vital dynamics**) are included to increase model realism. 
 
-$\mu N$ represents births in the system. 
+- $\mu N$ represents **births**  
 
-$\mu$ represents deaths.  
+- $\mu$ represents **deaths**
 
 The birth term $\mu N$ adds to the susceptible population, while the deaths occur at a rate $\mu$ across the four compartments.
 
-The four differential equations can then be constructed, however for the next generation model we only care about $\dot{E}$ and $\dot{I}$, since they represent the infected compartments.
+```{r seirvitaldiagram, echo=FALSE, fig.align='center', engine='tikz', out.width='70%', fig.ext='png', fig.cap='The SEIR compartmental model.'}
+\begin{tikzpicture}[node distance=3.2cm,>=stealth,thick]
+
+% Nodes
+\node[draw, minimum width=2cm, minimum height=1cm] (S) {$S$};
+\node[draw, minimum width=2cm, minimum height=1cm, right of=S] (E) {$E$};
+\node[draw, minimum width=2cm, minimum height=1cm, right of=E] (I) {$I$};
+\node[draw, minimum width=2cm, minimum height=1cm, right of=I] (R) {$R$};
+
+% empty nodes
+\node[draw=none, minimum width=2cm, minimum height=1cm, left of=S] (muN) {};
+\node[draw=none, minimum width=2cm, minimum height=1cm, below of=I, yshift=30] (muI) {};
+\node[draw=none, minimum width=2cm, minimum height=1cm, below of=E, yshift=30] (muE) {};
+\node[draw=none, minimum width=2cm, minimum height=1cm, below of=R, yshift=30] (muR) {};
+
+% Arrows
+\draw[->] (S) -- (E) node[midway, above] {$\frac{\beta S I}{N}$};
+\draw[->] (E) -- (I) node[midway, above] {$\sigma$};
+\draw[->] (I) -- (R) node[midway, above] {$\gamma I$};
+
+% Arrows for vital dynamics
+\draw [->] (muN) -- node[midway, above] {$\mu N$} (S);
+\draw [->] (E) -- node[midway, right] {$\mu E$} (muE);
+\draw [->] (I) -- node[midway, right] {$\mu I$} (muI);
+\draw [->] (R) -- node[midway, right] {$\mu R$} (muR);
+
+\end{tikzpicture}
+```
+
+The four **differential equations** can then be constructed. However, for the next generation model, we only care about $\dot{E}$ and $\dot{I}$, since they represent the infected compartments. Also note that $S+E+I+R=N$.
 
 \begin{align*}
 \dot{S} &= \mu N - \frac{\beta SI}{N} \\
-\dot{R} &= \gamma I - \mu R \\
-
 \dot{E} &= \frac{\beta SI}{N} - (\sigma + \mu)E \\
 \dot{I} &= \sigma E - (\gamma + \mu)I
+\dot{R} &= \gamma I - \mu R \\
 \end{align*} 
 
 At the disease-free equilibrium (DFE), there are no infections ($E = 0$ and $I = 0$).
@@ -335,10 +362,10 @@ Below, we have time series plots displaying the two examples we have looked at i
 
 - death rate: $\mu = 0.0001$ (only used in Figure \@ref(fig:seirvitalplot))
 
-Figures \@ref(fig:seirplot) and \@ref(fig:seirvitalplot) visualize the differences that vital dynamics can have on a disease model, despite the rest of the parameters being the same. Also note the difference in the time scales between the plots. 
+Figures \@ref(fig:seirplot) and \@ref(fig:seirvitalplot) visualize the effects of vital dynamics (births, deaths) on a disease model, despite the rest of the parameters being the same. Also, note the difference in the time scales between the plots. The plot without vital dynamics (Figure \@ref(fig:seirplot)) is simulated over a period of 75 days, while the plot including vital dynamics (Figure \@ref(fig:seirvitalplot)) is simulated over a period of 1 year.
  
 
-```{r seirplot, echo=FALSE, fig.align='center', out.width='60%', fig.cap='Time series plot of SEIR model without vital dynamics at endemic equilibrium, simulated with parameter values.'}
+```{r seirplot, echo=FALSE, fig.align='center', out.width='70%', fig.cap='Time series plot of SEIR model without vital dynamics at endemic equilibrium, simulated with parameter values.'}
 
 
 # SEIR model without vital dynamics
@@ -426,7 +453,7 @@ ggplot(seir_results, aes(x = time, y = Population, color = Compartment)) +
 
 ```
 
-```{r seirvitalplot, echo=FALSE, fig.align='center', out.width='60%', fig.cap='Time series plot of SEIR model with vital dynamics at endemic equilibrium, simulated with parameter values.'}
+```{r seirvitalplot, echo=FALSE, fig.align='center', out.width='70%', fig.cap='Time series plot of SEIR model with vital dynamics at endemic equilibrium, simulated with parameter values.'}
 
 # Define the SEIR model function
 seir_vital_model <- function(time, state, parameters) {
