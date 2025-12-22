@@ -51,6 +51,7 @@ introduction-to-the-chapter
 interactions-between-compartments
 sec:SI_model
 solving-the-sir-model
+effective-reproduction-number
 interactive-dashboard
 equilibrium-stability-analysis
 introduction-to-the-chapter-1
@@ -60,7 +61,7 @@ sec:dfeesa
 at-endemic-equilibrium
 a-note-on-phase-diagrams
 interactive-dashboard-1
-routh---hurwitz-criteria
+routh-hurwitz-criteria
 quadratic-characteristic-equation
 cubic-characteristic-equation
 quartic-characteristic-equation

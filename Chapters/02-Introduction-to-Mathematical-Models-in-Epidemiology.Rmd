@@ -74,11 +74,7 @@ $R_0(1-p) <1$
 
 This inequality gives:
 
-$1-p<\frac{1}{R_0}$
-
-or 
-
-$p>1-\frac{1}{R_0}$
+$1-p<\frac{1}{R_0}$ or $p>1-\frac{1}{R_0}$
 
 A population is said to have herd immunity (*Definition* \@ref(def:Herd)) if a great enough fraction of the population has been immunized so that the disease cannot become endemic (*Definition* \@ref(def:Endemic)). 
 

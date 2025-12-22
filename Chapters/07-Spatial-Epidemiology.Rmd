@@ -10,13 +10,13 @@ In past models, we have broken down models into 3 compartments: S, I, and R. In 
 
 :::{.example name="Metapopulation Example 1" #Asynchronous}
 
-Headline: There is a breakout of COVID-19 in the United States of America during early 2020's
+*Headline: There is a breakout of COVID-19 in the United States of America during early 2020's*
 
-Without Metapopulations: There are 100 million cases of COVID-19
+- **Without Metapopulations:** There are 100 million cases of COVID-19
 
-With Metapopulations (Dividing the Populations By Time Zone): Coastal Timezone States (EST and PST) account for 75% of COVID-19 Cases in the USA
+- **With Metapopulations** (Dividing the Populations By Time Zone): Coastal Timezone States (EST and PST) account for 75% of COVID-19 Cases in the USA
 
-Takeaway:
+- **Takeaway:**
 
   - Indicates that the disease is spreading from foreigners who are travelling into major airports on the coast rather than spreading through domestic transmission.
   
@@ -24,16 +24,15 @@ Takeaway:
   
 :::
 
-:::{.example name="Metapopulation Example 1" #Synchronous}
+:::{.example name="Metapopulation Example 2" #Synchronous}
 
-Example 2:
-Headline: In January 2025, there was a breakout of Measles in the United States of America
+*Headline: In January 2025, there was a breakout of Measles in the United States of America*
 
-Without Metapopulations: There are 1,798 cases of Measles
+- **Without Metapopulations:** There are 1,798 cases of Measles
 
-With Metapopulations: 87% of all cases occur in close-knit, unvaccinated communities in South/South Central States (Texas, Oklahoma, New Mexico)
+- **With Metapopulations:** 87% of all cases occur in close-knit, unvaccinated communities in South/South Central States (Texas, Oklahoma, New Mexico)
 
-Takeaway:
+- **Takeaway:**
 
   - The transmission of the disease between these specific unvaccinated communities is a synchronized metapopulation that acts together, while external vaccinated populations can combat this disease and prevent further spreading.
 
@@ -76,19 +75,22 @@ In this section, we will look at the other way in which diseases spread. First, 
 Since contact is not consistent between all individuals, we must define the distinctions that can cause variations in the transmission of diseases. If we recall, in our models we use $R_0$, the basic reproductive number. In our models, $R_0$ is proportional to the average number of contacts, since homogeneity is assumed. However, with heterogeneity, a person with a high number of contacts is integral to this topic, since they not only have the highest chances of becoming infected but also of spreading the infection. Because of this existence, the average is irrelevant, and the variance is the most relevant measure of disease transmission.
 
 :::{.example name="Contact Homogeneity vs. Contact Heterogeneity" #contact}
+  
+A comparison of two cities. 
 
-City 1: Everyone is in contact with 5 people
+- **City 1:** Everyone is in contact with 5 people
 
   - Average Contact: 5 = $R_0$
   
   - If a person becomes infected, the disease has a constant transmission rate = $R_0$, the average contacts in this case.
-City 2: 99 people are in contact with 1 person. 1 person is in contact with 401 people.
+  
+- **City 2:** 99 people are in contact with 1 person. 1 person is in contact with 401 people.
 
   - Average Contact: Also 5
   
   - However, if the 99 people become infected, the disease will spread too slowly and die out; if the 1 person becomes infected, then the disease is instantly spread to 401 people, leading to an epidemic.
   
-So, while the mean number of contacts in each town is the same, because 1 person has an egregious and abnormal amount of contacts, you must account for the variance and the existence of the one outlier.
+- So, while the mean number of contacts in each town is the same, because 1 person has an egregious and abnormal amount of contacts, you must account for the variance and the existence of the one outlier.
 
 :::
 

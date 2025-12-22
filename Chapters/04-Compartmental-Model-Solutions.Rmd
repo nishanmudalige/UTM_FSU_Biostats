@@ -175,7 +175,7 @@ $$
 
 - Therefore we have shown that the eigenvalues are negative when the complex part is present or absent, so the Endemic Equilibrium is stable when **c>0**.
 
-#### A Note on Phase Diagrams
+### A Note on Phase Diagrams
 
 A **phase diagram** is a visual representation of the conditions that can occur at equilibrium. 
 
@@ -187,7 +187,9 @@ Different phase diagrams can exist depending on the conditions:
 - When $R_0 > 1$, two equilibrium exist: **DFE and EE**. DFE is always an **unstable node** and EE is either a **stable node or a stable spiral** The trajectory of the solution goes from the unstable DFE to the stable EE. Whether EE is a spiral depends on whether a complex solution exists for the eigenvalues. If the discriminant is negative, a complex value is present and a stable spiral will occur. If the discriminant is nonnegative, there is no complex number and a stable node will occur.
 
 
-### Interactive Dashboard
+#### Interactive Dashboard 
+
+Adjust the parameters of the dashboard below to change the conditions of stability and see the different phase diagrams that are possible for the SIR model.
 
 ```{r PhaseShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
 knitr::include_app("https://fsubiomath.shinyapps.io/SIR_Phase_Diagrams/", height = "1500")
@@ -195,11 +197,11 @@ knitr::include_app("https://fsubiomath.shinyapps.io/SIR_Phase_Diagrams/", height
 
 
 
-### Routh - Hurwitz Criteria
+### Routh-Hurwitz Criteria
 
 For stability, it must be shown that the real part of all the eigenvalues is negative (*Definition* \@ref(def:ESE)). 
 
-::: {.definition name="Routh-Hourwitz Criteria" #RHC}
+::: {.definition name="Routh-Hurwitz Criteria" #RHC}
 A method to check if the eigenvalues are negative and the system is stable without needing to solve for the roots. The criteria can determine if the eigenvalues are negative by looking at the **coefficients**. Depending on the degree of the polynomial, the criteria varies.
 :::
 

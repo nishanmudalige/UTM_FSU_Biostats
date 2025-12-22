@@ -120,7 +120,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#sec:SI_model"><i class="fa fa-check"></i><b>3.3</b> Solving the SI Model</a></li>
 <li class="chapter" data-level="3.4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>3.4</b> Solving the SIR Model</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.4.1</b> Interactive Dashboard</a></li>
+<li class="chapter" data-level="3.4.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#effective-reproduction-number"><i class="fa fa-check"></i><b>3.4.1</b> Effective Reproduction Number</a></li>
+<li class="chapter" data-level="3.4.2" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.4.2</b> Interactive Dashboard</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html"><i class="fa fa-check"></i><b>4</b> Equilibrium Stability Analysis</a>
@@ -129,8 +130,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#sec:linearstability"><i class="fa fa-check"></i><b>4.2</b> Linear Stability Analysis for the SIR Model</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#direct-calculation"><i class="fa fa-check"></i><b>4.2.1</b> Direct Calculation</a></li>
-<li class="chapter" data-level="4.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#interactive-dashboard-1"><i class="fa fa-check"></i><b>4.2.2</b> Interactive Dashboard</a></li>
-<li class="chapter" data-level="4.2.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria"><i class="fa fa-check"></i><b>4.2.3</b> Routh - Hurwitz Criteria</a></li>
+<li class="chapter" data-level="4.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#a-note-on-phase-diagrams"><i class="fa fa-check"></i><b>4.2.2</b> A Note on Phase Diagrams</a></li>
+<li class="chapter" data-level="4.2.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#routh-hurwitz-criteria"><i class="fa fa-check"></i><b>4.2.3</b> Routh-Hurwitz Criteria</a></li>
 <li class="chapter" data-level="4.2.4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#descartes-rule-of-signs"><i class="fa fa-check"></i><b>4.2.4</b> Descartes’ Rule of Signs</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-si-model"><i class="fa fa-check"></i><b>4.3</b> Linear Stability Analysis for the SI Model</a></li>
@@ -213,23 +214,26 @@ div.csl-indent {
 <h2><span class="header-section-number">7.2</span> Metapopulations<a href="spatial-epidemiology.html#metapopulations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In past models, we have broken down models into 3 compartments: S, I, and R. In these models, one key omission is the distinction of populations. These compartments model the entire population, but there might be variations in disease transmission, and a lack or abundance of prevalence of a disease in a certain location. In order to accurately account for this, we are able to use metapopulations. In this way, these populations are able to split so that the disease in each of these sub-populations can be understood. This allows us to see that maybe a disease is prevalent and rapidly spreading in one city, but is only just being introduced in another city, demonstrating weak coupling and asynchrony. Alternatively, strong coupling can exist, and the spread of disease in these two cities might occur at the same time. Thus, there is synchronization between the two metapopulations (City 1 and City 2). Utilizing metapopulations allows us to see these differences within the entire population, rather than coupling every population together.</p>
 <div class="example">
-<p><span id="exm:Asynchronous" class="example"><strong>Example 7.1  (Metapopulation Example 1) </strong></span>Headline: There is a breakout of COVID-19 in the United States of America during early 2020’s</p>
-<p>Without Metapopulations: There are 100 million cases of COVID-19</p>
-<p>With Metapopulations (Dividing the Populations By Time Zone): Coastal Timezone States (EST and PST) account for 75% of COVID-19 Cases in the USA</p>
-<p>Takeaway:</p>
+<p><span id="exm:Asynchronous" class="example"><strong>Example 7.1  (Metapopulation Example 1) </strong></span><em>Headline: There is a breakout of COVID-19 in the United States of America during early 2020’s</em></p>
+<ul>
+<li><p><strong>Without Metapopulations:</strong> There are 100 million cases of COVID-19</p></li>
+<li><p><strong>With Metapopulations</strong> (Dividing the Populations By Time Zone): Coastal Timezone States (EST and PST) account for 75% of COVID-19 Cases in the USA</p></li>
+<li><p><strong>Takeaway:</strong></p>
 <ul>
 <li><p>Indicates that the disease is spreading from foreigners who are travelling into major airports on the coast rather than spreading through domestic transmission.</p></li>
 <li><p>The disease is synchronous in coastal cities, as foreigners are abundant in these areas and are spreading the disease; inner-domestic cities, while still being infected, are asynchronous, as the infections are only starting to spread in these regions.</p></li>
+</ul></li>
 </ul>
 </div>
 <div class="example">
-<p><span id="exm:Synchronous" class="example"><strong>Example 7.2  (Metapopulation Example 1) </strong></span>Example 2:
-Headline: In January 2025, there was a breakout of Measles in the United States of America</p>
-<p>Without Metapopulations: There are 1,798 cases of Measles</p>
-<p>With Metapopulations: 87% of all cases occur in close-knit, unvaccinated communities in South/South Central States (Texas, Oklahoma, New Mexico)</p>
-<p>Takeaway:</p>
+<p><span id="exm:Synchronous" class="example"><strong>Example 7.2  (Metapopulation Example 2) </strong></span><em>Headline: In January 2025, there was a breakout of Measles in the United States of America</em></p>
+<ul>
+<li><p><strong>Without Metapopulations:</strong> There are 1,798 cases of Measles</p></li>
+<li><p><strong>With Metapopulations:</strong> 87% of all cases occur in close-knit, unvaccinated communities in South/South Central States (Texas, Oklahoma, New Mexico)</p></li>
+<li><p><strong>Takeaway:</strong></p>
 <ul>
 <li>The transmission of the disease between these specific unvaccinated communities is a synchronized metapopulation that acts together, while external vaccinated populations can combat this disease and prevent further spreading.</li>
+</ul></li>
 </ul>
 </div>
 <p>These are basic examples, but they help illustrate how defining metapopulations allows for further in-depth analysis of the spread of a disease within a population rather than a single group, such as those defined in our models. <span class="citation">[<a href="references.html#ref-mathis2025">20</a>]</span> <span class="citation">[<a href="references.html#ref-wang2014">21</a>]</span></p>
@@ -272,15 +276,20 @@ Headline: In January 2025, there was a breakout of Measles in the United States 
 <h3><span class="header-section-number">7.4.1</span> Contact Heterogeneity<a href="spatial-epidemiology.html#contact-heterogeneity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Since contact is not consistent between all individuals, we must define the distinctions that can cause variations in the transmission of diseases. If we recall, in our models we use <span class="math inline">\(R_0\)</span>, the basic reproductive number. In our models, <span class="math inline">\(R_0\)</span> is proportional to the average number of contacts, since homogeneity is assumed. However, with heterogeneity, a person with a high number of contacts is integral to this topic, since they not only have the highest chances of becoming infected but also of spreading the infection. Because of this existence, the average is irrelevant, and the variance is the most relevant measure of disease transmission.</p>
 <div class="example">
-<p><span id="exm:contact" class="example"><strong>Example 7.3  (Contact Homogeneity vs. Contact Heterogeneity) </strong></span>City 1: Everyone is in contact with 5 people</p>
+<p><span id="exm:contact" class="example"><strong>Example 7.3  (Contact Homogeneity vs. Contact Heterogeneity) </strong></span>A comparison of two cities.</p>
+<ul>
+<li><p><strong>City 1:</strong> Everyone is in contact with 5 people</p>
 <ul>
 <li><p>Average Contact: 5 = <span class="math inline">\(R_0\)</span></p></li>
-<li><p>If a person becomes infected, the disease has a constant transmission rate = <span class="math inline">\(R_0\)</span>, the average contacts in this case.
-City 2: 99 people are in contact with 1 person. 1 person is in contact with 401 people.</p></li>
+<li><p>If a person becomes infected, the disease has a constant transmission rate = <span class="math inline">\(R_0\)</span>, the average contacts in this case.</p></li>
+</ul></li>
+<li><p><strong>City 2:</strong> 99 people are in contact with 1 person. 1 person is in contact with 401 people.</p>
+<ul>
 <li><p>Average Contact: Also 5</p></li>
 <li><p>However, if the 99 people become infected, the disease will spread too slowly and die out; if the 1 person becomes infected, then the disease is instantly spread to 401 people, leading to an epidemic.</p></li>
+</ul></li>
+<li><p>So, while the mean number of contacts in each town is the same, because 1 person has an egregious and abnormal amount of contacts, you must account for the variance and the existence of the one outlier.</p></li>
 </ul>
-<p>So, while the mean number of contacts in each town is the same, because 1 person has an egregious and abnormal amount of contacts, you must account for the variance and the existence of the one outlier.</p>
 </div>
 </div>
 <div id="scale-free-networks" class="section level3 hasAnchor" number="7.4.2">

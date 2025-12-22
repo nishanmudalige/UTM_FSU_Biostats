@@ -120,7 +120,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#sec:SI_model"><i class="fa fa-check"></i><b>3.3</b> Solving the SI Model</a></li>
 <li class="chapter" data-level="3.4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>3.4</b> Solving the SIR Model</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.4.1</b> Interactive Dashboard</a></li>
+<li class="chapter" data-level="3.4.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#effective-reproduction-number"><i class="fa fa-check"></i><b>3.4.1</b> Effective Reproduction Number</a></li>
+<li class="chapter" data-level="3.4.2" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.4.2</b> Interactive Dashboard</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html"><i class="fa fa-check"></i><b>4</b> Equilibrium Stability Analysis</a>
@@ -129,8 +130,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#sec:linearstability"><i class="fa fa-check"></i><b>4.2</b> Linear Stability Analysis for the SIR Model</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#direct-calculation"><i class="fa fa-check"></i><b>4.2.1</b> Direct Calculation</a></li>
-<li class="chapter" data-level="4.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#interactive-dashboard-1"><i class="fa fa-check"></i><b>4.2.2</b> Interactive Dashboard</a></li>
-<li class="chapter" data-level="4.2.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria"><i class="fa fa-check"></i><b>4.2.3</b> Routh - Hurwitz Criteria</a></li>
+<li class="chapter" data-level="4.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#a-note-on-phase-diagrams"><i class="fa fa-check"></i><b>4.2.2</b> A Note on Phase Diagrams</a></li>
+<li class="chapter" data-level="4.2.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#routh-hurwitz-criteria"><i class="fa fa-check"></i><b>4.2.3</b> Routh-Hurwitz Criteria</a></li>
 <li class="chapter" data-level="4.2.4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#descartes-rule-of-signs"><i class="fa fa-check"></i><b>4.2.4</b> Descartes’ Rule of Signs</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-si-model"><i class="fa fa-check"></i><b>4.3</b> Linear Stability Analysis for the SI Model</a></li>
@@ -347,8 +348,9 @@ Finally we substitute <span class="math inline">\(I^*\)</span> into the equation
 <li>Therefore we have shown that the eigenvalues are negative when the complex part is present or absent, so the Endemic Equilibrium is stable when <strong>c&gt;0</strong>.</li>
 </ul>
 </div>
-<div id="a-note-on-phase-diagrams" class="section level4 hasAnchor" number="4.2.1.3">
-<h4><span class="header-section-number">4.2.1.3</span> A Note on Phase Diagrams<a href="equilibrium-stability-analysis.html#a-note-on-phase-diagrams" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="a-note-on-phase-diagrams" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> A Note on Phase Diagrams<a href="equilibrium-stability-analysis.html#a-note-on-phase-diagrams" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <strong>phase diagram</strong> is a visual representation of the conditions that can occur at equilibrium.</p>
 <p>The phase diagram for the SIR model consists of a simplex where the diagonal line represents the boundary of no recovered individuals, and the origin represents the point at which all individuals are recovered. The space within the simplex is when there are some recovered individuals. The equilibrium exists somewhere within this simplex.</p>
 <p>Different phase diagrams can exist depending on the conditions:</p>
@@ -357,18 +359,18 @@ Finally we substitute <span class="math inline">\(I^*\)</span> into the equation
 </li>
 <li>When <span class="math inline">\(R_0 &gt; 1\)</span>, two equilibrium exist: <strong>DFE and EE</strong>. DFE is always an <strong>unstable node</strong> and EE is either a <strong>stable node or a stable spiral</strong> The trajectory of the solution goes from the unstable DFE to the stable EE. Whether EE is a spiral depends on whether a complex solution exists for the eigenvalues. If the discriminant is negative, a complex value is present and a stable spiral will occur. If the discriminant is nonnegative, there is no complex number and a stable node will occur.</li>
 </ul>
-</div>
-</div>
-<div id="interactive-dashboard-1" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Interactive Dashboard<a href="equilibrium-stability-analysis.html#interactive-dashboard-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="interactive-dashboard-1" class="section level4 hasAnchor" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Interactive Dashboard<a href="equilibrium-stability-analysis.html#interactive-dashboard-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Adjust the parameters of the dashboard below to change the conditions of stability and see the different phase diagrams that are possible for the SIR model.</p>
 <iframe src="https://fsubiomath.shinyapps.io/SIR_Phase_Diagrams/?showcase=0" width="100%" height="1500" data-external="1">
 </iframe>
 </div>
-<div id="routh---hurwitz-criteria" class="section level3 hasAnchor" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Routh - Hurwitz Criteria<a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="routh-hurwitz-criteria" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Routh-Hurwitz Criteria<a href="equilibrium-stability-analysis.html#routh-hurwitz-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For stability, it must be shown that the real part of all the eigenvalues is negative (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:ESE">4.2</a>).</p>
 <div class="definition">
-<p><span id="def:RHC" class="definition"><strong>Definition 4.3  (Routh-Hourwitz Criteria) </strong></span>A method to check if the eigenvalues are negative and the system is stable without needing to solve for the roots. The criteria can determine if the eigenvalues are negative by looking at the <strong>coefficients</strong>. Depending on the degree of the polynomial, the criteria varies.</p>
+<p><span id="def:RHC" class="definition"><strong>Definition 4.3  (Routh-Hurwitz Criteria) </strong></span>A method to check if the eigenvalues are negative and the system is stable without needing to solve for the roots. The criteria can determine if the eigenvalues are negative by looking at the <strong>coefficients</strong>. Depending on the degree of the polynomial, the criteria varies.</p>
 </div>
 <p>We will consider stability analysis for different characteristic polynomials using the <strong>Routh-Hurwitz Criteria</strong> (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:RHC">4.3</a>).</p>
 <div id="quadratic-characteristic-equation" class="section level4 hasAnchor" number="4.2.3.1">

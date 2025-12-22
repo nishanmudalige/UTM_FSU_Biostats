@@ -120,7 +120,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.3" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#sec:SI_model"><i class="fa fa-check"></i><b>3.3</b> Solving the SI Model</a></li>
 <li class="chapter" data-level="3.4" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#solving-the-sir-model"><i class="fa fa-check"></i><b>3.4</b> Solving the SIR Model</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.4.1</b> Interactive Dashboard</a></li>
+<li class="chapter" data-level="3.4.1" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#effective-reproduction-number"><i class="fa fa-check"></i><b>3.4.1</b> Effective Reproduction Number</a></li>
+<li class="chapter" data-level="3.4.2" data-path="modelling-disease-dynamics-with-odes.html"><a href="modelling-disease-dynamics-with-odes.html#interactive-dashboard"><i class="fa fa-check"></i><b>3.4.2</b> Interactive Dashboard</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html"><i class="fa fa-check"></i><b>4</b> Equilibrium Stability Analysis</a>
@@ -129,8 +130,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#sec:linearstability"><i class="fa fa-check"></i><b>4.2</b> Linear Stability Analysis for the SIR Model</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#direct-calculation"><i class="fa fa-check"></i><b>4.2.1</b> Direct Calculation</a></li>
-<li class="chapter" data-level="4.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#interactive-dashboard-1"><i class="fa fa-check"></i><b>4.2.2</b> Interactive Dashboard</a></li>
-<li class="chapter" data-level="4.2.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#routh---hurwitz-criteria"><i class="fa fa-check"></i><b>4.2.3</b> Routh - Hurwitz Criteria</a></li>
+<li class="chapter" data-level="4.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#a-note-on-phase-diagrams"><i class="fa fa-check"></i><b>4.2.2</b> A Note on Phase Diagrams</a></li>
+<li class="chapter" data-level="4.2.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#routh-hurwitz-criteria"><i class="fa fa-check"></i><b>4.2.3</b> Routh-Hurwitz Criteria</a></li>
 <li class="chapter" data-level="4.2.4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#descartes-rule-of-signs"><i class="fa fa-check"></i><b>4.2.4</b> Descartes’ Rule of Signs</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-si-model"><i class="fa fa-check"></i><b>4.3</b> Linear Stability Analysis for the SI Model</a></li>
@@ -272,9 +273,7 @@ div.csl-indent {
 <p>Mathematically, this is expressed in terms of the basic reproduction number, <span class="math inline">\(R_0\)</span> (<em>Definition</em> <a href="introduction.html#def:R0">1.3</a>). If a proportion p of the population is immunized, the effective reproduction number becomes <span class="math inline">\(R_0(1-p)\)</span>. We will define the Effective Reproduction Number in Chapter 3 (<em>Definition</em> <a href="modelling-disease-dynamics-with-odes.html#def:Effective">3.5</a>). To prevent the disease from becoming endemic (<em>Definition</em> <a href="introduction.html#def:Endemic">1.2</a>), this effective reproduction number must be below one, leading to the inequality:</p>
 <p><span class="math inline">\(R_0(1-p) &lt;1\)</span></p>
 <p>This inequality gives:</p>
-<p><span class="math inline">\(1-p&lt;\frac{1}{R_0}\)</span></p>
-<p>or</p>
-<p><span class="math inline">\(p&gt;1-\frac{1}{R_0}\)</span></p>
+<p><span class="math inline">\(1-p&lt;\frac{1}{R_0}\)</span> or <span class="math inline">\(p&gt;1-\frac{1}{R_0}\)</span></p>
 <p>A population is said to have herd immunity (<em>Definition</em> <a href="introduction-to-mathematical-models-in-epidemiology.html#def:Herd">2.8</a>) if a great enough fraction of the population has been immunized so that the disease cannot become endemic (<em>Definition</em> <a href="introduction.html#def:Endemic">1.2</a>).</p>
 <p>An example of a disease that has been eradicated is smallpox. Smallpox was eradicated because it requires a lower percentage of the population to be immunized and therefore herd immunity was attainable. Measles, conversely, requires greater percentages of vaccination and the vaccine is not always effective which is why herd immunity against measles has not been achieved yet. These examples underscore how diseases with higher transmissibility require larger immunized fractions for herd immunity, a principle directly relevant to SVIR models where vaccination rates determine the system’s long-term equilibrium.</p>
 </div>
