@@ -28,7 +28,10 @@ This chapter describes in depth the use of the **Next Generation Matrix (NGM) me
 what causes new cases and what accounts for everything else that happens to an infected person. It is also important to mention that these tools are not limited to specific models and can be used for a variety of models. 
 This chapter will use the **SEIR model** as an example for applying the NGM method (recall the SEIR model from *Chapter* \@ref(sec:compartments)). 
 
-## Definining the SEIR Model and Parameters {#sec:ngmparameters}
+
+## Solving the SEIR Model 
+
+### Definining the SEIR Model and Parameters {#sec:ngmparameters}
 
 The SEIR model expands on our previous SIR model with the additional compartment "Exposed". This compartment represents individuals in the population that have been infected, but are not yet infectious. 
 
@@ -95,7 +98,7 @@ So at the DFE for the $(S,E,I,R) = (N,0,0,0)$.
 
 This is important for understanding later substitutions in the Chapter.
 
-## Solving SEIR Model with NGM {#sec:ngm}
+### Solving SEIR Model with NGM {#sec:ngm}
 
 Recall that for the SEIR model the disease compartments are $E$ and $I$, so $\dot{X} = \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix}$. 
 
@@ -249,7 +252,7 @@ The birth term $\mu N$ adds to the susceptible population, while the deaths occu
 \end{tikzpicture}
 ```
 
-The four **differential equations** can then be constructed. However, for the next generation model, we only care about $\dot{E}$ and $\dot{I}$, since they represent the infected compartments. Also recall that $S+E+I+R=N$.
+The four **differential equations for the SEIR model with vital dynamics** can then be constructed. Also recall that $S+E+I+R=N$.
 
 $$
 \begin{align*}
@@ -260,14 +263,14 @@ $$
 \end{align*} 
 $$
 
-At the **Disease-Free Equilibrium (DFE)**, there are no infections ($E = 0$ and $I = 0$).
-From the first equation, $\dot{S} = 0$ when $S = N$, meaning the entire population is susceptible.
+At the **Disease-Free Equilibrium (DFE)**, there are no infections ($E = 0$ and $I = 0$). 
+We then set all differential equations equal to 0, and $E = 0$ and $I = 0$. 
+Therefore at the DFE, we obtain $\dot{S} = 0$ when $S = N$, which means the entire population is susceptible.
 We use this equilibrium to linearize the system and separate infection terms ($F(x)$) from other transition terms ($V(x)$).
 
-Next Generation Model: 
 $$
 \begin{align*}
-\dot{x} &= F(x) - V(x) \\
+\dot{X} &= F(x) - V(x) \\
 &= \begin{bmatrix} 
 \frac{\beta SI}{N} \\ 
 0 
@@ -282,26 +285,24 @@ $$
 Here, the first vector $F(x)$ captures new infections — in this case, the flow from the susceptible compartment $S$ to the exposed compartment $E$.
 The second vector, $V(x)$, represents all other movements between infected compartments (progression, recovery, and death).
 
-The Jacobian of $F(x)$ is 
+The Jacobian of $F(x)$ is the following, where the right-most matrix is obtained when $S = N$ at DFE:
 $$
+\boldsymbol{F} = J_F (x) = 
 \begin{bmatrix}
 0 & \frac{\beta S}{N} \\
 0 & 0
 \end{bmatrix}
+= \begin{bmatrix} 0 &\beta \\0&0 \end{bmatrix}
 $$ 
-
-And since at the DFE S is equal to N, 
-$$
-\textbf{F} = \begin{bmatrix} 0 &\beta \\0&0 \end{bmatrix}
-$$
 The Jacobian of $V(x)$ is 
 $$
-\textbf{V} = \begin{bmatrix} \sigma + \mu & 0 \\ -\sigma & \gamma + \mu \end{bmatrix}
+\boldsymbol{V} = J_V (x) = \begin{bmatrix} \sigma + \mu & 0 \\ -\sigma & \gamma + \mu \end{bmatrix}
 $$ 
-Next gen matrix is 
+
+Lastly, we obtain the **NGM** by following *Definition* \@ref(def:NGM):  
 $$
 \begin{align*}
-FV^{-1} &= 
+NGM = \boldsymbol{F}\boldsymbol{V}^{-1} &= 
 \begin{bmatrix}
 0 & \beta \\
 0 & 0
@@ -321,15 +322,15 @@ $$
 Multiplying $F$ by $V^{-1}$ captures how many new infections one infected individual generates in each compartment over their infectious period.
 
 The resulting matrix describes the expected number of new infections caused by an exposed or infectious person.
-The basic reproduction number $R_0$ is given by the the largest eigenvalue of the next generation matrix.
 
-The largest eigenvalue is : 
-$\frac{\beta \sigma}{(\sigma + \mu)(\gamma +\mu)} = R_0$
+The basic reproduction number $R_0$ is given by the the largest eigenvalue of the next generation matrix.
+Therefore: 
+$R_0 = \frac{\beta \sigma}{(\sigma + \mu)(\gamma +\mu)}$
 
 This value shows how the disease’s ability to spread depends not only on transmission ($\beta$) and recovery ($\gamma$), but also on the rates of progression ($\sigma$) and death ($\mu$).
 If $\mu = 0$, meaning no births or deaths occur, this expression simplifies to $R_0 = \frac{\beta}{\gamma}$ which is the classic SIR result.
 
-References: [@blackwood2018]
+**References:** [@blackwood2018]
 
 
 ## Visualizing the SEIR Models
@@ -346,7 +347,7 @@ Below, we have time series plots displaying the two examples we have looked at i
 
 - death rate: $\mu = 0.0001$ (only used in Figure \@ref(fig:seirvitalplot))
 
-Figures \@ref(fig:seirplot) and \@ref(fig:seirvitalplot) visualize the effects of vital dynamics (births, deaths) on a disease model, despite the rest of the parameters being the same. Also, note the difference in the time scales between the plots. The plot without vital dynamics (Figure \@ref(fig:seirplot)) is simulated over a period of 75 days, while the plot including vital dynamics (Figure \@ref(fig:seirvitalplot)) is simulated over a period of 1 year.
+Figures \@ref(fig:seirplot) and \@ref(fig:seirvitalplot) visualize the differences on a disease model that the presence of vital dynamics can have, despite the rest of the parameters being the same. Also, note the difference in the time scales between the plots. The plot without vital dynamics (Figure \@ref(fig:seirplot)) is simulated over a period of 75 days, while the plot including vital dynamics (Figure \@ref(fig:seirvitalplot)) is simulated over a period of 1 year.
  
 
 ```{r seirplot, echo=FALSE, fig.align='center', out.width='70%', fig.cap='Time series plot of SEIR model without vital dynamics at endemic equilibrium, simulated with parameter values.'}

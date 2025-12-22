@@ -138,13 +138,14 @@ div.csl-indent {
 <li class="chapter" data-level="5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html"><i class="fa fa-check"></i><b>5</b> Next Generation Matrix</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#introduction-to-the-chapter-2"><i class="fa fa-check"></i><b>5.1</b> Introduction to the Chapter</a></li>
-<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngmparameters"><i class="fa fa-check"></i><b>5.2</b> Definining the SEIR Model and Parameters</a>
+<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model"><i class="fa fa-check"></i><b>5.2</b> Solving the SEIR Model</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe"><i class="fa fa-check"></i><b>5.2.1</b> Defining the Disease Free Equilibrium (DFE)</a></li>
+<li class="chapter" data-level="5.2.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngmparameters"><i class="fa fa-check"></i><b>5.2.1</b> Definining the SEIR Model and Parameters</a></li>
+<li class="chapter" data-level="5.2.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe"><i class="fa fa-check"></i><b>5.2.2</b> Defining the Disease Free Equilibrium (DFE)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngm"><i class="fa fa-check"></i><b>5.2.3</b> Solving SEIR Model with NGM</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngm"><i class="fa fa-check"></i><b>5.3</b> Solving SEIR Model with NGM</a></li>
-<li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.4</b> Solving the SEIR Model with Birth and Death</a></li>
-<li class="chapter" data-level="5.5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#visualizing-the-seir-models"><i class="fa fa-check"></i><b>5.5</b> Visualizing the SEIR Models</a></li>
+<li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.3</b> Solving the SEIR Model with Birth and Death</a></li>
+<li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#visualizing-the-seir-models"><i class="fa fa-check"></i><b>5.4</b> Visualizing the SEIR Models</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html"><i class="fa fa-check"></i><b>6</b> Extended Compartmental Models: Real World Applications and Solutions</a>
 <ul>
@@ -241,7 +242,7 @@ Figure 6.1: The SIQR compartmental model.
 <p>Beginning with X, the vector of disease compartments. For the SIQR
 model, <span class="math inline">\(X = \begin{bmatrix} I\\ Q\\ \end{bmatrix}\)</span></p>
 <p>Refer back to the definitions of the new infection vector <span class="math inline">\(F(x)\)</span> and the
-transition vector <span class="math inline">\(V(x)\)</span> in <em>Chapter</em> <a href="next-generation-matrix.html#sec:ngmparameters">5.2</a>.</p>
+transition vector <span class="math inline">\(V(x)\)</span> in <em>Chapter</em> <a href="next-generation-matrix.html#sec:ngmparameters">5.2.1</a>.</p>
 </div>
 <div id="defining-the-disease-free-equilibrium" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Defining the Disease Free Equilibrium<a href="extended-compartmental-models-real-world-applications-and-solutions.html#defining-the-disease-free-equilibrium" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -306,7 +307,7 @@ compartment <span class="math display">\[
 \]</span></li>
 </ul></li>
 </ul>
-<p>Referring back to <em>Chapter</em> <a href="next-generation-matrix.html#sec:ngmparameters">5.2</a> once again for the
+<p>Referring back to <em>Chapter</em> <a href="next-generation-matrix.html#sec:ngmparameters">5.2.1</a> once again for the
 equation for <span class="math inline">\(\dot{X} = F(x) - V(x)\)</span>, we combine these matrices into:</p>
 <p><span class="math display">\[
 \begin{align*}
@@ -360,7 +361,7 @@ J_F (x)
 </div>
 <div id="finding-the-next-generation-matrix" class="section level4 hasAnchor" number="6.2.3.3">
 <h4><span class="header-section-number">6.2.3.3</span> Finding the Next Generation Matrix<a href="extended-compartmental-models-real-world-applications-and-solutions.html#finding-the-next-generation-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Refer to <em>Chapter </em> <a href="next-generation-matrix.html#sec:ngm">5.3</a> where the NGM for the SEIR model is
+<p>Refer to <em>Chapter </em> <a href="next-generation-matrix.html#sec:ngm">5.2.3</a> where the NGM for the SEIR model is
 found. We will be using a similar structure once again.
 <span class="math inline">\(NGM = \boldsymbol{F} \boldsymbol{V}^{-1}\)</span></p>
 <p>Thus: <span class="math display">\[
@@ -406,7 +407,7 @@ found. We will be using a similar structure once again.
 </div>
 <div id="calculating-r_0-and-defining-stability" class="section level4 hasAnchor" number="6.2.3.4">
 <h4><span class="header-section-number">6.2.3.4</span> Calculating <span class="math inline">\(R_0\)</span> and Defining Stability<a href="extended-compartmental-models-real-world-applications-and-solutions.html#calculating-r_0-and-defining-stability" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>As stated previously in (<em>Chapter</em> <a href="next-generation-matrix.html#sec:ngm">5.3</a>), <span class="math inline">\(R_0\)</span> is the
+<p>As stated previously in (<em>Chapter</em> <a href="next-generation-matrix.html#sec:ngm">5.2.3</a>), <span class="math inline">\(R_0\)</span> is the
 spectral radius of the Next Generation Matrix
 <span class="math inline">\(\ \boldsymbol{F} \boldsymbol{V}^{-1}\)</span> <span class="math display">\[
 det \left( \begin{bmatrix}

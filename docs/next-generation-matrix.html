@@ -138,13 +138,14 @@ div.csl-indent {
 <li class="chapter" data-level="5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html"><i class="fa fa-check"></i><b>5</b> Next Generation Matrix</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#introduction-to-the-chapter-2"><i class="fa fa-check"></i><b>5.1</b> Introduction to the Chapter</a></li>
-<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngmparameters"><i class="fa fa-check"></i><b>5.2</b> Definining the SEIR Model and Parameters</a>
+<li class="chapter" data-level="5.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model"><i class="fa fa-check"></i><b>5.2</b> Solving the SEIR Model</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe"><i class="fa fa-check"></i><b>5.2.1</b> Defining the Disease Free Equilibrium (DFE)</a></li>
+<li class="chapter" data-level="5.2.1" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngmparameters"><i class="fa fa-check"></i><b>5.2.1</b> Definining the SEIR Model and Parameters</a></li>
+<li class="chapter" data-level="5.2.2" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe"><i class="fa fa-check"></i><b>5.2.2</b> Defining the Disease Free Equilibrium (DFE)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngm"><i class="fa fa-check"></i><b>5.2.3</b> Solving SEIR Model with NGM</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#sec:ngm"><i class="fa fa-check"></i><b>5.3</b> Solving SEIR Model with NGM</a></li>
-<li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.4</b> Solving the SEIR Model with Birth and Death</a></li>
-<li class="chapter" data-level="5.5" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#visualizing-the-seir-models"><i class="fa fa-check"></i><b>5.5</b> Visualizing the SEIR Models</a></li>
+<li class="chapter" data-level="5.3" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death"><i class="fa fa-check"></i><b>5.3</b> Solving the SEIR Model with Birth and Death</a></li>
+<li class="chapter" data-level="5.4" data-path="next-generation-matrix.html"><a href="next-generation-matrix.html#visualizing-the-seir-models"><i class="fa fa-check"></i><b>5.4</b> Visualizing the SEIR Models</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="extended-compartmental-models-real-world-applications-and-solutions.html"><a href="extended-compartmental-models-real-world-applications-and-solutions.html"><i class="fa fa-check"></i><b>6</b> Extended Compartmental Models: Real World Applications and Solutions</a>
 <ul>
@@ -210,8 +211,10 @@ div.csl-indent {
 what causes new cases and what accounts for everything else that happens to an infected person. It is also important to mention that these tools are not limited to specific models and can be used for a variety of models.
 This chapter will use the <strong>SEIR model</strong> as an example for applying the NGM method (recall the SEIR model from <em>Chapter</em> <a href="introduction-to-mathematical-models-in-epidemiology.html#sec:compartments">2.2.1</a>).</p>
 </div>
-<div id="sec:ngmparameters" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Definining the SEIR Model and Parameters<a href="next-generation-matrix.html#sec:ngmparameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="solving-the-seir-model" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Solving the SEIR Model<a href="next-generation-matrix.html#solving-the-seir-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sec:ngmparameters" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Definining the SEIR Model and Parameters<a href="next-generation-matrix.html#sec:ngmparameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The SEIR model expands on our previous SIR model with the additional compartment “Exposed”. This compartment represents individuals in the population that have been infected, but are not yet infectious.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:seirdiagram"></span>
 <img src="_main_files/figure-html/seirdiagram-1.png" alt="The SEIR compartmental model." width="60%" />
@@ -236,8 +239,9 @@ other outputs and inputs, respectively, for each disease compartment</p></li>
 \ \dot{R} &amp;= \gamma I \\
 \end{align*}
 \]</span></p>
-<div id="defining-the-disease-free-equilibrium-dfe" class="section level3 hasAnchor" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Defining the Disease Free Equilibrium (DFE)<a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="defining-the-disease-free-equilibrium-dfe" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Defining the Disease Free Equilibrium (DFE)<a href="next-generation-matrix.html#defining-the-disease-free-equilibrium-dfe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The Disease Free Equilibrium (<em>Definition</em> <a href="modelling-disease-dynamics-with-odes.html#def:DFE">3.3</a>) exists when all infected compartments are set to 0. In other words, <span class="math inline">\(E=0\)</span> and <span class="math inline">\(I=0\)</span>.</p>
 <p>First, set all differential equations equal to zero.
 <span class="math display">\[
@@ -260,9 +264,8 @@ This means that for <span class="math inline">\(N=S+E+I+R\)</span>, <span class=
 So at the DFE for the <span class="math inline">\((S,E,I,R) = (N,0,0,0)\)</span>.</p>
 <p>This is important for understanding later substitutions in the Chapter.</p>
 </div>
-</div>
-<div id="sec:ngm" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Solving SEIR Model with NGM<a href="next-generation-matrix.html#sec:ngm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sec:ngm" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Solving SEIR Model with NGM<a href="next-generation-matrix.html#sec:ngm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Recall that for the SEIR model the disease compartments are <span class="math inline">\(E\)</span> and <span class="math inline">\(I\)</span>, so <span class="math inline">\(\dot{X} = \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix}\)</span>.</p>
 <p>Substitute the differential equations for <span class="math inline">\(\dot{E}\)</span> and <span class="math inline">\(\dot{I}\)</span> into <span class="math inline">\(X\)</span>.</p>
 <p><span class="math display">\[
@@ -349,8 +352,9 @@ det \left( \begin{bmatrix}
 <p>So <span class="math inline">\(\lambda = 0\)</span> and <span class="math inline">\(\lambda = \frac{\beta}{\gamma}\)</span>. The latter is the
 largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{\gamma}\)</span>. Thus, we have obtained the <span class="math inline">\(R_0\)</span> using the NGM method.</p>
 </div>
-<div id="solving-the-seir-model-with-birth-and-death" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Solving the SEIR Model with Birth and Death<a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="solving-the-seir-model-with-birth-and-death" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Solving the SEIR Model with Birth and Death<a href="next-generation-matrix.html#solving-the-seir-model-with-birth-and-death" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this version of the SEIR model, demographic effects such as births and deaths (also known as <strong>vital dynamics</strong>) are included to increase model realism.</p>
 <ul>
 <li><p><span class="math inline">\(\mu N\)</span> represents <strong>births</strong></p></li>
@@ -363,7 +367,7 @@ largest eigenvalue, so <span class="math inline">\(R_0 = \lambda = \frac{\beta}{
 Figure 5.2: The SEIR compartmental model.
 </p>
 </div>
-<p>The four <strong>differential equations</strong> can then be constructed. However, for the next generation model, we only care about <span class="math inline">\(\dot{E}\)</span> and <span class="math inline">\(\dot{I}\)</span>, since they represent the infected compartments. Also recall that <span class="math inline">\(S+E+I+R=N\)</span>.</p>
+<p>The four <strong>differential equations for the SEIR model with vital dynamics</strong> can then be constructed. Also recall that <span class="math inline">\(S+E+I+R=N\)</span>.</p>
 <p><span class="math display">\[
 \begin{align*}
 \dot{S} &amp;= \mu N - \frac{\beta SI}{N} \\
@@ -373,12 +377,12 @@ Figure 5.2: The SEIR compartmental model.
 \end{align*}
 \]</span></p>
 <p>At the <strong>Disease-Free Equilibrium (DFE)</strong>, there are no infections (<span class="math inline">\(E = 0\)</span> and <span class="math inline">\(I = 0\)</span>).
-From the first equation, <span class="math inline">\(\dot{S} = 0\)</span> when <span class="math inline">\(S = N\)</span>, meaning the entire population is susceptible.
+We then set all differential equations equal to 0, and <span class="math inline">\(E = 0\)</span> and <span class="math inline">\(I = 0\)</span>.
+Therefore at the DFE, we obtain <span class="math inline">\(\dot{S} = 0\)</span> when <span class="math inline">\(S = N\)</span>, which means the entire population is susceptible.
 We use this equilibrium to linearize the system and separate infection terms (<span class="math inline">\(F(x)\)</span>) from other transition terms (<span class="math inline">\(V(x)\)</span>).</p>
-<p>Next Generation Model:
-<span class="math display">\[
+<p><span class="math display">\[
 \begin{align*}
-\dot{x} &amp;= F(x) - V(x) \\
+\dot{X} &amp;= F(x) - V(x) \\
 &amp;= \begin{bmatrix}
 \frac{\beta SI}{N} \\
 0
@@ -391,25 +395,23 @@ We use this equilibrium to linearize the system and separate infection terms (<s
 \]</span></p>
 <p>Here, the first vector <span class="math inline">\(F(x)\)</span> captures new infections — in this case, the flow from the susceptible compartment <span class="math inline">\(S\)</span> to the exposed compartment <span class="math inline">\(E\)</span>.
 The second vector, <span class="math inline">\(V(x)\)</span>, represents all other movements between infected compartments (progression, recovery, and death).</p>
-<p>The Jacobian of <span class="math inline">\(F(x)\)</span> is
+<p>The Jacobian of <span class="math inline">\(F(x)\)</span> is the following, where the right-most matrix is obtained when <span class="math inline">\(S = N\)</span> at DFE:
 <span class="math display">\[
+\boldsymbol{F} = J_F (x) =
 \begin{bmatrix}
 0 &amp; \frac{\beta S}{N} \\
 0 &amp; 0
 \end{bmatrix}
-\]</span></p>
-<p>And since at the DFE S is equal to N,
-<span class="math display">\[
-\textbf{F} = \begin{bmatrix} 0 &amp;\beta \\0&amp;0 \end{bmatrix}
+= \begin{bmatrix} 0 &amp;\beta \\0&amp;0 \end{bmatrix}
 \]</span>
 The Jacobian of <span class="math inline">\(V(x)\)</span> is
 <span class="math display">\[
-\textbf{V} = \begin{bmatrix} \sigma + \mu &amp; 0 \\ -\sigma &amp; \gamma + \mu \end{bmatrix}
-\]</span>
-Next gen matrix is
+\boldsymbol{V} = J_V (x) = \begin{bmatrix} \sigma + \mu &amp; 0 \\ -\sigma &amp; \gamma + \mu \end{bmatrix}
+\]</span></p>
+<p>Lastly, we obtain the <strong>NGM</strong> by following <em>Definition</em> <a href="next-generation-matrix.html#def:NGM">5.1</a>:<br />
 <span class="math display">\[
 \begin{align*}
-FV^{-1} &amp;=
+NGM = \boldsymbol{F}\boldsymbol{V}^{-1} &amp;=
 \begin{bmatrix}
 0 &amp; \beta \\
 0 &amp; 0
@@ -427,16 +429,16 @@ FV^{-1} &amp;=
 \end{align*}
 \]</span>
 Multiplying <span class="math inline">\(F\)</span> by <span class="math inline">\(V^{-1}\)</span> captures how many new infections one infected individual generates in each compartment over their infectious period.</p>
-<p>The resulting matrix describes the expected number of new infections caused by an exposed or infectious person.
-The basic reproduction number <span class="math inline">\(R_0\)</span> is given by the the largest eigenvalue of the next generation matrix.</p>
-<p>The largest eigenvalue is :
-<span class="math inline">\(\frac{\beta \sigma}{(\sigma + \mu)(\gamma +\mu)} = R_0\)</span></p>
+<p>The resulting matrix describes the expected number of new infections caused by an exposed or infectious person.</p>
+<p>The basic reproduction number <span class="math inline">\(R_0\)</span> is given by the the largest eigenvalue of the next generation matrix.
+Therefore:
+<span class="math inline">\(R_0 = \frac{\beta \sigma}{(\sigma + \mu)(\gamma +\mu)}\)</span></p>
 <p>This value shows how the disease’s ability to spread depends not only on transmission (<span class="math inline">\(\beta\)</span>) and recovery (<span class="math inline">\(\gamma\)</span>), but also on the rates of progression (<span class="math inline">\(\sigma\)</span>) and death (<span class="math inline">\(\mu\)</span>).
 If <span class="math inline">\(\mu = 0\)</span>, meaning no births or deaths occur, this expression simplifies to <span class="math inline">\(R_0 = \frac{\beta}{\gamma}\)</span> which is the classic SIR result.</p>
-<p>References: <span class="citation">[<a href="references.html#ref-blackwood2018">12</a>]</span></p>
+<p><strong>References:</strong> <span class="citation">[<a href="references.html#ref-blackwood2018">12</a>]</span></p>
 </div>
-<div id="visualizing-the-seir-models" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Visualizing the SEIR Models<a href="next-generation-matrix.html#visualizing-the-seir-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="visualizing-the-seir-models" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Visualizing the SEIR Models<a href="next-generation-matrix.html#visualizing-the-seir-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Below, we have time series plots displaying the two examples we have looked at in this chapter. We used the following parameters in these plots:</p>
 <ul>
 <li><p>initial population size: <span class="math inline">\(N = 500\)</span></p></li>
@@ -445,7 +447,7 @@ If <span class="math inline">\(\mu = 0\)</span>, meaning no births or deaths occ
 <li><p>recovery rate: <span class="math inline">\(\gamma = 0.10\)</span></p></li>
 <li><p>death rate: <span class="math inline">\(\mu = 0.0001\)</span> (only used in Figure <a href="next-generation-matrix.html#fig:seirvitalplot">5.4</a>)</p></li>
 </ul>
-<p>Figures <a href="next-generation-matrix.html#fig:seirplot">5.3</a> and <a href="next-generation-matrix.html#fig:seirvitalplot">5.4</a> visualize the effects of vital dynamics (births, deaths) on a disease model, despite the rest of the parameters being the same. Also, note the difference in the time scales between the plots. The plot without vital dynamics (Figure <a href="next-generation-matrix.html#fig:seirplot">5.3</a>) is simulated over a period of 75 days, while the plot including vital dynamics (Figure <a href="next-generation-matrix.html#fig:seirvitalplot">5.4</a>) is simulated over a period of 1 year.</p>
+<p>Figures <a href="next-generation-matrix.html#fig:seirplot">5.3</a> and <a href="next-generation-matrix.html#fig:seirvitalplot">5.4</a> visualize the differences on a disease model that the presence of vital dynamics can have, despite the rest of the parameters being the same. Also, note the difference in the time scales between the plots. The plot without vital dynamics (Figure <a href="next-generation-matrix.html#fig:seirplot">5.3</a>) is simulated over a period of 75 days, while the plot including vital dynamics (Figure <a href="next-generation-matrix.html#fig:seirvitalplot">5.4</a>) is simulated over a period of 1 year.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:seirplot"></span>
 <img src="_main_files/figure-html/seirplot-1.png" alt="Time series plot of SEIR model without vital dynamics at endemic equilibrium, simulated with parameter values." width="70%" />
 <p class="caption">

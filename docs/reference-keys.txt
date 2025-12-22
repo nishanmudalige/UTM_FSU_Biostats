@@ -71,6 +71,7 @@ cases-with-one-sign-change
 linear-stability-analysis-for-the-si-model
 next-generation-matrix
 introduction-to-the-chapter-2
+solving-the-seir-model
 sec:ngmparameters
 defining-the-disease-free-equilibrium-dfe
 sec:ngm
