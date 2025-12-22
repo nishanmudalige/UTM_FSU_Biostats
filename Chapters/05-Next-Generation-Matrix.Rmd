@@ -24,8 +24,7 @@ knitr::opts_chunk$set(
 
 ## Introduction to the Chapter
 
-This chapter describes in depth the use of the **Next Generation Matrix (NGM) method**. This tool is used to calculate the $R_0$ value (*Definition* \@ref(def:R0)). Using the NGM achieves this this for multi-compartmental models (e.g. SEIR), by linearizing the system of differential equations around the Disease-Free Equilibrium (DFE)
-(*Definition* \@ref(def:DFE)) and dividing the flow of disease (*Definition* \@ref(def:Flow)) into
+This chapter describes in depth the use of the **Next Generation Matrix (NGM) method**. This tool is used to calculate the $R_0$ value (*Definition* \@ref(def:R0)). Using the NGM achieves this this for multi-compartmental models (e.g. SEIR), by linearizing the system of differential equations around the Disease-Free Equilibrium (DFE) and dividing the flow of disease (*Definition* \@ref(def:Flow)) into
 what causes new cases and what accounts for everything else that happens to an infected person. It is also important to mention that these tools are not limited to specific models and can be used for a variety of models. 
 This chapter will use the **SEIR model** as an example for applying the NGM method (recall the SEIR model from *Chapter* \@ref(sec:compartments)). 
 
@@ -50,11 +49,7 @@ The SEIR model expands on our previous SIR model with the additional compartment
 \end{tikzpicture}
 ```
 
-We define X as the vector of disease compartments. For the SEIR
-model, $X = \begin{bmatrix} E\\ I\\ \end{bmatrix}$. Note that for the SIR model,
-$X = \begin{bmatrix} I \end{bmatrix}$. 
-
-Then we can have:
+We begin by defining $X$ as the **vector of disease compartments**. Then we can have:
 $$\frac{dX}{dt} = F(x) - V(x)$$
 
 - $F(x)$ is a vector of the terms that lead to new infections
@@ -62,10 +57,23 @@ $$\frac{dX}{dt} = F(x) - V(x)$$
 - $V(x) = V^- (x) -V^+ (x)$ where $V^- (x)$ and $-V^+ (x)$ contain all
 other outputs and inputs, respectively, for each disease compartment
 
+For instance, the SIR model has $X = \begin{bmatrix} I \end{bmatrix}$. We define **$X$ for the SEIR model** as: $X = \begin{bmatrix} E\\ I\\ \end{bmatrix}$. 
+
+We also define the **differential equations for the SEIR model**: 
+$$
+\begin{align*}
+\ \dot{S} &= - \beta SI \\ 
+\ \dot{E} &= \beta SI - \delta E \\
+\ \dot{I} &= \delta E - \gamma I \\
+\ \dot{R} &= \gamma I \\ 
+\end{align*}
+$$
+
 ### Defining the Disease Free Equilibrium (DFE)
 
-The Disease Free Equilibrium exists when all infected compartments $(I and E)$, are set to 0. i.e. $E=0$ and $I=0$.
+The Disease Free Equilibrium (*Definition* \@ref(def:DFE)) exists when all infected compartments are set to 0. In other words, $E=0$ and $I=0$. 
 
+First, set all differential equations equal to zero. 
 $$
 \begin{align*}
 \ \dot{S} &= - \beta SI = 0\\ 
@@ -76,34 +84,22 @@ $$
 $$
 At the DFE:
 
-- $\dot{S}$ is true when I=0
-- $\dot{E}$ is true when I=0 and E=0
-- $\dot{I}$ is true when E=0 and I=0
-- $\dot{R}$ is true when I=0
+- $\dot{S} = 0$ is true when $I=0$
+- $\dot{E} = 0$ is true when $I=0$ and $E=0$
+- $\dot{I} = 0$ is true when $E=0$ and $I=0$
+- $\dot{R} = 0$ is true when $I=0$
 
-Since there are no infections: $E=I=R=0$
-This means that for $N=S+E+I+R$, $N=S$ due to our earlier statements
-So at the DFE for the $(S,E,I,R) = (N,0,0,0)$
+Since there are no infections, $E=I=R=0$. 
+This means that for $N=S+E+I+R$, $N=S$ due to our earlier statements. 
+So at the DFE for the $(S,E,I,R) = (N,0,0,0)$. 
 
 This is important for understanding later substitutions in the Chapter.
 
 ## Solving SEIR Model with NGM {#sec:ngm}
 
-Recall: that for the SEIR model the disease compartments are E and I
+Recall that for the SEIR model the disease compartments are $E$ and $I$, so $\dot{X} = \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix}$. 
 
-$\dot{X} = \begin{bmatrix} \dot{E}\\ \dot{I}\\ \end{bmatrix}$
-
-$$
-\begin{align*}
-\ \dot{S} &= - \beta SI \\ 
-\ \dot{E} &= \beta SI - \delta E \\
-\ \dot{I} &= \delta E - \gamma I \\
-\ \dot{R} &= \gamma I \\ 
-\end{align*}
-$$
-
-For the SIR model, $X = \begin{bmatrix} I \end{bmatrix}$
-For the SEIR Model:
+Substitute the differential equations for $\dot{E}$ and $\dot{I}$ into $X$. 
 
 $$
 \begin{align*}
@@ -117,23 +113,15 @@ $$
 Note that the 0 in
 $F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix}$ exists because
 $F$ only considers brand new infected (the flow from $S \rightarrow E$
-and not $S \rightarrow I$). I.e. infected, not necessarily infectious.
+and not $S \rightarrow I$). In other words, new infected are not necessarily infectious.
 
-We separate the equation into components to assist us in our $R_0$
-calculations
+We separated $\dot{X}$ into components to assist us in our $R_0$ calculations. 
 
-For further simplicity, let:\
-$$
-F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix} 
-$$
+For further simplicity, we also let:
+$F(x) = \begin{bmatrix} \beta SI \\ 0 \\ \end{bmatrix} = \begin{bmatrix} F_1 \\ F_2 \\ \end{bmatrix}$, 
+$V(x) = \begin{bmatrix} \delta E \\ \gamma I - \delta E \\ \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix}$
 
-Also let:\
-$$
-V(x) = \begin{bmatrix} \delta E \\ \gamma I - \delta E \\ \end{bmatrix} = \begin{bmatrix} V_1 \\ V_2 \\ \end{bmatrix} 
-$$
-
-Find the Jacobians of F(x) and V(x) at the disease free equilibrium
-(DFE):
+Next, we find the **Jacobian Matrices of $F(x)$ and $V(x)$ at the DFE**. (Recall Jacobians from *Chapter* \@ref(sec:linearstability)). 
 
 Let the Jacobian of F(x) be **F**.
 
@@ -148,12 +136,7 @@ $$
 \end{bmatrix}
 $$
 
-At DFE, $S = 1$
-
-- This is found by our earlier definition of the DFE.
-  - At the DFE for $(S,E,I,R) = (N,0,0,0)$
-  - Since Population $"N"=1$ and $S=N$, then $S=1$
-- So after subsituting $S=1$:
+Since we defined the DFE earlier as $(S,E,I,R) = (N,0,0,0)$, and we let population $N = 1$, we then get $S=1$ at DFE. Substituting $S=1$ in, we get: 
 
 $$
 J_F (x) 
@@ -179,31 +162,30 @@ $$
 Another way to think about it:
 $\dot{X} = (f-v) \begin{bmatrix} E \\ I \end{bmatrix} = (f-v)X$
 
-Now find the NGM.
+We will now find the NGM.
 
-$NGM = \boldsymbol{F} \boldsymbol{V}^{-1}$
+::: {.definition name="Next Generation Matrix (NGM) method" #NGM}
 
-The NGM for this is $$
-\boldsymbol{F} = \begin{bmatrix} 
-0 & \beta \\
-0 & 0 \\
-\end{bmatrix}
-$$
+A method to determine the $R_0$ value for compartmental models.
 
-and by the rule: for matrix
-$M = \begin{bmatrix} a & b \\ c & d \\ \end{bmatrix}$ the inverse
+*Formula:* $NGM = \boldsymbol{F} \boldsymbol{V}^{-1}$
+:::
+
+Using the NGM formula from (*Definition* \@ref(def:NGM)), we obtain the NGM for the SEIR model with our previously determined **F** and **V**. 
+
+To find $\boldsymbol{V} ^{-1}$ we use the following rule: 
+
+for matrix
+$M = \begin{bmatrix} a & b \\ c & d \\ \end{bmatrix}$, the inverse matrix is
 $M^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ -c & a \\ \end{bmatrix}$
 
-Then for $\boldsymbol{V} ^{-1}$ we get $$
-\boldsymbol{V} ^{-1} = \frac{1}{\delta \gamma} \begin{bmatrix} 
-\gamma & 0 \\
-\delta & \delta \\
-\end{bmatrix}
-$$
+Then, we have 
+$\boldsymbol{F} = \begin{bmatrix} 0 & \beta \\ 0 & 0 \\ \end{bmatrix}$ and 
+$\boldsymbol{V} ^{-1} = \frac{1}{\delta \gamma} \begin{bmatrix} \gamma & 0 \\ \delta & \delta \\ \end{bmatrix}$
 
 $$
 \begin{align*}
-\ \boldsymbol{F} \boldsymbol{V} ^{-1} &= \begin{bmatrix} 0 & \beta \\ 0 & 0 \\ \end{bmatrix}
+\ NGM = \boldsymbol{F} \boldsymbol{V} ^{-1} &= \begin{bmatrix} 0 & \beta \\ 0 & 0 \\ \end{bmatrix}
 \frac{1}{\delta \gamma} 
 \begin{bmatrix} \gamma & 0 \\ \delta & \delta \\ \end{bmatrix} \\
 \ &= \begin{bmatrix} 0 & \beta \\ 0 & 0 \\ \end{bmatrix}
@@ -212,7 +194,7 @@ $$
 \end{align*}
 $$
 
-Refer back to the formula in (*Chapter* \@ref(sec:dfeesa)), where $det(J-\lambda I_n) = 0$. $R_0$ is the spectral radius (i.e. largest eigenvalue) of $\ \boldsymbol{F} \boldsymbol{V} ^{-1}$. 
+Refer back to the formula in *Chapter* \@ref(sec:dfeesa), where $det(J-\lambda I_n) = 0$. $R_0$ is the spectral radius (i.e. largest eigenvalue) of $\ \boldsymbol{F} \boldsymbol{V} ^{-1}$. 
 
 
 $$
@@ -226,7 +208,7 @@ $$
 Let $- \lambda \left( \frac{\beta}{\gamma} - \lambda \right) = 0$.
 
 So $\lambda = 0$ and $\lambda = \frac{\beta}{\gamma}$. The latter is the
-largest eigenvalue, so $R_0 = \lambda = \frac{\beta}{\gamma}$.
+largest eigenvalue, so $R_0 = \lambda = \frac{\beta}{\gamma}$. Thus, we have obtained the $R_0$ using the NGM method. 
 
 ## Solving the SEIR Model with Birth and Death
 
@@ -267,23 +249,25 @@ The birth term $\mu N$ adds to the susceptible population, while the deaths occu
 \end{tikzpicture}
 ```
 
-The four **differential equations** can then be constructed. However, for the next generation model, we only care about $\dot{E}$ and $\dot{I}$, since they represent the infected compartments. Also note that $S+E+I+R=N$.
+The four **differential equations** can then be constructed. However, for the next generation model, we only care about $\dot{E}$ and $\dot{I}$, since they represent the infected compartments. Also recall that $S+E+I+R=N$.
 
+$$
 \begin{align*}
 \dot{S} &= \mu N - \frac{\beta SI}{N} \\
 \dot{E} &= \frac{\beta SI}{N} - (\sigma + \mu)E \\
-\dot{I} &= \sigma E - (\gamma + \mu)I
+\dot{I} &= \sigma E - (\gamma + \mu)I \\
 \dot{R} &= \gamma I - \mu R \\
 \end{align*} 
+$$
 
-At the disease-free equilibrium (DFE), there are no infections ($E = 0$ and $I = 0$).
+At the **Disease-Free Equilibrium (DFE)**, there are no infections ($E = 0$ and $I = 0$).
 From the first equation, $\dot{S} = 0$ when $S = N$, meaning the entire population is susceptible.
 We use this equilibrium to linearize the system and separate infection terms ($F(x)$) from other transition terms ($V(x)$).
 
 Next Generation Model: 
 $$
 \begin{align*}
-\dot(x) &= F(x) - V(x) \\
+\dot{x} &= F(x) - V(x) \\
 &= \begin{bmatrix} 
 \frac{\beta SI}{N} \\ 
 0 

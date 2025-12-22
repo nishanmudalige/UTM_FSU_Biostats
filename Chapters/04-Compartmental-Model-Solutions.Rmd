@@ -12,7 +12,7 @@ This chapter will explore both the direct calculation of eigenvalues, as well as
 **References:** [@brauer2019] [@blackwood2018]
 
 
-## Linear Stability Analysis for the SIR Model 
+## Linear Stability Analysis for the SIR Model {#sec:linearstability}
 
 The stability of an equilibrium in a **compartmental model** (*Definition* \@ref(def:Compartmental)) is determined by the signage of the eigenvalues ($\lambda$) of the Jacobian Matrix (J). In this section, we will solve for the eigenvalues of the SIR model at the Disease Free Equilibrium (DFE) and the Endemic Equilibrium (EE).
 
@@ -243,7 +243,7 @@ As long as these conditions are met, it can be found that a quartic characterist
 ### Descartes' Rule of Signs
 
 ::: {.definition name="Descartes' Rule of Signs" #DRS}
-A method to to determine the number of potential real positive and/or negative roots.
+A method to determine the number of potential real positive and/or negative roots.
 :::
 
 We will apply Descartes' Rule of Signs (*Definition* \@ref(def:DRS)) for stability analysis to the following characteristuc equation.

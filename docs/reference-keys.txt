@@ -21,6 +21,7 @@ def:ESE
 def:RHC
 def:DRS
 fig:seirdiagram
+def:NGM
 fig:seirvitaldiagram
 fig:seirplot
 fig:seirvitalplot
@@ -53,7 +54,7 @@ solving-the-sir-model
 interactive-dashboard
 equilibrium-stability-analysis
 introduction-to-the-chapter-1
-linear-stability-analysis-for-the-sir-model
+sec:linearstability
 direct-calculation
 sec:dfeesa
 at-endemic-equilibrium

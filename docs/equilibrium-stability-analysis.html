@@ -126,7 +126,7 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html"><i class="fa fa-check"></i><b>4</b> Equilibrium Stability Analysis</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#introduction-to-the-chapter-1"><i class="fa fa-check"></i><b>4.1</b> Introduction to the Chapter</a></li>
-<li class="chapter" data-level="4.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-sir-model"><i class="fa fa-check"></i><b>4.2</b> Linear Stability Analysis for the SIR Model</a>
+<li class="chapter" data-level="4.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#sec:linearstability"><i class="fa fa-check"></i><b>4.2</b> Linear Stability Analysis for the SIR Model</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#direct-calculation"><i class="fa fa-check"></i><b>4.2.1</b> Direct Calculation</a></li>
 <li class="chapter" data-level="4.2.2" data-path="equilibrium-stability-analysis.html"><a href="equilibrium-stability-analysis.html#interactive-dashboard-1"><i class="fa fa-check"></i><b>4.2.2</b> Interactive Dashboard</a></li>
@@ -213,8 +213,8 @@ div.csl-indent {
 <p>This chapter will explore both the direct calculation of eigenvalues, as well as some alternative / indirect methods of showing stability.</p>
 <p><strong>References:</strong> <span class="citation">[<a href="references.html#ref-brauer2019">3</a>]</span> <span class="citation">[<a href="references.html#ref-blackwood2018">12</a>]</span></p>
 </div>
-<div id="linear-stability-analysis-for-the-sir-model" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Linear Stability Analysis for the SIR Model<a href="equilibrium-stability-analysis.html#linear-stability-analysis-for-the-sir-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sec:linearstability" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Linear Stability Analysis for the SIR Model<a href="equilibrium-stability-analysis.html#sec:linearstability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The stability of an equilibrium in a <strong>compartmental model</strong> (<em>Definition</em> <a href="introduction-to-mathematical-models-in-epidemiology.html#def:Compartmental">2.3</a>) is determined by the signage of the eigenvalues (<span class="math inline">\(\lambda\)</span>) of the Jacobian Matrix (J). In this section, we will solve for the eigenvalues of the SIR model at the Disease Free Equilibrium (DFE) and the Endemic Equilibrium (EE).</p>
 <div id="direct-calculation" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Direct Calculation<a href="equilibrium-stability-analysis.html#direct-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -404,7 +404,7 @@ As long as these conditions are met, it can be found that a quartic characterist
 <div id="descartes-rule-of-signs" class="section level3 hasAnchor" number="4.2.4">
 <h3><span class="header-section-number">4.2.4</span> Descartes’ Rule of Signs<a href="equilibrium-stability-analysis.html#descartes-rule-of-signs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:DRS" class="definition"><strong>Definition 4.4  (Descartes' Rule of Signs) </strong></span>A method to to determine the number of potential real positive and/or negative roots.</p>
+<p><span id="def:DRS" class="definition"><strong>Definition 4.4  (Descartes' Rule of Signs) </strong></span>A method to determine the number of potential real positive and/or negative roots.</p>
 </div>
 <p>We will apply Descartes’ Rule of Signs (<em>Definition</em> <a href="equilibrium-stability-analysis.html#def:DRS">4.4</a>) for stability analysis to the following characteristuc equation.</p>
 <p><span class="math display">\[c_2\lambda^2 + c_1\lambda + c_0 = 0\]</span></p>
