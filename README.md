@@ -4,6 +4,9 @@
 ![GitHub branch check runs](https://img.shields.io/github/check-runs/nishanmudalige/UTM_FSU_Biostats/main)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fnishanmudalige.github.io%2FUTM_FSU_Biostats%2F)
 
+![GitHub License](https://img.shields.io/github/license/nishanmudalige/UTM_FSU_biostats)
+![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-pink)
+
 ---
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/nishanmudalige/UTM_FSU_Biostats)
