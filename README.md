@@ -4,3 +4,17 @@
 ![GitHub branch check runs](https://img.shields.io/github/check-runs/nishanmudalige/UTM_FSU_Biostats/main)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fnishanmudalige.github.io%2FUTM_FSU_Biostats%2F)
 
+---
+
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/nishanmudalige/UTM_FSU_Biostats)
+![GitHub contributors](https://img.shields.io/github/contributors/nishanmudalige/UTM_FSU_Biostats)
+![GitHub language count](https://img.shields.io/github/languages/count/nishanmudalige/UTM_FSU_Biostats)
+
+Files for a custom e-book for teaching Biomath and Biostats. This work was a collaboration between researchers at the
+[University of Toronto Mississauga](https://www.utm.utoronto.ca),
+[Florida State University](https://www.fsu.edu)
+and the
+[Maclay School]([https://www.fsu.edu](https://www.maclay.org))
+
+
+Visit [https://nishanmudalige.github.io/UTM_FSU_Biostats/](https://nishanmudalige.github.io/UTM_FSU_Biostats/) to view the e-book.
