@@ -1,43 +1,6 @@
-# UTM_FSU_Biostats
+# UTM FSU Biostats
 
-## Things to do
-- Chapter 1
-  - New Chapter 1.2: Calculus and Linear Algebra review/pre-requisites
-  - Mention topics and link to resources
-  - Can use active calculus, understanstanding linear algebra, OpenIntro (Stats/Calc/Lin Alg), OpenStax (Calculus I, II, III)
-- Chapter 4
-  - Make more complete
-  - Add more details
-  - Fix references
-  - Phase diagrams
-  - Look into how to host Shiny apps on GitHub Pages
+[![pages-build-deployment](https://github.com/nishanmudalige/UTM_FSU_Biostats/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/nishanmudalige/UTM_FSU_Biostats/actions/workflows/pages/pages-build-deployment)
+![GitHub branch check runs](https://img.shields.io/github/check-runs/nishanmudalige/UTM_FSU_Biostats/main)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fnishanmudalige.github.io%2FUTM_FSU_Biostats%2F)
 
----
-- Chapter 3
-  - Add introduction
-- Add more detail to subsection on SI Model (3.2)
-- Format math statements in Chapter 3, 4
-- Add introduction to Chapter 4
-- Organize Chapter 4 into subsections
-
----
-- Write definitions in the definition environment
-- Rewrite Chapter 2: Introduction to Mathematical modelling
-  - Move Introduction to Compartmental Modelling Thinking to chapter 2 (place at appropriate point)
-  - Introduce compartmental modelling by describing flow of units from copartments and sign of parameters, interaction etc.
-- Chapter 3
-  - Describe models and parameters in words so the reader will get a better intuition about whh the models make sense
-  - Describe parameters
-  - Can elaborate on how they are obtained from real world data (eg determining # of new infected by a confirmed case)
-  - Add figures to chapter 3
-
-## High level topics
-
-- **Introduction**: history of (mathematical) epidemiology, role of models in public health, introduction to compartmental modelling thinking (benefits of parsimonious models).
-- **Epidemiological metrics and outcomes**: basic reproduction number (R_0), effective reproduction number (R_e), herd immunity, disease-free equilibria, endemic equilibria.
-- **Modelling disease dynamics with ODEs**: compartmental diagrams, ODE setup, solving the SIS model, analyzing the SIR model, numerical simulation basics, plotting time series and phase diagrams.
-- **Analytical tools**: a deeper dive on the analytical tools required (a crash course on dynamical systems), stability analysis, Lyapunov functions, next generation matrix.
-- **Futher compartments**: latent periods (SEIR), asymptomatic (SAIR), waning immunity (SIRS).
-- **Interventions and control**: vaccination (SVIR), quarantine, treatment strategies.
-- **Demography**: birth/death rates, age-structured models.
-- **Spatial epidemiology**: metapopulations, difussion and travel, networks, contact heterogeneity, ring vaccination, agent-based models.
