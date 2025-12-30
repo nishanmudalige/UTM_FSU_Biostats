@@ -51,8 +51,23 @@ header-includes:
 
 This e-book on bio-mathematics was created through a collaborative effort by academics and students at the [University of Toronto Mississauga](https://www.utm.utoronto.ca/), [Florida State University](https://www.fsu.edu/) and a gifted scholar at the [Maclay School](https://www.maclay.org/).
 
+
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+<center>
+![](Images/Welcome Page/utm-logo.svg){width=30%}
+![](Images/Welcome Page/fsu-logo.png){width=20%}
+![](Images/Welcome Page/maclay-logo.jpg){width=20%}
+</center>
+</div>
+
+
+<!--
 ```{r homepage-img, echo=FALSE, fig.align='center', out.width='20%'}
 knitr::include_graphics("Images/Welcome Page/utm-logo.svg")
 knitr::include_graphics("Images/Welcome Page/fsu-logo.png")
 knitr::include_graphics("Images/Welcome Page/maclay-logo.jpg")
 ```
+-->
+
+
+
