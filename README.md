@@ -18,3 +18,15 @@ and the
 
 
 Visit [https://nishanmudalige.github.io/UTM_FSU_Biostats/](https://nishanmudalige.github.io/UTM_FSU_Biostats/) to view the e-book.
+
+
+---
+
+<p align="center"> 
+  <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/bookdown.svg"> 
+  <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/rmarkdown.svg">
+  <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/knitr.svg">
+  <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/ggplot2.svg">
+  <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/pipe.svg">
+  <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/shiny.svg">
+</p>
