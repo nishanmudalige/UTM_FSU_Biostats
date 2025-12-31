@@ -4,14 +4,14 @@ author: "Valerie Pan, Nishi Bhanderi, Shohan Ghatak, Bryce Morsky, Nishan Mudali
 date: ""
 site: bookdown::bookdown_site
 output:
-  bookdown::gitbook:
-    css: style.css     # optional, for styling
+  bookdown::gitbook
+    # css: style.css     # optional, for styling
     # config:
     #   toc:
     #     collapse: section
     #   download: ["pdf", "epub"]  # optional export linksknit: bookdown::render_book
 documentclass: book
-github-repo: nishanmudalige/STA258
+github-repo: nishanmudalige/UTM_FSU_Biostats
 description: "Bookdown hosted on github using bookdown::gitbook."
 # --- CITATION CONFIGURATION ---
 bibliography: references.bib      # 1. Location of bibliography (.bib) file
@@ -47,14 +47,22 @@ header-includes:
   - \usepackage[oldstyle,expert,lf]{ebgaramond}
 ---
 
-# Welcome {.unnumbered}
+
+#  {.unnumbered}
+
+```{r hexsticker, echo=FALSE, fig.align='center', out.width='43%'}
+knitr::include_graphics("Hex Stickers/R0_hex_sticker.png")
+```
+
+## Welcome {.unnumbered}
 
 This e-book on bio-mathematics was created through a collaborative effort by academics and students at the [University of Toronto Mississauga](https://www.utm.utoronto.ca/), [Florida State University](https://www.fsu.edu/) and a gifted scholar at the [Maclay School](https://www.maclay.org/).
 
+<br>
 
-<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+<div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
 <center>
-![](Images/Welcome Page/utm-logo.svg){width=30%}
+![](Images/Welcome Page/utm-logo.svg){width=35%}
 ![](Images/Welcome Page/fsu-logo.png){width=20%}
 ![](Images/Welcome Page/maclay-logo.jpg){width=20%}
 </center>
