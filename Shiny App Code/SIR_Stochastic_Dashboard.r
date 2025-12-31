@@ -2,6 +2,10 @@
 # Changes:
 # - Default for "Emphasize the most recently generated path" is now FALSE
 # - Legend order forced to S, I, R via factor levels + scale_color_discrete(drop=FALSE)
+# - Legend key lines made thicker via guides(... override.aes ...)
+# - Layer controls moved below plot (above key statistics)
+# - "Emphasize..." and "Log y-axis" moved into the same layer-controls panel, to the right of Deterministic (ODE)
+# - Removed the empty panel to the right of the plot
 
 library(shiny)
 library(bslib)
@@ -106,13 +110,7 @@ ui <- page_fluid(
       width: 100%;
     }
     .plot-pane { flex: 1 1 auto; min-width: 0; }
-    .controls-pane { flex: 0 0 240px; max-width: 240px; }
-    @media (max-width: 992px) {
-      .plot-and-controls { flex-direction: column; }
-      .controls-pane { flex: 1 1 auto; max-width: 100%; }
-    }
 
-    .controls-pane .form-check { margin-bottom: 0.25rem; }
     .controls-block-title { font-weight:700; margin-top:10px; margin-bottom:4px; }
     .tight-top { margin-top: 10px; }
 
@@ -157,66 +155,72 @@ ui <- page_fluid(
       h4("Time grid"),
       sliderInput("days", "Horizon (days)", min = 30, max = 365, value = 160, step = 5),
       sliderInput("dt", "Plot time step (days)", min = 0.1, max = 2, value = 0.5, step = 0.1),
-      numericInput("seed", "Base random seed", value = 1, min = 1, step = 1)
+      numericInput("seed", "Base random seed", value = sample(1:100000, 1), min = 1, step = 1)
     ),
     
     card(
-      card_header(h3("Accumulating stochastic paths")),
       card_body(
         
+        # --- Plot (full width; no right-side empty panel) ---
         div(
           class = "plot-and-controls",
-          
           div(
             class = "plot-pane",
             card(card_body(
               plotOutput("path_plot", height = "680px")
             ))
-          ),
-          
-          div(
-            class = "controls-pane",
+          )
+        ),
+        
+        # --- Layer toggle controls panel (below plot, above key statistics) ---
+        div(class = "tight-top",
             card(
               card_body(
-                div(style="font-size:0.95rem;",
-                    div(style="color:#666; margin-bottom:8px;",
-                        "Show/hide compartments by layer."),
-                    
+                layout_columns(
+                  col_widths = c(3, 3, 3, 3),
+                  
+                  div(
                     div(class="controls-block-title", "Sample paths"),
                     checkboxGroupInput(
                       "show_paths", label = NULL,
                       choices = c("Susceptible (S)"="S", "Infectious (I)"="I", "Recovered (R)"="R"),
                       selected = c("S","I","R")
-                    ),
-                    
+                    )
+                  ),
+                  
+                  div(
                     div(class="controls-block-title", "Running mean"),
                     checkboxGroupInput(
                       "show_mean", label = NULL,
-                      choices = c("Susceptible (S)"="S", "Infectious (I)"="I", "Recovered (R)"="R"),
-                      selected = c("S","I","R")
-                    ),
-                    
+                      choices = c("Susceptible (S)"="S", "Infectious (I)"="I", "Recovered (R)"="R")
+                      # selected = c("S","I","R"),
+                    )
+                  ),
+                  
+                  div(
                     div(class="controls-block-title", "Deterministic (ODE)"),
                     checkboxGroupInput(
                       "show_det", label = NULL,
-                      choices = c("Susceptible (S)"="S", "Infectious (I)"="I", "Recovered (R)"="R"),
-                      selected = c("S","I","R")
-                    ),
-                    
-                    div(style="margin-top:10px;",
-                        checkboxInput(
-                          "highlight_latest",
-                          "Emphasize the most recently generated path",
-                          value = FALSE   # <-- default off
-                        ),
-                        checkboxInput("logy", "Log y-axis", value = FALSE)
+                      choices = c("Susceptible (S)"="S", "Infectious (I)"="I", "Recovered (R)"="R")
+                      # selected = c("S","I","R")
                     )
+                  ),
+                  
+                  div(
+                    div(class="controls-block-title", "Visual Options"),
+                    checkboxInput(
+                      "highlight_latest",
+                      "Most recent path",
+                      value = FALSE
+                    ),
+                    checkboxInput("logy", "Log y-axis", value = FALSE)
+                  )
                 )
               )
             )
-          )
         ),
         
+        # --- Key stats ---
         div(class="tight-top",
             layout_columns(
               col_widths = c(2, 2, 3, 3, 2),
@@ -231,12 +235,13 @@ ui <- page_fluid(
                     textOutput("R0_txt"))
               ),
               
-              value_card_small("Estimated extinction by horizon (I hits 0)", "ext_txt"),
+              value_card_small("Estimated extinction (I hits 0)", "ext_txt"),
               value_card_small("Mean peak I (stochastic)", "peak_txt"),
-              value_card_small("Time of mean peak I (days)", "tpeak_txt")
+              value_card_small("Time of mean peak I", "tpeak_txt")
             )
         ),
         
+        # --- Actions ---
         div(class="tight-top",
             card(
               class = "mt-2",
@@ -269,10 +274,6 @@ server <- function(input, output, session) {
   S0_count <- reactive({
     S0 <- input$N - input$I0 - input$R0
     as.integer(max(0, S0))
-  })
-  
-  output$S0_txt <- renderText({
-    paste0("Implied initial susceptible (count): S0 = ", format(S0_count(), big.mark = ","))
   })
   
   rv <- reactiveValues(
@@ -362,10 +363,9 @@ server <- function(input, output, session) {
     
     validate(
       need(length(paths_comp) + length(mean_comp) + length(det_comp) >= 1,
-           "Turn on at least one layer/compartment on the right.")
+           "Turn on at least one layer/compartment.")
     )
     
-    # Force S/I/R legend order
     comp_levels <- c("S", "I", "R")
     
     all_long_paths <- NULL
@@ -425,7 +425,8 @@ server <- function(input, output, session) {
         plot.title = element_text(face = "bold"),
         legend.position = "bottom"
       ) +
-      scale_color_discrete(drop = FALSE) # ensures S/I/R ordering is respected even if one is hidden
+      scale_color_discrete(drop = FALSE) +
+      guides(color = guide_legend(override.aes = list(linewidth = 2.2)))
     
     if (!is.null(hist_long) && nrow(hist_long) > 0) {
       p <- p +

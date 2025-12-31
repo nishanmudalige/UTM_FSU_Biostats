@@ -1,6 +1,6 @@
 /* Make the reading column wider */
 .book .book-body .page-wrapper .page-inner {
-  max-width: 1100px;          /* try 1000–1200px or ~80ch for readability */
+  max-width: 1400px;          /* try 1000–1200px or ~80ch for readability */
 }
 
 /* (optional) let wide tables/figures breathe a bit */

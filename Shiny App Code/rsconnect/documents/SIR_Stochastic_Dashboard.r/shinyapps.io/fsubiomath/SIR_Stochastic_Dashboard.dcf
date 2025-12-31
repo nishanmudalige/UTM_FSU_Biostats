@@ -1,0 +1,13 @@
+name: SIR_Stochastic_Dashboard
+title: SIR_Stochastic_Dashboard
+username: fsubiomath
+account: fsubiomath
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16363650
+bundleId: 11386808
+url: https://fsubiomath.shinyapps.io/SIR_Stochastic_Dashboard/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: SIR_Dashboard.r|SIR_Phase_Plane.r

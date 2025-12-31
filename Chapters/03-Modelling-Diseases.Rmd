@@ -373,7 +373,7 @@ The dashboard below is a time series plot for the SIR model, where the populatio
 <center>
 
 ```{r SIRShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
-knitr::include_app("https://nishan-mudalige.shinyapps.io/SIR_Dashboard/", height = "1200")
+knitr::include_app("https://fsubiomath.shinyapps.io/SIR_Dashboard/", height = "1200")
 ```
 
 </center>
