@@ -1,0 +1,10 @@
+# Shinyapps.io login details:
+
+username: fsu.biomath@outlook.com
+password: nirzyT-5mumve-vusqym
+
+
+# Outlook email login:
+
+username: fsu.biomath@outlook.com
+password: gyqxib-quxbob-5Gujfi
