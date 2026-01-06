@@ -70,7 +70,7 @@ References: [@Delussu2023] [@Gupta2025]
 
 In this section, we will look at the other way in which diseases spread. First, we looked at metapopulations and diffusion, in which the transmission of disease was spread geographically. Now we look at Networks, which involve the transmission of disease through social factors and structure. In our models, we assume that everyone has the same amount of contact, or homogenous contact, for simplicity; however, in the real world, this is not accurate, and contact is heterogeneous.
 
-### Contact Heterogeneity
+### Contact Heterogeneity {#sec:contacthet}
 
 Since contact is not consistent between all individuals, we must define the distinctions that can cause variations in the transmission of diseases. If we recall, in our models we use $R_0$, the basic reproductive number. In our models, $R_0$ is proportional to the average number of contacts, since homogeneity is assumed. However, with heterogeneity, a person with a high number of contacts is integral to this topic, since they not only have the highest chances of becoming infected but also of spreading the infection. Because of this existence, the average is irrelevant, and the variance is the most relevant measure of disease transmission.
 

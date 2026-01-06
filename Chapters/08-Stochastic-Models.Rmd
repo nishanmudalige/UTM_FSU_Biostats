@@ -1,5 +1,37 @@
 # Stochastic Models
 
+As we have mentioned, modeling the spread of disease using deterministic models against the true spread of disease greatly varies due to a series of chance events. In this variation, the power and value of stochastic models is seen. A stochastic model accounts for these random chances by factoring whether the spread of an infection from one person to another is based on probability.
+
+## Features of Stochastic Models
+
+Stochastic models factor in probability in the spread of diseases from person to person, so the fundamental foundation is different compared to deterministic models we have seen. These are features and examples of stochastic models compared to deterministic models and display their enhanced predictive power.
+
+- Within Smaller Populations
+
+  - Stochastic models are able to account for very small variations due to random chance, which can have monumental effects on whether a disease continues to spread or falters and dies out.
+
+- Super Spreaders
+
+  - In *Chapter* \@ref(sec:contacthet), we establish that in real world situations, contact cannot be assumed equal across all individuals in a population. Using stochastic models we can utilize random transmission rates among individuals to account for the small percentage of individuals that classify as super spreaders and are responsible for a large spread of the disease compared to the average person's contact magnitude.
+  
+- Variability
+
+  - With probability involved in modeling the spread of a disease, such as contact and transmission, a vast amount of possibilities and outcomes can be observed of how an epidemic may progress
+  
+## Parameters
+
+As seen in deterministic models, stochastic models operate under similar parameters:
+
+- $\beta$: Transmission Rate
+
+- $\gamma$: Recovery Rate
+
+- $R_0$: Basic Reproduction Number (Equal to $\frac{\beta}{\gamma}$)
+
+- Running Mean: Average Value of numerous Stochastic Simulations
+
+With these parameters defined, by generating multiple paths, it can be observed how these simulations lead to different peaks, duration, and overall values. Further, the mean values of the peak and time of peak can be seen to comprehend how severe and when the outbreak occurs across all simulations, hence mean values. It can also be observed the percentage and amount of stochastic simulations that reached extinction of the disease, where $I=0$. Additionally, these values and graphs of the stochastic models can be compared to deterministic values and graphs, especially the jagged vs. smooth nature of each respective model type. These features and characteristics can be visualized in utilizing the dashboard provided.
+
 ```{r StochasticShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%', fig.cap=''}
 knitr::include_app("https://fsubiomath.shinyapps.io/SIR_Stochastic_Dashboard/", height = "1295")
 ```

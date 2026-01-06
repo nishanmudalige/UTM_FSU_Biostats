@@ -113,8 +113,10 @@ introduction-to-spatial-epidemiology
 metapopulations
 diffusion-and-travel
 networks
-contact-heterogeneity
+sec:contacthet
 scale-free-networks
 ring-vaccination
 agent-based-models
 stochastic-models
+features-of-stochastic-models
+parameters

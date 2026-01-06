@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Stochastic Models | An Introduction to Mathematical Epidemiology</title>
   <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Stochastic Models | An Introduction to Mathematical Epidemiology" />
   <meta property="og:type" content="book" />
@@ -183,13 +183,17 @@ div.csl-indent {
 <li class="chapter" data-level="7.3" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#diffusion-and-travel"><i class="fa fa-check"></i><b>7.3</b> Diffusion and Travel</a></li>
 <li class="chapter" data-level="7.4" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#networks"><i class="fa fa-check"></i><b>7.4</b> Networks</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#contact-heterogeneity"><i class="fa fa-check"></i><b>7.4.1</b> Contact Heterogeneity</a></li>
+<li class="chapter" data-level="7.4.1" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#sec:contacthet"><i class="fa fa-check"></i><b>7.4.1</b> Contact Heterogeneity</a></li>
 <li class="chapter" data-level="7.4.2" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#scale-free-networks"><i class="fa fa-check"></i><b>7.4.2</b> Scale Free Networks</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#ring-vaccination"><i class="fa fa-check"></i><b>7.5</b> Ring Vaccination</a></li>
 <li class="chapter" data-level="7.6" data-path="spatial-epidemiology.html"><a href="spatial-epidemiology.html#agent-based-models"><i class="fa fa-check"></i><b>7.6</b> Agent-Based Models</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="stochastic-models.html"><a href="stochastic-models.html"><i class="fa fa-check"></i><b>8</b> Stochastic Models</a></li>
+<li class="chapter" data-level="8" data-path="stochastic-models.html"><a href="stochastic-models.html"><i class="fa fa-check"></i><b>8</b> Stochastic Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="stochastic-models.html"><a href="stochastic-models.html#features-of-stochastic-models"><i class="fa fa-check"></i><b>8.1</b> Features of Stochastic Models</a></li>
+<li class="chapter" data-level="8.2" data-path="stochastic-models.html"><a href="stochastic-models.html#parameters"><i class="fa fa-check"></i><b>8.2</b> Parameters</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -210,8 +214,38 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="stochastic-models" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Stochastic Models<a href="stochastic-models.html#stochastic-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As we have mentioned, modeling the spread of disease using deterministic models against the true spread of disease greatly varies due to a series of chance events. In this variation, the power and value of stochastic models is seen. A stochastic model accounts for these random chances by factoring whether the spread of an infection from one person to another is based on probability.</p>
+<div id="features-of-stochastic-models" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Features of Stochastic Models<a href="stochastic-models.html#features-of-stochastic-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Stochastic models factor in probability in the spread of diseases from person to person, so the fundamental foundation is different compared to deterministic models we have seen. These are features and examples of stochastic models compared to deterministic models and display their enhanced predictive power.</p>
+<ul>
+<li><p>Within Smaller Populations</p>
+<ul>
+<li>Stochastic models are able to account for very small variations due to random chance, which can have monumental effects on whether a disease continues to spread or falters and dies out.</li>
+</ul></li>
+<li><p>Super Spreaders</p>
+<ul>
+<li>In <em>Chapter</em> <a href="spatial-epidemiology.html#sec:contacthet">7.4.1</a>, we establish that in real world situations, contact cannot be assumed equal across all individuals in a population. Using stochastic models we can utilize random transmission rates among individuals to account for the small percentage of individuals that classify as super spreaders and are responsible for a large spread of the disease compared to the average person’s contact magnitude.</li>
+</ul></li>
+<li><p>Variability</p>
+<ul>
+<li>With probability involved in modeling the spread of a disease, such as contact and transmission, a vast amount of possibilities and outcomes can be observed of how an epidemic may progress</li>
+</ul></li>
+</ul>
+</div>
+<div id="parameters" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Parameters<a href="stochastic-models.html#parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As seen in deterministic models, stochastic models operate under similar parameters:</p>
+<ul>
+<li><p><span class="math inline">\(\beta\)</span>: Transmission Rate</p></li>
+<li><p><span class="math inline">\(\gamma\)</span>: Recovery Rate</p></li>
+<li><p><span class="math inline">\(R_0\)</span>: Basic Reproduction Number (Equal to <span class="math inline">\(\frac{\beta}{\gamma}\)</span>)</p></li>
+<li><p>Running Mean: Average Value of numerous Stochastic Simulations</p></li>
+</ul>
+<p>With these parameters defined, by generating multiple paths, it can be observed how these simulations lead to different peaks, duration, and overall values. Further, the mean values of the peak and time of peak can be seen to comprehend how severe and when the outbreak occurs across all simulations, hence mean values. It can also be observed the percentage and amount of stochastic simulations that reached extinction of the disease, where <span class="math inline">\(I=0\)</span>. Additionally, these values and graphs of the stochastic models can be compared to deterministic values and graphs, especially the jagged vs. smooth nature of each respective model type. These features and characteristics can be visualized in utilizing the dashboard provided.</p>
 <iframe src="https://fsubiomath.shinyapps.io/SIR_Stochastic_Dashboard/?showcase=0" width="100%" height="1295" data-external="1">
 </iframe>
+</div>
 </div>
             </section>
 
