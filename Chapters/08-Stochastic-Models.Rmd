@@ -36,6 +36,8 @@ With these parameters defined, by generating multiple paths, it can be observed 
 knitr::include_app("https://fsubiomath.shinyapps.io/SIR_Stochastic_Dashboard/", height = "1295")
 ```
 
+References: [@kadri2025] [@sunila2024]
+
 # References {-}
 
 <div id="refs"></div>
