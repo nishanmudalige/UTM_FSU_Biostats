@@ -228,7 +228,7 @@ usage of these models with real data.</p>
 <div id="the-siqr-model" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> The SIQR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-siqr-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This model is based on the parameters and variables defined in the
-article by Kalachev et al. (2023) and is used to model COVID-19. <span class="citation">[<a href="references.html#ref-kalachev2022">11</a>]</span></p>
+article by Kalachev et al. (2023) and is used to model COVID-19. <span class="citation">[<a href="references.html#ref-kalachev2022">12</a>]</span></p>
 <p>The “Q” compartment represents quarantined individuals.</p>
 <p>It is important to note that the authors state their limitations, as
 they do not include an “E” (Exposed) compartment. This means that the
@@ -443,7 +443,7 @@ is the largest eigenvalue, so <span class="math inline">\(R_0 = \frac{\alpha S}{
 </div>
 <div id="example-with-parameter-values-and-simulation" class="section level3 hasAnchor" number="6.2.4">
 <h3><span class="header-section-number">6.2.4</span> Example with Parameter Values and Simulation<a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-with-parameter-values-and-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Throughout this textbook, we have discussed how to solve and understand varying models on a theoretical level. However; we are also able to fit these models to data in with certain datasets. To do this, we will use a very commonly used example in the world of applied epidemiology, the 1978 Influenza Outbreak in a British Boarding School. The data contained total cases, quarantined defined as “Confined to Bed,” and Recovering defined as “Convalescent.” This was a closed system and contained detail reports to understand what occurred using our modern techniques and models. Doing so allows us to map the data into the variables of our models and understand the situation from which our data was recorded.<span class="citation">[<a href="references.html#ref-kalachev2022">11</a>]</span></p>
+<p>Throughout this textbook, we have discussed how to solve and understand varying models on a theoretical level. However; we are also able to fit these models to data in with certain datasets. To do this, we will use a very commonly used example in the world of applied epidemiology, the 1978 Influenza Outbreak in a British Boarding School. The data contained total cases, quarantined defined as “Confined to Bed,” and Recovering defined as “Convalescent.” This was a closed system and contained detail reports to understand what occurred using our modern techniques and models. Doing so allows us to map the data into the variables of our models and understand the situation from which our data was recorded.<span class="citation">[<a href="references.html#ref-kalachev2022">12</a>]</span></p>
 <ul>
 <li><p>Parameter Values</p>
 <ul>
@@ -489,7 +489,7 @@ Figure 6.2: Time series plot of SIQR model at endemic equilibrium, simulated wit
 <div id="the-svir-model" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> The SVIR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-svir-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The model in this example is based on the parameters and variables defined in the
-articles by Ramponi et al. (2024) and Zhu X et al. (2024). <span class="citation">[<a href="references.html#ref-ramponi2024">18</a>]</span> <span class="citation">[<a href="references.html#ref-zhu2024">27</a>]</span></p>
+articles by Ramponi et al. (2024) and Zhu X et al. (2024). <span class="citation">[<a href="references.html#ref-ramponi2024">19</a>]</span> <span class="citation">[<a href="references.html#ref-zhu2024">29</a>]</span></p>
 <p>A non-specific disease that considers vaccination of the population is modelled.
 The model includes a “V” compartment for vaccinated individuals, and takes into account vaccination
 rate, vaccine effectiveness, and vaccine induced decline in the immune
@@ -741,7 +741,7 @@ infection.</p>
 </div>
 <div id="example-with-parameter-values-and-simulation-1" class="section level3 hasAnchor" number="6.3.4">
 <h3><span class="header-section-number">6.3.4</span> Example with Parameter Values and Simulation<a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-with-parameter-values-and-simulation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The following parameter values were retrieved from the article by Zhu et al. (2024) <span class="citation">[<a href="references.html#ref-zhu2024">27</a>]</span>.</p>
+<p>The following parameter values were retrieved from the article by Zhu et al. (2024) <span class="citation">[<a href="references.html#ref-zhu2024">29</a>]</span>.</p>
 <ul>
 <li><p><span class="math inline">\(b= 0.0085\)</span> (cure rate of infected individuals )</p></li>
 <li><p><span class="math inline">\(d = 0.005\)</span> (natural death rate)</p></li>
@@ -772,7 +772,7 @@ Figure 6.5: Time series plot of VSIR model at endemic equilibrium, simulated wit
 <div id="the-sair-model" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> The SAIR Model<a href="extended-compartmental-models-real-world-applications-and-solutions.html#the-sair-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>SAIR model is a four compartment model that considers asymptomatic infected individuals (compartment “A”) as separate from the symptomatic individuals (compartment “I”).</p>
-<p>In this section we will use the NGM to solve an example of SAIR that models COVID-19. This example was modified from a paper by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">17</a>]</span>, and it should be noted that the model includes parameters for vital dynamics (birth, death) and vaccination. This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved.</p>
+<p>In this section we will use the NGM to solve an example of SAIR that models COVID-19. This example was modified from a paper by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">18</a>]</span>, and it should be noted that the model includes parameters for vital dynamics (birth, death) and vaccination. This example showcases how models can become increasingly complex to solve and interpret when more parameters are involved.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:sairdiagram"></span>
 <img src="_main_files/figure-html/sairdiagram-1.png" alt="The SAIR compartmental model." width="70%" />
 <p class="caption">
@@ -794,7 +794,7 @@ Figure 6.6: The SAIR compartmental model.
 </ul></li>
 <li><p><span class="math inline">\(\gamma\)</span>: rate of the asymptomatic infected individuals’ self-healing (producing antibodies for resistance to diseases)</p></li>
 <li><p><span class="math inline">\(\epsilon\)</span>: rate of the asymptomatic infected individuals showing symptoms (if resistance to disease is poor)</p></li>
-<li><p><span class="math inline">\(\frac{uI}{1+kI}\)</span>: saturated treatment function represented by the Holling Type 2 Functional Response <span class="citation">[<a href="references.html#ref-real1977">19</a>]</span>, which considers saturation of treatment rate when the numbers of infected are high.</p>
+<li><p><span class="math inline">\(\frac{uI}{1+kI}\)</span>: saturated treatment function represented by the Holling Type 2 Functional Response <span class="citation">[<a href="references.html#ref-real1977">20</a>]</span>, which considers saturation of treatment rate when the numbers of infected are high.</p>
 <ul>
 <li><span class="math inline">\(u\)</span>: cure rate of the infected individual</li>
 <li><span class="math inline">\(k\)</span>: handling time</li>
@@ -912,7 +912,7 @@ R_0 = \frac{\beta \Lambda [(1-p)\alpha(u+\mu+\theta)+(1-p)\epsilon+p(\gamma+\eps
 </div>
 <div id="example-parameters-and-simulation" class="section level3 hasAnchor" number="6.4.4">
 <h3><span class="header-section-number">6.4.4</span> Example Parameters and Simulation<a href="extended-compartmental-models-real-world-applications-and-solutions.html#example-parameters-and-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The following parameter values were retrieved from the article by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">17</a>]</span>, and also considers some demographic data from the United States of America in 2020.</p>
+<p>The following parameter values were retrieved from the article by Ouyang et al. (2025) <span class="citation">[<a href="references.html#ref-ouyang2025">18</a>]</span>, and also considers some demographic data from the United States of America in 2020.</p>
 <ul>
 <li><p><span class="math inline">\(p = 0.0065\)</span> (proportion of symptomatic individuals)</p></li>
 <li><p><span class="math inline">\(\beta = 0.05\)</span> (transmission rate)</p></li>
